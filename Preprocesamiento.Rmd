@@ -110,5 +110,8 @@ write.csv(DeltaMPP$trend, file = 'condenados.txt', row.names = TRUE)
 # Crecimiento promedio
 mean(DeltaMPP$trend,na.rm = TRUE)*100
 
+
+
+
 ```
 
