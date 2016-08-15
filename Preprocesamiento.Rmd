@@ -1,0 +1,114 @@
+---
+title: "Preprocesamiento"
+author: "Sergio Solano"
+date: "15 de agosto de 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+```{r}
+
+library ("timeSeries")
+library ("ggplot2")
+
+
+setwd("/home/sergio/Prisiones") 
+rm(list=ls())
+data = read.csv("POB_SIT.csv",header = FALSE,sep = ",",stringsAsFactors=FALSE)
+ 
+POB = as.integer(c(unlist(data[2:13,2:dim(data)[2]])))
+ 
+SIN = c(rep(c(rep(0,12),rep(1,12),rep(2,12)),900/36))
+ 
+POB_SIN = cbind(POB,SIN)
+ 
+SIND = subset(POB_SIN,POB_SIN[,"SIN"]==0)
+ 
+ 
+MPP1 = subset(POB_SIN,POB_SIN[,"SIN"]==0)
+MPP = MPP1[76:296,"POB"]
+
+##### SERIES DE TIEMPO
+#MPP = Male Prison Population
+
+MPPtimeseries <- ts(MPP, frequency=12, start=c(1991,1))
+
+logMMPtimeseries <- log(MPPtimeseries)
+
+plot.ts(diff(logMMPtimeseries))
+DeltaMPP = decompose(diff(logMMPtimeseries))
+plot(DeltaMPP) 
+
+# ggplot(DeltaMPP)
+
+write.csv(DeltaMPP$trend, file = 'sindicados.txt', row.names = TRUE)
+
+# Crecimiento promedio
+mean(DeltaMPP$trend,na.rm = TRUE)*100
+
+####### CONDENADOS 
+MPP1 = subset(POB_SIN,POB_SIN[,"SIN"]==1)
+MPP = MPP1[76:296,"POB"]
+
+##### SERIES DE TIEMPO
+#MPP = Male Prison Population
+
+MPPtimeseries <- ts(MPP, frequency=12, start=c(1991,1))
+
+logMMPtimeseries <- log(MPPtimeseries)
+
+plot.ts(diff(logMMPtimeseries))
+DeltaMPP = decompose(diff(logMMPtimeseries))
+plot(DeltaMPP) 
+ggplot(DeltaMPP)
+write.csv(DeltaMPP$trend, file = 'condenados.txt', row.names = TRUE)
+
+# Crecimiento promedio
+mean(DeltaMPP$trend,na.rm = TRUE)*100
+
+####### TOTAL 
+MPP1 = subset(POB_SIN,POB_SIN[,"SIN"]==2)
+MPP = MPP1[76:296,"POB"]
+
+##### SERIES DE TIEMPO
+#MPP = Male Prison Population
+
+MPPtimeseries <- ts(MPP, frequency=12, start=c(1991,1))
+
+logMMPtimeseries <- log(MPPtimeseries)
+
+plot.ts(diff(logMMPtimeseries))
+DeltaMPP = decompose(diff(logMMPtimeseries))
+plot(DeltaMPP) 
+ggplot(DeltaMPP)
+write.csv(DeltaMPP$trend, file = 'condenados.txt', row.names = TRUE)
+
+# Crecimiento promedio
+mean(DeltaMPP$trend,na.rm = TRUE)*100
+
+```
+
