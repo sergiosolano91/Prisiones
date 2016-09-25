@@ -1,0 +1,122 @@
+---
+title: "Preprocesamiento"
+author: "Sergio Solano"
+date: "15 de agosto de 2016"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r librerías ,include = FALSE, echo = FALSE}
+
+library("magrittr")
+library("dplyr")
+library("tidyr")
+library("ggplot2")
+library("plotly")
+library("zoo")
+library("shiny")
+```
+
+```{r Estimación Población Nacional, include = FALSE, echo = FALSE}
+setwd("/home/sergio/Prisiones/Data") 
+data = read.csv("POB_NAL_DANE.csv",header = TRUE,sep = ",",stringsAsFactors=FALSE)
+
+# Graficar proyección de población
+data %>% ggplot()+geom_line(aes(x=Año,y=Total, col = Grupo)) + ylim(0,27000000) -> grafica1
+ggplotly(grafica1)
+
+# reordenar columnas por sexo
+data %>% spread(Grupo, Total, fill = NA, convert = FALSE) %>% mutate(tasa_hombres = c(log(Hombres[2:length(Hombres)]/Hombres[1:length(Hombres)-1]),1))%>% mutate(tasa_mujeres = c(log(Mujeres[2:length(Mujeres)]/Mujeres[1:length(Mujeres)-1]),1))%>% mutate(Fecha=as.Date(paste("01","06",Año,sep="/"),"%d/%m/%Y"))   -> data2
+
+data2 %>% ggplot()+geom_line(aes(x=Año,y=Hombres,color="Hombres"))+geom_line(aes(x=Año,y=Mujeres,color="Mujeres")) + ylim(0,27000000) -> grafica2
+ggplotly (grafica2)
+
+# Proyectar población a nivel mensual 
+
+ts_pob_nal_hom <- zoo(data2$Hombres,data2$Fecha)  
+ts_pob_nal_hom_mon <- na.spline(ts_pob_nal_hom, xout = seq(start(ts_pob_nal_hom),as.Date(as.yearqtr(end(ts_pob_nal_hom))+ 3/4) , by = "month"), method = "hyman")
+
+ts_pob_nal_muj <- zoo(data2$Mujeres,data2$Fecha)  
+ts_pob_nal_muj_mon <- na.spline(ts_pob_nal_muj, xout = seq(start(ts_pob_nal_muj),as.Date(as.yearqtr(end(ts_pob_nal_muj))+ 3/4) , by = "month"), method = "fmm")
+                                
+pob_nal_est = cbind(seq(as.Date("1985/6/1"), as.Date("2021/1/1"), "months"), as.data.frame.ts(ts_pob_nal_hom_mon),as.data.frame.ts(ts_pob_nal_muj_mon))        
+
+colnames(pob_nal_est) <- c("Fecha","Hombres","Mujeres")
+
+pob_nal_est %>% ggplot()+geom_line(aes(x=Fecha,y=Hombres,color="Hombres"))+geom_line(aes(x=Fecha,y=Mujeres,color="Mujeres")) + ylim(0,27000000) -> grafica3
+ggplotly (grafica3)
+```
+
+```{r Panel de parámetros, echo= FALSE}
+
+shinyUI(fluidPage(
+  titlePanel("Parametros"),
+  fluidRow(
+       column(3, 
+      textInput("tasa_ingreso", label = h3("Tasa ingreso"), 
+        value = 5/100000)),
+       column(3,
+      textInput("tasa_juicio", label = h3("Tasa de juicio"), 
+        value = 0.1)),
+      column(3,
+      textInput("prob_condena", label = h3("Probabilidad de condena"), 
+        value = 0.6)),
+      column(3,
+      textInput("pob_sin_ini", label = h3("Población sindicada inicial"), 
+        value = 16277)),
+      column(3,
+      textInput("pob_con_ini", label = h3("Población condenada inicial"), 
+        value = 15799)),
+      column(3,
+      textInput("tasa_salida", label = h3("tasa_salida"), 
+        value = 0.05))
+      )
+  )
+)
+
+```
+
+```{r Proyección_tasas, echo = FALSE}
+
+renderPlotly({
+tasa_ingreso <- as.numeric(input$tasa_ingreso)
+tasa_juicio <- as.numeric(input$tasa_juicio)
+prob_condena <- as.numeric(input$prob_condena)
+pob_sin_ini <- as.numeric(input$pob_sin_ini)
+pob_con_ini <- as.numeric(input$pob_con_ini)
+tasa_salida <- as.numeric(input$tasa_salida)
+  
+pob_sin <- pob_sin_ini
+pob_con <- pob_con_ini
+pob_total <- 17040712 + 17500016
+
+pob_nal_est %>% filter(Fecha >= as.Date("1991/01/01"),Fecha <= as.Date("2015/09/01")) -> pob_nal_est_91
+
+for (i in 2:length(seq(as.Date("1991/1/1"), as.Date("2015/9/1"), "months"))) {
+   pob_sin[i] <- pob_sin[i-1] +  (pob_nal_est_91$Hombres[i]+pob_nal_est_91$Mujeres[i])*tasa_ingreso - pob_sin[i-1]*tasa_juicio
+   pob_con[i] <- pob_con[i-1] + pob_sin[i-1]*tasa_juicio*prob_condena - pob_con[i-1]*tasa_salida
+ pob_total[i] <- pob_nal_est_91$Hombres[i]+pob_nal_est_91$Mujeres[i]
+  next
+}
+
+pob_nal_est_91 %<>% mutate(pob_sin,pob_con,pob_total) %>% mutate(tasa = (pob_sin+pob_con)/pob_total*100000)
+
+# head(pob_nal_est_91)
+
+pob_nal_est_91 %>% ggplot()+geom_line(aes(x=Fecha,y=pob_sin,color=""))+geom_line(aes(x=Fecha,y=pob_con,color="Condenados"))
+
+pob_nal_est_91 %>% gather(Grupo, Valor, Hombres:tasa) %>% filter(Grupo=="pob_con"|Grupo=="pob_sin") %>% ggplot()+ geom_bar(stat = 'sum',aes(x=Fecha,y=Valor, fill=Grupo))-> gra_pob_car
+# pob_nal_est_91 %>% ggplot()+geom_line(aes(x=Fecha,y=tasa)) -> gra_tasa
+ggplotly(gra_pob_car)
+# ggplotly(gra_tasa)
+})
+
+```

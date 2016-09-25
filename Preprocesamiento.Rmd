@@ -82,9 +82,16 @@ MPPtimeseries <- ts(MPP, frequency=12, start=c(1991,1))
 logMMPtimeseries <- log(MPPtimeseries)
 
 plot.ts(diff(logMMPtimeseries))
+
+#ggplot(yt.views, aes(Date, Views)) + geom_line() +
+#  scale_x_date(format = "%b-%Y") + xlab("") + ylab("Daily Views")
+
+
+
+
 DeltaMPP = decompose(diff(logMMPtimeseries))
 plot(DeltaMPP) 
-ggplot(DeltaMPP)
+# ggplot(DeltaMPP)
 write.csv(DeltaMPP$trend, file = 'condenados.txt', row.names = TRUE)
 
 # Crecimiento promedio
@@ -104,13 +111,11 @@ logMMPtimeseries <- log(MPPtimeseries)
 plot.ts(diff(logMMPtimeseries))
 DeltaMPP = decompose(diff(logMMPtimeseries))
 plot(DeltaMPP) 
-ggplot(DeltaMPP)
+# ggplot(DeltaMPP)
 write.csv(DeltaMPP$trend, file = 'condenados.txt', row.names = TRUE)
 
 # Crecimiento promedio
 mean(DeltaMPP$trend,na.rm = TRUE)*100
-
-
 
 
 ```
