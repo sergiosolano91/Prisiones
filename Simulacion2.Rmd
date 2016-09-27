@@ -10,9 +10,9 @@ runtime: shiny
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Including Plots
+## Simulación del sistema penitenciario
 
-You can also embed plots, for example:
+Con base en el CONPES 
 
 ```{r librerías ,include = FALSE, echo = FALSE}
 
@@ -23,11 +23,18 @@ library("ggplot2")
 library("plotly")
 library("zoo")
 library("shiny")
+library("curl")
+
 ```
 
 ```{r Estimación Población Nacional, include = FALSE, echo = FALSE}
-setwd("/home/sergio/Prisiones/Data") 
-data = read.csv("POB_NAL_DANE.csv",header = TRUE,sep = ",",stringsAsFactors=FALSE)
+
+url <- "https://www.dropbox.com/s/54vmiq6tfhor0t1/POB_NAL_DANE.csv?dl=1"
+destfile <- "POB_NAL_DAN.csv"
+curl_download(url, destfile)
+
+# setwd("/home/sergio/Prisiones") 
+data = read.csv("POB_NAL_DAN.csv",header = TRUE,sep = ",",stringsAsFactors=FALSE)
 
 # Graficar proyección de población
 data %>% ggplot()+geom_line(aes(x=Año,y=Total, col = Grupo)) + ylim(0,27000000) -> grafica1
@@ -58,65 +65,87 @@ ggplotly (grafica3)
 ```{r Panel de parámetros, echo= FALSE}
 
 shinyUI(fluidPage(
-  titlePanel("Parametros"),
-  fluidRow(
-       column(3, 
-      textInput("tasa_ingreso", label = h3("Tasa ingreso"), 
-        value = 5/100000)),
-       column(3,
-      textInput("tasa_juicio", label = h3("Tasa de juicio"), 
-        value = 0.1)),
-      column(3,
-      textInput("prob_condena", label = h3("Probabilidad de condena"), 
-        value = 0.6)),
-      column(3,
-      textInput("pob_sin_ini", label = h3("Población sindicada inicial"), 
-        value = 16277)),
-      column(3,
-      textInput("pob_con_ini", label = h3("Población condenada inicial"), 
-        value = 15799)),
-      column(3,
-      textInput("tasa_salida", label = h3("tasa_salida"), 
-        value = 0.05))
-      )
+  titlePanel("Parámetros"),
+  sidebarPanel(
+            textInput("tasa_ingreso", label = h5("Tasa de ingreso"), 
+        value = 5),
+        h6 ("Tasa de ingreso mensual por cada 100.000 hbts"),
+            textInput("tasa_juicio", label = h5("Tasa de juicio"), 
+        value = 0.1),
+        h6 ("Proporción de sindicados que es juzgada cada mes"),
+            textInput("prob_condena", label = h5("Proporción culpable"), 
+        value = 0.6),
+         h6 ("Probabilidad que una persona sea encontrada culpable luego del juicio"),
+            textInput("tasa_salida", label = h5("Tasa de salida"), 
+        value = 0.05),
+          h6 ("Proporción de los condenados que termina su condena cada mes"),
+        br(),
+        h4("Valores iniciales"),
+            textInput("pob_sin_ini", label = h5("Población sindicada inicial"), 
+        value = 16277),
+            textInput("pob_con_ini", label = h5("Población condenada inicial"), 
+        value = 15799)
+    ),
+  mainPanel(
+      tabsetPanel(
+        tabPanel("Población",
+          renderPlotly({
+            
+          tasa_ingreso <- as.numeric(input$tasa_ingreso)/100000
+          tasa_juicio <- as.numeric(input$tasa_juicio)
+          prob_condena <- as.numeric(input$prob_condena)
+          pob_sin_ini <- as.numeric(input$pob_sin_ini)
+          pob_con_ini <- as.numeric(input$pob_con_ini)
+          tasa_salida <- as.numeric(input$tasa_salida)
+            
+          Sindicados <- pob_sin_ini
+          Condenados <- pob_con_ini
+          pob_total <- 17040712 + 17500016
+          
+          pob_nal_est %>% filter(Fecha >= as.Date("1991/01/01"),Fecha <= as.Date("2015/09/01")) -> pob_nal_est_91
+          
+          for (i in 2:length(seq(as.Date("1991/1/1"), as.Date("2015/9/1"), "months"))) {
+             Sindicados[i] <- Sindicados[i-1] +  (pob_nal_est_91$Hombres[i]+pob_nal_est_91$Mujeres[i])*tasa_ingreso - Sindicados[i-1]*tasa_juicio
+             Condenados[i] <- Condenados[i-1] + Sindicados[i-1]*tasa_juicio*prob_condena - Condenados[i-1]*tasa_salida
+           pob_total[i] <- pob_nal_est_91$Hombres[i]+pob_nal_est_91$Mujeres[i]
+            next
+          }
+          
+          pob_nal_est_91 %<>% mutate(Sindicados,Condenados,pob_total) %>% mutate(tasa = (Sindicados+Condenados)/pob_total*100000)
+          pob_nal_est_91 %>% gather(Grupo, Valor, Hombres:tasa) %>% filter(Grupo=="Condenados"|Grupo=="Sindicados") %>% ggplot()+ geom_bar(stat = 'sum',aes(x=Fecha,y=Valor, fill=Grupo))-> gra_pob_car
+          ggplotly(gra_pob_car)
+  
+          })    
+        ),
+        tabPanel("Tasa",
+          renderPlotly({
+            
+          tasa_ingreso <- as.numeric(input$tasa_ingreso)/100000
+          tasa_juicio <- as.numeric(input$tasa_juicio)
+          prob_condena <- as.numeric(input$prob_condena)
+          pob_sin_ini <- as.numeric(input$pob_sin_ini)
+          pob_con_ini <- as.numeric(input$pob_con_ini)
+          tasa_salida <- as.numeric(input$tasa_salida)
+            
+          Sindicados <- pob_sin_ini
+          Condenados <- pob_con_ini
+          pob_total <- 17040712 + 17500016
+          
+          pob_nal_est %>% filter(Fecha >= as.Date("1991/01/01"),Fecha <= as.Date("2015/09/01")) -> pob_nal_est_91
+          
+          for (i in 2:length(seq(as.Date("1991/1/1"), as.Date("2015/9/1"), "months"))) {
+             Sindicados[i] <- Sindicados[i-1] +  (pob_nal_est_91$Hombres[i]+pob_nal_est_91$Mujeres[i])*tasa_ingreso - Sindicados[i-1]*tasa_juicio
+             Condenados[i] <- Condenados[i-1] + Sindicados[i-1]*tasa_juicio*prob_condena - Condenados[i-1]*tasa_salida
+           pob_total[i] <- pob_nal_est_91$Hombres[i]+pob_nal_est_91$Mujeres[i]
+            next
+          }
+          pob_nal_est_91 %<>% mutate(Sindicados,Condenados,pob_total) %>% mutate(tasa = (Sindicados+Condenados)/pob_total*100000)
+         pob_nal_est_91 %>% ggplot()+geom_line(aes(x=Fecha,y=tasa)) + labs(title = "Tasa de encarcelamiento", y = "Tasa (por cada cien mil hbts.)") + expand_limits(y=0) -> gra_tasa
+         ggplotly(gra_tasa)
+          })    
+        )
+        )
+    )
   )
 )
 
-```
-
-```{r Proyección_tasas, echo = FALSE}
-
-renderPlotly({
-tasa_ingreso <- as.numeric(input$tasa_ingreso)
-tasa_juicio <- as.numeric(input$tasa_juicio)
-prob_condena <- as.numeric(input$prob_condena)
-pob_sin_ini <- as.numeric(input$pob_sin_ini)
-pob_con_ini <- as.numeric(input$pob_con_ini)
-tasa_salida <- as.numeric(input$tasa_salida)
-  
-pob_sin <- pob_sin_ini
-pob_con <- pob_con_ini
-pob_total <- 17040712 + 17500016
-
-pob_nal_est %>% filter(Fecha >= as.Date("1991/01/01"),Fecha <= as.Date("2015/09/01")) -> pob_nal_est_91
-
-for (i in 2:length(seq(as.Date("1991/1/1"), as.Date("2015/9/1"), "months"))) {
-   pob_sin[i] <- pob_sin[i-1] +  (pob_nal_est_91$Hombres[i]+pob_nal_est_91$Mujeres[i])*tasa_ingreso - pob_sin[i-1]*tasa_juicio
-   pob_con[i] <- pob_con[i-1] + pob_sin[i-1]*tasa_juicio*prob_condena - pob_con[i-1]*tasa_salida
- pob_total[i] <- pob_nal_est_91$Hombres[i]+pob_nal_est_91$Mujeres[i]
-  next
-}
-
-pob_nal_est_91 %<>% mutate(pob_sin,pob_con,pob_total) %>% mutate(tasa = (pob_sin+pob_con)/pob_total*100000)
-
-# head(pob_nal_est_91)
-
-pob_nal_est_91 %>% ggplot()+geom_line(aes(x=Fecha,y=pob_sin,color=""))+geom_line(aes(x=Fecha,y=pob_con,color="Condenados"))
-
-pob_nal_est_91 %>% gather(Grupo, Valor, Hombres:tasa) %>% filter(Grupo=="pob_con"|Grupo=="pob_sin") %>% ggplot()+ geom_bar(stat = 'sum',aes(x=Fecha,y=Valor, fill=Grupo))-> gra_pob_car
-# pob_nal_est_91 %>% ggplot()+geom_line(aes(x=Fecha,y=tasa)) -> gra_tasa
-ggplotly(gra_pob_car)
-# ggplotly(gra_tasa)
-})
-
-```
