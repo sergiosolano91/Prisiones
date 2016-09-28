@@ -1,7 +1,7 @@
 ---
-title: "Preprocesamiento"
+title: "Simulación de poblaciones carcelarias"
 author: "Sergio Solano"
-date: "15 de agosto de 2016"
+date: "29 de agosto de 2016"
 output: html_document
 runtime: shiny
 ---
@@ -9,10 +9,6 @@ runtime: shiny
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-## Simulación del sistema penitenciario
-
-Con base en el CONPES 
 
 ```{r librerías ,include = FALSE, echo = FALSE}
 
@@ -26,6 +22,30 @@ library("shiny")
 library("curl")
 
 ```
+### Definición
+
+Esta aplicación tiene como proposito simular poblaciones carcelarias, tomando como base estimaciones de población nacional y parámetros constantes a través del tiempo.
+
+### Datos
+Se utilizaron las estimaciones y proyecciones nacionales de población del DANE 1985-2020. Estos datos están a nivel anual y se interpolaron usando R, para poder usarlos a nivel mensual. 
+
+No se incluyen en esta versión los datos reales de población carcelaria. En la siguiente versión de la aplicación se comparará la población real con los escenarios de la simulación.
+
+### Modelo
+Las poblaciones carcelarias se dividen según su situación juridica en: sindicados, quienes están a la espera de juicio y condenados, quienes ya recibieron una condena. Podemos modelar el sistema penitenciario de la siguiente manera:
+
+<center> $S_t = S_{t-1} + \alpha {N_t} - \gamma S_{t-1}$ </center>
+
+<center> $C_t = C_{t-1} - \omega C_{t-1} + \beta \gamma S_{t-1}$ </center>
+<br>
+
+* $N_t$ = población nacional en el periodo t
+* $S_t$ = población de sindicados en el periodo t
+* $C_t$ = población de condenados en el periodo t
+* $\alpha$ = proporción de la población libre que ingresa al sistema carcelario
+* $\gamma$ = proporción de sindicados que es juzgada cada periodo
+* $\beta$ = proporción de sindicados que han sido encontrados culpables durante el juicio	
+* $\omega$ = proporción de condenados que cumplen su pena cada periodo
 
 ```{r Estimación Población Nacional, include = FALSE, echo = FALSE}
 
