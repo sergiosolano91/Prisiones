@@ -84,76 +84,158 @@
 % -------------------------------------------------------------------------------------
 
 \begin{mainabstract}
-    La proyección de poblaciones carcelarias es un problema de proyección de poblaciones pequeñas.
-\keywords{Poblaciones pequeñas,Poblaciones carcelarias, series de tiempo}
+    Se presenta una propuesta de tesis en la proyección de poblaciones carcelarias, que pretende comparar el ajuste de los métodos de Proyección de poblaciones pequeñas, el análisis de series de tiempo y los modelos estado espacio. Se comparan los datos con simulación Monte-Carlo y se estima cada modelo con los datos de población carcelaria de Colombia 1991-2016.
+\keywords{Poblaciones pequeñas,Poblaciones Carcelarias, Series de tiempo}
 \end{mainabstract}
 
 
 \begin{secondaryabstract}
-    Write here the abstract of the project.
-\keywords{Subnational populations, , 3rd keyword}
+    We present a thesis proposal on the projection of prison populations. We compare the adjusment of Subnational Populations Methods, Time Series Analysis and State-Space models. We compare the results using Monte-Carlo Simulation and apply these methods with Colombian data from 1991 to 2016. 
+\keywords{Subnational populations, Prison populations, Time Series Analysis}
 \end{secondaryabstract}
-
-
 
 \section{Introducción}
 
-La población carcelaria es el grupo poblacional que se encuentra privado de la libertad en una institución penitenciaria. A aquellos a la espera de juicio se les denomina sindicados, y condenados a quienes han están cumpliendo una sentencia. En Colombia, el INPEC (Instituto Nacional Penitenciario y Carcelario) "es la institución pública administradora del sistema penitenciario y carcelario del pais" \cite{InstitutoNacionalPenitenciarioyCarcelario2016}.El INPEC publica periodicamente la serie histórica de población carcelaria, que da cuenta de la población mensual desde 1991 hasta la fecha, separada por situación judicial (sidicados, condenados) y género.
+La población carcelaria es el grupo poblacional que se encuentra privado de la libertad en una institución penitenciaria. Dentro de esta población, a aquellos a la espera de juicio se les denomina sindicados, y condenados a quienes están cumpliendo una sentencia. 
 
-"El promedio anual de crecimiento de la PPL entre 1993 y 2014 fue de 9,43\% para la población condenada y 4,91\% para la población sindicada" \cite {DepartamentoNacionaldePlaneacion2015}, ambas tasas muy por encima del 1,18\% anual, crecimiento poblacional estimado por el DANE para el quinquenio 2015-2010  \cite {DANE}. El crecimiento acelerado de la población carcelaria, por encima de la oferta de cupos implica un incremento del hacinamiento. Mientras que el aumento por encima de la población nacional sugiere dinámicas de crecimiento diferentes al resto de la población.
+En Colombia el INPEC (Instituto Nacional Penitenciario y Carcelario), que "es la institución pública administradora del sistema penitenciario y carcelario del país" \cite{InstitutoNacionalPenitenciarioyCarcelario2016}, publica periódicamente la serie histórica de población carcelaria, que da cuenta de la población al cierre de cada mes desde 1991 hasta la fecha, separada por situación judicial (sindicados, condenados) y género.
 
-El CONPES 3828 de 2015 realiza proyecciones de la población carcelaria, a través de un modelo de crecimiento exponencial con una tasa de crecimiento de 7,23\% anual. Este tipo de modelos, aunque ampliamente usados en proyecciones de población, no resulta conveniente cuando la tasa de crecimiento no es estable a través del tiempo y depende de variables externas como: la  población nacional, su estructura etárea, las características del sistema penitenciario y de el sistema judicial. 
+Con base en estos datos el CONPES 3828 anota que "el promedio anual de crecimiento de la Población Privada de la Libertad (PPL) entre 1993 y 2014 fue de 9,43\% para la población condenada y 4,91\% para la sindicada" \cite {DepartamentoNacionaldePlaneacion2015}; ambas tasas están muy por encima del 1,18\% anual, crecimiento poblacional nacional estimado por el DANE para el quinquenio 2005-2010  \cite {DANE}. El aumento por encima de la población nacional sugiere dinámicas de crecimiento diferentes al resto de la población.
 
-Las poblaciones que se estiman y proyectan a un nivel menor que el nacional se conocen como poblaciones pequeñas (ciudad, departamento, etc...). Dentro de las poblaciones pequeñas se encuentran poblaciones especiales que "se localizan en un área especial por una acción legislativa o administrativa".  \citeasnoun {Swanson2012}. La población carcelaria es un tipo de población especial sus componentes: nacimientos y defunciones no necesariamente siguen los patrones biológicos que dan vida al modelo exponencial y requieren el uso de técnicas diferentes que permitan un mejor ajuste. 
+De otra parte el mismo documento observa que "en el periodo 1993-2014 la proporción de cupos habilitados creció en 173,59\%, mientras la población privada de la libertad (PPL) creció en un 315,39\%."\cite {DepartamentoNacionaldePlaneacion2015}. El crecimiento acelerado de la población carcelaria, por encima de la oferta de cupos implica un incremento del hacinamiento. 
 
-Este trabajo busca ofrecer proyecciones de población carcelaria de corto y mediano plazo integrando análisis de series de tiempo y modelos estado espacio al análisis de poblaciones especiales.
+El CONPES 3828 de 2015 realiza, además,  proyecciones de la población carcelaria a través de un modelo de crecimiento exponencial con tasa de crecimiento de 7,23\% anual. Este tipo de modelos, aunque ampliamente usados en proyecciones de población, no resulta conveniente cuando la tasa de crecimiento no es estable a través del tiempo y depende de variables exógenas  como: la  población nacional, su estructura etaria, las características del sistema penitenciario y del sistema judicial. 
+
+En este contexto resulta necesario contar con proyecciones de la población carcelaria en diferentes escenarios,para determinar la necesidad de cupos  en el corto y mediano plazo. Tales proyecciones deben tener en cuenta las dinámicas propias del sistema carcelario y deben permitir estimar el impacto de modificaciones a la política criminal y carcelaria. Este problema se ha abordado anteriormente desde el estudio de poblaciones pequeñas.
+
+Las poblaciones que se estiman y proyectan a un nivel menor que el nacional se conocen como poblaciones pequeñas (ciudad, departamento, etc...). Dentro de las poblaciones pequeñas se encuentran poblaciones especiales que "se localizan en un área especial por una acción legislativa o administrativa ".  \citeasnoun {Swanson2012}. La población carcelaria es un tipo de población especial cuyos componentes: nacimientos y defunciones no necesariamente siguen los patrones biológicos que dan vida al modelo exponencial y requieren el uso de técnicas diferentes que permitan un mejor ajuste. 
+
+Las series de población carcelaria disponibles para Colombia son mediciones de la población al cierre de mes, agrupada por situación judicial y género.
+
+Los proyecciones de población suelen incluir las tasas de nacimiento, migración y mortalidad. En el caso de las poblaciones carcelarias, los equivalentes serían la tasa de ingreso al sistema, la tasa a la que son juzgados y la duración de las penas, que determina la tasa de salida de los condenados. En el caso de Colombia estos datos no son libres, por lo tanto el modelo debe permitir estimar las tasas no observadas. Adicionalmente, estas tasas no son constantes a través del tiempo, pues dependen de la estructura del sistema judicial y del sistema carcelario.
+
+Este trabajo busca ofrecer proyecciones de población carcelaria de corto y mediano plazo, comparando los modelos de:  series de tiempo,  modelos estado espacio y métodos de proyección de poblaciones pequeñas.
 
 \section{Objetivos}
 
 \subsection{Objectivo General}
 
-Comparar la efectividad de los métodos de proyección de poblaciones pequeñas, en el contexto de poblaciones carcelarias,  con proyecciones de series de Tiempo ARMAX y modelos estado espacio.
+Comparar el ajuste de los métodos clásicos de proyección de poblaciones pequeñas (ration-correlation, Censal-ration methods) con el ajuste de series de Tiempo ARMAX y de modelos Estado-Espacio, para la población carcelaria de Colombia 1991-2016.
 
-\subsection{Objectivos Específicos}
+\subsection{Objetivos Específicos}
 \begin{itemize}
-    \item Primer Objetivo Específico
-
-    \item 2do Objetivo Específico
+	\item Modelar la población carcelaria usando los métodos de ratio-correlation y censal-ratio. 
+	\item Modelar el comportamiento de la población carcelaria a través de series de tiempo ARIMA y ARIMAX, suponiendo tasas de transición estables.
+	\item Aplicar modelos estado espacio para estimar las tasas de transición, cuando: son no observadas,  varían en el tiempo y tienen correlación con variables exógenas.
+	\item Comparar el ajuste de los tres métodos a través de simulación Montecarlo. 
+	\item Aplicar los métodos descritos en los objetivos anteriores, a los datos de población carcelaria colombiana 1991-2016. 
 \end{itemize}
 
 
 \section{Revisión de Literatura}
-\subsection{Monitoring of linear profiles}
 
-A standard assumption in the monitoring of simple linear regression profiles is that the errors are independent and identically distributed, usually with an assumed normal distribution, \citeasnoun{Woodall_2007}. \citeasnoun{Soleimani_Noorossana_2007}, \citeasnoun{Noorossana_Amiri_2008} and \citeasnoun{Soleimani_Noorossana_Amiri_2009} studied the effect of ignoring autocorrelation of the errors. Autocorrelated errors frequently occur within profile monitoring data because successive measurements are often made close in space and/or time. Noorossana et al. (2004b) studied the effect of non-normality of the error terms, using t-distributions as alternatives, on the performance of the EWMA/R method of Kang and Albin (2000). \citeasnoun{Noorossana_Saghaei_Dorri_2010} studied the effect of non-normality on profile monitoring in Phase II when within or between autocorrelation is present.
+\subsection{Proyecciones de población}
 
-\subsection{Process Capability Analysis}
+\subsection{Proyecciones de Población Carcelaria en otros países}
 
-A process can be viewed as a series of actions or operations influenced by several elements or factors, all contributing to the eventual outcome. These elements or causes of variation can be generally broken into the following typical categories: Material, machine, method, manpower, environment and measurement, \citeasnoun{Rezaie_Ostadi_Taghizadeh_2006}.
+\subsection{Proyección de poblaciones pequeñas}
+
+\subsection{Series de tiempo ARIMA, ARMAX}
+
+\subsection{Modelos Estado-Espacio}
+
+\subsection{Simulación Monte-Carlo}
+
 
 \section{Metodología}
 
-Se realizarán proyecciones de la población carcelaria en Colombia, usando los datos disponibles desde 1991 hasta 2016. 
+El trabajo consistiera en modelar el sistema carcelario colombiano según diferentes enfoques y comparar el ajuste de las proyecciones logradas con cada método. 
+
+Así, se utilizarán los métodos: 
+
+\begin{itemize}
+\item Método de Ratio-Correlation
+\item Método de Censal-Ratio 
+\item Modelos ARIMA y ARMAX.
+\item Modelos Estado-Espacio.
+\end{itemize}
+
+En cada uno de los métodos se seguira el siguiente procedimiento: 
+\begin{itemize}
+	\item Definición del modelo, definición de variables exógenas relevantes.
+	\item Estimación de los parámetros del modelo, contra datos simulados. Análisis de bondad de ajuste.
+	\item Aplicación con los datos de población Carcelaria en Colombia 1991-2016.
+\end{itemize}
+
+\textbf{Modelado}
+
+A partir de la estructura del sistema penal, se propone el siguiente modelo base, qué se ajustará según las capacidades de cada método de estimación.
+
+\begin{center}
+	
+	$\ S_t = S_{t-1} + \alpha {N_t} - \gamma S_{t-1} + \epsilon1_t$
+	\\	$\ C_t = C_{t-1} - \omega C_{t-1} + \beta \gamma S_{t-1} +\epsilon2_t$ 
+	
+\end{center}
+
+\begin{itemize}[label={}]
+	
+	\item $N_t$ = población nacional en el periodo t
+	\item $S_t$ = población de sindicados en el periodo t
+	\item $C_t$ = población de condenados en el periodo t
+	\item $\alpha$ = proporción de la población libre que ingresa al sistema carcelario
+	\item $\gamma$ = proporción de sindicados que es juzgada cada periodo
+	\item $\beta$ = proporción de sindicados que han sido encontrados culpables durante el juicio	
+	\item $\omega$ = proporción de condenados que cumplen su pena cada periodo
+	\item $\epsilon1_t$ = error en la serie de Sindicados
+	\item $\epsilon2_t$ = error en la serie de Condenados
+	
+\end{itemize}
+
+
+Este modelo tiene los siguientes supuestos: 
+\begin{itemize}
+	\item Las tasas se suponen constantes a través del tiempo. 
+	\item El efecto de los cambios en la población carcelaria sobre la población total es despreciable. 
+\end{itemize}
 
 \section{Cronograma}
 
 \begin{table}[h]\footnotesize
 %\begin{sidewaystable}
 \resizebox{\textwidth}{!}{
-\begin{tabular}{|p{3cm}|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\begin{tabular}{|p{2.5cm}|c|c|c|c|c|c|c|c|c|c|c|c}
 \hline
-& \multicolumn{30}{|c|}{Months} \\
+& \multicolumn{12}{|c|}{Months} \\
 \hline
-Activities & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 30 \\
+Activities & Jul-16 & Ago-16 & Sep-16 & Oct-16 & Nov-16 & Dic-16 & Ene-17 & Feb-17 & Mar-17 & Abr-17 & May-17 & Jun-17 \\
 \hline
-First Activity & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$
-                  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$
-                  & $\bullet$ & $\bullet$ & & & & & &\\
+Revisión de literatura & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$& $\bullet$ \\
+\hline
+Análisis preliminar de datos    & $\bullet$ &  &  &  &  & & & & & &  \\
+\hline
 
+Ajuste series de tiempo ARIMA    &  &  $\bullet$ & $\bullet$ &  &  & & & & & &  \\
 \hline
-Second Activity    & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$
-                  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & & & & & & & & & & & & & & & & & & \\
+
+Aplicación de visualización de escenarios  &  &  &  & $\bullet$ &  & & & & & &  \\
 \hline
+
+Elaboración de propuesta &  &  &  & $\bullet$ &  & & & & & &  \\
+\hline
+
+Ajuste de modelos de poblaciones pequeñas &  &  &  &  & $\bullet$ & & & & & &  \\
+\hline
+
+Revisión literatura modelos estado espacio &  &  &  &  & & $\bullet$ &$\bullet$  &$\bullet$  & & &  \\
+\hline
+Estimación de modelos estado espacio &  &  &  &  & &  & & & $\bullet$ & \\
+\hline
+
+Consolidación de documento de tesis & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$& $\bullet$ \\
+\hline
+
+
 \end{tabular}
 }
 \label{tab1}
