@@ -1,0 +1,224 @@
+% -------------------------------------------------------------------------------------
+% Proyecto de tesis, Sergio David Solano B. sdsolanob@unal.edu.co
+% *************************************************************************************
+% -------------------------------------------------------------------------------------
+% Establecer primero el idioma principal del artículo, por defecto es español; para
+% utilizar otro idioma, cambiar el comando "\documentclass{revcoles}" por el comando
+% "\documentclass[english]{revcoles}" o por "\documentclass[portuguese]{revcoles}"
+% **** --------------------------------------------------------------------------------
+
+%\documentclass[project]{revcoles}
+\documentclass[english,project]{revcoles}
+\labeldocument[month = 10, year = 2016, city = Bogotá]
+% -------------------------------------------------------------------------------------
+% Espacio reservado para la carga de los paquetes por parte del autor
+% **** --------------------------------------------------------------------------------
+\usepackage{rotating}
+
+
+% //// --------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------
+% Espacio reservado para colocar las definiciones especiales por parte del autor
+% **** --------------------------------------------------------------------------------
+
+
+
+
+% //// --------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------
+% Espacio utilizado para colocar las palabras que necesitan partición silábica
+% **** --------------------------------------------------------------------------------
+\hyphenation{Colombia mul-ti-va-ria-do pro-ba-bi-li-dad es-ta-dís-ti-ca}
+% //// --------------------------------------------------------------------------------
+\begin{document}
+% -------------------------------------------------------------------------------------
+% Espacio reservado para ingresar el título del artículo
+% "maintitle = " título original del artículo
+% "secondtitle = " título del artículo traducido al idioma alterno
+% "shorttitle = " título corto (opcional) para el encabezado
+% **** --------------------------------------------------------------------------------
+\title[maintitle = Proyección de poblaciones carcelarias]
+% //// --------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------
+
+% Espacio reservado para ingresar el(los) autor(es) del artículo de forma individual.
+% opción "firstname = " nombres completos de cada autor
+% opción "surname = " primer apellido de cada autor
+% opción "numberinstitution = " número que identifica la institución a la que pertenece
+%         el autor, en caso de haber solo una institución el campo se elimina
+% opción "affiliation = " afiliación o cargo que desempeña el autor en la institución
+% opción "email = " dirección electrónica del autor (preferiblemente institucional)
+% **** --------------------------------------------------------------------------------
+\begin{authors}
+\author[firstname = Sergio David,
+        surname = Solano Bejarano,
+        affiliation = Estudiante ,
+        email = sdsolanob@unal.edu.co]
+\author[firstname = Beatriz Piedad,
+        surname = Urdinola Contreras,
+        affiliation = Profesor,
+        email = aaaaaaa@unal.edu.co]
+\end{authors}
+
+
+\begin{institutions}
+     \institute[subdivision = Departmento  de Estadística,
+                division = Facultad de Ciencias,
+                institution = Universidad Nacional de Colombia,
+                city = Bogotá,
+                country = Colombia]
+\end{institutions}
+
+
+% //// --------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------
+% CUERPO DEL DOCUMENTO
+% **** --------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------
+
+\begin{mainabstract}
+    Escriba aquí el abstract del proyecto.
+\keywords{Primera clave,2da clave, 3a clave}
+\end{mainabstract}
+
+
+\begin{secondaryabstract}
+    Write here the abstract of the project.
+\keywords{First keyword, Second keyword, 3rd keyword}
+\end{secondaryabstract}
+
+
+
+\section{Introducción}
+
+
+
+\section{Objectivos}
+\subsection{Objectivo General}
+
+
+\subsection{Objectivos Específicos}
+\begin{itemize}
+    \item Primer Objetivo Específico
+
+    \item 2do Objetivo Específico
+\end{itemize}
+
+
+\section{Revisión de Literatura}
+\subsection{Monitoring of linear profiles}
+
+A standard assumption in the monitoring of simple linear regression profiles is that the errors are independent and identically distributed, usually with an assumed normal distribution, \citeasnoun{Woodall_2007}. \citeasnoun{Soleimani_Noorossana_2007}, \citeasnoun{Noorossana_Amiri_2008} and \citeasnoun{Soleimani_Noorossana_Amiri_2009} studied the effect of ignoring autocorrelation of the errors. Autocorrelated errors frequently occur within profile monitoring data because successive measurements are often made close in space and/or time. Noorossana et al. (2004b) studied the effect of non-normality of the error terms, using t-distributions as alternatives, on the performance of the EWMA/R method of Kang and Albin (2000). \citeasnoun{Noorossana_Saghaei_Dorri_2010} studied the effect of non-normality on profile monitoring in Phase II when within or between autocorrelation is present.
+
+\subsection{Process Capability Analysis}
+
+A process can be viewed as a series of actions or operations influenced by several elements or factors, all contributing to the eventual outcome. These elements or causes of variation can be generally broken into the following typical categories: Material, machine, method, manpower, environment and measurement, \citeasnoun{Rezaie_Ostadi_Taghizadeh_2006}.
+
+\section{Metodología}
+
+We will propose for a process characterized by a profile, a method based on the ability of the response variable and the parameters' estimators of the profile to meet to the specifications previously fixed. We assume that the process is in Phase I. 
+
+\section{Cronograma}
+
+\begin{table}[h]\footnotesize
+%\begin{sidewaystable}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|p{3cm}|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+& \multicolumn{30}{|c|}{Months} \\
+\hline
+Activities & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 30 \\
+\hline
+First Activity & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$
+                  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$
+                  & $\bullet$ & $\bullet$ & & & & & &\\
+
+\hline
+Second Activity    & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$
+                  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & & & & & & & & & & & & & & & & & & \\
+\hline
+\end{tabular}
+}
+\label{tab1}
+%\end{sidewaystable}
+\end{table}
+
+\begin{thebibliography}{9}
+	
+	\bibitem{Ariza94}
+	Ariza Libardo José , Iturralde Manuel 
+	\emph{ Los muros de la infamia, Prisiones en Colombia y en América Latina},
+	Universidad de los Andes, Bogotá
+	Primera edición,
+	2011.
+	
+	\bibitem{Bello3}
+	Pineros Baez Victor Hugo,
+	\emph{Cuerpos encerrados, vidas criminalizadas. Interseccionalidad, control carcelario y gobierno de las diferencias},
+	Universidad Nacional, Bogotá
+	Facultad de Ciencias Humanas
+	2013.
+	
+	\bibitem{Bernal94}
+	Bernal Sarmiento Camilo Ernesto, Hurtado M. Reed 
+	\emph{De la modelo a Coleman (o de cómo las cárceles en Colombia se volvieron de verdad). Un comentario exploratorio sobre las relaciones entre la sociedad, la política y la prisión en Colombia},
+	Universidad Externado, Bogotá
+	Centro de estudios en Política criminal,
+	2006.
+	
+	\bibitem{Comision12}
+	Comisión asesora de política criminal,
+	\emph{Diagnóstico y propuesta de lineamientos de política criminal para el Estado colombiano},
+	Ministerio de Justicia, 2012
+	2012.	 
+	
+	\bibitem{Conpes12}
+	Consejo Nacional de Política económica y social,
+	\emph{CONPES 3828: Política penitenciaria y Carcelaria en Colombia},
+	Ministerio de Justicia, 2012
+	2012.
+	
+	\bibitem{dardel13}
+	De Dardel Julie,
+	\emph{ Les prisons qui s?exportent Géo\-ethnographie	des	espaces carcéraux colombiens à l?ère de la mobilité	globale},
+	Universidad de Neuchâtel, Facultad de letras y ciencias humanas,
+	Instituto de Geografía,
+	Tesis de doctorado en ciencias humanas,
+	2013.
+	
+	\bibitem{jacob01}
+	Jacob David, Carmichael Jason T
+	\emph{ The Politics in Punishment across Time and Space: A Pooled Time Series Analysis},
+	The University of North Carolina Press
+	Social Forces,
+	2001.
+	
+	
+	\bibitem{Min14}
+	Ministry of Justice
+	\emph{Prison Population Projections 2014 ? 2020 England and Wales}
+	Boletín Estadístico,
+	2014
+	
+	\bibitem{Pineros14}
+	Pineros Baez Victor Hugo,
+	\emph{Diagnostico situacional asociado al ejercicio de la salud pública dentro del Sistema Nacional Penitenciario y Carcelario Colombiano. Una mirada desde la óptica territorial y organizacional},
+	Universidad Nacional, Bogotá
+	Facultad de Medicina, Departamento de Salud pública
+	2014.
+	
+	\bibitem{Lee94}
+	Ronald D. Lee, Shripad Tuljapurka,
+	\emph{Stochastic Population Forecasts for the United States: Beyond High, Medium, and Low},
+	Journal of the American Statistical Association
+	1994.
+	
+	\bibitem{Swanson12}
+	Swandson David A., Tayman Jeff
+	\emph{Subnational Population Stimates, Chapter 13 Special Cases and adjusments},
+	Springer
+	2012.
+	
+\end{thebibliography}
+
+\end{document}
