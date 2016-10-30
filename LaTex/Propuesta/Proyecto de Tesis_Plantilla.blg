@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Proyecto de Tesis_Plantilla.aux
+The style file: agsm.bst
+Database file #1: references.bib
+Warning--I didn't find a database entry for "Woodall_2007"
+Warning--I didn't find a database entry for "Soleimani_Noorossana_2007"
+Warning--I didn't find a database entry for "Noorossana_Amiri_2008"
+Warning--I didn't find a database entry for "Soleimani_Noorossana_Amiri_2009"
+Warning--I didn't find a database entry for "Noorossana_Saghaei_Dorri_2010"
+Warning--I didn't find a database entry for "Rezaie_Ostadi_Taghizadeh_2006"
+You've used 4 entries,
+            2909 wiz_defined-function locations,
+            676 strings with 5994 characters,
+and the built_in function-call counts, 21265 in all, are:
+= -- 3626
+> -- 119
+< -- 1
++ -- 1737
+- -- 35
+* -- 1821
+:= -- 4195
+add.period$ -- 4
+call.type$ -- 4
+change.case$ -- 55
+chr.to.int$ -- 4
+cite$ -- 4
+duplicate$ -- 54
+empty$ -- 109
+format.name$ -- 47
+if$ -- 3813
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 3
+newline$ -- 18
+num.names$ -- 40
+pop$ -- 31
+preamble$ -- 1
+purify$ -- 60
+quote$ -- 0
+skip$ -- 43
+stack$ -- 0
+substring$ -- 5223
+swap$ -- 6
+text.length$ -- 57
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 14
+warning$ -- 0
+while$ -- 84
+width$ -- 0
+write$ -- 52
+(There were 6 warnings)

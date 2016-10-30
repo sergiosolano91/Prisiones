@@ -14,7 +14,13 @@
 % Espacio reservado para la carga de los paquetes por parte del autor
 % **** --------------------------------------------------------------------------------
 \usepackage{rotating}
-
+\usepackage{inputenx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsmath, amsthm, amsfonts}
+\usepackage{graphicx} % LaTeX
+\usepackage{enumitem}
 
 % //// --------------------------------------------------------------------------------
 % -------------------------------------------------------------------------------------
@@ -28,9 +34,10 @@
 % -------------------------------------------------------------------------------------
 % Espacio utilizado para colocar las palabras que necesitan partición silábica
 % **** --------------------------------------------------------------------------------
-\hyphenation{Colombia mul-ti-va-ria-do pro-ba-bi-li-dad es-ta-dís-ti-ca}
+%\hyphenation{Colombia mul-ti-va-ria-do pro-ba-bi-li-dad es-ta-dís-ti-ca}
 % //// --------------------------------------------------------------------------------
 \begin{document}
+	
 % -------------------------------------------------------------------------------------
 % Espacio reservado para ingresar el título del artículo
 % "maintitle = " título original del artículo
@@ -57,7 +64,7 @@
 \author[firstname = Beatriz Piedad,
         surname = Urdinola Contreras,
         affiliation = Profesor,
-        email = aaaaaaa@unal.edu.co]
+        email =  bpurdinolac@unal.edu.co]
 \end{authors}
 
 
@@ -77,25 +84,35 @@
 % -------------------------------------------------------------------------------------
 
 \begin{mainabstract}
-    Escriba aquí el abstract del proyecto.
-\keywords{Primera clave,2da clave, 3a clave}
+    La proyección de poblaciones carcelarias es un problema de proyección de poblaciones pequeñas.
+\keywords{Poblaciones pequeñas,Poblaciones carcelarias, series de tiempo}
 \end{mainabstract}
 
 
 \begin{secondaryabstract}
     Write here the abstract of the project.
-\keywords{First keyword, Second keyword, 3rd keyword}
+\keywords{Subnational populations, , 3rd keyword}
 \end{secondaryabstract}
 
 
 
 \section{Introducción}
 
+La población carcelaria es el grupo poblacional que se encuentra privado de la libertad en una institución penitenciaria. A aquellos a la espera de juicio se les denomina sindicados, y condenados a quienes han están cumpliendo una sentencia. En Colombia, el INPEC (Instituto Nacional Penitenciario y Carcelario) "es la institución pública administradora del sistema penitenciario y carcelario del pais" \cite{InstitutoNacionalPenitenciarioyCarcelario2016}.El INPEC publica periodicamente la serie histórica de población carcelaria, que da cuenta de la población mensual desde 1991 hasta la fecha, separada por situación judicial (sidicados, condenados) y género.
 
+"El promedio anual de crecimiento de la PPL entre 1993 y 2014 fue de 9,43\% para la población condenada y 4,91\% para la población sindicada" \cite {DepartamentoNacionaldePlaneacion2015}, ambas tasas muy por encima del 1,18\% anual, crecimiento poblacional estimado por el DANE para el quinquenio 2015-2010  \cite {DANE}. El crecimiento acelerado de la población carcelaria, por encima de la oferta de cupos implica un incremento del hacinamiento. Mientras que el aumento por encima de la población nacional sugiere dinámicas de crecimiento diferentes al resto de la población.
 
-\section{Objectivos}
+El CONPES 3828 de 2015 realiza proyecciones de la población carcelaria, a través de un modelo de crecimiento exponencial con una tasa de crecimiento de 7,23\% anual. Este tipo de modelos, aunque ampliamente usados en proyecciones de población, no resulta conveniente cuando la tasa de crecimiento no es estable a través del tiempo y depende de variables externas como: la  población nacional, su estructura etárea, las características del sistema penitenciario y de el sistema judicial. 
+
+Las poblaciones que se estiman y proyectan a un nivel menor que el nacional se conocen como poblaciones pequeñas (ciudad, departamento, etc...). Dentro de las poblaciones pequeñas se encuentran poblaciones especiales que "se localizan en un área especial por una acción legislativa o administrativa".  \citeasnoun {Swanson2012}. La población carcelaria es un tipo de población especial sus componentes: nacimientos y defunciones no necesariamente siguen los patrones biológicos que dan vida al modelo exponencial y requieren el uso de técnicas diferentes que permitan un mejor ajuste. 
+
+Este trabajo busca ofrecer proyecciones de población carcelaria de corto y mediano plazo integrando análisis de series de tiempo y modelos estado espacio al análisis de poblaciones especiales.
+
+\section{Objetivos}
+
 \subsection{Objectivo General}
 
+Comparar la efectividad de los métodos de proyección de poblaciones pequeñas, en el contexto de poblaciones carcelarias,  con proyecciones de series de Tiempo ARMAX y modelos estado espacio.
 
 \subsection{Objectivos Específicos}
 \begin{itemize}
@@ -116,7 +133,7 @@ A process can be viewed as a series of actions or operations influenced by sever
 
 \section{Metodología}
 
-We will propose for a process characterized by a profile, a method based on the ability of the response variable and the parameters' estimators of the profile to meet to the specifications previously fixed. We assume that the process is in Phase I. 
+Se realizarán proyecciones de la población carcelaria en Colombia, usando los datos disponibles desde 1991 hasta 2016. 
 
 \section{Cronograma}
 
@@ -143,82 +160,6 @@ Second Activity    & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ &
 %\end{sidewaystable}
 \end{table}
 
-\begin{thebibliography}{9}
-	
-	\bibitem{Ariza94}
-	Ariza Libardo José , Iturralde Manuel 
-	\emph{ Los muros de la infamia, Prisiones en Colombia y en América Latina},
-	Universidad de los Andes, Bogotá
-	Primera edición,
-	2011.
-	
-	\bibitem{Bello3}
-	Pineros Baez Victor Hugo,
-	\emph{Cuerpos encerrados, vidas criminalizadas. Interseccionalidad, control carcelario y gobierno de las diferencias},
-	Universidad Nacional, Bogotá
-	Facultad de Ciencias Humanas
-	2013.
-	
-	\bibitem{Bernal94}
-	Bernal Sarmiento Camilo Ernesto, Hurtado M. Reed 
-	\emph{De la modelo a Coleman (o de cómo las cárceles en Colombia se volvieron de verdad). Un comentario exploratorio sobre las relaciones entre la sociedad, la política y la prisión en Colombia},
-	Universidad Externado, Bogotá
-	Centro de estudios en Política criminal,
-	2006.
-	
-	\bibitem{Comision12}
-	Comisión asesora de política criminal,
-	\emph{Diagnóstico y propuesta de lineamientos de política criminal para el Estado colombiano},
-	Ministerio de Justicia, 2012
-	2012.	 
-	
-	\bibitem{Conpes12}
-	Consejo Nacional de Política económica y social,
-	\emph{CONPES 3828: Política penitenciaria y Carcelaria en Colombia},
-	Ministerio de Justicia, 2012
-	2012.
-	
-	\bibitem{dardel13}
-	De Dardel Julie,
-	\emph{ Les prisons qui s?exportent Géo\-ethnographie	des	espaces carcéraux colombiens à l?ère de la mobilité	globale},
-	Universidad de Neuchâtel, Facultad de letras y ciencias humanas,
-	Instituto de Geografía,
-	Tesis de doctorado en ciencias humanas,
-	2013.
-	
-	\bibitem{jacob01}
-	Jacob David, Carmichael Jason T
-	\emph{ The Politics in Punishment across Time and Space: A Pooled Time Series Analysis},
-	The University of North Carolina Press
-	Social Forces,
-	2001.
-	
-	
-	\bibitem{Min14}
-	Ministry of Justice
-	\emph{Prison Population Projections 2014 ? 2020 England and Wales}
-	Boletín Estadístico,
-	2014
-	
-	\bibitem{Pineros14}
-	Pineros Baez Victor Hugo,
-	\emph{Diagnostico situacional asociado al ejercicio de la salud pública dentro del Sistema Nacional Penitenciario y Carcelario Colombiano. Una mirada desde la óptica territorial y organizacional},
-	Universidad Nacional, Bogotá
-	Facultad de Medicina, Departamento de Salud pública
-	2014.
-	
-	\bibitem{Lee94}
-	Ronald D. Lee, Shripad Tuljapurka,
-	\emph{Stochastic Population Forecasts for the United States: Beyond High, Medium, and Low},
-	Journal of the American Statistical Association
-	1994.
-	
-	\bibitem{Swanson12}
-	Swandson David A., Tayman Jeff
-	\emph{Subnational Population Stimates, Chapter 13 Special Cases and adjusments},
-	Springer
-	2012.
-	
-\end{thebibliography}
+\bibliography{references}
 
 \end{document}
