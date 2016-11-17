@@ -1,7 +1,7 @@
 \begin{thebibliography}{xx}
 
-\harvarditem{(DANE)}{n.d.}{DANE}
-(DANE), D. A. N. d.~E.  \harvardyearleft n.d.\harvardyearright , `{Comunicado
+\harvarditem{(DANE)}{2009}{DANE}
+(DANE), D. A. N. d.~E.  \harvardyearleft 2009\harvardyearright , `{Comunicado
   de prensa}'.
 \newline\harvardurl{https://www.dane.gov.co/files/BoletinProyecciones.pdf}
 
@@ -17,6 +17,13 @@
   2016\harvardyearright , `{Plan de direccionamiento estrat{\'{e}}gico
   2015-108, Misi{\'{o}}n y Visi{\'{o}}n}'.
 \newline\harvardurl{https://www.google.com.co/search?q=mendeley{\&}oq=mendeley{\&}aqs=chrome..69i57j0l5.1565j0j7{\&}sourceid=chrome{\&}ie=UTF-8}
+
+\harvarditem{Lee \harvardand\ Tuljapurkar}{1994}{Lee1994}
+Lee, R.~D. \harvardand\ Tuljapurkar, S.  \harvardyearleft 1994\harvardyearright
+  , `{Stochastic Population Forecasts for the United States: Beyond High,
+  Medium, and Low}', {\em Journal of the American Statistical Association} {\bf
+  89}(428),~1175.
+\newline\harvardurl{http://www.jstor.org/stable/2290980?origin=crossref}
 
 \harvarditem{Swanson \harvardand\ Tayman}{2012}{Swanson2012}
 Swanson, D.~A. \harvardand\ Tayman, J.  \harvardyearleft 2012\harvardyearright

@@ -3,51 +3,53 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Proyecto de Tesis_Plantilla.aux
 The style file: agsm.bst
 Database file #1: references.bib
-Warning--I didn't find a database entry for "Woodall_2007"
-Warning--I didn't find a database entry for "Soleimani_Noorossana_2007"
-Warning--I didn't find a database entry for "Noorossana_Amiri_2008"
-Warning--I didn't find a database entry for "Soleimani_Noorossana_Amiri_2009"
-Warning--I didn't find a database entry for "Noorossana_Saghaei_Dorri_2010"
-Warning--I didn't find a database entry for "Rezaie_Ostadi_Taghizadeh_2006"
-You've used 4 entries,
+Repeated entry---line 169 of file references.bib
+ : @misc{DANE
+ :           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 274 of file references.bib
+ : @misc{InstitutoNacionalPenitenciarioyCarcelario2016
+ :                                                    ,
+I'm skipping whatever remains of this entry
+You've used 5 entries,
             2909 wiz_defined-function locations,
-            676 strings with 5994 characters,
-and the built_in function-call counts, 21265 in all, are:
-= -- 3626
-> -- 119
+            675 strings with 5956 characters,
+and the built_in function-call counts, 25071 in all, are:
+= -- 4245
+> -- 166
 < -- 1
-+ -- 1737
-- -- 35
-* -- 1821
-:= -- 4195
-add.period$ -- 4
-call.type$ -- 4
-change.case$ -- 55
-chr.to.int$ -- 4
-cite$ -- 4
-duplicate$ -- 54
-empty$ -- 109
-format.name$ -- 47
-if$ -- 3813
++ -- 2027
+- -- 49
+* -- 2154
+:= -- 4963
+add.period$ -- 5
+call.type$ -- 5
+change.case$ -- 69
+chr.to.int$ -- 5
+cite$ -- 5
+duplicate$ -- 70
+empty$ -- 142
+format.name$ -- 67
+if$ -- 4496
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 3
-newline$ -- 18
-num.names$ -- 40
-pop$ -- 31
+missing$ -- 4
+newline$ -- 22
+num.names$ -- 50
+pop$ -- 35
 preamble$ -- 1
-purify$ -- 60
+purify$ -- 75
 quote$ -- 0
-skip$ -- 43
+skip$ -- 54
 stack$ -- 0
-substring$ -- 5223
-swap$ -- 6
-text.length$ -- 57
+substring$ -- 6087
+swap$ -- 9
+text.length$ -- 71
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 14
+type$ -- 18
 warning$ -- 0
-while$ -- 84
+while$ -- 106
 width$ -- 0
-write$ -- 52
-(There were 6 warnings)
+write$ -- 65
+(There were 2 error messages)
