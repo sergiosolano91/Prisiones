@@ -17,6 +17,12 @@ DANE  \harvardyearleft 2009\harvardyearright , `{Estimaciones poblaci{\'{o}}n
   2015\harvardyearright , `{Conpes 3828 POL{\'{I}}TICA PENITENCIARIA Y
   CARCELARIA EN COLOMBIA}'.
 
+\harvarditem{{Institute for Criminal Policy
+  Research}}{2016}{InstitueforCriminalPolicyResearch2016}
+{Institute for Criminal Policy Research}  \harvardyearleft
+  2016\harvardyearright , `{Colombia | World Prison Brief}'.
+\newline\harvardurl{http://www.prisonstudies.org/country/colombia}
+
 \harvarditem{{Instituto Nacional Penitenciario y
   Carcelario}}{2016}{InstitutoNacionalPenitenciarioyCarcelario2016}
 {Instituto Nacional Penitenciario y Carcelario}  \harvardyearleft
@@ -36,6 +42,12 @@ Lee, R.~D. \harvardand\ Tuljapurkar, S.  \harvardyearleft 1994\harvardyearright
   89}(428),~1175.
 \newline\harvardurl{http://www.jstor.org/stable/2290980?origin=crossref}
 
+\harvarditem{L{\"{u}}tkepohl}{2005}{Lutkepohl2005}
+L{\"{u}}tkepohl, H.  \harvardyearleft 2005\harvardyearright , {State Space
+  Models}, {\em in} `New Introduction to Multiple Time Series Analysis',
+  Springer Berlin Heidelberg, Berlin, Heidelberg, pp.~611--642.
+\newline\harvardurl{http://link.springer.com/10.1007/978-3-540-27752-1{\_}18}
+
 \harvarditem[Minton et~al.]{Minton, Statistician, Ginder, Brumbaugh,
   Smiley-Mcdonald \harvardand\ Rohloff}{2015}{Minton2015}
 Minton, T.~D., Statistician, B., Ginder, S., Brumbaugh, S.~M., Smiley-Mcdonald,
@@ -49,6 +61,11 @@ Swanson, D.~A. \harvardand\ Tayman, J.  \harvardyearleft 2012\harvardyearright
   Series on Demographic Methods and Population Analysis}, Springer Netherlands,
   Dordrecht.
 \newline\harvardurl{http://link.springer.com/10.1007/978-90-481-8954-0}
+
+\harvarditem{Tsay}{2002}{Tsay2002}
+Tsay, R.~S.  \harvardyearleft 2002\harvardyearright , {\em {Analysis of
+  Financial Time Series}}, John Wiley {\&} Sons, Inc., Hoboken, NJ, USA.
+\newline\harvardurl{http://doi.wiley.com/10.1002/0471264105}
 
 \harvarditem[Wan1 et~al.]{Wan1, Moffatt2, Xie3, Corben \harvardand\
   Weatherburn}{n.d.}{Wan1}

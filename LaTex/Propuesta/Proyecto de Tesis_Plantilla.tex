@@ -134,7 +134,7 @@ Comparar el ajuste de los métodos clásicos de proyección de poblaciones pequeñas
 
 \section{Revisión de Literatura}
 
-En 2016 Colombia ocupa el puesto catorce entre doscientos cincuenta y un paises por el tamaño de su población carcelaria (120 914 hbts.) y el cincuenta y uno según la tasa de encarcelamiento (240 por cada 100.000 hbts). Tasa que pasó de 51,5 en  el año 2000 a 240 por cada 100.000 hbts en 2016. Con una ocpación del 154\% de las plazas disponibles, resulta relevante contar con proyecciones de la población carcelaria en el corto, mediano y largo plazo.
+En 2016 Colombia ocupa el puesto catorce entre doscientos cincuenta y un paises por el tamaño de su población carcelaria (120 914 hbts.) y el cincuenta y uno según la tasa de encarcelamiento (240 por cada 100.000 hbts). Tasa que pasó de 51,5 en  el año 2000 a 240 por cada 100.000 hbts en 2016. Con una ocpación del 154\% de las plazas disponibles, resulta relevante contar con proyecciones de la población carcelaria en el corto, mediano y largo plazo. \cite{InstitueforCriminalPolicyResearch2016}
 
 \subsection{Proyecciones de población}
 
@@ -176,9 +176,21 @@ Con los datos libres disponibles en Colombia no se podría utilizar el enfoque AR
 
 \subsection{Series de tiempo ARIMA, ARMAX}
 
+El análisis de las series tiempo de poblaciones carcelarias  de tiempo ARIMA y ARMAX se tomará de \citeasnoun{Tsay2002}.
+
 \subsection{Modelos Estado-Espacio}
 
-\subsection{Simulación Monte-Carlo}
+Tomado de \cite{Lutkepohl2005} : 
+
+En un modelo estado espacio "una serie de tiempo (multiple) observada  $\ y_1, ... , y_t $\ depende de un estado $\ z_t $\ , posiblemente no observado, que se comporta siguiendo un proceso estocástico. La relación entre $\ y_t $\ y $\ z_t $\ está dada por la \textit{ecuación de medida}: " \cite{Lutkepohl2005}  
+
+$\ y_t = H_t z_t + v_t$\
+
+"donde $\ H_t $\ es una matriz que puede o no depender del tiempo $\ t $\ y $\ v_t $\ es el error de observación, que se asume usualmente como un proceso de ruido. El vector de estado es generado como:  
+
+$\ z_t = B_{t-1} z_{t-1} + w_{t-1}$\
+
+La matriz $\ B_t $\ es una matriz de coeficientes que puede depender de $\ t $\, y $\ w_t $\ es un proceso de ruido." \cite{Lutkepohl2005}
 
 
 \section{Metodología}

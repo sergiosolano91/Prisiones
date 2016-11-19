@@ -3,55 +3,55 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Proyecto de Tesis_Plantilla.aux
 The style file: agsm.bst
 Database file #1: references.bib
-Repeated entry---line 61 of file references.bib
+Repeated entry---line 68 of file references.bib
  : @misc{InstitutoNacionalPenitenciarioyCarcelario2016
  :                                                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 269 of file references.bib
+Repeated entry---line 276 of file references.bib
  : @misc{DANE
  :           ,
 I'm skipping whatever remains of this entry
 Warning--there's a number but no volume in Justice2014
 Warning--empty institution in Wan1
-You've used 9 entries,
+You've used 12 entries,
             2909 wiz_defined-function locations,
-            697 strings with 6693 characters,
-and the built_in function-call counts, 48436 in all, are:
-= -- 8094
-> -- 505
+            722 strings with 7273 characters,
+and the built_in function-call counts, 60248 in all, are:
+= -- 10064
+> -- 577
 < -- 1
-+ -- 3932
-- -- 154
-* -- 4237
-:= -- 9568
-add.period$ -- 9
-call.type$ -- 9
-change.case$ -- 126
-chr.to.int$ -- 9
-cite$ -- 11
-duplicate$ -- 128
-empty$ -- 254
-format.name$ -- 183
-if$ -- 8683
++ -- 4845
+- -- 175
+* -- 5214
+:= -- 11937
+add.period$ -- 12
+call.type$ -- 12
+change.case$ -- 167
+chr.to.int$ -- 12
+cite$ -- 14
+duplicate$ -- 181
+empty$ -- 357
+format.name$ -- 210
+if$ -- 10811
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 7
-newline$ -- 35
-num.names$ -- 93
-pop$ -- 54
+missing$ -- 10
+newline$ -- 47
+num.names$ -- 123
+pop$ -- 78
 preamble$ -- 1
-purify$ -- 135
+purify$ -- 180
 quote$ -- 0
-skip$ -- 101
+skip$ -- 141
 stack$ -- 0
-substring$ -- 11612
-swap$ -- 15
-text.length$ -- 127
+substring$ -- 14413
+swap$ -- 26
+text.length$ -- 169
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 34
+type$ -- 44
 warning$ -- 2
-while$ -- 193
+while$ -- 259
 width$ -- 0
-write$ -- 119
+write$ -- 161
 (There were 2 error messages)

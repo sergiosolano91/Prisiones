@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.27)  19 NOV 2016 01:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.27)  19 NOV 2016 03:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -470,52 +470,38 @@ Non-PDF special ignored!] [4
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
 Non-PDF special ignored!]
-Underfull \hbox (badness 1824) in paragraph at lines 276--276
+Underfull \hbox (badness 1824) in paragraph at lines 288--288
 []|\T1/cmr/m/n/8 Revisión de lit-er-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 276--276
+Underfull \hbox (badness 10000) in paragraph at lines 288--288
 []|\T1/cmr/m/n/8 Ajuste se-ries de
  []
 
 
-Underfull \hbox (badness 1742) in paragraph at lines 276--276
+Underfull \hbox (badness 1742) in paragraph at lines 288--288
 \T1/cmr/m/n/8 al-ización de es-ce-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 276--276
+Underfull \hbox (badness 10000) in paragraph at lines 288--288
 []|\T1/cmr/m/n/8 Elaboración de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 276--276
+Underfull \hbox (badness 10000) in paragraph at lines 288--288
 []|\T1/cmr/m/n/8 Estimación de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 276--276
+Underfull \hbox (badness 10000) in paragraph at lines 288--288
 \T1/cmr/m/n/8 mod-e-los es-tado
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 276--276
+Underfull \hbox (badness 10000) in paragraph at lines 288--288
 []|\T1/cmr/m/n/8 Consolidación de
  []
 
@@ -526,12 +512,6 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Overfull \hbox (59.63019pt too wide) in paragraph at lines 9--13
 \T1/cmr/m/n/10 *http://www.dane.gov.co/files/investigaciones/poblacion/seriesp8
 5_20/EstimacionesProyecciones1985__020.xls 
- []
-
-
-Overfull \hbox (17.1961pt too wide) in paragraph at lines 21--26
-\T1/cmr/m/n/10 *http://www.inpec.gov.co/portal/page/portal/Inpec/Institucion/Fo
-rmulacionEstrategica/MisionVision 
  []
 
 [5
@@ -578,9 +558,39 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
-Non-PDF special ignored!]) [6
 Non-PDF special ignored!
 Non-PDF special ignored!
+Non-PDF special ignored!]
+Overfull \hbox (17.1961pt too wide) in paragraph at lines 27--32
+\T1/cmr/m/n/10 *http://www.inpec.gov.co/portal/page/portal/Inpec/Institucion/Fo
+rmulacionEstrategica/MisionVision 
+ []
+
+[6
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!]) [7
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
@@ -594,16 +604,16 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!] (./Proyecto de Tesis_Plantilla.aux) ) 
 Here is how much of TeX's memory you used:
- 4960 strings out of 494891
- 70969 string characters out of 6179039
- 146103 words of memory out of 5000000
- 8133 multiletter control sequences out of 15000+600000
+ 4972 strings out of 494891
+ 71285 string characters out of 6179039
+ 148340 words of memory out of 5000000
+ 8145 multiletter control sequences out of 15000+600000
  23177 words of font info for 63 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
  43i,11n,40p,636b,366s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/sergio/.
-texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </home/sergio/.texmf-var/
-fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/sergio/.texmf-var/fonts/pk/l
+texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/sergio/.texmf-var/
+fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </home/sergio/.texmf-var/fonts/pk/l
 jfour/jknappen/ec/ecti0900.600pk> </home/sergio/.texmf-var/fonts/pk/ljfour/jkna
 ppen/ec/ecbx1200.600pk> </home/sergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ec
 rm0800.600pk> </home/sergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600
@@ -622,10 +632,10 @@ st/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmsy8.pfb>
-Output written on "Proyecto de Tesis_Plantilla.pdf" (6 pages, 192580 bytes).
+Output written on "Proyecto de Tesis_Plantilla.pdf" (7 pages, 196422 bytes).
 PDF statistics:
- 537 PDF objects out of 1000 (max. 8388607)
- 95 compressed objects within 1 object stream
+ 544 PDF objects out of 1000 (max. 8388607)
+ 99 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
