@@ -3,53 +3,55 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Proyecto de Tesis_Plantilla.aux
 The style file: agsm.bst
 Database file #1: references.bib
-Repeated entry---line 169 of file references.bib
- : @misc{DANE
- :           ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 274 of file references.bib
+Repeated entry---line 61 of file references.bib
  : @misc{InstitutoNacionalPenitenciarioyCarcelario2016
  :                                                    ,
 I'm skipping whatever remains of this entry
-You've used 5 entries,
+Repeated entry---line 269 of file references.bib
+ : @misc{DANE
+ :           ,
+I'm skipping whatever remains of this entry
+Warning--there's a number but no volume in Justice2014
+Warning--empty institution in Wan1
+You've used 9 entries,
             2909 wiz_defined-function locations,
-            675 strings with 5956 characters,
-and the built_in function-call counts, 25071 in all, are:
-= -- 4245
-> -- 166
+            697 strings with 6693 characters,
+and the built_in function-call counts, 48436 in all, are:
+= -- 8094
+> -- 505
 < -- 1
-+ -- 2027
-- -- 49
-* -- 2154
-:= -- 4963
-add.period$ -- 5
-call.type$ -- 5
-change.case$ -- 69
-chr.to.int$ -- 5
-cite$ -- 5
-duplicate$ -- 70
-empty$ -- 142
-format.name$ -- 67
-if$ -- 4496
++ -- 3932
+- -- 154
+* -- 4237
+:= -- 9568
+add.period$ -- 9
+call.type$ -- 9
+change.case$ -- 126
+chr.to.int$ -- 9
+cite$ -- 11
+duplicate$ -- 128
+empty$ -- 254
+format.name$ -- 183
+if$ -- 8683
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 4
-newline$ -- 22
-num.names$ -- 50
-pop$ -- 35
+missing$ -- 7
+newline$ -- 35
+num.names$ -- 93
+pop$ -- 54
 preamble$ -- 1
-purify$ -- 75
+purify$ -- 135
 quote$ -- 0
-skip$ -- 54
+skip$ -- 101
 stack$ -- 0
-substring$ -- 6087
-swap$ -- 9
-text.length$ -- 71
+substring$ -- 11612
+swap$ -- 15
+text.length$ -- 127
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 18
-warning$ -- 0
-while$ -- 106
+type$ -- 34
+warning$ -- 2
+while$ -- 193
 width$ -- 0
-write$ -- 65
+write$ -- 119
 (There were 2 error messages)

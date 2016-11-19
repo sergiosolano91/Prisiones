@@ -1,9 +1,15 @@
 \begin{thebibliography}{xx}
 
-\harvarditem{(DANE)}{2009}{DANE}
-(DANE), D. A. N. d.~E.  \harvardyearleft 2009\harvardyearright , `{Comunicado
-  de prensa}'.
-\newline\harvardurl{https://www.dane.gov.co/files/BoletinProyecciones.pdf}
+\harvarditem[Blumstein et~al.]{Blumstein, Cohen \harvardand\
+  Miller}{1980}{Blumstein1980}
+Blumstein, A., Cohen, J. \harvardand\ Miller, H.~D.  \harvardyearleft
+  1980\harvardyearright , `{Demographically disaggregated projections of prison
+  populations}', {\em Journal of Criminal Justice} {\bf 8}(1),~1--26.
+
+\harvarditem{DANE}{2009}{DANE}
+DANE  \harvardyearleft 2009\harvardyearright , `{Estimaciones poblaci{\'{o}}n
+  DANE}'.
+\newline\harvardurl{http://www.dane.gov.co/files/investigaciones/poblacion/seriesp85{\_}20/EstimacionesProyecciones1985{\_}{\_}020.xls}
 
 \harvarditem{{Departamento Nacional de
   Planeaci{\'{o}}n}}{2015}{DepartamentoNacionaldePlaneacion2015}
@@ -14,9 +20,14 @@
 \harvarditem{{Instituto Nacional Penitenciario y
   Carcelario}}{2016}{InstitutoNacionalPenitenciarioyCarcelario2016}
 {Instituto Nacional Penitenciario y Carcelario}  \harvardyearleft
-  2016\harvardyearright , `{Plan de direccionamiento estrat{\'{e}}gico
-  2015-108, Misi{\'{o}}n y Visi{\'{o}}n}'.
-\newline\harvardurl{https://www.google.com.co/search?q=mendeley{\&}oq=mendeley{\&}aqs=chrome..69i57j0l5.1565j0j7{\&}sourceid=chrome{\&}ie=UTF-8}
+  2016\harvardyearright , `{Plan de direccionamiento estrat{\{}{\'{e}}{\}}gico
+  2015-108, Misi{\{}{\'{o}}{\}}n y Visi{\{}{\'{o}}{\}}n}'.
+\newline\harvardurl{http://www.inpec.gov.co/portal/page/portal/Inpec/Institucion/FormulacionEstrategica/MisionVision}
+
+\harvarditem{Justice}{2014}{Justice2014}
+Justice, M.  \harvardyearleft 2014\harvardyearright , `{Prison Population
+  Projections 2014 – 2020, England and Wales}', {\em Home Office Statistical
+  Bulletin} (November),~31.
 
 \harvarditem{Lee \harvardand\ Tuljapurkar}{1994}{Lee1994}
 Lee, R.~D. \harvardand\ Tuljapurkar, S.  \harvardyearleft 1994\harvardyearright
@@ -25,11 +36,24 @@ Lee, R.~D. \harvardand\ Tuljapurkar, S.  \harvardyearleft 1994\harvardyearright
   89}(428),~1175.
 \newline\harvardurl{http://www.jstor.org/stable/2290980?origin=crossref}
 
+\harvarditem[Minton et~al.]{Minton, Statistician, Ginder, Brumbaugh,
+  Smiley-Mcdonald \harvardand\ Rohloff}{2015}{Minton2015}
+Minton, T.~D., Statistician, B., Ginder, S., Brumbaugh, S.~M., Smiley-Mcdonald,
+  H. \harvardand\ Rohloff, H.  \harvardyearleft 2015\harvardyearright ,
+  `{Census of Jails: Population Changes, 1999–2013}'.
+\newline\harvardurl{https://www.bjs.gov/content/pub/pdf/cjpc9913.pdf}
+
 \harvarditem{Swanson \harvardand\ Tayman}{2012}{Swanson2012}
 Swanson, D.~A. \harvardand\ Tayman, J.  \harvardyearleft 2012\harvardyearright
   , {\em {Subnational Population Estimates}}, Vol.~31 of {\em The Springer
   Series on Demographic Methods and Population Analysis}, Springer Netherlands,
   Dordrecht.
 \newline\harvardurl{http://link.springer.com/10.1007/978-90-481-8954-0}
+
+\harvarditem[Wan1 et~al.]{Wan1, Moffatt2, Xie3, Corben \harvardand\
+  Weatherburn}{n.d.}{Wan1}
+Wan1, W.-Y., Moffatt2, S., Xie3, Z., Corben, S. \harvardand\ Weatherburn, D.
+  \harvardyearleft n.d.\harvardyearright , {Forecastin prison populations using
+  sentencing and arrest data}, Technical report.
 
 \end{thebibliography}

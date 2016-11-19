@@ -108,7 +108,7 @@ El CONPES 3828 de 2015 realiza, además,  proyecciones de la población carcelaria
 
 En este contexto resulta necesario contar con proyecciones de la población carcelaria en diferentes escenarios,para determinar la necesidad de cupos  en el corto y mediano plazo. Tales proyecciones deben tener en cuenta las dinámicas propias del sistema carcelario y deben permitir estimar el impacto de modificaciones a la política criminal y carcelaria. Este problema se ha abordado anteriormente desde el estudio de poblaciones pequeñas.
 
-Las poblaciones que se estiman y proyectan a un nivel menor que el nacional se conocen como poblaciones pequeñas (ciudad, departamento, etc...). Dentro de las poblaciones pequeñas se encuentran poblaciones especiales que "se localizan en un área especial por una acción legislativa o administrativa ".  \citeasnoun {Swanson2012}. La población carcelaria es un tipo de población especial cuyos componentes: nacimientos y defunciones no necesariamente siguen los patrones biológicos que dan vida al modelo exponencial y requieren el uso de técnicas diferentes que permitan un mejor ajuste. 
+Las poblaciones que se estiman y proyectan a un nivel menor que el nacional se conocen como poblaciones pequeñas (ciudad, departamento, etc...). Dentro de las poblaciones pequeñas se encuentran poblaciones especiales que "se localizan en un área especial por una acción legislativa o administrativa ".  \cite {Swanson2012}. La población carcelaria es un tipo de población especial cuyos componentes: nacimientos y defunciones no necesariamente siguen los patrones biológicos que dan vida al modelo exponencial y requieren el uso de técnicas diferentes que permitan un mejor ajuste. 
 
 Las series de población carcelaria disponibles para Colombia son mediciones de la población al cierre de mes, agrupada por situación judicial y género.
 
@@ -134,13 +134,15 @@ Comparar el ajuste de los métodos clásicos de proyección de poblaciones pequeñas
 
 \section{Revisión de Literatura}
 
+En 2016 Colombia ocupa el puesto catorce entre doscientos cincuenta y un paises por el tamaño de su población carcelaria (120 914 hbts.) y el cincuenta y uno según la tasa de encarcelamiento (240 por cada 100.000 hbts). Tasa que pasó de 51,5 en  el año 2000 a 240 por cada 100.000 hbts en 2016. Con una ocpación del 154\% de las plazas disponibles, resulta relevante contar con proyecciones de la población carcelaria en el corto, mediano y largo plazo.
+
 \subsection{Proyecciones de población}
 
-"Una estimación poblaciónal consiste en determinar el tamaño o las características de una población, para el momento actual o para uno anterior, en ausencia de información. Cuando se realizan un conjunto de supuestos sobre el comportamiento de los vitales hacia el futuro, hablamos de proyección, y cuando se escoge un escenario como el más probable, hablamos de pronóstico" \citeasnoun {Swanson2012}
+"Una estimación poblacional consiste en determinar el tamaño o las características de una población, para el momento actual o para uno anterior, en ausencia de información. Cuando se realizan un conjunto de supuestos sobre el comportamiento de los vitales hacia el futuro, hablamos de proyección, y cuando se escoge un escenario como el más probable, hablamos de pronóstico"\cite {Swanson2012}
 
-Al trabajar estas proyecciones es necesario tener en cuenta y lidiar con la incertidumbre, en este sentido identifica los siguientes métodos\cite {Lee1994}: 
+Para incluir la incertidumbre en las proyecciones de población Lee enumera los siguientes métodos \cite {Lee1994}: 
 \begin{itemize}
-	\item El enfoque de alto, medio y bajo: Asume un comportamiento fijo para la fertilidad, mortalidad y las migraciones durante el periodo de proyección, basado en algunos supuestos.\cite {Lee1994} 
+	\item El enfoque de escenarios alto, medio y bajo: Asume comportamientos fijos para la fertilidad, la mortalidad y las migraciones durante el periodo de proyección, basado en algunos supuestos.\cite {Lee1994} 
 	\item Análisis estocásticos
 	\begin{itemize}
 	\item Análisis ex-post: consiste en evaluar el error de pronóstico en proyecciones anteriores y aplicarlo a las nuevas proyecciones.\cite {Lee1994}
@@ -152,9 +154,25 @@ Al trabajar estas proyecciones es necesario tener en cuenta y lidiar con la ince
 
 \subsection{Proyección de poblaciones pequeñas}
 
-\citeasnoun {Swanson2012}
+La proyección de áreas pequeñas es entendida como la proyección a un nivel geográfico menor al nacional. Estas proyecciones pueden incluir, departamentos, ciudades o poblaciones especiales. \cite {Swanson2012}
+"Una población especial es un grupo poblacional que se encuentra restringido a un área por una medida administrativa o legislativa. Dentro de los grupos usualmente considerados se encuentran las prisiones, universidades, hospitales e instituciones militares".
+\cite {Swanson2012}. "Las poblaciones especiales suelen tener una estructura etaria y de sexo,  y unos vitales diferentes al resto de la población;además no suelen envejecer en el mismo lugar, lo que permite mantener una estructura etaria que no varía a través del tiempo." \cite {Swanson2012}.
 
-\subsection{Proyecciones de población carcelaria en otros países}
+\subsection{Proyecciones de población carcelaria}
+
+Las proyecciones de poblaciones carcelarias oficiales analizadas corresponden, en buena parte, a los métodos expuestos en los capítulos anteriores. 
+
+En Colombia (CONPES 3828) se proyectó la población carcelaria usando la tasa media de crecimiento anual (1993-2014).\cite {DepartamentoNacionaldePlaneacion2015} Esta proyección no tiene en cuenta la incertidumbre asociada con las variaciones aleatorias en las tasas, ni las asociadas a cambios estructurales.  
+
+Reino Unido hasta 2015 realizaba una proyección por escenarios (alto, medio y bajo), año en el cual cambió a un modelo de proyección de la media y su incertidumbre. La incertidumbre se incluyó a través de un análisis ex-post, de la  desviación de la proyección en años anteriores. \cite {Justice2014}
+
+El departamento de Justicia de los Estados Unidos realizó estimaciones de la población carcelaria por estado para el periodo 2013-2014. Las estimaciones parten del censo de prisiones 1993-2014. Estas proyecciones se puede enmarcar dentro de las proyecciones de áreas pequeñas. \cite {Minton2015}
+
+El bureau de estadísticas e investigación del crimen en Australia proyecta las tasas de arresto y sentencia usando modelos ARIMA;  a partir de estas tasas proyecta la población carcelaria. Estas proyecciones incluyen un periodo de validación de tres años. Los resultados mostraban que la serie real se encuentra dentro de los intervalos de confianza de la proyección, cercano a la proyección de la media. \cite{Wan1}
+
+Blummstein desarrolla un método de proyección basado en los componentes demográficos, tasas específicas de arresto por delito y reincidencias, a partir de estos datos proyecta el tamaño y la composición de las poblaciones. \cite{Blumstein1980}
+
+Con los datos libres disponibles en Colombia no se podría utilizar el enfoque ARIMA ni el método de Blummstein, pues las tasas de encarcelamiento y sentencia no se publican. La tesis busca proponer un método de proyección, para situaciones donde no se cuenta con el registro de los vitales o su equivalente en la población analizada.
 
 \subsection{Series de tiempo ARIMA, ARMAX}
 
@@ -189,8 +207,8 @@ A partir de la estructura del sistema penal, se propone el siguiente modelo base
 
 \begin{center}
 	
-	$\ S_t = S_{t-1} + \alpha {N_t} - \gamma S_{t-1} + \epsilon1_t$
-	\\	$\ C_t = C_{t-1} - \omega C_{t-1} + \beta \gamma S_{t-1} +\epsilon2_t$ 
+	$\ S_t = S_{t-1} + \alpha {N_t} - \phi S_{t-1} - \gamma S_{t-1} + \epsilon_1t$
+	\\	$\ C_t = C_{t-1} - \phi C_{t-1} -\omega C_{t-1} + \beta \gamma S_{t-1} +\epsilon_2t$ 
 	
 \end{center}
 
@@ -203,8 +221,10 @@ A partir de la estructura del sistema penal, se propone el siguiente modelo base
 	\item $\gamma$ = proporción de sindicados que es juzgada cada periodo
 	\item $\beta$ = proporción de sindicados que han sido encontrados culpables durante el juicio	
 	\item $\omega$ = proporción de condenados que cumplen su pena cada periodo
-	\item $\epsilon1_t$ = error en la serie de Sindicados
-	\item $\epsilon2_t$ = error en la serie de Condenados
+	\item $\omega$ = proporción de condenados que cumplen su pena cada periodo
+	\item $\epsilon_1t$ = error en la serie de Sindicados
+	\item $\epsilon_2t$ = error en la serie de Condenados
+	\item $\phi$ = mortalidad mensual
 	
 \end{itemize}
 
@@ -220,32 +240,32 @@ Este modelo tiene los siguientes supuestos:
 \begin{table}[h]\footnotesize
 %\begin{sidewaystable}
 \resizebox{\textwidth}{!}{
-\begin{tabular}{|p{2.5cm}|c|c|c|c|c|c|c|c|c|c|c|c}
+\begin{tabular}{|p{2.5cm}|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
 & \multicolumn{12}{|c|}{Months} \\
 \hline
-Activities & Jul-16 & Ago-16 & Sep-16 & Oct-16 & Nov-16 & Dic-16 & Ene-17 & Feb-17 & Mar-17 & Abr-17 & May-17 & Jun-17 \\
+Activities & Jul-16 & Ago & Sep & Oct & Nov & Dic & Ene-17 & Feb & Mar & Abr & May & Jun \\
 \hline
 Revisión de literatura & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$& $\bullet$ \\
 \hline
-Análisis preliminar de datos    & $\bullet$ &  &  &  &  & & & & & &  \\
+Análisis preliminar de datos    & $\bullet$ &  &  &  &  & & & & & & & \\
 \hline
 
-Ajuste series de tiempo ARIMA    &  &  $\bullet$ & $\bullet$ &  &  & & & & & &  \\
+Ajuste series de tiempo ARIMA    &  &  $\bullet$ & $\bullet$ &  &  & & & & & & &  \\
 \hline
 
-Aplicación de visualización de escenarios  &  &  &  & $\bullet$ &  & & & & & &  \\
+Aplicación de visualización de escenarios  &  &  &  & $\bullet$ &  & & & & & & & \\
 \hline
 
-Elaboración de propuesta &  &  &  & $\bullet$ &  & & & & & &  \\
+Elaboración de propuesta &  &  &  & $\bullet$ &  & & & & & &  &\\
 \hline
 
-Ajuste de modelos de poblaciones pequeñas &  &  &  &  & $\bullet$ & & & & & &  \\
+Ajuste de modelos de poblaciones pequeñas &  &  &  &  & $\bullet$ & & & & & & &  \\
 \hline
 
-Revisión literatura modelos estado espacio &  &  &  &  & & $\bullet$ &$\bullet$  &$\bullet$  & & &  \\
+Revisión literatura modelos estado espacio &  &  &  &  & & $\bullet$ &$\bullet$  &$\bullet$  & & & & \\
 \hline
-Estimación de modelos estado espacio &  &  &  &  & &  & & & $\bullet$ & \\
+Estimación de modelos estado espacio &  &  &  &  & &  & & & $\bullet$ & & & \\
 \hline
 
 Consolidación de documento de tesis & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$& $\bullet$ \\
