@@ -59,11 +59,11 @@
 \begin{authors}
 \author[firstname = Sergio David,
         surname = Solano Bejarano,
-        affiliation = Estudiante ,
+        affiliation = Estudiante de la Maestría en Ciencias - Estadística,
         email = sdsolanob@unal.edu.co]
-\author[firstname = Beatriz Piedad,
+\author[firstname = B. Piedad,
         surname = Urdinola Contreras,
-        affiliation = Profesor,
+        affiliation = Profesora Asociada,
         email =  bpurdinolac@unal.edu.co]
 \end{authors}
 
@@ -84,7 +84,7 @@
 % -------------------------------------------------------------------------------------
 
 \begin{mainabstract}
-    Se presenta una propuesta de tesis en la proyección de poblaciones carcelarias, que pretende comparar el ajuste de los métodos de Proyección de poblaciones pequeñas, el análisis de series de tiempo y los modelos estado espacio. Se comparan los datos con simulación Monte-Carlo y se estima cada modelo con los datos de población carcelaria de Colombia 1991-2016.
+    Se presenta una propuesta de tesis en la proyección de poblaciones carcelarias, con los métodos de proyección de poblaciones pequeñas, el análisis de series de tiempo y los modelos estado espacio. Se comparan los resultados con simulación Monte-Carlo y se estima cada modelo con los datos de población carcelaria de Colombia 1991-2016.
 \keywords{Poblaciones pequeñas,Poblaciones Carcelarias, Series de tiempo}
 \end{mainabstract}
 
@@ -102,17 +102,15 @@ En Colombia el INPEC (Instituto Nacional Penitenciario y Carcelario), que "es la
 
 Con base en estos datos el CONPES 3828 anota que "el promedio anual de crecimiento de la Población Privada de la Libertad (PPL) entre 1993 y 2014 fue de 9,43\% para la población condenada y 4,91\% para la sindicada" \cite {DepartamentoNacionaldePlaneacion2015}; ambas tasas están muy por encima del 1,18\% anual, crecimiento poblacional nacional estimado por el DANE para el quinquenio 2005-2010  \cite {DANE}. El aumento por encima de la población nacional sugiere dinámicas de crecimiento diferentes al resto de la población.
 
-De otra parte el mismo documento observa que "en el periodo 1993-2014 la proporción de cupos habilitados creció en 173,59\%, mientras la población privada de la libertad (PPL) creció en un 315,39\%."\cite {DepartamentoNacionaldePlaneacion2015}. El crecimiento acelerado de la población carcelaria, por encima de la oferta de cupos implica un incremento del hacinamiento. 
+De otra parte el mismo documento observa que "en el periodo 1993-2014 la proporción de cupos habilitados creció en 173,59\%, mientras la población privada de la libertad (PPL) creció en un 315,39\%."\cite {DepartamentoNacionaldePlaneacion2015}. El crecimiento acelerado de la población carcelaria, por encima de la oferta de cupos implica un incremento del hacinamiento, lo que a su vez podría incidir en problemas de salud y de orden al interior de las instituciones carcelarias.
 
 El CONPES 3828 de 2015 realiza, además,  proyecciones de la población carcelaria a través de un modelo de crecimiento exponencial con tasa de crecimiento de 7,23\% anual. Este tipo de modelos, aunque ampliamente usados en proyecciones de población, no resulta conveniente cuando la tasa de crecimiento no es estable a través del tiempo y depende de variables exógenas  como: la  población nacional, su estructura etaria, las características del sistema penitenciario y del sistema judicial. 
 
-En este contexto resulta necesario contar con proyecciones de la población carcelaria en diferentes escenarios,para determinar la necesidad de cupos  en el corto y mediano plazo. Tales proyecciones deben tener en cuenta las dinámicas propias del sistema carcelario y deben permitir estimar el impacto de modificaciones a la política criminal y carcelaria. Este problema se ha abordado anteriormente desde el estudio de poblaciones pequeñas.
+En este contexto resulta necesario contar con proyecciones de la población carcelaria en diferentes escenarios,para determinar la necesidad de cupos  en el corto y mediano plazo. Tales proyecciones deben tener en cuenta las dinámicas propias del sistema carcelario y deben permitir estimar el impacto de modificaciones a la política criminal y carcelaria, de forma que permitan una mejor planeación de la cantidad y/o tamaño de los centros carcelarios. Este problema se ha abordado anteriormente desde el estudio de poblaciones pequeñas.\cite {Swanson2012}
 
 Las poblaciones que se estiman y proyectan a un nivel menor que el nacional se conocen como poblaciones pequeñas (ciudad, departamento, etc...). Dentro de las poblaciones pequeñas se encuentran poblaciones especiales que "se localizan en un área especial por una acción legislativa o administrativa ".  \cite {Swanson2012}. La población carcelaria es un tipo de población especial cuyos componentes: nacimientos y defunciones no necesariamente siguen los patrones biológicos que dan vida al modelo exponencial y requieren el uso de técnicas diferentes que permitan un mejor ajuste. 
 
-Las series de población carcelaria disponibles para Colombia son mediciones de la población al cierre de mes, agrupada por situación judicial y género.
-
-Los proyecciones de población suelen incluir las tasas de nacimiento, migración y mortalidad. En el caso de las poblaciones carcelarias, los equivalentes serían la tasa de ingreso al sistema, la tasa a la que son juzgados y la duración de las penas, que determina la tasa de salida de los condenados. En el caso de Colombia estos datos no son libres, por lo tanto el modelo debe permitir estimar las tasas no observadas. Adicionalmente, estas tasas no son constantes a través del tiempo, pues dependen de la estructura del sistema judicial y del sistema carcelario.
+Las series de población carcelaria disponibles para Colombia son mediciones de la población al cierre de mes, agrupada por situación judicial y género. Los proyecciones de población suelen incluir las tasas de nacimiento, migración y mortalidad. En el caso de las poblaciones carcelarias, los equivalentes serían la tasa de ingreso al sistema, la tasa a la que son juzgados, la mortalidad y la duración de las penas, que determina la tasa de salida de los condenados. En el caso de Colombia estos datos no son libres, por lo tanto el modelo debe permitir estimar las tasas no observadas. Adicionalmente, estas tasas no son constantes a través del tiempo, pues dependen de la estructura del sistema judicial y del sistema carcelario.
 
 Este trabajo busca ofrecer proyecciones de población carcelaria de corto y mediano plazo, comparando los modelos de:  series de tiempo,  modelos estado espacio y métodos de proyección de poblaciones pequeñas.
 
@@ -124,8 +122,8 @@ Comparar el ajuste de los métodos clásicos de proyección de poblaciones pequeñas
 
 \subsection{Objetivos Específicos}
 \begin{itemize}
-	\item Modelar la población carcelaria usando los métodos de ratio-correlation y censal-ratio. 
-	\item Modelar el comportamiento de la población carcelaria a través de series de tiempo ARIMA y ARIMAX, suponiendo tasas de transición estables.
+	\item Proyectar la población carcelaria usando los métodos de ratio-correlation y censal-ratio. 
+	\item Proyectar el comportamiento de la población carcelaria a través de series de tiempo ARIMA y ARIMAX, suponiendo tasas de transición estables.
 	\item Aplicar modelos estado espacio para estimar las tasas de transición, cuando: son no observadas,  varían en el tiempo y tienen correlación con variables exógenas.
 	\item Comparar el ajuste de los tres métodos a través de simulación Montecarlo. 
 	\item Aplicar los métodos descritos en los objetivos anteriores, a los datos de población carcelaria colombiana 1991-2016. 
@@ -138,39 +136,39 @@ En 2016 Colombia ocupa el puesto catorce entre doscientos cincuenta y un paises 
 
 \subsection{Proyecciones de población}
 
-"Una estimación poblacional consiste en determinar el tamaño o las características de una población, para el momento actual o para uno anterior, en ausencia de información. Cuando se realizan un conjunto de supuestos sobre el comportamiento de los vitales hacia el futuro, hablamos de proyección, y cuando se escoge un escenario como el más probable, hablamos de pronóstico"\cite {Swanson2012}
+"Una estimación poblacional consiste en determinar el tamaño o las características de una población, para el momento actual o para uno anterior, en ausencia de información. Cuando se realizan un conjunto de supuestos sobre el comportamiento de los vitales hacia el futuro, hablamos de proyección, y cuando se escoge un escenario como el más probable, hablamos de pronóstico"\cite {Swanson2012}.
 
 Para incluir la incertidumbre en las proyecciones de población Lee enumera los siguientes métodos \cite {Lee1994}: 
 \begin{itemize}
-	\item El enfoque de escenarios alto, medio y bajo: Asume comportamientos fijos para la fertilidad, la mortalidad y las migraciones durante el periodo de proyección, basado en algunos supuestos.\cite {Lee1994} 
+	\item El enfoque de escenarios alto, medio y bajo: Asume comportamientos fijos para la fertilidad, la mortalidad y las migraciones durante el periodo de proyección, basado en algunos supuestos \cite {Lee1994}.
 	\item Análisis estocásticos
 	\begin{itemize}
-	\item Análisis ex-post: consiste en evaluar el error de pronóstico en proyecciones anteriores y aplicarlo a las nuevas proyecciones.\cite {Lee1994}
-	\item Simulación estocástica: Permite hacer proyecciones de población, al asignar una distribución de probabilidad a las tasas vitales (mortalidad, natalidad, migraciones). \cite {Lee1994}
-	\item Modelos estocásticos de la tasa de crecimiento: Consiste en estimar la tasa de crecimiento del total de la población; aunque permite estimar intervalos de confianza, no permite separar la proyección de las tasas vitales, ni de las franjas etarias. \cite {Lee1994}
+	\item Análisis ex-post: consiste en evaluar el error de pronóstico en proyecciones anteriores y aplicarlo a las nuevas proyecciones \cite {Lee1994}.
+	\item Simulación estocástica: Permite hacer proyecciones de población, al asignar una distribución de probabilidad a las tasas vitales (mortalidad, natalidad, migraciones) \cite {Lee1994}.
+	\item Modelos estocásticos de la tasa de crecimiento: Consiste en estimar la tasa de crecimiento del total de la población; aunque permite estimar intervalos de confianza, no permite separar la proyección de las tasas vitales, ni de las franjas etarias \cite {Lee1994}.
 	\item Matrices de Leslie con modelos estimados para las tasas vitales:  Al usar matrices de Leslie se estima la población por rangos etarios para un instante i, y se calcula la población en el instante i + 1 aplicando la natalidad y la mortalidad proyectadas para el periodo i. Puesto que las series de población carcelaria no se publican separadas por edad, no se abordará esta técnica.
 	\end{itemize}
 \end{itemize}
 
 \subsection{Proyección de poblaciones pequeñas}
 
-La proyección de áreas pequeñas es entendida como la proyección a un nivel geográfico menor al nacional. Estas proyecciones pueden incluir, departamentos, ciudades o poblaciones especiales. \cite {Swanson2012}
+La proyección de áreas pequeñas es entendida como la proyección a un nivel geográfico menor al nacional. Estas proyecciones pueden incluir, departamentos, ciudades o poblaciones especiales \cite {Swanson2012}.
 "Una población especial es un grupo poblacional que se encuentra restringido a un área por una medida administrativa o legislativa. Dentro de los grupos usualmente considerados se encuentran las prisiones, universidades, hospitales e instituciones militares".
-\cite {Swanson2012}. "Las poblaciones especiales suelen tener una estructura etaria y de sexo,  y unos vitales diferentes al resto de la población;además no suelen envejecer en el mismo lugar, lo que permite mantener una estructura etaria que no varía a través del tiempo." \cite {Swanson2012}.
+Este tipo de población puede tener una estructura etaria y de sexo,  y unos vitales diferentes al resto de la población; además no suelen envejecer en el mismo lugar, lo que permite mantener una estructura etaria que no varía a través del tiempo. \cite {Swanson2012}.
 
-\subsection{Proyecciones de población carcelaria}
+\subsection{Aplicaciones nacionales e internacionales}
 
-Las proyecciones de poblaciones carcelarias oficiales analizadas corresponden, en buena parte, a los métodos expuestos en los capítulos anteriores. 
+Las proyecciones de poblaciones carcelarias oficiales analizadas corresponden, en buena parte, a los métodos expuestos en los capítulos anteriores:  Proyecciones por escenarios, proyección de la tasa de crecimiento, modelos ARIMA para las tasas de ingreso y salida.
 
-En Colombia (CONPES 3828) se proyectó la población carcelaria usando la tasa media de crecimiento anual (1993-2014).\cite {DepartamentoNacionaldePlaneacion2015} Esta proyección no tiene en cuenta la incertidumbre asociada con las variaciones aleatorias en las tasas, ni las asociadas a cambios estructurales.  
+En Colombia (CONPES 3828) se proyectó la población carcelaria usando la tasa media de crecimiento anual (1993-2014) \cite {DepartamentoNacionaldePlaneacion2015}. Esta proyección no tiene en cuenta la incertidumbre asociada con las variaciones aleatorias en las tasas, ni las asociadas a cambios estructurales.  
 
-Reino Unido hasta 2015 realizaba una proyección por escenarios (alto, medio y bajo), año en el cual cambió a un modelo de proyección de la media y su incertidumbre. La incertidumbre se incluyó a través de un análisis ex-post, de la  desviación de la proyección en años anteriores. \cite {Justice2014}
+El Reino Unido hasta 2015 realizaba una proyección por escenarios (alto, medio y bajo), año en el cual cambió a un modelo de proyección de la media y su incertidumbre. La incertidumbre se incluyó a través de un análisis ex-post, de la  desviación de la proyección en años anteriores \cite {Justice2014}.
 
-El departamento de Justicia de los Estados Unidos realizó estimaciones de la población carcelaria por estado para el periodo 2013-2014. Las estimaciones parten del censo de prisiones 1993-2014. Estas proyecciones se puede enmarcar dentro de las proyecciones de áreas pequeñas. \cite {Minton2015}
+El departamento de Justicia de los Estados Unidos realizó estimaciones de la población carcelaria por estado para el periodo 2013-2014. Las estimaciones parten del censo de prisiones 1993-2014. Estas proyecciones se puede enmarcar dentro de las proyecciones de áreas pequeñas \cite {Minton2015}.
 
-El bureau de estadísticas e investigación del crimen en Australia proyecta las tasas de arresto y sentencia usando modelos ARIMA;  a partir de estas tasas proyecta la población carcelaria. Estas proyecciones incluyen un periodo de validación de tres años. Los resultados mostraban que la serie real se encuentra dentro de los intervalos de confianza de la proyección, cercano a la proyección de la media. \cite{Wan1}
+El bureau de estadísticas e investigación del crimen en Australia proyecta las tasas de arresto y sentencia usando modelos ARIMA;  a partir de estas tasas proyecta la población carcelaria. Estas proyecciones incluyen un periodo de validación de tres años. Los resultados mostraban que la serie real se encuentra dentro de los intervalos de confianza de la proyección, cercano a la proyección de la media \cite{Wan1}.
 
-Blummstein desarrolla un método de proyección basado en los componentes demográficos, tasas específicas de arresto por delito y reincidencias, a partir de estos datos proyecta el tamaño y la composición de las poblaciones. \cite{Blumstein1980}
+Blummstein desarrolla un método de proyección basado en los componentes demográficos, tasas específicas de arresto por delito y reincidencias, a partir de estos datos proyecta el tamaño y la composición de las poblaciones \cite{Blumstein1980}.
 
 Con los datos libres disponibles en Colombia no se podría utilizar el enfoque ARIMA ni el método de Blummstein, pues las tasas de encarcelamiento y sentencia no se publican. La tesis busca proponer un método de proyección, para situaciones donde no se cuenta con el registro de los vitales o su equivalente en la población analizada.
 
@@ -182,15 +180,15 @@ El análisis de las series tiempo de poblaciones carcelarias  de tiempo ARIMA y A
 
 Tomado de \cite{Lutkepohl2005} : 
 
-En un modelo estado espacio "una serie de tiempo (multiple) observada  $\ y_1, ... , y_t $\ depende de un estado $\ z_t $\ , posiblemente no observado, que se comporta siguiendo un proceso estocástico. La relación entre $\ y_t $\ y $\ z_t $\ está dada por la \textit{ecuación de medida}: " \cite{Lutkepohl2005}  
+En un modelo estado espacio una serie de tiempo (multiple) observada  $\ y_1, ... , y_t $\ depende de un estado $\ z_t $\ , posiblemente no observado, que se comporta siguiendo un proceso estocástico. La relación entre $\ y_t $\ y $\ z_t $\ está dada por la \textit{ecuación de medida}: \cite{Lutkepohl2005}  
 
 $\ y_t = H_t z_t + v_t$\
 
-"donde $\ H_t $\ es una matriz que puede o no depender del tiempo $\ t $\ y $\ v_t $\ es el error de observación, que se asume usualmente como un proceso de ruido. El vector de estado es generado como:  
+donde $\ H_t $\ es una matriz que puede o no depender del tiempo $\ t $\ y $\ v_t $\ es el error de observación, que se asume usualmente como un proceso de ruido. El vector de estado es generado como:  
 
 $\ z_t = B_{t-1} z_{t-1} + w_{t-1}$\
 
-La matriz $\ B_t $\ es una matriz de coeficientes que puede depender de $\ t $\, y $\ w_t $\ es un proceso de ruido." \cite{Lutkepohl2005}
+La matriz $\ B_t $\ es una matriz de coeficientes que puede depender de $\ t $\, y $\ w_t $\ es un proceso de ruido. \cite{Lutkepohl2005}
 
 
 \section{Metodología}
