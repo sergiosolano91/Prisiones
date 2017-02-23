@@ -1,10 +1,10 @@
 ---
-title: "Preprocesamiento"
+title: "La población carcelaria en Colombia 1991-2017"
 author: "Sergio Solano"
-date: "19 de agosto de 2016"
+date: "Febrero de 2016"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -13,26 +13,19 @@ autoloads <- c("dplyr", "ggplot2", "Hmisc")
 options(defaultPackages = c(getOption("defaultPackages"), autoloads))
 ```
 
-## R Markdown
+## Data 
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+El INPEC publica mensualemente la serie población carcelaria, desde 1991 hasta el mese anterior a la publicación. Esta serie se encuentra separada por situación jurídica (condenados, sindicados) y por genero. 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+### Objetivo
 
-```{r cars, echo = FALSE, include=FALSE}
-summary(cars)
-```
+El proceso a través del cual las personas pasan de una situación jurídica a otra es conocido, y sin embargo no observado, pues no se publican las series de tiempo que reflejan esta transición (cantidad de personas sentenciadas por mes, cantidad de personas liberadas mes, duración de la condena). 
 
-## Including Plots
+Este ejercicio de demografía, enmarcado en el estudio de poblaciones pequeñas, presenta la oportunidad de comparar la efectividad de diferentes métodos de proyección.
 
-You can also embed plots, for example:
+### Análisis exploratorio
 
-```{r pressure, echo=FALSE, include=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
+La población carcelaria total entre 1991 y 2017 se ha cuadruplicado, al pasar de 32.036 a 128.125 internos. Aunque la mayoría son hombres la población carcelaria feminina en el mismo periodo ha crecido a una tasa mayor, pues se ha multiplicado por cinco, de 1633 en 1991 a 7800 en 2017.
 
 ```{r librerías, echo = FALSE, include=FALSE }
 rm(list = ls())
@@ -66,7 +59,7 @@ data = read.csv("POB_SITJUR_INP_ENE17.csv",header = TRUE,sep = ",",stringsAsFact
 ppl_sitjur_ene17 <- (data[2:13,2:dim(data)[2]])
 ppl_sitjur <- cbind(gather(ppl_sitjur_ene17)[2],rep(c(rep("sindicados",12), rep("condenados",12), rep("total",12)),dim(ppl_sitjur_ene17)[2]/3))
 colnames(ppl_sitjur) <- c("valor", "categoria")
-ppl_sitjur$valor <- as.numeric(ppl_sitjur$valor)*100
+ppl_sitjur$valor <- as.numeric(ppl_sitjur$valor)*1000
 anio <- sort(rep(seq(1991,1991+dim(ppl_sitjur_ene17)[2]/3-1,by =1),36))
 mes <- rep(seq(1,12,1),dim(ppl_sitjur_ene17)[2])
 ppl_sitjur <- cbind(ppl_sitjur,anio, mes) 
@@ -76,12 +69,49 @@ ppl_sitjur %<>% mutate (fecha = as.Date(paste (1,mes,anio, sep = "/"),"%d/%m/%Y"
 ```
 
 
-```{r}
+```{r gráfica de situación jurídica, echo = FALSE}
 
-ppl_sitjur %>% filter (categoria %in% c("sindicados","condenados")) %>%  ggplot() + geom_bar(aes(x=fecha,y = valor, colour = categoria, fill = categoria),stat = "identity") -> grafica 
-ggplotly(grafica)
+ppl_sitjur %>% filter (categoria %in% c("sindicados","condenados","total"), valor >0) %>%  ggplot() + geom_line(aes(x=fecha,y = valor, colour = categoria),stat = "identity") + ylab("Personas privadas de la libertad")-> grafica 
+# ggplotly(grafica)
+grafica
 
 ```
+
+
+```{r carga de datos - genero, echo = FALSE, include=FALSE }
+# Carga de archivos base
+url <- "https://www.dropbox.com/s/95m8oziipdy6ely/PPL_GEN_ENE17.csv?dl=1"
+destfile <- "POB_GEN_INP_ENE17.csv"
+curl_download(url, destfile)
+data = read.csv("POB_GEN_INP_ENE17.csv",header = TRUE,sep = ",",stringsAsFactors=FALSE)
+
+```
+
+
+```{r forma de los datos - genero, echo = FALSE, include=FALSE }
+
+# Carga de archivos base Situación judicial
+ppl_gen_ene17 <- (data[2:13,2:dim(data)[2]])
+ppl_gen <- cbind(gather(ppl_gen_ene17)[2],rep(c(rep("hombres",12), rep("mujeres",12), rep("total",12)),dim(ppl_sitjur_ene17)[2]/3))
+colnames(ppl_gen) <- c("valor", "categoria")
+ppl_gen$valor <- as.numeric(ppl_gen$valor)*1000
+anio <- sort(rep(seq(1991,1991+dim(ppl_sitjur_ene17)[2]/3-1,by =1),36))
+mes <- rep(seq(1,12,1),dim(ppl_sitjur_ene17)[2])
+ppl_gen <- cbind(ppl_gen,anio, mes) 
+# ppl_sitjur  %<>% spread(key = "categoria", value = valor) 
+
+ppl_gen %<>% mutate (fecha = as.Date(paste (1,mes,anio, sep = "/"),"%d/%m/%Y")) 
+```
+
+
+```{r grafica - genero, echo = FALSE}
+
+ppl_gen %>% filter (categoria %in% c("hombres","mujeres","total"), valor >0) %>%  ggplot() + geom_line(aes(x=fecha,y = valor, colour = categoria),stat = "identity") + ylab("Personas privadas de la libertad")-> grafica 
+# ggplotly(grafica)
+ grafica
+```
+
+
 
 ```{r, echo=FALSE, include = FALSE}
 # setwd("/home/sergio/Prisiones") 
