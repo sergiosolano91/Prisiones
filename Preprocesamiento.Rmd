@@ -2,11 +2,15 @@
 title: "Preprocesamiento"
 author: "Sergio Solano"
 date: "19 de agosto de 2016"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+autoloads <- c("dplyr", "ggplot2", "Hmisc")
+options(defaultPackages = c(getOption("defaultPackages"), autoloads))
 ```
 
 ## R Markdown
@@ -15,7 +19,7 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
+```{r cars, echo = FALSE, include=FALSE}
 summary(cars)
 ```
 
@@ -23,21 +27,65 @@ summary(cars)
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
+```{r pressure, echo=FALSE, include=FALSE}
 plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 
+```{r librerías, echo = FALSE, include=FALSE }
+rm(list = ls())
+library("magrittr")
+library("tidyr")
+library("reshape2")
+library("ggplot2")
+library("plotly")
+library("zoo")
+library("shiny")
+library("curl")
+# library ("timeSeries")
+library ("ggplot2")
+library("dplyr")
+
+```
+
+```{r carga de datos, echo = FALSE, include=FALSE }
+# Carga de archivos base
+url <- "https://www.dropbox.com/s/epb2srm6pglyz9w/PPL_SITJUR_ENE17.csv?dl=1"
+destfile <- "POB_SITJUR_INP_ENE17.csv"
+curl_download(url, destfile)
+data = read.csv("POB_SITJUR_INP_ENE17.csv",header = TRUE,sep = ",",stringsAsFactors=FALSE)
+
+```
+
+
+```{r forma de los datos, echo = FALSE, include=FALSE }
+
+# Carga de archivos base Situación judicial
+ppl_sitjur_ene17 <- (data[2:13,2:dim(data)[2]])
+ppl_sitjur <- cbind(gather(ppl_sitjur_ene17)[2],rep(c(rep("sindicados",12), rep("condenados",12), rep("total",12)),dim(ppl_sitjur_ene17)[2]/3))
+colnames(ppl_sitjur) <- c("valor", "categoria")
+ppl_sitjur$valor <- as.numeric(ppl_sitjur$valor)*100
+anio <- sort(rep(seq(1991,1991+dim(ppl_sitjur_ene17)[2]/3-1,by =1),36))
+mes <- rep(seq(1,12,1),dim(ppl_sitjur_ene17)[2])
+ppl_sitjur <- cbind(ppl_sitjur,anio, mes) 
+# ppl_sitjur  %<>% spread(key = "categoria", value = valor) 
+
+ppl_sitjur %<>% mutate (fecha = as.Date(paste (1,mes,anio, sep = "/"),"%d/%m/%Y")) 
+```
+
+
 ```{r}
 
-library ("timeSeries")
-library ("ggplot2")
+ppl_sitjur %>% filter (categoria %in% c("sindicados","condenados")) %>%  ggplot() + geom_bar(aes(x=fecha,y = valor, colour = categoria, fill = categoria),stat = "identity") -> grafica 
+ggplotly(grafica)
 
+```
 
-setwd("/home/sergio/Prisiones") 
-rm(list=ls())
+```{r, echo=FALSE, include = FALSE}
+# setwd("/home/sergio/Prisiones") 
+# rm(list=ls())
 data = read.csv("POB_SIT.csv",header = FALSE,sep = ",",stringsAsFactors=FALSE)
  
 POB = as.integer(c(unlist(data[2:13,2:dim(data)[2]])))
