@@ -17,13 +17,13 @@ options(defaultPackages = c(getOption("defaultPackages"), autoloads))
 
 El INPEC publica mensualemente la serie población carcelaria, desde 1991 hasta el mese anterior a la publicación. Esta serie se encuentra separada por situación jurídica (condenados, sindicados) y por genero. 
 
-### Objetivo
+## Objetivo
 
 El proceso a través del cual las personas pasan de una situación jurídica a otra es conocido, y sin embargo no observado, pues no se publican las series de tiempo que reflejan esta transición (cantidad de personas sentenciadas por mes, cantidad de personas liberadas mes, duración de la condena). 
 
 Este ejercicio de demografía, enmarcado en el estudio de poblaciones pequeñas, presenta la oportunidad de comparar la efectividad de diferentes métodos de proyección.
 
-### Análisis exploratorio
+# Análisis exploratorio
 
 La población carcelaria total entre 1991 y 2017 se ha cuadruplicado, al pasar de 32.036 a 128.125 internos. Aunque la mayoría son hombres la población carcelaria feminina en el mismo periodo ha crecido a una tasa mayor, pues se ha multiplicado por cinco, de 1633 en 1991 a 7800 en 2017.
 
@@ -139,6 +139,7 @@ pob_nal_est %<>% mutate (total_nac = hombres_nac + mujeres_nac)
 
 
 ```
+El incremento en la población carcelaria podría tomarse como un efecto del crecimiento de la población colombiana. Para validar este supuesto calculamos la tasa de encarcelamiento, que mide la cantidad de personas encarceladas por cada cien mil habitantes. Este indicador pasó de 92 personas por cada cien mil habitantes en enero de 1991 a 242 en enero de 2016. Tal incremento se puede ver tanto en hombres como en mujeres.
 
 ```{r tasa de encarcelamiento, echo = FALSE,  warning = FALSE, message=FALSE}
 
@@ -149,96 +150,129 @@ ppl_tasa <- left_join(pob_nal_est,ppl_gen, by = "Fecha") %>% mutate (tasa_hombre
 ppl_tasa %>% ggplot() + geom_line(aes(x=Fecha,y=tasa_hombres,colour="Hombres")) +geom_line(aes(x=Fecha,y=tasa_mujeres,colour="Mujeres"))+geom_line(aes(x=Fecha,y=tasa_total,colour="Total")) + expand_limits(y=0) + ylab("Tasa de encarcelamiento")-> tasas_encarcelamiento
 # ggplotly (tasas_encarcelamiento)
 tasas_encarcelamiento
+```
 
+La tasa de encarcelamiento ha crecido de forma exponencial, tanto en hombres como en mujres, y  se puede ver en la gráfica siguiente.
+
+```{r tasa de encarcelamiento log, echo = FALSE,  warning = FALSE, message=FALSE}
 ppl_tasa %>% ggplot() + geom_line(aes(x=Fecha,y=tasa_hombres,colour="Hombres")) +geom_line(aes(x=Fecha,y=tasa_mujeres,colour="Mujeres"))+geom_line(aes(x=Fecha,y=tasa_total,colour="Total")) + expand_limits(y=0) + scale_y_log10 (breaks = c(10,50,100,200,400)) + ylab("Tasa de encarcelamiento")-> tasas_encarcelamiento_log
 # ggplotly (tasas_encarcelamiento_log)
 tasas_encarcelamiento_log
 
 ```
 
+## Crecimiento de la población carcelaria
+
+Una primera aproximación al análisis de la población carcelaria, se podría realizar al separar los componentes estacionales, de tendencia y aleatorios de la serie de tiempo. No obstante, es posible inferir que la variabilidad de la serie no es constante. Por esta razón resultaría pertinente analizar la tasa de crecimiento de la población de mes a mes. Una técnica comunmente usada es trabajar con la difencia de los logaritmos de la población, que para variaciones cercanas a cero, se aproxima a la tasa de crecimiento. 
+
+```{r tasa crecimiento, echo = FALSE,  warning = FALSE, message=FALSE}
+
+MPPtimeseries <- ts(ppl_gen$total, frequency=12, start=c(1991,1))
+
+autoplot(as.zoo(diff(log(MPPtimeseries))), geom = "line") + ylab("tasa de crecimiento") + xlab("Periodo") -> graf_crecimiento
+
+graf_crecimiento
+
+```
+
+```{r tasa de crecimiento descompuesto, echo = FALSE,  warning = FALSE, message=FALSE }
+DeltaMPP <- decompose(diff(log(MPPtimeseries)))
+autoplot(as.zoo(DeltaMPP$seasonal), geom = "line") + ylab("tasa de crecimiento - componente estacional") + xlab("Periodo") -> graf_estacionalidad
+graf_estacionalidad
+
+tendencia <- as.zoo(DeltaMPP$trend)
+aleatorio <- as.zoo(DeltaMPP$random)
+estacional <- as.zoo(DeltaMPP$seasonal)
+
+autoplot(merge(tendencia,estacional, aleatorio), geom = "line") + ylab("tasa de crecimiento - descomposición") + xlab("Periodo") -> graf_tendencia
+         
+graf_tendencia
+
+autoplot(as.zoo(DeltaMPP$random), geom = "line") + ylab("tasa de crecimiento - error") + xlab("Periodo") -> graf_error
+graf_error
+
+
+
+```
+
+
 
 ```{r, echo=FALSE, include = FALSE}
-# setwd("/home/sergio/Prisiones") 
-# rm(list=ls())
-data = read.csv("POB_SIT.csv",header = FALSE,sep = ",",stringsAsFactors=FALSE)
- 
-POB = as.integer(c(unlist(data[2:13,2:dim(data)[2]])))
- 
-SIN = c(rep(c(rep(0,12),rep(1,12),rep(2,12)),900/36))
- 
-POB_SIN = cbind(POB,SIN)
- 
-SIND = subset(POB_SIN,POB_SIN[,"SIN"]==0)
- 
- 
-MPP1 = subset(POB_SIN,POB_SIN[,"SIN"]==0)
-MPP = MPP1[76:296,"POB"]
-
-##### SERIES DE TIEMPO
-#MPP = Male Prison Population
-
-MPPtimeseries <- ts(MPP, frequency=12, start=c(1991,1))
-
-logMMPtimeseries <- log(MPPtimeseries)
-
-plot.ts(diff(logMMPtimeseries))
-DeltaMPP = decompose(diff(logMMPtimeseries))
-plot(DeltaMPP) 
-
-# ggplot(DeltaMPP)
-
-write.csv(DeltaMPP$trend, file = 'sindicados.txt', row.names = TRUE)
-
-# Crecimiento promedio
-mean(DeltaMPP$trend,na.rm = TRUE)*100
-
-####### CONDENADOS 
-MPP1 = subset(POB_SIN,POB_SIN[,"SIN"]==1)
-MPP = MPP1[76:296,"POB"]
-
-##### SERIES DE TIEMPO
-#MPP = Male Prison Population
-
-MPPtimeseries <- ts(MPP, frequency=12, start=c(1991,1))
-
-logMMPtimeseries <- log(MPPtimeseries)
-
-plot.ts(diff(logMMPtimeseries))
-
-#ggplot(yt.views, aes(Date, Views)) + geom_line() +
-#  scale_x_date(format = "%b-%Y") + xlab("") + ylab("Daily Views")
-
-
-
-
-DeltaMPP = decompose(diff(logMMPtimeseries))
-plot(DeltaMPP) 
-# ggplot(DeltaMPP)
-write.csv(DeltaMPP$trend, file = 'condenados.txt', row.names = TRUE)
-
-# Crecimiento promedio
-mean(DeltaMPP$trend,na.rm = TRUE)*100
-
-####### TOTAL 
-MPP1 = subset(POB_SIN,POB_SIN[,"SIN"]==2)
-MPP = MPP1[76:296,"POB"]
-
-##### SERIES DE TIEMPO
-#MPP = Male Prison Population
-
-MPPtimeseries <- ts(MPP, frequency=12, start=c(1991,1))
-
-logMMPtimeseries <- log(MPPtimeseries)
-
-plot.ts(diff(logMMPtimeseries))
-DeltaMPP = decompose(diff(logMMPtimeseries))
-plot(DeltaMPP) 
-# ggplot(DeltaMPP)
-write.csv(DeltaMPP$trend, file = 'condenados.txt', row.names = TRUE)
-
-# Crecimiento promedio
-mean(DeltaMPP$trend,na.rm = TRUE)*100
-
-
+# # setwd("/home/sergio/Prisiones") 
+# # rm(list=ls())
+# data = read.csv("POB_SIT.csv",header = FALSE,sep = ",",stringsAsFactors=FALSE)
+#  
+# POB = as.integer(c(unlist(data[2:13,2:dim(data)[2]])))
+#  
+# SIN = c(rep(c(rep(0,12),rep(1,12),rep(2,12)),900/36))
+#  
+# POB_SIN = cbind(POB,SIN)
+#  
+# SIND = subset(POB_SIN,POB_SIN[,"SIN"]==0)
+#  
+#  
+# MPP1 = subset(POB_SIN,POB_SIN[,"SIN"]==0)
+# MPP = MPP1[76:296,"POB"]
+# 
+# ##### SERIES DE TIEMPO
+# #MPP = Male Prison Population
+# 
+# MPPtimeseries <- ts(MPP, frequency=12, start=c(1991,1))
+# 
+# logMMPtimeseries <- log(MPPtimeseries)
+# 
+# plot.ts(diff(logMMPtimeseries))
+# plot(DeltaMPP) 
+# 
+# # ggplot(DeltaMPP)
+# 
+# write.csv(DeltaMPP$trend, file = 'sindicados.txt', row.names = TRUE)
+# 
+# # Crecimiento promedio
+# mean(DeltaMPP$trend,na.rm = TRUE)*100
+# 
+# ####### CONDENADOS 
+# MPP1 = subset(POB_SIN,POB_SIN[,"SIN"]==1)
+# MPP = MPP1[76:296,"POB"]
+# 
+# ##### SERIES DE TIEMPO
+# #MPP = Male Prison Population
+# 
+# MPPtimeseries <- ts(MPP, frequency=12, start=c(1991,1))
+# 
+# logMMPtimeseries <- log(MPPtimeseries)
+# 
+# plot.ts(diff(logMMPtimeseries))
+# 
+# #ggplot(yt.views, aes(Date, Views)) + geom_line() +
+# #  scale_x_date(format = "%b-%Y") + xlab("") + ylab("Daily Views")
+# 
+# DeltaMPP = decompose(diff(logMMPtimeseries))
+# plot(DeltaMPP) 
+# # ggplot(DeltaMPP)
+# write.csv(DeltaMPP$trend, file = 'condenados.txt', row.names = TRUE)
+# 
+# # Crecimiento promedio
+# mean(DeltaMPP$trend,na.rm = TRUE)*100
+# 
+# ####### TOTAL 
+# MPP1 = subset(POB_SIN,POB_SIN[,"SIN"]==2)
+# MPP = MPP1[76:296,"POB"]
+# 
+# ##### SERIES DE TIEMPO
+# #MPP = Male Prison Population
+# 
+# MPPtimeseries <- ts(MPP, frequency=12, start=c(1991,1))
+# 
+# logMMPtimeseries <- log(MPPtimeseries)
+# 
+# plot.ts(diff(logMMPtimeseries))
+# DeltaMPP = decompose(diff(logMMPtimeseries))
+# plot(DeltaMPP) 
+# # ggplot(DeltaMPP)
+# write.csv(DeltaMPP$trend, file = 'condenados.txt', row.names = TRUE)
+# 
+# # Crecimiento promedio
+# mean(DeltaMPP$trend,na.rm = TRUE)*100
 ```
 
