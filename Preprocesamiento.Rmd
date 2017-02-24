@@ -161,7 +161,7 @@ tasas_encarcelamiento_log
 
 ```
 
-## Crecimiento de la población carcelaria
+## Crecimiento de la Población Privada de la Libertad (PPL)
 
 Una primera aproximación al análisis de la población carcelaria, se podría realizar al separar los componentes estacionales, de tendencia y aleatorios de la serie de tiempo. No obstante, es posible inferir que la variabilidad de la serie no es constante. Por esta razón resultaría pertinente analizar la tasa de crecimiento de la población de mes a mes. Una técnica comunmente usada es trabajar con la difencia de los logaritmos de la población, que para variaciones cercanas a cero, se aproxima a la tasa de crecimiento. 
 
@@ -169,33 +169,78 @@ Una primera aproximación al análisis de la población carcelaria, se podría r
 
 MPPtimeseries <- ts(ppl_gen$total, frequency=12, start=c(1991,1))
 
-autoplot(as.zoo(diff(log(MPPtimeseries))), geom = "line") + ylab("tasa de crecimiento") + xlab("Periodo") -> graf_crecimiento
+autoplot(as.zoo(diff(log(MPPtimeseries))), geom = "line") + ylab("tasa de crecimiento- PPL total") + xlab("Periodo") -> graf_crecimiento
 
 graf_crecimiento
 
 ```
 
+
 ```{r tasa de crecimiento descompuesto, echo = FALSE,  warning = FALSE, message=FALSE }
 DeltaMPP <- decompose(diff(log(MPPtimeseries)))
-autoplot(as.zoo(DeltaMPP$seasonal), geom = "line") + ylab("tasa de crecimiento - componente estacional") + xlab("Periodo") -> graf_estacionalidad
-graf_estacionalidad
 
 tendencia <- as.zoo(DeltaMPP$trend)
 aleatorio <- as.zoo(DeltaMPP$random)
 estacional <- as.zoo(DeltaMPP$seasonal)
 
 autoplot(merge(tendencia,estacional, aleatorio), geom = "line") + ylab("tasa de crecimiento - descomposición") + xlab("Periodo") -> graf_tendencia
-         
+       
 graf_tendencia
 
-autoplot(as.zoo(DeltaMPP$random), geom = "line") + ylab("tasa de crecimiento - error") + xlab("Periodo") -> graf_error
-graf_error
+```
 
+Crecimiento de la población privada de la libertad masculida
 
+```{r tasa crecimiento masculina, echo = FALSE,  warning = FALSE, message=FALSE}
+
+MPPtimeseries <- ts(ppl_gen$hombres, frequency=12, start=c(1991,1))
+
+autoplot(as.zoo(diff(log(MPPtimeseries))), geom = "line") + ylab("tasa de crecimiento- PPL masculina") + xlab("Periodo") + theme(aspect.ratio=1/2) -> graf_crecimiento
+
+graf_crecimiento
+
+```
+
+```{r tasa de crecimiento descompuesta - masculina, echo = FALSE,  warning = FALSE, message=FALSE }
+DeltaMPP <- decompose(diff(log(MPPtimeseries)))
+
+tendencia <- as.zoo(DeltaMPP$trend)
+aleatorio <- as.zoo(DeltaMPP$random)
+estacional <- as.zoo(DeltaMPP$seasonal)
+
+autoplot(merge(tendencia,estacional, aleatorio), geom = "line") + ylab("tasa de crecimiento - descomposición") + xlab("Periodo") -> graf_tendencia
+       
+graf_tendencia
 
 ```
 
 
+Crecimiento de la población privada de la libertad femenina 
+
+
+```{r tasa crecimiento femenina, echo = FALSE,  warning = FALSE, message=FALSE}
+
+MPPtimeseries <- ts(ppl_gen$mujeres, frequency=12, start=c(1991,1))
+
+autoplot(as.zoo(diff(log(MPPtimeseries))), geom = "line") + ylab("tasa de crecimiento- PPL femenina") + xlab("Periodo") + theme(aspect.ratio=1/2) -> graf_crecimiento
+
+graf_crecimiento
+
+```
+
+```{r tasa de crecimiento descompuesta - femenina, echo = FALSE,  warning = FALSE, message=FALSE }
+
+DeltaMPP <- decompose(diff(log(MPPtimeseries)))
+
+tendencia <- as.zoo(DeltaMPP$trend)
+aleatorio <- as.zoo(DeltaMPP$random)
+estacional <- as.zoo(DeltaMPP$seasonal)
+
+autoplot(merge(tendencia,estacional, aleatorio), geom = "line") + ylab("tasa de crecimiento - descomposición") + xlab("Periodo") -> graf_tendencia
+       
+graf_tendencia
+
+```
 
 ```{r, echo=FALSE, include = FALSE}
 # # setwd("/home/sergio/Prisiones") 
