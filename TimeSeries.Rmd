@@ -8,6 +8,24 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 rm(list = ls())
+library("astsa")
+```
+## Pruebas series de tiempo de Time Series Analysis and its applications
+
+```{r Datacamp Funciones, include=TRUE, echo = TRUE}
+# Plot AirPassengers
+plot(AirPassengers)
+
+# View the start and end dates of AirPassengers
+start(AirPassengers)
+end(AirPassengers)
+
+# Use time(), deltat(), frequency(), and cycle() with AirPassengers 
+time(AirPassengers)
+deltat(AirPassengers)
+frequency(AirPassengers)
+cycle(AirPassengers)
+
 ```
 
 ## Pruebas series de tiempo de Time Series Analysis and its applications
@@ -42,5 +60,26 @@ plot.ts(xd, ylim = c(-5,55), main = "random walk")
 lines(x); lines(0.2*(1:200), lty = "dashed")
 
 ```
+
+ACF
+
+```{r}
+par(mfrow = c(3,1))
+acf(soi, 48, main = "Southern Oscilation Index")
+acf(speech, 250)
+
+par(mfrow=c(3,1))
+acf(soi, 48, main="Southern Oscillation Index") 
+acf(rec, 48, main="Recruitment")
+ccf(soi, rec, 48, main="SOI vs Recruitment", ylab="CCF")
+
+# Varios vectores
+
+persp(1:64, 1:36, soiltemp, phi=30, theta=30, scale=FALSE, expand=4, ticktype="detailed", xlab="rows", ylab="cols", zlab="temperature")
+
+plot.ts(rowMeans(soiltemp), xlab="row", ylab="Average Temperature")
+```
+
+
 
 
