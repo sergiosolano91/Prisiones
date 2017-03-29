@@ -2,7 +2,9 @@
 title: "TimeSeries"
 author: "Sergio Solano"
 date: "9 de marzo de 2017"
-output: pdf_document
+output:
+  pdf_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -304,6 +306,75 @@ acf2(x)
 # Fit an AR(2) to the data and examine the t-table
 sarima(x,2,0,0)
 
+# # # SIMULANDO ARIMAS 
+
+# Fit an ARIMA(0,1,2) to globtemp and check the fit
+sarima(globtemp, 0, 1, 2)
+
+# Forecast data 35 years into the future
+sarima.for (globtemp,n.ahead = 35, p = 0, d = 1, q = 2) 
+
+### SERIES DE TIEMPO ESTACIONALES 
+
+# Plot unemp 
+plot(unemp)
+
+# Difference your data and plot it
+d_unemp <- diff(unemp) 
+plot(d_unemp)
+
+# Seasonally difference d_unemp and plot it
+dd_unemp <- diff(d_unemp, lag = 12)  
+plot(dd_unemp)
+
+# Plot P/ACF pair of fully differenced data to lag 60
+dd_unemp <- diff(diff(unemp), lag = 12)
+acf2(dd_unemp, max.lag = 60)
+
+# Fit an appropriate model
+sarima(unemp,2,1,0,0,1,1, S=12)
+
+# Plot differenced chicken
+plot(diff(chicken))
+
+# Plot P/ACF pair of differenced data to lag 60
+acf2(diff(chicken), max.lag = 60)
+
+# Fit ARIMA(2,1,0) to chicken - not so good
+sarima(chicken, 2,1,0)
+
+# Fit SARIMA(2,1,0,1,0,0,12) to chicken - that works
+sarima(chicken,2,1,0,1,0,0,12)
+
+###### Natalidad US 
+
+# Plot P/ACF to lag 60 of differenced data
+d_birth <- diff(birth)
+acf2(d_birth)
+
+# Plot P/ACF to lag 60 of seasonal differenced data
+dd_birth <- diff(d_birth, lag = 12)
+acf2(dd_birth)
+# Fit SARIMA(0,1,1)x(0,1,1)_12. What happens?
+sarima(birth,0,1,1,0,1,1,12)
+
+# Add AR term and conclude
+sarima(birth,1,1,1,0,1,1,12)
+
+## FORECASTING SEASONAL DATA 
+
+# Fit your previous model to unemp and check the diagnostics
+sarima(unemp, 2,1,0,0,1,1,12)
+
+# Forecast the data 3 years into the future
+sarima.for(unemp,n.ahead = 36,2,1,0,0,1,1,12)
+
+# Fit the chicken model again and check diagnostics
+sarima(chicken,2,1,0,1,0,0,12)
+
+# Forecast the chicken data 5 years into the future
+sarima.for(chicken,n.ahead = 60,2,1,0,1,0,0,12)
+
 
 ```
 
@@ -360,6 +431,8 @@ ccf(soi, rec, 48, main="SOI vs Recruitment", ylab="CCF")
 persp(1:64, 1:36, soiltemp, phi=30, theta=30, scale=FALSE, expand=4, ticktype="detailed", xlab="rows", ylab="cols", zlab="temperature")
 
 plot.ts(rowMeans(soiltemp), xlab="row", ylab="Average Temperature")
+
+
 ```
 
 
