@@ -219,9 +219,7 @@ graf_tendencia
 
 ```
 
-
 Crecimiento de la población privada de la libertad femenina 
-
 
 ```{r tasa crecimiento femenina, echo = FALSE,  warning = FALSE, message=FALSE}
 
@@ -270,16 +268,75 @@ ppl_sitjur %>% filter(categoria == "total", !(is.na(valor))) -> ppl_total
 ppl_total <- ppl_total$valor
 ts_total <- ts(ppl_total, start = 1991, frequency = 12)
 # plot(diff(diff(ts_total), lag = 12))
-acf2(diff(diff(ts_total), lag = 12), max.lag = 60, details = FALSE)
+# acf2(diff(diff(ts_total), lag = 12), max.lag = 60, details = FALSE)
+plot (acf(diff(diff(ts_total), lag = 12), lag.max = 60, plot = FALSE),main = "AFC Variación de la población total desestacionalizado")
+plot(pacf(diff(diff(ts_total), lag = 12), lag.max = 60, plot = FALSE),main = "PAFC Variación de la población total desestacionalizado")
+
 ```
 
-Asumiendo que la serie tiene una tendencia.
+Las funciones de autocorrelación y correlación cruzada, de $Y_t - Y_{t - 1} $ muestran: 
+
+* La función de autocorrelación decae, y la función de autocorrelación parcial también decae, sugiriendo un ARMA. 
+* La función de autocorrelación se encuetra sobre las dos desviaciones estándar, sugiriendo que son significativas.
+* La función de autocorrelación tiene un único pico en el periodo doce, la función de autocorrelación parcial decae lentamente, sugiriendo un MA(1)
+
+En estas condiciones podemos ajustar un ARIMA (1,1,1,0,0,1)
 
 ```{r estima_arima, echo = FALSE, include = TRUE}
-sarima(ts_total,1,1,0,0,0,1, S = 12, details = FALSE)
+sarima(ts_total,1,1,1,0,0,1, S = 12, details = FALSE)
 ```
 
-``` {r proyecta, echo = FALSE}
-sarima.for(ts_total,n.ahead = 36,1,1,0,0,0,1, S = 12)
+Todos los parámetros del modelo tienen un p_value que sugiere que son significativos, excepto por la constante. Sin embargo, la autocorrelación del periodo dos sugiere que podemos estimar un ARIMA (1,1,1,0,0,2)
+
+```{r estima_arima_2, echo = FALSE, include = TRUE}
+sarima(ts_total,1,1,1,0,0,2, S = 12, details = FALSE)
 ```
+
+El nuevo término SA2 resulta siginicativo y presenta criterios de información de valor más pequeño, lo que implica que el modelo ARIMA (1,1,1,0,0,2) resulta más apropiado que el modelo ARIMA (1,1,1,0,0,1). Proyecciones de la población carcelaria del modelo ARIMA (1,1,1,0,0,2) se presentan a continuación: 
+
+```{r pry_arima_2, echo = FALSE, include = TRUE}
+sarima.for(ts_total,n.ahead = 36, 1,1,1,0,0,2, S = 12)
+```
+
+```{r ACF_sin, echo = FALSE, include = FALSE}
+ppl_sitjur %>% filter(categoria == "sindicados", !(is.na(valor))) -> ppl_sin
+ppl_sin <- ppl_sin$valor
+ts_sin <- ts(ppl_sin, start = 1991, frequency = 12)
+# plot(diff(diff(ts_total), lag = 12))
+# acf2(diff(diff(ts_total), lag = 12), max.lag = 60, details = FALSE)
+plot (acf(diff(diff(ts_sin), lag = 12), lag.max = 60, plot = FALSE),main = "AFC Variación de la población sindicada desestacionalizado")
+plot(pacf(diff(diff(ts_sin), lag = 12), lag.max = 60, plot = FALSE),main = "PAFC Variación de la población sindicada desestacionalizado")
+```
+
+Se presenta proyección de la población sindicada: 
+
+```{r pry_arima_sin, echo = FALSE, include = TRUE}
+sarima.for(ts_sin,n.ahead = 36, 1,1,1,0,0,1, S = 12)
+```
+
+```{r ACF_con, echo = FALSE, include = FALSE}
+ppl_sitjur %>% filter(categoria == "condenados", !(is.na(valor))) -> ppl_con
+ppl_con <- ppl_con$valor
+ts_con <- ts(ppl_con, start = 1991, frequency = 12)
+# plot(diff(diff(ts_total), lag = 12))
+# acf2(diff(diff(ts_total), lag = 12), max.lag = 60, details = FALSE)
+plot (acf(diff(diff(ts_con), lag = 12), lag.max = 60, plot = FALSE),main = "AFC Variación de la población condenada desestacionalizado")
+plot(pacf(diff(diff(ts_con), lag = 12), lag.max = 60, plot = FALSE),main = "PAFC Variación de la población condenada desestacionalizado")
+```
+
+Se presenta proyección de la población condenada: 
+
+```{r pry_arima_con, echo = FALSE, include = TRUE}
+sarima.for(ts_con,n.ahead = 36, 1,1,1,0,0,1, S = 12)
+```
+
+
+## Limitaciones de los modelos ARIMA en proyección de poblaciones carcelarias
+
+Aunque es posible seguir analizando modelos ARIMA hasta encontrar el que presente mejores criterios de información, detendremos el analisis en este punto, para centrarnos en las limitaciones del enfoque. 
+
+1. La serie de población carcelarias incluye, por lo menos,  dos series de tiempo con un comportamiento diferente: La población condenada y la población sindicada. Estos procesos, son en principio procesos autoregresivos, donde además se podría intuir el error no es independiente (como en la población total).
+2. Los shocks en el sistema no son necesariamente estables en el tiempo. Las variaciones en los parámetros del modelo dependen de variables exógenas, como la cantidad de personas que ingresan al sistema y la dureza de las penas.
+3. Los intervalos de confianza crecen rápidamente pues el modelo se ve afectado fuertemente por cambios en el nivel.
+4. Puesto que el modelo supone unos parámetros fijos no da cuenta de la influencia de variables exógenas en el crecimiento de la población carcelaria.
 
