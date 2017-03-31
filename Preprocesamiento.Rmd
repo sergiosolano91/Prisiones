@@ -283,19 +283,19 @@ Las funciones de autocorrelación y correlación cruzada, de $Y_t - Y_{t - 1} $ 
 En estas condiciones podemos ajustar un ARIMA (1,1,1,0,0,1)
 
 ```{r estima_arima, echo = FALSE, include = TRUE}
-sarima(ts_total,1,1,1,0,0,1, S = 12, details = FALSE)
+arima_total <- sarima(ts_total,1,1,1,0,0,1, S = 12, details = FALSE)
 ```
 
 Todos los parámetros del modelo tienen un p_value que sugiere que son significativos, excepto por la constante. Sin embargo, la autocorrelación del periodo dos sugiere que podemos estimar un ARIMA (1,1,1,0,0,2)
 
 ```{r estima_arima_2, echo = FALSE, include = TRUE}
-sarima(ts_total,1,1,1,0,0,2, S = 12, details = FALSE)
+sarima_total_2 <- sarima(ts_total,1,1,1,0,0,2, S = 12, details = FALSE)
 ```
 
 El nuevo término SA2 resulta siginicativo y presenta criterios de información de valor más pequeño, lo que implica que el modelo ARIMA (1,1,1,0,0,2) resulta más apropiado que el modelo ARIMA (1,1,1,0,0,1). Proyecciones de la población carcelaria del modelo ARIMA (1,1,1,0,0,2) se presentan a continuación: 
 
 ```{r pry_arima_2, echo = FALSE, include = TRUE}
-sarima.for(ts_total,n.ahead = 36, 1,1,1,0,0,2, S = 12)
+forecast <- sarima.for(ts_total,n.ahead = 36, 1,1,1,0,0,2, S = 12)
 ```
 
 ```{r ACF_sin, echo = FALSE, include = FALSE}
@@ -311,7 +311,7 @@ plot(pacf(diff(diff(ts_sin), lag = 12), lag.max = 60, plot = FALSE),main = "PAFC
 Se presenta proyección de la población sindicada: 
 
 ```{r pry_arima_sin, echo = FALSE, include = TRUE}
-sarima.for(ts_sin,n.ahead = 36, 1,1,1,0,0,1, S = 12)
+forecast <- sarima.for(ts_sin,n.ahead = 36, 1,1,1,0,0,1, S = 12)
 ```
 
 ```{r ACF_con, echo = FALSE, include = FALSE}
@@ -327,7 +327,7 @@ plot(pacf(diff(diff(ts_con), lag = 12), lag.max = 60, plot = FALSE),main = "PAFC
 Se presenta proyección de la población condenada: 
 
 ```{r pry_arima_con, echo = FALSE, include = TRUE}
-sarima.for(ts_con,n.ahead = 36, 1,1,1,0,0,1, S = 12)
+forectast <- sarima.for(ts_con,n.ahead = 36, 1,1,1,0,0,1, S = 12)
 ```
 
 
