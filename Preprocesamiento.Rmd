@@ -4,8 +4,6 @@ author: "Sergio Solano"
 date: "Febrero de 2016"
 output:
   pdf_document: default
-  html_document: default
-  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -43,6 +41,7 @@ library ("ggplot2")
 library("dplyr")
 library("astsa")
 library("xts")
+library ("vars")
 
 ```
 
@@ -339,4 +338,16 @@ Aunque es posible seguir analizando modelos ARIMA hasta encontrar el que present
 2. Los shocks en el sistema no son necesariamente estables en el tiempo. Las variaciones en los parámetros del modelo dependen de variables exógenas, como la cantidad de personas que ingresan al sistema y la dureza de las penas.
 3. Los intervalos de confianza crecen rápidamente pues el modelo se ve afectado fuertemente por cambios en el nivel.
 4. Puesto que el modelo supone unos parámetros fijos no da cuenta de la influencia de variables exógenas en el crecimiento de la población carcelaria.
+
+#  MODELOS VAR: 
+
+```{r var, echo = TRUE, include = TRUE}
+
+ts_sincon <- cbind (diff(ts_sin), diff(ts_con))
+VARselect(ts_sincon, lag.max=9, type="const")
+ts_sincon_mod <- VAR(ts_sincon,p = 1)
+forecast_var <- predict(ts_sincon_mod, n.ahead = 60)
+ts_sincon_mod
+forecast_var
+```
 

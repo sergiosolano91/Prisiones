@@ -12,6 +12,8 @@ knitr::opts_chunk$set(echo = TRUE)
 rm(list = ls())
 library("astsa")
 library("xts")
+library ("vars")
+library ("tsDyn")
 ```
 ## Pruebas series de tiempo de Time Series Analysis and its applications
 
@@ -431,6 +433,19 @@ ccf(soi, rec, 48, main="SOI vs Recruitment", ylab="CCF")
 persp(1:64, 1:36, soiltemp, phi=30, theta=30, scale=FALSE, expand=4, ticktype="detailed", xlab="rows", ylab="cols", zlab="temperature")
 
 plot.ts(rowMeans(soiltemp), xlab="row", ylab="Average Temperature")
+
+
+```
+
+
+```{r vectores autoregresivos}
+
+B1<-matrix(c(0.7, 0.2, 0.2, 0.7), 2)
+var1<-VAR.sim(B=B1,n=100,include="none")
+ts.plot(var1, type="l", col=c(1,2))
+VARselect(var1, lag.max=9, type="const")
+var1_est <- VAR(var1,p = 1)
+
 
 
 ```
