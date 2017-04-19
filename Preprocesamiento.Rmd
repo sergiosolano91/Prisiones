@@ -349,5 +349,6 @@ ts_sincon_mod <- VAR(ts_sincon,p = 1)
 forecast_var <- predict(ts_sincon_mod, n.ahead = 60)
 ts_sincon_mod
 forecast_var
+
 ```
 

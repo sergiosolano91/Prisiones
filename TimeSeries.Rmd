@@ -3,6 +3,7 @@ title: "TimeSeries"
 author: "Sergio Solano"
 date: "9 de marzo de 2017"
 output:
+  html_document: default
   pdf_document: default
   word_document: default
 ---
@@ -437,6 +438,7 @@ plot.ts(rowMeans(soiltemp), xlab="row", ylab="Average Temperature")
 
 ```
 
+# VECTORES AUTOREGRESIVOS 
 
 ```{r vectores autoregresivos}
 
@@ -445,7 +447,28 @@ var1<-VAR.sim(B=B1,n=100,include="none")
 ts.plot(var1, type="l", col=c(1,2))
 VARselect(var1, lag.max=9, type="const")
 var1_est <- VAR(var1,p = 1)
+var1_est
+```
 
+#MODELOS ESTADO ESPACIO
+El paquete base de R permite evaluar modelos estado espacio con la función [link](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html) StructTS
+
+```{r}
+# rm(list = ls())
+fitNile <- StructTS(Nile, "level")
+fitNile
+tsdiag(fitNile)
+plot(Nile, type = "l") 
+lines(fitted(fitNile), lty = "dashed", lwd = 2) 
+lines(tsSmooth(fitNile), lty = "dotted", lwd = 2)
+
+SP_fit <- StructTS(Nile, "level")
+SP_forecast <- predict(SP_fit, n.ahead = 100)$pred
+SP_forecast_se <- predict(SP_fit, n.ahead = 100)$se
+plot(Nile, type = "l") 
+points(SP_forecast, type = "l", col = 2)
+points(SP_forecast - 2*SP_forecast_se, type = "l", col = 2, lty = 2)
+points(SP_forecast + 2*SP_forecast_se, type = "l", col = 2, lty = 2)
 
 
 ```
