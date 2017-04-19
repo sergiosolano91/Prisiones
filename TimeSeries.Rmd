@@ -3,8 +3,8 @@ title: "TimeSeries"
 author: "Sergio Solano"
 date: "9 de marzo de 2017"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
   word_document: default
 ---
 
@@ -451,7 +451,9 @@ var1_est
 ```
 
 #MODELOS ESTADO ESPACIO
-El paquete base de R permite evaluar modelos estado espacio con la función [link](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html) StructTS
+El paquete base de R permite evaluar modelos estado espacio con la función
+
+Más información sobre modelos estado espacio se puede encontrar aquí: [link](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html) StructTS
 
 ```{r}
 # rm(list = ls())
@@ -469,8 +471,22 @@ plot(Nile, type = "l")
 points(SP_forecast, type = "l", col = 2)
 points(SP_forecast - 2*SP_forecast_se, type = "l", col = 2, lty = 2)
 points(SP_forecast + 2*SP_forecast_se, type = "l", col = 2, lty = 2)
+# Del link anterior
 
-
+## Structural time series models
+par(mfrow = c(3, 1))
+plot(Nile)
+## local level model
+(fit <- StructTS(Nile, type = "level"))
+lines(fitted(fit), lty = 2)              # contemporaneous smoothing
+lines(tsSmooth(fit), lty = 2, col = 4)   # fixed-interval smoothing
+plot(residuals(fit)); abline(h = 0, lty = 3)
+## local trend model
+(fit2 <- StructTS(Nile, type = "trend")) ## constant trend fitted
+pred <- predict(fit, n.ahead = 30)
+## with 50% confidence interval
+ts.plot(Nile, pred$pred,
+        pred$pred + 0.67*pred$se, pred$pred -0.67*pred$se)
 ```
 
 
