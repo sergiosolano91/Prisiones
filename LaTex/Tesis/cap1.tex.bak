@@ -1,0 +1,177 @@
+\chapter{Comandos de la clase de documento \texttt{thesisUnal.cls}}
+
+\section{Opciones del \texttt{documentclass}}
+
+Con el comando \verb"\documentclass" se especifica el tipo de documento \LaTeX\ y se pueden modificar las opciones definidas por defecto, el formato en general es el siguiente
+%
+\begin{center}
+\vskip-0.5em
+\verb"\documentclass[<opciones>]{thesisUnal}"
+\end{center}
+\vskip-0.5em
+%
+en \verb"<opciones>" se especifican los nuevos valores, estos se deben separan por comas \verb"," entre sí. Por ejemplo, la configuración inicial por defecto es
+%
+\begin{center}
+\vskip-0.5em
+\verb"\documentclass[plain,11pt,singlespace,oneside,spanish,amsplain]{thesisUnal}"
+\end{center}
+\vskip-0.5em
+
+A continuación se describe cada una de las opciones del comando \verb"\documentclass":
+%
+\begin{itemize}
+\item Para modificar el aspecto de los encabezados del capítulo, existen las siguientes opciones:
+%
+\begin{description}
+    \item[\texttt{plain}:] opción con la cual los encabezados de los capítulos adquieren un aspecto sobrio, como se observa en la figura~\ref{example_plain} (\textit{opción por defecto}).
+        \begin{figure}[!htb]
+            \centering
+            \fbox{\includegraphics[width=65mm]{imagesThesis/example_chapter}}\qquad
+            \fbox{\includegraphics[width=65mm]{imagesThesis/example_bibliography}}
+            \smallskip
+            \caption{Ejemplo del aspecto con el estilo \texttt{plain}, para una página del cuerpo y de una que complementa el documento.}\label{example_plain}
+        \end{figure}
+    \item[\texttt{graph}:] opción con la cual los encabezados de los capítulos adquieren un aspecto gráfico, en el encabezado aparecerá una imagen ya seleccionada previamente, como se observa en la figura~\ref{example_graph}.
+        \begin{figure}[!htb]
+            \centering
+            \fbox{\includegraphics[width=65mm]{imagesThesis/example_chapter_graph}}\qquad
+            \fbox{\includegraphics[width=65mm]{imagesThesis/example_bibliography_graph}}
+            \smallskip
+            \caption{Ejemplo del aspecto con el estilo \texttt{graph}, para una página del cuerpo y de una que complementa el documento.}\label{example_graph}
+            \clearpage
+        \end{figure}
+\end{description}
+
+\item Para modificar el tamaño de la letra con la que se escriba la tesis, se tienen las siguientes opciones:
+%
+\begin{description}
+    \item[\texttt{10pt}:] opción de tamaño de letra.
+    \item[\texttt{11pt}:] opción de tamaño de letra (\textit{opción por defecto}).
+    \item[\texttt{12pt}:] opción de tamaño de letra.
+\end{description}
+
+\item Para modificar el interlineado se pueden utilizar las opciones:
+%
+\begin{description}
+    \item[\texttt{singlespace}:] opción si la  tesis se va a escribir a espacio simple  (\textit{opción por defecto}).
+    \item[\texttt{onehalfspace}:] opción si la tesis se va a escribir a espacio y medio.
+    \item[\texttt{doublespace}:] opción si la tesis se va a escribir a doble espacio.
+\end{description}
+
+\item Para imprimir la tesis en una o dos caras existen las siguientes opciones:
+%
+\begin{description}
+    \item[\texttt{oneside}:] opción para imprimir la tesis a una cara (\textit{opción por defecto}).
+    \item[\texttt{twoside}:] opción para imprimir la tesis a dos caras. \textbf{Nota:} como es usual que cada comienzo de capítulo se inicie en una página impar, es posible que la última página del capítulo quede en blanco, pero generándose el encabezado, para dejar la página totalmente en blanco se puede utilizar el comando \verb"\headempty" inmediatamente después de incluir el capítulo, como por ejemplo se puede ver a continuación:
+\begin{verbatim}
+------------------------------------------------------------------
+           ...
+           ...
+           ...
+    \frontmatter
+        \dedicatory{dedicatoria}\headempty
+        \acknowledgement{agradecimientos}\headempty
+        \tableofcontents\headempty
+        \listoftables\headempty
+        \listoffigures\headempty
+        \introduction{introduccion}\headempty
+    \mainmatter
+        \include{cap1}\headempty
+        \include{cap2}\headempty
+    \appendix
+        \include{apendice}\headempty
+    \backmatter
+        \conclusion{conclusiones}\headempty
+        \futurework{trabajofuturo}\headempty
+        \glossary{glosario}\headempty
+        \bibliography{bibliografia}\headempty
+           ...
+           ...
+           ...
+------------------------------------------------------------------
+\end{verbatim}
+\end{description}
+
+\item Para establecer el idioma en el cual se escribirá la tesis se tienen las siguientes opciones\footnote{Si se desea cambiar el idioma en el cual se va a redactar la tesis, se recomienda antes de establecer la nueva opción, borrar todos los archivos de extensiones \verb"*.aux", \verb"*.toc", \verb"*.lot", \verb"*.lof", \verb"*.bbl", \verb"*.blg", \verb"*.log".}:
+\begin{description}
+    \item[\texttt{spanish}:] opción si la  tesis se va a redactar en español  (\textit{opción por defecto}).
+    \item[\texttt{english}:] opción si la tesis se va a redactar en inglés.
+\end{description}
+
+
+\item La bibliografía se construye a partir de una base bibliográfica que se compila con el programa \BibTeX, Para establecer el estilo bibliográfico que se utilizará en la tesis se tienen las siguientes opciones:
+%
+\begin{description}
+    \item[\texttt{amsplain}:] opción si se desea utilizar el estilo de la \emph{American Mathematical Society}, estándar en la literatura matemática. Los items se ordenan alfabéticamente por autores, con etiquetas numéricas (\textit{opción por defecto}).
+    \item[\texttt{harvard}:] opción si se desea utilizar el estilo Harvard\footnote{\texttt{http://tug.ctan.org/tex-archive/macros/latex/contrib/harvard}} de citas, sistema de autor-año o sistema de autor-fecha, utilizado frecuentemente en las ciencias naturales y en las ciencias humanas
+\end{description}
+\end{itemize}
+\section{Portada}
+
+Para generar la portada, se utiliza el comando \verb"\infothesis". a continuación se presenta la estructura general de este comando; en el espacio para el valor de cada campo se describe la información que allí debe ser consignada, y para cada aquellos campos que no se necesiten o que no apliquen, con comentarlos o borrarlos es suficiente para no tenerlos en cuenta. Por ejemplo, si la tesis no tiene codirector, se comentan los campos \verb"coadvisor" y \verb"degreecoadvisor", o si no se quiere especificar el grado del autor y del director, se comentan \verb"degreeauthor" y \verb"degreeadvisor" y así no aparecerán en la portada\footnote{Se aconseja que los valores de los campos se encierren entre llaves \verb"{<valor>}", para que no se produzcan conflictos entre el valor del campo y, la separación y distinción entre los mismos.}.
+
+\begin{small}
+\begin{verbatim}
+\infothesis[
+    author = {<nombre completo del autor de la tesis>},
+    degreeauthor = {<máximo grado obtenido por el autor>},
+    code = {<código del estudiante>},
+    advisor = {<nombre del director de la tesis>},
+    degreeadvisor = {<máximo grado obtenido por el director>},
+    coadvisor = {<nombre del codirector de la tesis>},
+    degreecoadvisor = {<máximo grado obtenido por el codirector>},
+    title = {<título de la tesis>},
+    titledegree = {<etiqueta del tipo de trabajo al que se opta con esta tesis>},
+    degree = {<grado al que se ópta con la realización de esta tesis>},
+    university = {<universidad en la que se cursa el posgrado>},
+    faculty = {<facultad en la que se cursa el posgrado>},
+    department = {<departamento o escuela en el que se cursa el posgrado>},
+    city = {<ciudad o sede donde se ubica la universidad>},
+    date = {<fecha de entrega de la tesis>},
+]
+\end{verbatim}
+\end{small}
+
+El valor del comando \verb"titledegree" por defecto para español es
+``\emph{Trabajo de tesis para optar al título de}'' y para inglés es ``\emph{Thesis Work to Obtain the Degree of}'', para cambiar este valor simplemente se debe ingresar la información en el campo del valor del comando \verb"titledegree = {<valor>}".
+
+\section{Resumen}
+
+Para generar la página del título, el resumen y, sus respectivas palabras y frases clave, tanto en español como inglés, se utiliza el comando \verb"\abstractthesis". A continuación se presenta la estructura general de este comando; en el espacio para el valor de cada campo se describe la información que allí debe ser consignada. La forma en la cual aparecerá esta información en el documento final dependerá del idioma principal que se defina para el documento, esta información debe ocupar \emph{a lo más} una sola página.
+
+\begin{small}
+\begin{verbatim}
+\abstractthesis[
+    titlespanish = {<título de la tesis en español>},
+    titleenglish = {<título de la tesis en inglés>},
+    abstractspanish = {<resumen de la tesis en español>},
+    abstractenglish = {<resumen de la tesis en inglés>},
+    keywordspanish = {<palabras y frases claves de la tesis en español>},
+    keywordenglish = {<palabras y frases claves de la tesis en inglés>},
+]
+\end{verbatim}
+\end{small}
+
+\section{Nota de aceptación}
+
+Para generar la página de la nota de aceptación se utiliza el comando \verb"\acceptationnote". A continuación se presenta la estructura general de este comando; en el espacio para el valor de cada campo se describe la información que allí debe ser consignada. De forma similar, si algún campo no se necesita o no se aplica, entonces se puede comentar, tal como sucede cuando a una tesis no se le concede ni mención meritoria ni laureada o cuando no tiene codirector se debe comentar el campo \verb"coadvisor". Para los jurados, se debe adicionar cada uno con el comando \verb"jury".
+
+\begin{small}
+\begin{verbatim}
+\acceptationnote[
+    note = {<valor de la evaluación de la tesis "Aprobada" o "Reprobada">},
+    mention = {<"Meritoria" o "Laureada", si se le concede a la tesis>},
+    jury = {<Nombre del primer jurado>},
+    jury = {<Nombre del segundo jurado>},
+    jury = {<Nombre del tercer jurado>},
+    advisor = {<Nombre del director de la tesis>},
+    coadvisor = {<Nombre del codirector de la tesis>},
+    date = {<Ciudad y fecha en la que se realizó la defensa de la tesis>}
+]
+\end{verbatim}
+\end{small}
+
+\section{Imagen institucional (logo)}
+
+Esta plantilla puede ser utilizada para escribir una tesis en cualquier institución universitaria, así que solamente es necesario tener la imagen institucional (logo) en formato \emph{Encapsulated PostScript} (\verb"*.eps") para compilar con \LaTeX\ o \emph{Portable Document Format} (\verb"*.pdf") para compilar con \pdfLaTeX. Con el comando \verb"\logouniversity{<archivo>}" se puede especificar el nombre del nuevo archivo, junto con su ruta. Por defecto, la imagen preestablecida es la del logo de la Universidad Nacional de Colombia.

@@ -1,0 +1,90 @@
+% -------------------------------------------------------------------------------------
+% Plantilla para escribir una tesis de la Universidad Nacional de Colombia en LaTeX
+% *************************************************************************************
+% -------------------------------------------------------------------------------------
+\documentclass[]{thesisUnal}
+% -------------------------------------------------------------------------------------
+% Espacio reservado para la carga de los paquetes por parte del autor
+% **** --------------------------------------------------------------------------------
+
+
+
+
+% //// --------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------
+% Espacio reservado para colocar las definiciones especiales por parte del autor
+% **** --------------------------------------------------------------------------------
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \includeonly{cap1,cap2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% //// --------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------
+% CUERPO DEL DOCUMENTO
+% **** --------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------
+\begin{document}
+
+\logouniversity[45mm]{imagesThesis/logo_university_nacho}
+
+\infothesis[
+    author = {Edwin Camilo Cubides Garzón},
+    degreeauthor = {Matemático, Ph.D.(c)},
+    code = {000000},
+    advisor = {Rodrigo de Castro Korgi, Ph.D.},
+    degreeadvisor = {Doctor en Matemáticas},
+    coadvisor = {Jonatan Goméz Perdomo, Ph.D.},
+    degreecoadvisor = {Doctor en Ciencias de la Computación},
+    title = {Manual para la utilización de la plantilla de la clase de documento \LaTeX\ \texttt{thesisUnal.cls} en la redacción de tesis de especialidades, especializaciones, maestrías y doctorados de la UN},
+    %titledegree = {Trabajo de tesis para optar al título de},
+    degree = {Diseñador de clases de documentos \LaTeX},
+    university = {Universidad Nacional de Colombia},
+    faculty = {Facultad de Ciencias},
+    department = {Departamento de Matemáticas},
+    city = {Bogotá, D.C.},
+    date = {Agosto de 2010},
+]
+
+\abstractthesis[
+    titlespanish = {Manual para la utilización de la plantilla de la clase de documento \LaTeX\ \texttt{thesisUnal.cls} en la redacción de tesis de especialidades, especializaciones, maestrías y doctorados de la UN.},
+    titleenglish = {Manual for the use of the template of the \LaTeX\ document class \texttt{thesisUnal.cls} in the redaction of theses of specialities, specializations, masters and doctorates from the UN.},
+    abstractspanish = {Se presentan los pasos básicos y la explicación de los comandos para la utilización de la plantilla \texttt{thesisUnal.cls}.},
+    abstractenglish = {Are presented the basic steps and the explanation of the commands to use the template \texttt{thesisUnal.cls}.},
+    keywordspanish = {Plantilla, clases, Universidad Nacional de Colombia, \LaTeX, pdf\LaTeX, \TeX, \BibTeX.},
+    keywordenglish = {Template, Classes, National University of Colombia, \LaTeX, pdf\LaTeX, \TeX, \BibTeX.},
+]
+
+\acceptationnote[
+    note = {Aprobado},
+    mention = {Meritoria o Laureada},
+    jury = {Donald Knuth},
+    jury = {Leslie Lamport},
+    jury = {Michel Goossens},
+    advisor = {Rodrigo de Castro Korgi},
+    coadvisor = {Jonatan Goméz},
+    date = {Bogotá, D.C., Diciembre 31 de 2010}
+]
+
+\frontmatter
+    \dedicatory{dedicatoria}
+    \acknowledgement{agradecimientos}
+    \tableofcontents
+    \listoftables
+    \listoffigures
+    \introduction{introduccion}
+\mainmatter
+    \include{cap1}
+    \include{cap2}
+\appendix
+    \include{apendice}
+\backmatter
+    \conclusion{conclusiones}
+    \futurework{trabajofuturo}
+    \glossary{glosario}
+\nocite{*}
+    \bibliography{bibliografia}
+    %\printindex
+\end{document}

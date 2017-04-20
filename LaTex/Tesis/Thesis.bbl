@@ -1,0 +1,274 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{10}
+
+\bibitem{}
+\emph{{Instituto Nacional Penitenciario y Carcelario}}.
+
+\bibitem{Ariza2011}
+Libardo~Jos{\'{e}} Ariza, \emph{{Reformando el infierno: los tribunales y la
+  transformaci{\'{o}}n del campo penitenciario en Am{\'{e}}rica Latina}}, 2011.
+
+\bibitem{Avi-Itzhak1973}
+Benjamin Avi-Itzhak and Reuel Shinnar, \emph{{Quantitative models in crime
+  control}}, Journal of Criminal Justice \textbf{1} (1973), no.~3, 185--217.
+
+\bibitem{BaezPinerosVictorHugo2014}
+{B{\'{a}}ez Pi{\~{n}}eros V{\'{i}}ctor Hugo}, \emph{{Diagnostico situacional
+  asociado al ejercicio de la salud p{\'{u}}blica dentro del Sistema Nacional
+  Penitenciario y Carcelario Colombiano. Una mirada desde la {\'{o}}ptica
+  territorial y organizacional}},  (2014), 177.
+
+\bibitem{Bard1978}
+Jonathan~F. Bard, \emph{{The use of simulation in criminal justice policy
+  evaluation}}, Journal of Criminal Justice \textbf{6} (1978), no.~2, 99--116.
+
+\bibitem{Barnett1987}
+Arnold Barnett, \emph{{Prison Populations: a projection model}}, Operations
+  Research \textbf{35} (1987), no.~1, 18--34.
+
+\bibitem{BelloRamirez2010}
+Jei~Alanis {Bello Ramirez} and Germ{\'{a}}n {Gallego Parra},
+  \emph{{C{\'{a}}rceles de la muerte: subjetividades cautivas,
+  necropol{\'{i}}tica y sistema carcelario en Colombia1}},  (2010), 1--23.
+
+\bibitem{BelloRamirez2013}
+Jeisson {Bello Ram{\'{i}}rez}, \emph{{Cuerpos encerrados, vidas criminalizadas.
+  Interseccionalidad , control carcelario y gobierno de las diferencias}},
+  (2013), 245.
+
+\bibitem{BernalSarmiento}
+Camilo~Ernesto {Bernal Sarmiento} and M~{Reed Hurtado}, \emph{{DE LA MODELO A
+  COLEMAN (O DE C{\'{O}}MO LAS C{\'{A}}RCELES EN COLOMBIA SE VOLVIERON DE
+  VERDAD) Un comentario exploratorio sobre las relaciones entre la sociedad, la
+  pol{\'{i}}tica y la prisi{\'{o}}n en Colombia}}.
+
+\bibitem{Blumstein1999}
+Alfred Blumstein and Allen~J Beck, \emph{{Population Growth in U. S. Prisons,
+  1980-1996}}, Crime and Justice VO - 26 (1999), 17.
+
+\bibitem{Blumstein1980}
+Alfred Blumstein, Jacqueline Cohen, and Harold~D. Miller,
+  \emph{{Demographically disaggregated projections of prison populations}},
+  Journal of Criminal Justice \textbf{8} (1980), no.~1, 1--26.
+
+\bibitem{Blumstein1980a}
+\bysame, \emph{{Demographically disaggregated projections of prison
+  populations}}, Journal of Criminal Justice \textbf{8} (1980), no.~1, 1--26.
+
+\bibitem{Carcach2005}
+Carlos Carcach, \emph{{Crime and Punishment in Australia, 1980-2000}}, Crime
+  and Justice \textbf{33} (2005), 295--330.
+
+\bibitem{Chen1993}
+Rong Chen and Ruey~S. Tsay, \emph{{Functional-Coefficient Autoregressive
+  Models}}, Journal of the American Statistical Association \textbf{88} (1993),
+  no.~421, 298.
+
+\bibitem{ComisionAsesoradePoliticaCriminal2012}
+{Comisi{\'{o}}n Asesora de Pol{\'{i}}tica Criminal}, \emph{{Diagn{\'{o}}stico y
+  propuesta de lineamientos de pol{\'{i}}tica criminal para el Estado
+  colombiano}},  (2012), 101.
+
+\bibitem{Cowpertwait2009}
+Paul~S.P. Cowpertwait and Andrew~V. Metcalfe, \emph{{State Space Models}},
+  Introductory Time Series with R, Springer New York, New York, NY, 2009,
+  pp.~229--246.
+
+\bibitem{DANE}
+DANE, \emph{{Estimaciones poblaci{\'{o}}n DANE}}, 2009.
+
+\bibitem{DeDardel2013}
+Julie de~Dardel, \emph{{Les prisons qui s'exportent G{\'{e}}o-ethnographie des
+  espaces carc{\'{e}}raux colombiens {\`{a}} l'{\`{e}}re de la mobilit{\'{e}}
+  globale}},  (2013), 302.
+
+\bibitem{Dardel2015}
+\bysame, \emph{{RESISTIENDO LA NUDA VIDA LOS PRISIONEROS COMO AGENTES EN LA ERA
+  DE LA NUEVA CULTURA PENITENCIARIA EN COLOMBIA}}, Revista Cr{\'{i}}tica Penal
+  y Poder \textbf{8} (2015), 47--65.
+
+\bibitem{DepartamentoNacionaldePlaneacion2015}
+{Departamento Nacional de Planeaci{\'{o}}n}, \emph{{Conpes 3828 POL{\'{I}}TICA
+  PENITENCIARIA Y CARCELARIA EN COLOMBIA}},  (2015).
+
+\bibitem{General2016}
+Brigadier General, Jorge Luis, Ram{\'{i}}rez Arag{\'{o}}n, Juan Manuel,
+  Ria{\~{n}}o Vargas, Jefe Oficina, Asesora De, Planeaci{\'{o}}n Grupo,
+  Estad{\'{i}}stica Luis, Eduardo Castro, Gil Coordinador, Grupo
+  Estad{\'{i}}stica, Nelly Saavedra, Ardila Estefan{\'{i}}a, Le{\'{o}}n
+  Cort{\'{e}}s, Jonathan~Troncoso Gonz{\'{a}}lez, Milton Fabi{\'{a}}n,
+  Su{\'{a}}rez Salas, Fernando~Augusto Salamanca, and L{\'{o}}pez Bogot{\'{a}},
+  \emph{{Oficina Asesora de Planeaci{\'{o}}n Grupo Estad{\'{i}}stica INSTITUTO
+  NACIONAL PENITENCIARIO Y CARCELARIO}},  (2016).
+
+\bibitem{Gorr2003}
+Wilpen Gorr and Richard Harries, \emph{{Introduction to crime forecasting}},
+  International Journal of Forecasting \textbf{19} (2003), no.~4, 551--555.
+
+\bibitem{Gorr2003a}
+Wilpen Gorr, Andreas Olligschlaeger, and Yvonne Thompson, \emph{{Short-term
+  forecasting of crime}}, International Journal of Forecasting \textbf{19}
+  (2003), no.~4, 579--594.
+
+\bibitem{Greenberg2001}
+David~F. Greenberg and Valerie West, \emph{{State Prison Populations and their
+  Growth, 1971-1991}}, Criminology \textbf{39} (2001), no.~3, 615--654.
+
+\bibitem{Harvill2006}
+Jane~L. Harvill and Bonnie~K. Ray, \emph{{Functional coefficient autoregressive
+  models for vector time series}}, Computational Statistics {\&} Data Analysis
+  \textbf{50} (2006), no.~12, 3547--3566.
+
+\bibitem{Hunsinger}
+Eddie Hunsinger, \emph{{Research on regression-based county population
+  estimates for Colorado (work paper)}}.
+
+\bibitem{InstituteforCriminalPolicyResearch2016}
+{Institute for Criminal Policy Research}, \emph{{About ICPS | World Prison
+  Brief}}, 2016.
+
+\bibitem{InstitueforCriminalPolicyResearch2016}
+\bysame, \emph{{Colombia | World Prison Brief}}, 2016.
+
+\bibitem{InstitutoNacionalPenitenciarioyCarcelario2016}
+{Instituto Nacional Penitenciario y Carcelario}, \emph{{Plan de
+  direccionamiento estrat{\{}{\'{e}}{\}}gico 2015-108, Misi{\{}{\'{o}}{\}}n y
+  Visi{\{}{\'{o}}{\}}n}}, 2016.
+
+\bibitem{Jacobs2001}
+David Jacobs and Jason~T. Carmichael, \emph{{The politics of punishment across
+  time and space: A pooled time-series analysis of imprisonment rates}}, 2001,
+  pp.~61--91.
+
+\bibitem{Jacobs1996}
+David Jacobs and Ronald~E Helms, \emph{{Toward a Political Model of
+  Incarceration: A Time-Series Examination of Multiple Explanations for Prison
+  Admission Rates}}, American Journal of Sociology \textbf{102} (1996), no.~2,
+  323.
+
+\bibitem{Justice2014}
+Ministry Justice, \emph{{Prison Population Projections 2014 - 2020, England and
+  Wales}}, Home Office Statistical Bulletin (2014), no.~November, 31.
+
+\bibitem{Kaeble2015}
+Danielle Kaeble, Lauren Glaze, Anastasios Tsoutis, Todd Minton, and Bjs
+  Statisticians, \emph{{Correctional Populations in the United States, 2014}},
+  (2015).
+
+\bibitem{Lee1994}
+Ronald~Demos Lee and Shripad Tuljapurkar, \emph{{Stochastic Population
+  Forecasts for the United States: Beyond High, Medium, and Low}}, Journal of
+  the American Statistical Association \textbf{89} (1994), no.~428, 1175.
+
+\bibitem{Lin1986}
+Bin-Shan Lin, Doris~Layton MacKenzie, and Thomas~R. Gulledge, \emph{{Using
+  ARIMA models to predict prison populations}}, Journal of Quantitative
+  Criminology \textbf{2} (1986), no.~3, 251--264.
+
+\bibitem{Luallen2014}
+J.~Luallen and R.~Kling, \emph{{A Method for Analyzing Changing Prison
+  Populations: Explaining the Growth of the Elderly in Prison}}, Evaluation
+  Review \textbf{38} (2014), no.~6, 459--486.
+
+\bibitem{Lutkepohl2005a}
+Helmut L{\"{u}}tkepohl, \emph{{New Introduction to Multiple Time Series
+  Analysis}}, Springer Berlin Heidelberg, Berlin, Heidelberg, 2005.
+
+\bibitem{Lutkepohl2005}
+\bysame, \emph{{State Space Models}}, New Introduction to Multiple Time Series
+  Analysis, Springer Berlin Heidelberg, Berlin, Heidelberg, 2005, pp.~611--642.
+
+\bibitem{MacKenzie1988}
+Doris~Layton MacKenzie, George~S. Tracy, and George Williams,
+  \emph{{Incarceration rates and demographic changes: A test of the demographic
+  change hypothesis}}, Journal of Criminal Justice \textbf{16} (1988), no.~3,
+  241--253.
+
+\bibitem{Maltz1994}
+Michael~D. Maltz, \emph{{Chapter 7 Operations research in studying crime and
+  justice: Its history and accomplishments}}, Handbooks in Operations Research
+  and Management Science \textbf{6} (1994), 201--262.
+
+\bibitem{Marvell1994}
+Thomas~B. Marvell and Carlisle~E. Moody, \emph{{Prison population growth and
+  crime reduction}}, Journal of Quantitative Criminology \textbf{10} (1994),
+  no.~2, 109--140.
+
+\bibitem{MinistryofJustice2015}
+{Ministry of Justice}, \emph{{Prison Population Projections 2015 - 2021 England
+  and Wales}}, Tech. report, 2015.
+
+\bibitem{Minton2015}
+Todd~D Minton, Bjs Statistician, Scott Ginder, Susan~M Brumbaugh, Hope
+  Smiley-Mcdonald, and Harley Rohloff, \emph{{Census of Jails: Population
+  Changes, 1999-2013}},  (2015).
+
+\bibitem{OficinaAsesoradePlaneacion2014}
+{Oficina Asesora de Planeaci{\'{o}}n} and {Grupo Estadistica}, \emph{{Impacto
+  Ley 1709 de 2014}}, Tech. report, 2014.
+
+\bibitem{Phelps2016}
+M.~S. Phelps and D.~Pager, \emph{{Inequality and Punishment: A Turning Point
+  for Mass Incarceration?}}, The ANNALS of the American Academy of Political
+  and Social Science \textbf{63} (2016), no.~1.
+
+\bibitem{Raphael2009}
+Steven Raphael and Michael~a. Stoll, \emph{{Why are so many Americans in
+  prison?}}, Do prisons make us safer?: The benefits and costs of the prison
+  boom (2009), no.~1328, 27--72.
+
+\bibitem{Rugg}
+Gordon Rugg and Marian Petre, \emph{{The Unwritten Rules of PhD Research The
+  Unwritten Rules of PhD Research}}.
+
+\bibitem{Shumway2011}
+R~H Shumway and D~S Stoffer, \emph{{Time Series Analysis and Its
+  Applications}}, vol.~97, 2011.
+
+\bibitem{Stahler2013}
+Gerald~J Stahler, Jeremy Mennis, Steven Belenko, Wayne~N Welsh, Matthew~L
+  Hiller, and Gary Zajac, \emph{{PREDICTING RECIDIVISM FOR RELEASED STATE
+  PRISON OFFENDERS: Examining the Influence of Individual and Neighborhood
+  Characteristics and Spatial Contagion on the Likelihood of
+  Reincarceration.}}, Criminal justice and behavior \textbf{40} (2013), no.~6.
+
+\bibitem{Swanson2012}
+David~A Swanson and Jeff Tayman, \emph{{Subnational Population Estimates}}, The
+  Springer Series on Demographic Methods and Population Analysis, vol.~31,
+  Springer Netherlands, Dordrecht, 2012.
+
+\bibitem{Tonry}
+Michael Tonry, \emph{{Thinking about Punishment across Space and Time}}.
+
+\bibitem{Tonry2005}
+Michael Tonry and David~P Farrington, \emph{{Punishment and crime across space
+  crime time}}, Crime and Justice \textbf{33} (2005), no.~2005, 1--39.
+
+\bibitem{Tsay2002}
+Ruey~S. Tsay, \emph{{Analysis of Financial Time Series}}, John Wiley {\&} Sons,
+  Inc., Hoboken, NJ, USA, jan 2002.
+
+\bibitem{Walmsley2013}
+Roy Walmsley, \emph{{World Prison Population List (tenth edition)}},
+  International Centre for Prison Studies (2013), 1--6.
+
+\bibitem{Wan1}
+Wai-Yin Wan1, Steve Moffatt2, Zachary Xie3, Simon Corben, and Don Weatherburn,
+  \emph{{Forecastin prison populations using sentencing and arrest data}},
+  Tech. report.
+
+\bibitem{Yablon1991}
+Marvin Yablon, \emph{{Modeling prison populations}}, European Journal of
+  Operational Research \textbf{52} (1991), no.~3, 259--266.
+
+\bibitem{Yablon1991a}
+\bysame, \emph{{Modeling prison populations}}, European Journal of Operational
+  Research \textbf{52} (1991), no.~3, 259--266.
+
+\end{thebibliography}

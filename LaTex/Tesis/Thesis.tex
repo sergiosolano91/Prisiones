@@ -1,0 +1,99 @@
+% -------------------------------------------------------------------------------------
+% Plantilla para escribir una tesis de la Universidad Nacional de Colombia en LaTeX
+% *************************************************************************************
+% -------------------------------------------------------------------------------------
+\documentclass[spanish,english]{thesisUnal}
+% -------------------------------------------------------------------------------------
+% Espacio reservado para la carga de los paquetes por parte del autor
+% **** --------------------------------------------------------------------------------
+
+\usepackage{rotating}
+\usepackage{inputenx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsmath, amsthm, amsfonts}
+\usepackage{graphicx} % LaTeX
+%\usepackage{enumitem}
+
+% //// --------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------
+% Espacio reservado para colocar las definiciones especiales por parte del autor
+% **** --------------------------------------------------------------------------------
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \includeonly{cap1,cap2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% //// --------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------
+% CUERPO DEL DOCUMENTO
+% **** --------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------
+\begin{document}
+
+\logouniversity[45mm]{imagesThesis/logo_university_nacho}
+
+\infothesis[
+    author = {Sergio David Solano Bejarano},
+    degreeauthor = {Ingeniero Industrial},
+    %code = {000000},
+    advisor = {B. Piedad Urdinola Contreras, Ph.D.},
+    degreeadvisor = {Doctor en Demografía},
+    %coadvisor = {Jonatan Goméz Perdomo, Ph.D.},
+    %degreecoadvisor = {Doctora en Demografía},
+    title = {Proyección de poblaciones carcelarias en Colombia},
+    titledegree = {Disertación presentada para optar al título de},
+    degree = {Master en Ciencias - Estadística},
+    researchline = {Demografía},
+    %researchgroup = {\LaTeX: para el fomento del uso de \LaTeX\ en la investigación},
+    university = {Universidad Nacional de Colombia},
+    faculty = {Facultad de Ciencias},
+    department = {Departamento de Estadística},
+    city = {Bogotá, D.C.},
+    date = {Abril de 2017},
+]
+
+\abstractthesis[
+    titlespanish = {Proyección de poblaciones carcelarias en Colombia},
+    titleenglish = {Prison populations projections for Colombia},
+    abstractspanish = {Se presentan proyecciones de población carcelaria cuando no se conocen las tasas de ingreso al sistema carcelario, el tiempo de juicio, ni la duración de la pena. Para estimar estas variables no observadas se utilizan modelos estado espacio multivariados, tomando como base la población sindicada y condenada mensual},
+    abstractenglish = {Not there yet!},
+    keywordspanish = {Poblaciones carcelarias, series de tiempo, procesos SARIMA, Modelos Estado Espacio},
+    keywordenglish = {Prison populations, time series, SARIMA processes, State Space Models},
+]
+
+\acceptationnote[
+    note = {Aprobado},
+    mention = {Meritoria o Laureada},
+    jury = {Jurado uno},
+    jury = {Jurado dos},
+    %jury = {Michel Goossens},
+    advisor = {B. Piedad Urdinola},
+    %coadvisor = {Jonatan Goméz},
+    date = {Bogotá, D.C., Abril 19 de 2017}
+]
+
+\frontmatter
+    \dedicatory{dedicatoria}
+    \acknowledgement{agradecimientos}
+    \tableofcontents
+    \listoftables
+    \listoffigures
+    \introduction{introduccion}
+\mainmatter
+    \include{cap1}
+    \include{cap2}
+    \include{cap3}
+\appendix
+    \include{apendice}
+\backmatter
+    \conclusion{conclusiones}
+    \futurework{trabajofuturo}
+    \glossary{glosario}
+\nocite{*}
+    \bibliography{references}
+    %\printindex
+\end{document}

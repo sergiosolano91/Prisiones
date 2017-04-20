@@ -1,0 +1,29 @@
+\select@language {english}
+\contentsline {chapter}{Contents}{I}{Doc-Start}
+\contentsline {chapter}{List of Tables}{III}{Doc-Start}
+\contentsline {chapter}{List of Figures}{IV}{Doc-Start}
+\contentsline {chapter}{Introducci\'on}{V}{Doc-Start}
+\contentsline {section}{\numberline {.1}Objetivos}{VI}{section.0.1}
+\contentsline {subsection}{\numberline {.1.1}Objectivo General}{VI}{subsection.0.1.1}
+\contentsline {subsection}{\numberline {.1.2}Objetivos Espec\IeC {\'\i }ficos}{VI}{subsection.0.1.2}
+\contentsline {chapter}{\numberline {1.}La poblaci\'on carcelaria en Colombia 1991 - 2017}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Descripci\'on de los datos}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}El sistema carcelario en Colombia}{1}{section.1.2}
+\contentsline {section}{\numberline {1.3}Implicaciones en el modelado}{1}{section.1.3}
+\contentsline {chapter}{\numberline {2.}PROYECCIONES CON MODELOS SARIMA}{2}{chapter.2}
+\contentsline {section}{\numberline {2.1}Marco te\'orico}{2}{section.2.1}
+\contentsline {section}{\numberline {2.2}Identificaci\'on del modelo}{2}{section.2.2}
+\contentsline {section}{\numberline {2.3}Proyecciones 2017 - 2020}{2}{section.2.3}
+\contentsline {section}{\numberline {2.4}Conclusiones}{2}{section.2.4}
+\contentsline {chapter}{\numberline {3.}PROYECCIONES CON MODELOS ESTADO ESPACIO}{3}{chapter.3}
+\contentsline {section}{\numberline {3.1}Marco te\'orico}{3}{section.3.1}
+\contentsline {section}{\numberline {3.2}Identificaci\'on del modelo}{3}{section.3.2}
+\contentsline {section}{\numberline {3.3}Simulaci\'on Monte-Carlo}{3}{section.3.3}
+\contentsline {section}{\numberline {3.4}Estimaci\'on de par\'ametros}{3}{section.3.4}
+\contentsline {section}{\numberline {3.5}Proyecciones 2017 - 2020}{3}{section.3.5}
+\contentsline {section}{\numberline {3.6}Conclusiones}{3}{section.3.6}
+\contentsline {chapter}{\numberline {A.}Gr\'aficas adicionales}{4}{appendix.A}
+\contentsline {chapter}{Conclusiones}{6}{table.caption.3}
+\contentsline {chapter}{Trabajo futuro}{7}{table.caption.3}
+\contentsline {chapter}{Glosario}{8}{table.caption.3}
+\contentsline {chapter}{Bibliography}{13}{table.caption.3}
