@@ -4,8 +4,6 @@ author: "Sergio Solano"
 date: "9 de marzo de 2017"
 output:
   pdf_document: default
-  html_document: default
-  word_document: default
 ---
 
 ```{r setup, include=FALSE}

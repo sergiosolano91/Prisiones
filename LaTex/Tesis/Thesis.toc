@@ -22,8 +22,6 @@
 \contentsline {section}{\numberline {3.4}Estimaci\'on de par\'ametros}{3}{section.3.4}
 \contentsline {section}{\numberline {3.5}Proyecciones 2017 - 2020}{3}{section.3.5}
 \contentsline {section}{\numberline {3.6}Conclusiones}{3}{section.3.6}
-\contentsline {chapter}{\numberline {A.}Gr\'aficas adicionales}{4}{appendix.A}
-\contentsline {chapter}{Conclusiones}{6}{table.caption.3}
-\contentsline {chapter}{Trabajo futuro}{7}{table.caption.3}
-\contentsline {chapter}{Glosario}{8}{table.caption.3}
-\contentsline {chapter}{Bibliography}{13}{table.caption.3}
+\contentsline {chapter}{Conclusiones}{4}{section.3.6}
+\contentsline {chapter}{Trabajo futuro}{5}{section.3.6}
+\contentsline {chapter}{Bibliography}{6}{section.3.6}

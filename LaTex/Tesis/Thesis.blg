@@ -7,10 +7,9 @@ A level-1 auxiliary file: agradecimientos.aux
 A level-1 auxiliary file: introduccion.aux
 A level-1 auxiliary file: cap1.aux
 A level-1 auxiliary file: cap2.aux
-A level-1 auxiliary file: apendice.aux
+A level-1 auxiliary file: cap3.aux
 A level-1 auxiliary file: conclusiones.aux
 A level-1 auxiliary file: trabajofuturo.aux
-A level-1 auxiliary file: glosario.aux
 Database file #1: references.bib
 Repeated entry---line 69 of file references.bib
  : @misc{InstitutoNacionalPenitenciarioyCarcelario2016
@@ -20,86 +19,47 @@ Repeated entry---line 277 of file references.bib
  : @misc{DANE
  :           ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 496 of file references.bib
- : @article{
- :          ,
-I'm skipping whatever remains of this entry
-Warning--to sort, need author or key in 
-Warning--missing author in 
-Warning--missing journal name in 
-Warning--missing year in 
-Warning--missing pages in 
-Warning--missing publisher in Ariza2011
-Warning--missing journal name in BaezPinerosVictorHugo2014
-Warning--missing journal name in BelloRamirez2010
-Warning--missing journal name in BelloRamirez2013
-Warning--missing journal name in BernalSarmiento
-Warning--missing year in BernalSarmiento
-Warning--missing pages in BernalSarmiento
-Warning--missing journal name in ComisionAsesoradePoliticaCriminal2012
-Warning--missing journal name in DeDardel2013
 Warning--missing journal name in DepartamentoNacionaldePlaneacion2015
 Warning--missing pages in DepartamentoNacionaldePlaneacion2015
-Warning--missing journal name in General2016
-Warning--missing pages in General2016
-Warning--missing journal name in Hunsinger
-Warning--missing year in Hunsinger
-Warning--missing pages in Hunsinger
-Warning--missing journal name in Kaeble2015
-Warning--missing pages in Kaeble2015
-Warning--missing institution in MinistryofJustice2015
-Warning--missing journal name in Minton2015
-Warning--missing pages in Minton2015
-Warning--missing institution in OficinaAsesoradePlaneacion2014
-Warning--missing pages in Phelps2016
-Warning--missing publisher in Rugg
-Warning--missing year in Rugg
-Warning--missing publisher in Shumway2011
-Warning--missing pages in Stahler2013
-Warning--missing journal name in Tonry
-Warning--missing year in Tonry
-Warning--missing pages in Tonry
-Warning--missing institution in Wan1
-Warning--missing year in Wan1
-You've used 57 entries,
+You've used 4 entries,
             2213 wiz_defined-function locations,
-            844 strings with 13423 characters,
-and the built_in function-call counts, 16496 in all, are:
-= -- 1436
-> -- 742
-< -- 2
-+ -- 298
-- -- 241
-* -- 1436
-:= -- 2667
-add.period$ -- 57
-call.type$ -- 57
-change.case$ -- 298
+            530 strings with 4690 characters,
+and the built_in function-call counts, 920 in all, are:
+= -- 68
+> -- 34
+< -- 1
++ -- 14
+- -- 10
+* -- 60
+:= -- 152
+add.period$ -- 4
+call.type$ -- 4
+change.case$ -- 17
 chr.to.int$ -- 0
-cite$ -- 94
-duplicate$ -- 665
-empty$ -- 1423
-format.name$ -- 241
-if$ -- 3353
+cite$ -- 6
+duplicate$ -- 46
+empty$ -- 93
+format.name$ -- 10
+if$ -- 187
 int.to.chr$ -- 0
-int.to.str$ -- 57
-missing$ -- 112
-newline$ -- 181
-num.names$ -- 107
-pop$ -- 402
+int.to.str$ -- 4
+missing$ -- 7
+newline$ -- 22
+num.names$ -- 8
+pop$ -- 35
 preamble$ -- 1
-purify$ -- 238
+purify$ -- 13
 quote$ -- 0
-skip$ -- 374
+skip$ -- 26
 stack$ -- 0
-substring$ -- 938
-swap$ -- 118
-text.length$ -- 2
+substring$ -- 20
+swap$ -- 8
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 216
-warning$ -- 37
-while$ -- 169
-width$ -- 59
-write$ -- 475
-(There were 3 error messages)
+type$ -- 14
+warning$ -- 2
+while$ -- 8
+width$ -- 5
+write$ -- 40
+(There were 2 error messages)

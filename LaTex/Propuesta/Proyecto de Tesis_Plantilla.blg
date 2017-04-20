@@ -3,11 +3,11 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Proyecto de Tesis_Plantilla.aux
 The style file: agsm.bst
 Database file #1: references.bib
-Repeated entry---line 68 of file references.bib
+Repeated entry---line 69 of file references.bib
  : @misc{InstitutoNacionalPenitenciarioyCarcelario2016
  :                                                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 276 of file references.bib
+Repeated entry---line 277 of file references.bib
  : @misc{DANE
  :           ,
 I'm skipping whatever remains of this entry
@@ -15,7 +15,7 @@ Warning--there's a number but no volume in Justice2014
 Warning--empty institution in Wan1
 You've used 12 entries,
             2909 wiz_defined-function locations,
-            722 strings with 7273 characters,
+            722 strings with 7269 characters,
 and the built_in function-call counts, 60248 in all, are:
 = -- 10064
 > -- 577
