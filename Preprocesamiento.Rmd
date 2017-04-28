@@ -76,7 +76,7 @@ ppl_sitjur %<>% mutate (Fecha = as.Date(paste (1,mes,anio, sep = "/"),"%d/%m/%Y"
 ppl_sitjur %>% filter (categoria %in% c("sindicados","condenados","total"), valor >0) %>%  ggplot() + geom_line(aes(x=Fecha,y = valor, colour = categoria),stat = "identity") + ylab("Personas privadas de la libertad")-> grafica 
 # ggplotly(grafica)
 grafica
-
+ggsave("sit_jur.png")
 ```
 
 
@@ -110,6 +110,7 @@ ppl_gen %<>% mutate (Fecha = as.Date(paste (1,mes,anio, sep = "/"),"%d/%m/%Y"))
 ppl_gen %>% filter (categoria %in% c("hombres","mujeres","total"), valor >0) %>%  ggplot() + geom_line(aes(x=Fecha,y = valor, colour = categoria),stat = "identity") + ylab("Personas privadas de la libertad")-> grafica 
 # ggplotly(grafica)
  grafica
+ ggsave("genero.png")
 ```
 
 ```{r Estimación Población Nacional, include = TRUE, echo = FALSE, warning = FALSE, message=FALSE}
@@ -152,16 +153,17 @@ ppl_tasa <- left_join(pob_nal_est,ppl_gen, by = "Fecha") %>% mutate (tasa_hombre
 ppl_tasa %>% ggplot() + geom_line(aes(x=Fecha,y=tasa_hombres,colour="Hombres")) +geom_line(aes(x=Fecha,y=tasa_mujeres,colour="Mujeres"))+geom_line(aes(x=Fecha,y=tasa_total,colour="Total")) + expand_limits(y=0) + ylab("Tasa de encarcelamiento")-> tasas_encarcelamiento
 # ggplotly (tasas_encarcelamiento)
 tasas_encarcelamiento
+ggsave("tasas.png")
 ```
 
-La tasa de encarcelamiento ha crecido de forma exponencial, tanto en hombres como en mujres, y  se puede ver en la gráfica siguiente.
+La tasa de encarcelamiento ha crecido de forma exponencial, tanto en hombres como en mujeres, y  se puede ver en la gráfica siguiente.
 
 ```{r tasa de encarcelamiento log, echo = FALSE,  warning = FALSE, message=FALSE}
 ppl_tasa %>% ggplot() + geom_line(aes(x=Fecha,y=tasa_hombres,colour="Hombres")) +geom_line(aes(x=Fecha,y=tasa_mujeres,colour="Mujeres"))+geom_line(aes(x=Fecha,y=tasa_total,colour="Total")) + expand_limits(y=0) + scale_y_log10 (breaks = c(10,50,100,200,400)) + ylab("Tasa de encarcelamiento")-> tasas_encarcelamiento_log
 # ggplotly (tasas_encarcelamiento_log)
 
 tasas_encarcelamiento_log
-
+ggsave("tasas_log.png")
 ```
 
 ## Crecimiento de la Población Privada de la Libertad (PPL)
@@ -189,7 +191,7 @@ estacional <- as.zoo(DeltaMPP$seasonal)
 autoplot(merge(tendencia,estacional, aleatorio), geom = "line") + ylab("tasa de crecimiento - descomposición") + xlab("Periodo") -> graf_tendencia
 graf_tendencia       
 # ggplotly(graf_tendencia)
-
+ggsave("desc_total.png")
 ```
 
 Crecimiento de la población privada de la libertad masculida
@@ -201,6 +203,7 @@ MPPtimeseries <- ts(ppl_gen$hombres, frequency=12, start=c(1991,1))
 autoplot(as.zoo(diff(log(MPPtimeseries))), geom = "line") + ylab("tasa de crecimiento- PPL masculina") + xlab("Periodo") + theme(aspect.ratio=1/2) -> graf_crecimiento
 
 graf_crecimiento
+ggsave("crec_masc.png")
 # ggplotly(graf_crecimiento)
 
 ```
@@ -212,8 +215,9 @@ tendencia <- as.zoo(DeltaMPP$trend)
 aleatorio <- as.zoo(DeltaMPP$random)
 estacional <- as.zoo(DeltaMPP$seasonal)
 
-autoplot(merge(tendencia,estacional, aleatorio), geom = "line") + ylab("tasa de crecimiento - descomposición") + xlab("Periodo") -> graf_tendencia
-graf_tendencia       
+autoplot(merge(tendencia,estacional, aleatorio), geom = "line") + ylab("tasa de crecimiento masculina- descomposición") + xlab("Periodo") -> graf_tendencia
+graf_tendencia
+ggsave("tend_masc_desc.png")
 # ggplotly(graf_tendencia)
 
 ```
@@ -226,6 +230,7 @@ MPPtimeseries <- ts(ppl_gen$mujeres, frequency=12, start=c(1991,1))
 
 autoplot(as.zoo(diff(log(MPPtimeseries))), geom = "line") + ylab("tasa de crecimiento- PPL femenina") + xlab("Periodo") + theme(aspect.ratio=1/2) -> graf_crecimiento
 graf_crecimiento
+ggsave("tasa_crec_femenina.png")
 # ggplotly(graf_crecimiento)
 
 ```
@@ -242,7 +247,7 @@ autoplot(merge(tendencia,estacional, aleatorio), geom = "line") + ylab("tasa de 
 
 graf_tendencia     
 # ggplotly(graf_tendencia)
-
+ggsave("tasa_crec_femenina.png")
 ```
 
 # Procesos ARIMA
