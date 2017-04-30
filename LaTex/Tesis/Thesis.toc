@@ -11,7 +11,7 @@
 \contentsline {subsection}{\numberline {1.1.1}Proyecci\'on de poblaciones peque\~nas}{2}{subsection.1.1.1}
 \contentsline {subsection}{\numberline {1.1.2}Aplicaciones nacionales e internacionales}{2}{subsection.1.1.2}
 \contentsline {section}{\numberline {1.2}Series de tiempo}{3}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Modelos ARIMA, SARIMA}{3}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.1}Modelos ARIMA, SARIMA}{4}{subsection.1.2.1}
 \contentsline {subsection}{\numberline {1.2.2}Modelos Estado-Espacio}{4}{subsection.1.2.2}
 \contentsline {chapter}{\numberline {2.}La poblaci\'on carcelaria en Colombia 1991 - 2017}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}An\'alisis exploratorio}{5}{section.2.1}

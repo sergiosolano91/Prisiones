@@ -12,8 +12,18 @@ Alfred Blumstein, Jacqueline Cohen, and Harold~D. Miller,
   \emph{{Demographically disaggregated projections of prison populations}},
   Journal of Criminal Justice \textbf{8} (1980), no.~1, 1--26.
 
+\bibitem{Brockwell2011}
+Peter~J. Brockwell, \emph{{Time Series}}, International Encyclopedia of
+  Statistical Science, Springer Berlin Heidelberg, Berlin, Heidelberg, 2011,
+  pp.~1601--1605.
+
+\bibitem{Commandeur2007}
+Jacques~J.F Commandeur and Siem~Jan Koopman, \emph{{An Introduction to State
+  Space Time Series Analysis}},  (2007), 189.
+
 \bibitem{DANE}
-DANE, \emph{{Estimaciones poblaci{\'{o}}n DANE}}, 2009.
+Departamento Administrativo Nacional de~Estad{\'{i}}stica (DANE),
+  \emph{{Comunicado de prensa}}, 2009.
 
 \bibitem{DepartamentoNacionaldePlaneacion2015}
 {Departamento Nacional de Planeaci{\'{o}}n}, \emph{{Conpes 3828 POL{\'{I}}TICA
@@ -37,15 +47,10 @@ Ronald~Demos Lee and Shripad Tuljapurkar, \emph{{Stochastic Population
   Forecasts for the United States: Beyond High, Medium, and Low}}, Journal of
   the American Statistical Association \textbf{89} (1994), no.~428, 1175.
 
-\bibitem{Lutkepohl2005}
-Helmut L{\"{u}}tkepohl, \emph{{State Space Models}}, New Introduction to
-  Multiple Time Series Analysis, Springer Berlin Heidelberg, Berlin,
-  Heidelberg, 2005, pp.~611--642.
-
 \bibitem{Minton2015}
 Todd~D Minton, Bjs Statistician, Scott Ginder, Susan~M Brumbaugh, Hope
   Smiley-Mcdonald, and Harley Rohloff, \emph{{Census of Jails: Population
-  Changes, 1999-2013}},  (2015).
+  Changes, 1999 - 2013}},  (2015).
 
 \bibitem{Swanson2012}
 David~A Swanson and Jeff Tayman, \emph{{Subnational Population Estimates}}, The

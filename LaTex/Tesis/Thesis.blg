@@ -12,59 +12,61 @@ A level-1 auxiliary file: cap3.aux
 A level-1 auxiliary file: conclusiones.aux
 A level-1 auxiliary file: trabajofuturo.aux
 Database file #1: references.bib
-Repeated entry---line 69 of file references.bib
+Repeated entry---line 464 of file references.bib
  : @misc{InstitutoNacionalPenitenciarioyCarcelario2016
  :                                                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 277 of file references.bib
+Repeated entry---line 752 of file references.bib
  : @misc{DANE
  :           ,
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Lutkepohl2005"
+Warning--missing journal name in Commandeur2007
 Warning--missing journal name in DepartamentoNacionaldePlaneacion2015
 Warning--missing pages in DepartamentoNacionaldePlaneacion2015
 Warning--missing journal name in Minton2015
 Warning--missing pages in Minton2015
 Warning--missing institution in Wan1
 Warning--missing year in Wan1
-You've used 12 entries,
+You've used 13 entries,
             2213 wiz_defined-function locations,
-            584 strings with 6026 characters,
-and the built_in function-call counts, 3307 in all, are:
-= -- 271
-> -- 154
+            593 strings with 6230 characters,
+and the built_in function-call counts, 3622 in all, are:
+= -- 299
+> -- 167
 < -- 1
-+ -- 62
-- -- 50
-* -- 256
-:= -- 547
-add.period$ -- 12
-call.type$ -- 12
-change.case$ -- 62
++ -- 67
+- -- 54
+* -- 282
+:= -- 596
+add.period$ -- 13
+call.type$ -- 13
+change.case$ -- 67
 chr.to.int$ -- 0
-cite$ -- 18
-duplicate$ -- 147
-empty$ -- 293
-format.name$ -- 50
-if$ -- 677
+cite$ -- 20
+duplicate$ -- 160
+empty$ -- 320
+format.name$ -- 54
+if$ -- 743
 int.to.chr$ -- 0
-int.to.str$ -- 12
-missing$ -- 22
-newline$ -- 46
-num.names$ -- 24
-pop$ -- 97
+int.to.str$ -- 13
+missing$ -- 24
+newline$ -- 49
+num.names$ -- 26
+pop$ -- 103
 preamble$ -- 1
-purify$ -- 49
+purify$ -- 53
 quote$ -- 0
-skip$ -- 86
+skip$ -- 96
 stack$ -- 0
-substring$ -- 126
-swap$ -- 28
+substring$ -- 148
+swap$ -- 32
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 44
-warning$ -- 6
-while$ -- 31
-width$ -- 14
-write$ -- 108
+type$ -- 48
+warning$ -- 7
+while$ -- 34
+width$ -- 15
+write$ -- 116
 (There were 2 error messages)
