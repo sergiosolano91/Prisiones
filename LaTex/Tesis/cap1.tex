@@ -2,14 +2,14 @@
 
 \section{Análisis exploratorio}
 
-El INPEC publica mensualemente la serie población carcelaria, desde 1991 hasta el mese anterior a la publicación. Esta serie se encuentra separada por situación jurídica (condenados, sindicados) y por genero.
+El INPEC publica mensualemente la serie población carcelaria. Esta serie contiene la población carcelaria desde 1991, separada por situación jurídica (condenados, sindicados) y genero.
 
 La población carcelaria total entre 1991 y 2017 se ha cuadruplicado, al pasar de 32.036 a 128.125 internos. Ver figura \ref{fig:genero}.  Aunque la mayoría de los internos son hombres, la población carcelaria femenina ha crecido a un ritmo aún más acelerado, al quintuplicar su población entre  1991 y 2017 (pasa de 1633 personas a 7800). 
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=10cm]{genero}
-	\caption{Población privada de la libertad 1991 - 2017}
+	\caption{Población privada de la libertad 1991 - 2017} {Fuente: INPEC\\} {Elaboración propia}
 	\label{fig:genero}
 \end{figure}
 
@@ -19,10 +19,40 @@ El incremento en la población carcelaria podría tomarse como un efecto del creci
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=10cm]{tasas}
-	\caption{Tasa de encarcelamiento según genero 1991 - 2017 ()}
+	\caption{Tasa de encarcelamiento según genero 1991 - 2017\\}{Fuente: INPEC\\} {Elaboración propia}
 	\label{fig:tasas}
 \end{figure}
 
-\section{El sistema carcelario en Colombia}
+La tasa de encarcelamiento es un indicador que varía según la edad y genero, siendo más elevado en los hombres que en las mujeres y más algo en los hombres jóvenes, que en los hombres mayores (cita pendiente).  Otra posible explicación al cambio en la tasa de encarcelamiento es un cambio en la pirámide poblacional en el periodo analizado. No obstante, no podemos confirmar o refutar esta hipótesis pues la serie de tiempo, contenida en los datos de libre acceso no se encuentra desagregada por edad.
 
-\section{Implicaciones en el modelado}
+\section{El sistema penitenciario en Colombia}
+
+La población carcelaria se ve afectada por dos políticas, la política penitenciaria, que determina las condiciones de privación de la libertad y la política criminal que determina las causas de encarcelamiento y la duración de las penas. \cite{DepartamentoNacionaldePlaneacion2015}
+
+A la población privada de la libertad antes del juicio se le denomina pobación sindicada, y a aquellos que han sido juzgados y se encuentran cumpliendo la sentencia se les denomina población condenada. La evolución de la población según situación jurídica se puede observar en la figura \ref{fig:sit_jur}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=10cm]{sit_jur.png}
+	\caption{Población carcelaria por situación jurídica\\} {Fuente: INPEC\\} {Elaboración propia}
+	\label{fig:sit_jur}
+\end{figure}
+
+\section{Identificación del modelo}
+
+Podemos modelar el sistema penitenciario de la siguiente manera:
+
+\begin{center}
+	$S_t = S_{t-1} + \alpha {N_t} - \gamma S_{t-1}$ \\
+	$C_t = C_{t-1} - \omega C_{t-1} + \beta \gamma S_{t-1}$	\\
+\end{center} 
+
+	$N_t$ = población nacional en el periodo t \\
+	$S_t$ = población de sindicados en el periodo t\\
+	$C_t$ = población de condenados en el periodo t\\
+	$\alpha$ = proporción de la población libre que ingresa al sistema carcelario \\
+	$\gamma$ = proporción de sindicados que es juzgada cada periodo \\
+	$\beta$ = proporción de sindicados que han sido encontrados culpables durante el juicio	\\
+	$\omega$ = proporción de condenados que cumplen su pena cada\\ periodo.
+	
+Y esto es un problema interesante porque no tengo las series de tiempo de la transición! 

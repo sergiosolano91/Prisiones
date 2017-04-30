@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.27)  27 APR 2017 20:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.27)  30 APR 2017 02:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -430,8 +430,9 @@ Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 )) (./Thesis.aux
-(./dedicatoria.aux) (./agradecimientos.aux) (./introduccion.aux) (./cap1.aux)
-(./cap2.aux) (./cap3.aux) (./conclusiones.aux) (./trabajofuturo.aux))
+(./dedicatoria.aux) (./agradecimientos.aux) (./introduccion.aux)
+(./MarcoTeorico.aux) (./cap1.aux) (./cap2.aux) (./cap3.aux) (./conclusiones.aux
+) (./trabajofuturo.aux))
 \openout1 = `Thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
@@ -499,7 +500,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
-<imagesThesis/logo_university_nacho.pdf, id=102, 404.02916pt x 534.91182pt>
+<imagesThesis/logo_university_nacho.pdf, id=130, 404.02916pt x 534.91182pt>
 File: imagesThesis/logo_university_nacho.pdf Graphic file (type pdf)
 
 <use imagesThesis/logo_university_nacho.pdf>
@@ -661,47 +662,68 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 27.
 ) [6]
-\openout2 = `cap1.aux'.
+\openout2 = `MarcoTeorico.aux'.
 
- (./cap1.tex
+
+(./MarcoTeorico.tex
 Chapter 1.
-<genero.png, id=205, 469.755pt x 324.9741pt>
-File: genero.png Graphic file (type png)
- <use genero.png>
-Package pdftex.def Info: genero.png used on input line 11.
-(pdftex.def)             Requested size: 284.52756pt x 196.83556pt.
-
-<tasas.png, id=207, 469.755pt x 324.9741pt>
-File: tasas.png Graphic file (type png)
- <use tasas.png>
-Package pdftex.def Info: tasas.png used on input line 21.
-(pdftex.def)             Requested size: 284.52756pt x 196.83556pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.24 \end{figure}
-                  [1
+l.18 	\end{itemize}
+                    [1
 
 
 
 
- <./genero.png (PNG copy)>])pdfTeX warning (ext4): destination with the same id
-entifier (name{page.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.87     \include{cap1}
-                        [2 <./tasas.png (PNG copy)>]
-\openout2 = `cap2.aux'.
-
- (./cap2.tex
-Chapter 2.
-)pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
+]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.88     \include{cap2}
-                        [3
+l.43 \section{Series de tiempo}
+                                [2]pdfTeX warning (ext4): destination with the 
+same identifier (name{page.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.85 E
+      n un modelo estado espacio una serie de tiempo (multiple) observada  $...
+[3])pdfTeX warning (ext4): destination with the same identifier (name{page.4}) 
+has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.87 	\include{MarcoTeorico}
+                             [4]
+\openout2 = `cap1.aux'.
+
+ (./cap1.tex
+Chapter 2.
+<genero.png, id=290, 469.755pt x 324.9741pt>
+File: genero.png Graphic file (type png)
+ <use genero.png>
+Package pdftex.def Info: genero.png used on input line 11.
+(pdftex.def)             Requested size: 284.52756pt x 196.83556pt.
+ [5
+
+
+
+ <./genero.png (PNG copy)>] <tasas.png, id=298, 469.755pt x 324.9741pt>
+File: tasas.png Graphic file (type png)
+ <use tasas.png>
+Package pdftex.def Info: tasas.png used on input line 21.
+(pdftex.def)             Requested size: 284.52756pt x 196.83556pt.
+
+<sit_jur.png, id=301, 469.755pt x 324.9741pt>
+File: sit_jur.png Graphic file (type png)
+ <use sit_jur.png>
+Package pdftex.def Info: sit_jur.png used on input line 36.
+(pdftex.def)             Requested size: 284.52756pt x 196.83556pt.
+ [6 <./tasas.png (PNG copy)>]) [7 <./sit_jur.png (PNG copy)>]
+\openout2 = `cap2.aux'.
+
+ (./cap2.tex
+Chapter 3.
+) [8
 
 
 
@@ -709,20 +731,15 @@ l.88     \include{cap2}
 \openout2 = `cap3.aux'.
 
  (./cap3.tex
-Chapter 3.
-)pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.89     \include{cap3}
-                        [4
+Chapter 4.
+) [9
 
 
 
 ]
 \openout2 = `conclusiones.aux'.
 
- (./conclusiones.tex) [5
+ (./conclusiones.tex) [10
 
 
 
@@ -730,53 +747,70 @@ l.89     \include{cap3}
 ]
 \openout2 = `trabajofuturo.aux'.
 
- (./trabajofuturo.tex)
-[6
+ (./trabajofuturo.tex) [11
 
 
 
 ] (./Thesis.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 99.
- [7
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 100.
+
+[12
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 99.
- (./Thesis.aux (./dedicatoria.aux) (./agradecimientos.aux) (./introduccion.aux)
- (./cap1.aux) (./cap2.aux) (./cap3.aux)
-(./conclusiones.aux) (./trabajofuturo.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 99.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 99.
-Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 9C08CB72C0ECE1190C3AF1BFD296A77E;1683.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 99.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
+ (./Thesis.aux (./dedicatoria.aux) (./agradecimientos.aux)
+(./introduccion.aux) (./MarcoTeorico.aux) (./cap1.aux) (./cap2.aux) (./cap3.aux
+) (./conclusiones.aux) (./trabajofuturo.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 100.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
+
+
+Package rerunfilecheck Warning: File `Thesis.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Thesis.out':
+(rerunfilecheck)             Before: 3DBF94B90AE6DD6CD4E4A26E1D2A157D;2176
+(rerunfilecheck)             After:  F8D662FCD55B5697576D6F7AAEA096B7;2190.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 100.
  ) 
 Here is how much of TeX's memory you used:
- 9272 strings out of 494891
- 133635 string characters out of 6179039
- 232357 words of memory out of 5000000
- 12303 multiletter control sequences out of 15000+600000
+ 9324 strings out of 494891
+ 134378 string characters out of 6179039
+ 233099 words of memory out of 5000000
+ 12324 multiletter control sequences out of 15000+600000
  20487 words of font info for 51 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
- 43i,6n,41p,786b,432s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/sergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/
-sergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/sergio/.te
-xmf-var/fonts/pk/ljfour/jknappen/ec/eccc1000.600pk> </home/sergio/.texmf-var/fo
-nts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/sergio/.texmf-var/fonts/pk/ljf
-our/jknappen/ec/ecbx1200.600pk> </home/sergio/.texmf-var/fonts/pk/ljfour/jknapp
-en/ec/ecrm0800.600pk> </home/sergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx
-1728.600pk> </home/sergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk
-> </home/sergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/s
-ergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/sergio/.tex
-mf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/sergio/.texmf-var/fon
-ts/pk/ljfour/jknappen/ec/eccc1200.600pk> </home/sergio/.texmf-var/fonts/pk/ljfo
-ur/jknappen/ec/eccc1440.600pk> </home/sergio/.texmf-var/fonts/pk/ljfour/jknappe
-n/ec/ecti1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb>
-Output written on Thesis.pdf (19 pages, 631314 bytes).
+ 43i,7n,41p,786b,459s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{section.1.4} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.1.3} has been referenced but does not exist
+, replaced by a fixed one
+
+ </home/sergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/se
+rgio/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1000.600pk> </home/sergio/.texm
+f-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/sergio/.texmf-var/font
+s/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/sergio/.texmf-var/fonts/pk/ljfou
+r/jknappen/ec/ecbx1200.600pk> </home/sergio/.texmf-var/fonts/pk/ljfour/jknappen
+/ec/ecrm0800.600pk> </home/sergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx17
+28.600pk> </home/sergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> 
+</home/sergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/ser
+gio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/sergio/.texmf
+-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/sergio/.texmf-var/fonts
+/pk/ljfour/jknappen/ec/eccc1200.600pk> </home/sergio/.texmf-var/fonts/pk/ljfour
+/jknappen/ec/eccc1440.600pk> </home/sergio/.texmf-var/fonts/pk/ljfour/jknappen/
+ec/ecti1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on Thesis.pdf (24 pages, 848857 bytes).
 PDF statistics:
- 744 PDF objects out of 1000 (max. 8388607)
- 271 compressed objects within 3 object streams
- 40 named destinations out of 1000 (max. 500000)
- 224 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 897 PDF objects out of 1000 (max. 8388607)
+ 372 compressed objects within 4 object streams
+ 63 named destinations out of 1000 (max. 500000)
+ 285 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -5,6 +5,7 @@ The style file: amsplain.bst
 A level-1 auxiliary file: dedicatoria.aux
 A level-1 auxiliary file: agradecimientos.aux
 A level-1 auxiliary file: introduccion.aux
+A level-1 auxiliary file: MarcoTeorico.aux
 A level-1 auxiliary file: cap1.aux
 A level-1 auxiliary file: cap2.aux
 A level-1 auxiliary file: cap3.aux
@@ -21,45 +22,49 @@ Repeated entry---line 277 of file references.bib
 I'm skipping whatever remains of this entry
 Warning--missing journal name in DepartamentoNacionaldePlaneacion2015
 Warning--missing pages in DepartamentoNacionaldePlaneacion2015
-You've used 4 entries,
+Warning--missing journal name in Minton2015
+Warning--missing pages in Minton2015
+Warning--missing institution in Wan1
+Warning--missing year in Wan1
+You've used 12 entries,
             2213 wiz_defined-function locations,
-            530 strings with 4690 characters,
-and the built_in function-call counts, 920 in all, are:
-= -- 68
-> -- 34
+            584 strings with 6026 characters,
+and the built_in function-call counts, 3307 in all, are:
+= -- 271
+> -- 154
 < -- 1
-+ -- 14
-- -- 10
-* -- 60
-:= -- 152
-add.period$ -- 4
-call.type$ -- 4
-change.case$ -- 17
++ -- 62
+- -- 50
+* -- 256
+:= -- 547
+add.period$ -- 12
+call.type$ -- 12
+change.case$ -- 62
 chr.to.int$ -- 0
-cite$ -- 6
-duplicate$ -- 46
-empty$ -- 93
-format.name$ -- 10
-if$ -- 187
+cite$ -- 18
+duplicate$ -- 147
+empty$ -- 293
+format.name$ -- 50
+if$ -- 677
 int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 7
-newline$ -- 22
-num.names$ -- 8
-pop$ -- 35
+int.to.str$ -- 12
+missing$ -- 22
+newline$ -- 46
+num.names$ -- 24
+pop$ -- 97
 preamble$ -- 1
-purify$ -- 13
+purify$ -- 49
 quote$ -- 0
-skip$ -- 26
+skip$ -- 86
 stack$ -- 0
-substring$ -- 20
-swap$ -- 8
+substring$ -- 126
+swap$ -- 28
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 14
-warning$ -- 2
-while$ -- 8
-width$ -- 5
-write$ -- 40
+type$ -- 44
+warning$ -- 6
+while$ -- 31
+width$ -- 14
+write$ -- 108
 (There were 2 error messages)
