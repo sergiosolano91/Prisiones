@@ -20,53 +20,55 @@ Repeated entry---line 752 of file references.bib
  : @misc{DANE
  :           ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "Lutkepohl2005"
+Warning--missing publisher in Box2013
 Warning--missing journal name in Commandeur2007
 Warning--missing journal name in DepartamentoNacionaldePlaneacion2015
 Warning--missing pages in DepartamentoNacionaldePlaneacion2015
 Warning--missing journal name in Minton2015
 Warning--missing pages in Minton2015
+Warning--missing publisher in Shumway
+Warning--missing year in Shumway
 Warning--missing institution in Wan1
 Warning--missing year in Wan1
-You've used 13 entries,
+You've used 16 entries,
             2213 wiz_defined-function locations,
-            593 strings with 6230 characters,
-and the built_in function-call counts, 3622 in all, are:
-= -- 299
-> -- 167
+            604 strings with 6479 characters,
+and the built_in function-call counts, 4558 in all, are:
+= -- 377
+> -- 205
 < -- 1
-+ -- 67
-- -- 54
-* -- 282
-:= -- 596
-add.period$ -- 13
-call.type$ -- 13
-change.case$ -- 67
++ -- 82
+- -- 66
+* -- 344
+:= -- 739
+add.period$ -- 16
+call.type$ -- 16
+change.case$ -- 82
 chr.to.int$ -- 0
-cite$ -- 20
-duplicate$ -- 160
-empty$ -- 320
-format.name$ -- 54
-if$ -- 743
+cite$ -- 26
+duplicate$ -- 207
+empty$ -- 409
+format.name$ -- 66
+if$ -- 947
 int.to.chr$ -- 0
-int.to.str$ -- 13
-missing$ -- 24
-newline$ -- 49
-num.names$ -- 26
-pop$ -- 103
+int.to.str$ -- 16
+missing$ -- 32
+newline$ -- 58
+num.names$ -- 32
+pop$ -- 132
 preamble$ -- 1
-purify$ -- 53
+purify$ -- 65
 quote$ -- 0
-skip$ -- 96
+skip$ -- 130
 stack$ -- 0
-substring$ -- 148
-swap$ -- 32
+substring$ -- 195
+swap$ -- 46
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 48
-warning$ -- 7
-while$ -- 34
-width$ -- 15
-write$ -- 116
+type$ -- 56
+warning$ -- 10
+while$ -- 43
+width$ -- 18
+write$ -- 140
 (There were 2 error messages)

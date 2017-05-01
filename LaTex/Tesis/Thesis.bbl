@@ -12,6 +12,15 @@ Alfred Blumstein, Jacqueline Cohen, and Harold~D. Miller,
   \emph{{Demographically disaggregated projections of prison populations}},
   Journal of Criminal Justice \textbf{8} (1980), no.~1, 1--26.
 
+\bibitem{Boland2011}
+John Boland, \emph{{Box-Jenkins Time Series Models}}, International
+  Encyclopedia of Statistical Science, Springer Berlin Heidelberg, Berlin,
+  Heidelberg, 2011, pp.178-181.
+
+\bibitem{Box2013}
+George E~P Box, Gm~Jenkins, and Gc~Reinsel, \emph{{Time series analysis:
+  forecasting and control}}, 2013.
+
 \bibitem{Brockwell2011}
 Peter~J. Brockwell, \emph{{Time Series}}, International Encyclopedia of
   Statistical Science, Springer Berlin Heidelberg, Berlin, Heidelberg, 2011,
@@ -47,19 +56,23 @@ Ronald~Demos Lee and Shripad Tuljapurkar, \emph{{Stochastic Population
   Forecasts for the United States: Beyond High, Medium, and Low}}, Journal of
   the American Statistical Association \textbf{89} (1994), no.~428, 1175.
 
+\bibitem{Lutkepohl2005a}
+Helmut L{\"{u}}tkepohl, \emph{{New Introduction to Multiple Time Series
+  Analysis}}, Springer Berlin Heidelberg, Berlin, Heidelberg, 2005.
+
 \bibitem{Minton2015}
 Todd~D Minton, Bjs Statistician, Scott Ginder, Susan~M Brumbaugh, Hope
   Smiley-Mcdonald, and Harley Rohloff, \emph{{Census of Jails: Population
   Changes, 1999 - 2013}},  (2015).
 
+\bibitem{Shumway}
+Robert~H Shumway and David~S Stoffer, \emph{{Time Series Analysis and
+  Applications}}.
+
 \bibitem{Swanson2012}
 David~A Swanson and Jeff Tayman, \emph{{Subnational Population Estimates}}, The
   Springer Series on Demographic Methods and Population Analysis, vol.~31,
   Springer Netherlands, Dordrecht, 2012.
-
-\bibitem{Tsay2002}
-Ruey~S. Tsay, \emph{{Analysis of Financial Time Series}}, John Wiley {\&} Sons,
-  Inc., Hoboken, NJ, USA, jan 2002.
 
 \bibitem{Wan1}
 Wai-Yin Wan1, Steve Moffatt2, Zachary Xie3, Simon Corben, and Don Weatherburn,

@@ -53,47 +53,50 @@ En una regresión lineal clásica, una variable $Y$ es explicada o predicha en fun
 	$Y_i = \beta_{0} + \beta_{1} X_i + \epsilon_i$\\
 \end{center}
 
-Donde ${\epsilon_1, \epsilon_2, \epsilon_3}$ son independientes e idénticamente distribuidas (i.i.d.). Es posible representar una serie de tiempo en esta forma, tomando como variable explicativa el tiempo. Sin embargo, el análisis de series de tiempo se ha desarrollado como un área particular de la estadística, pues es este supuesto no suele cumplirse, enfocándose particularmente en variables aleatorias dependientes, que pueden ser representadas en la forma: 
+Donde $\{\epsilon_1, \epsilon_2, ...\}$ son independientes e idénticamente distribuidas (i.i.d.). Es posible representar una serie de tiempo en esta forma, tomando como variable explicativa el tiempo. Sin embargo, el análisis de series de tiempo se ha desarrollado como un área particular de la estadística, pues es este supuesto no suele cumplirse, enfocándose particularmente en variables aleatorias dependientes, que pueden ser representadas en la forma \cite{Brockwell2011}: 
 
 \begin{center}
 	$Y_i = \beta_{0} + \beta_{1} Y_1 + \beta_{2} Y_2 + ... + \beta_{i-1} Y_{i-1} + \ \epsilon_i$\\
 \end{center}
 
-Estacionaridad. 
-Estacionaridad debil. 
+Para medir la dependencia entre las observaciones recurrimos a la función de autocovarianca y a la función de autocorrelación. La función de autocovarianza se define como: 
 
+\begin{center}
+	$\gamma(h, h+k) = cov(x_h, x_{h+k}) = E[(x_h - \mu_h)(x_{h+k} - µ{h+k})]$
+\end{center}
 
-Cómo se puede medir esto? con una función de autocorrelación, que mide la relación entre los valores del proceso, según su cercanía. 
+para todo h y k mayor a cero. La autocovarianza mide la dependencia lineal entre dos puntos en la misma serie en diferentes instantes. \cite{Shumway}. 
 
-Time series is therefore primarily concerned with dependent random variables and the analysis and utilization of this dependence.) A simpler approach to forecastingXn+h is to look for the linear combi- nation, ? Xn+h = a0 +a1Xn +?+anX1 which minimizes the expected squared error E(Xn+h ? ? Xn+h) 2.Tis is a much simpler problem, the solution of which depends only on the expected values EXi and EXiXj, i, j = 1, 2, . . .Moreover if the joint distribution of (X1,X2, . . . ,Xk) is multivariate normal for every positive integer k then this best linear
-forecast
+La función de autocorrelación se define como \cite{Shumway}: 
 
+ \begin{center}
+ 	$\rho (h, h+k) = \dfrac{\gamma(h, h+k)}{\sqrt{\gamma(h, h) \gamma(h+k, h+k)}}$
+ \end{center}
 
-Las series de tiempo tienen una aplicación bastante limitada, pues requieren muchas (?) observaciones, espaciadas uniformemente. Cuando la correlación se presenta en lags uniformente espaciados por ejemplo (12,24,36) se denomina una serie estacional. 
+Para poder realizar predicciones sobre el estado futuro de una serie de tiempo, es necesario suponer que el comportamiento de la serie es estable a través del tiempo, incluso con un componente aleatorio. La estacionaridad es el concepto que permite articular esta necesidad. Estamos ante un \textbf{proceso estacionario} cuando las variables $\{X_1,..., X_k\}$ tienen la misma distribución conjunta que $\{X_{h+1},...,X_{h+k}\}$, para todos los enteros $h$ y $k$. \cite{Brockwell2011}
 
-Para medir que tan bien ajusta el modelo analizamos el comportamiento del error de estimación. Es usual suponer que el error tiene varianza constante (homocedasticidad), es  independiente e idénticamente distribuido, usualmente con distribución normal.
-
-Es posible que el modelo tenga tendencia. Cuando la tendencia es lineal tomamos la diferencia al lag 1 (si queremos desestacionalizar, tomamos la diferencia al lag que nos sirve para desestacionalizar) y evaluamos  la autocorrelación en esta nueva serie. (Expandir con libro del curso de Datacamp)
-
-Cuando la varianza incrementa con el tiempo podemos asumir que el modelo crece de manera exponencial (un incremento porcentual fijo). Para manejar estas series de manera sencilla tomamos la logaritmo natural de la differencia entre pasos. (Expandir con Tsay) 
-
+La estacionaridad débil se presenta cuando $E[X_j]$ y $E[X_jX_{j+h}]$ son independientes de $j$, es decir: i) Presenta media $\mu$ constante e independiente de $t$ ii) La función de autocovarianza $\gamma(h, h+k)$ depende solamente de la cantidad de pasos que separa las observaciones ($k$). \cite{Shumway}
 
 \subsection{Modelos ARIMA, SARIMA}
 
-El análisis de las series tiempo de poblaciones carcelarias  de tiempo ARIMA y ARMAX se tomará de \cite{Tsay2002}.
+Box \& Jenkins proponen una aproximación iterativa de  cuatro etapas para la selección de un modelo \cite{Box2013}: 
 
+\begin{itemize}
+	\item Selección de una clase de modelos, con base en la teoría y la práctica.
+	\item Identificación del modelo, donde se seleccionan un conjunto de parámetros que permitan explicar el sistema con parsimonia. 
+	\item Estimación de parámetros. 
+	\item Chequeo diagnóstico, para detectar fallas en el ajuste. Si se detectan fallas en el ajuste, se regresa al segundo paso. 
+\end{itemize}
 
-Los procesos ARMA son procesos aleatorios de la forma 
+Los procesos ARMA son procesos aleatorios de la forma \cite{Shumway} : 
 
 \begin{center}
 	$Y_t = \gamma Y_{t-1} + \gamma_2 Y_{t-2} ...+ + \gamma_i Y_{t-i} + \epsilon + \theta_1\epsilon_{t-1} + \theta_2\epsilon_{t-2} ... \theta_j\epsilon_{t-j} $
 \end{center}
 
-A este modelo se le conoce como ARIMA(i,0,j).
+A este modelo se le conoce como ARMA(i,0,j).
 
-Aunque el termino $\epsilon$ no tiene necesariamente una distribución normal, por el resto de documento se asumirá una distribución normal con media $\mu$ y varianza $\sigma²$, a menos que se especifique lo contrario. 
-
-Los procesos ARIMA resultan al considerar una serie de la forma: 
+Los procesos ARIMA resultan al considerar una serie de la forma \cite{Shumway}: 
 
 \begin{center}
 	$Y_t = \alpha +  Y_{t-1}$
@@ -101,11 +104,18 @@ Los procesos ARIMA resultan al considerar una serie de la forma:
 
 Tal que el proceso $Y_t - Y_{t-1}$ es un proceso ARMA.
 
+Los criterios para identificar el orden de un ARMA son \cite{Boland2011}: 
+
+\begin{itemize}
+	\item Cuando la función de autocorrelación (ACF) se reduce progresivamente, y  la función de autocorrelación parcial(PACF) no tiene picos en lags luego de p, es un proceso autoregresivo de orden p  AR(p) 
+	\item Cuando la función de autocorrelación tiene un pico en el lag q, y la función de autocorrelación parcial se reduce progresivamente, es un proceso de media mmovil de orden q MA(q)
+	\item Si ambas funciones se reducen gradualmente, se trata de un ARMA (p,q)
+\end{itemize}
+
 \subsection{Modelos Estado-Espacio}
 
-Tomado de \cite{Lutkepohl2005} : 
-
-En un modelo estado espacio una serie de tiempo (multiple) observada  $\ y_1, ... , y_t $\ depende de un estado $\ z_t $\ , posiblemente no observado, que se comporta siguiendo un proceso estocástico. La relación entre $\ y_t $\ y $\ z_t $\ está dada por la \textit{ecuación de medida}: \cite{Lutkepohl2005}  
+Tomado de \cite{Lutkepohl2005a}
+En un modelo estado espacio una serie de tiempo (multiple) observada  $\ y_1, ... , y_t $\ depende de un estado $\ z_t $\ , posiblemente no observado, que se comporta siguiendo un proceso estocástico. La relación entre $\ y_t $\ y $\ z_t $\ está dada por la \textit{ecuación de medida}: \cite{Lutkepohl2005a} 
 
 $\ y_t = H_t z_t + v_t$\
 
@@ -113,6 +123,6 @@ donde $\ H_t $\ es una matriz que puede o no depender del tiempo $\ t $\ y $\ v_
 
 $\ z_t = B_{t-1} z_{t-1} + w_{t-1}$\
 
-La matriz $\ B_t $\ es una matriz de coeficientes que puede depender de $\ t $\, y $\ w_t $\ es un proceso de ruido. \cite{Lutkepohl2005}
+La matriz $\ B_t $\ es una matriz de coeficientes que puede depender de $\ t $\, y $\ w_t $\ es un proceso de ruido. \cite{Lutkepohl2005a}
 
 Es posible considerar los modelos estado-espacio una generalización de los modelo SARIMA y VARMA.
