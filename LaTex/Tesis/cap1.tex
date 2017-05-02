@@ -41,12 +41,15 @@ A la población privada de la libertad antes del juicio se le denomina pobación s
 \section{Identificación del modelo}
 
 Podemos modelar el sistema penitenciario de la siguiente manera:
-
-\begin{center}
-	$S_t = S_{t-1} + \alpha {N_t} - \gamma S_{t-1}$ \\
-	$C_t = C_{t-1} - \omega C_{t-1} + \beta \gamma S_{t-1}$	\\
-\end{center} 
-
+%
+\begin{equation}\label{Sindicados}
+	S_t = S_{t-1} + \alpha {N_t} - \gamma S_{t-1}
+\end{equation} 
+%
+\begin{equation}\label{Condenados}
+	C_t = C_{t-1} - \omega C_{t-1} + \beta \gamma S_{t-1}
+\end{equation} 
+%
 	$N_t$ = población nacional en el periodo t \\
 	$S_t$ = población de sindicados en el periodo t\\
 	$C_t$ = población de condenados en el periodo t\\

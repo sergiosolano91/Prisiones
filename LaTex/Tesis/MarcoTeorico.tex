@@ -49,35 +49,34 @@ Una serie de tiempo es un conjunto de observaciones ${x_t}$ asociadas a un insta
 
 En una regresión lineal clásica, una variable $Y$ es explicada o predicha en función de una variable $X$. La diferencia entre el valor observado $y_i$ y el valor predicho se suponen provenientes de un proceso aleatorio con media cero. \cite{Commandeur2007}
 
-\begin{center}
-	$Y_i = \beta_{0} + \beta_{1} X_i + \epsilon_i$\\
-\end{center}
+\begin{equation}\label{eq:regresion}
+	Y_i = \beta_{0} + \beta_{1} X_i + \epsilon_i
+\end{equation}
 
 Donde $\{\epsilon_1, \epsilon_2, ...\}$ son independientes e idénticamente distribuidas (i.i.d.). Es posible representar una serie de tiempo en esta forma, tomando como variable explicativa el tiempo. Sin embargo, el análisis de series de tiempo se ha desarrollado como un área particular de la estadística, pues es este supuesto no suele cumplirse, enfocándose particularmente en variables aleatorias dependientes, que pueden ser representadas en la forma \cite{Brockwell2011}: 
-
-\begin{center}
-	$Y_i = \beta_{0} + \beta_{1} Y_1 + \beta_{2} Y_2 + ... + \beta_{i-1} Y_{i-1} + \ \epsilon_i$\\
-\end{center}
-
+%  this commented blank line prevents start of a new paragraph
+\begin{equation}\label{eq:serierecursiva}
+	Y_i = \beta_{0} + \beta_{1} Y_1 + \beta_{2} Y_2 + ... + \beta_{i-1} Y_{i-1} + \ \epsilon_i
+\end{equation}
 Para medir la dependencia entre las observaciones recurrimos a la función de autocovarianca y a la función de autocorrelación. La función de autocovarianza se define como: 
 
-\begin{center}
-	$\gamma(h, h+k) = cov(x_h, x_{h+k}) = E[(x_h - \mu_h)(x_{h+k} - µ{h+k})]$
-\end{center}
+\begin{equation}\label{covarianza}
+	\gamma(h, h+k) = cov(x_h, x_{h+k}) = E[(x_h - \mu_h)(x_{h+k} - µ{h+k})]
+\end{equation}
 
 para todo h y k mayor a cero. La autocovarianza mide la dependencia lineal entre dos puntos en la misma serie en diferentes instantes. \cite{Shumway}. 
 
 La función de autocorrelación se define como \cite{Shumway}: 
 
- \begin{center}
- 	$\rho (h, h+k) = \dfrac{\gamma(h, h+k)}{\sqrt{\gamma(h, h) \gamma(h+k, h+k)}}$
- \end{center}
+ \begin{equation}\label{correlacion}
+ 	\rho (h, h+k) = \dfrac{\gamma(h, h+k)}{\sqrt{\gamma(h, h) \gamma(h+k, h+k)}}
+ \end{equation}
 
 Para poder realizar predicciones sobre el estado futuro de una serie de tiempo, es necesario suponer que el comportamiento de la serie es estable a través del tiempo, incluso con un componente aleatorio. La estacionaridad es el concepto que permite articular esta necesidad. Estamos ante un \textbf{proceso estacionario} cuando las variables $\{X_1,..., X_k\}$ tienen la misma distribución conjunta que $\{X_{h+1},...,X_{h+k}\}$, para todos los enteros $h$ y $k$. \cite{Brockwell2011}
 
 La estacionaridad débil se presenta cuando $E[X_j]$ y $E[X_jX_{j+h}]$ son independientes de $j$, es decir: i) Presenta media $\mu$ constante e independiente de $t$ ii) La función de autocovarianza $\gamma(h, h+k)$ depende solamente de la cantidad de pasos que separa las observaciones ($k$). \cite{Shumway}
 
-\subsection{Modelos ARIMA, SARIMA}
+\subsection{Modelos ARIMA}
 
 Box \& Jenkins proponen una aproximación iterativa de  cuatro etapas para la selección de un modelo \cite{Box2013}: 
 
@@ -90,17 +89,17 @@ Box \& Jenkins proponen una aproximación iterativa de  cuatro etapas para la sel
 
 Los procesos ARMA son procesos aleatorios de la forma \cite{Shumway} : 
 
-\begin{center}
-	$Y_t = \gamma Y_{t-1} + \gamma_2 Y_{t-2} ...+ + \gamma_i Y_{t-i} + \epsilon + \theta_1\epsilon_{t-1} + \theta_2\epsilon_{t-2} ... \theta_j\epsilon_{t-j} $
-\end{center}
+\begin{equation}\label{arma}
+	Y_t = \gamma Y_{t-1} + \gamma_2 Y_{t-2} ...+ + \gamma_i Y_{t-i} + \epsilon + \theta_1\epsilon_{t-1} + \theta_2\epsilon_{t-2} ... \theta_j\epsilon_{t-j}
+\end{equation}
 
 A este modelo se le conoce como ARMA(i,0,j).
 
 Los procesos ARIMA resultan al considerar una serie de la forma \cite{Shumway}: 
 
-\begin{center}
-	$Y_t = \alpha +  Y_{t-1}$
-\end{center}
+\begin{equation}\label{ARIMA}
+	Y_t = \alpha +  Y_{t-1}
+\end{equation}
 
 Tal que el proceso $Y_t - Y_{t-1}$ es un proceso ARMA.
 
@@ -117,12 +116,16 @@ Los criterios para identificar el orden de un ARMA son \cite{Boland2011}:
 Tomado de \cite{Lutkepohl2005a}
 En un modelo estado espacio una serie de tiempo (multiple) observada  $\ y_1, ... , y_t $\ depende de un estado $\ z_t $\ , posiblemente no observado, que se comporta siguiendo un proceso estocástico. La relación entre $\ y_t $\ y $\ z_t $\ está dada por la \textit{ecuación de medida}: \cite{Lutkepohl2005a} 
 
-$\ y_t = H_t z_t + v_t$\
+\begin{equation}\label{EstadoEspacio}
+\ y_t = H_t z_t + v_t
+\end{equation}
 
 donde $\ H_t $\ es una matriz que puede o no depender del tiempo $\ t $\ y $\ v_t $\ es el error de observación, que se asume usualmente como un proceso de ruido. El vector de estado es generado como:  
 
-$\ z_t = B_{t-1} z_{t-1} + w_{t-1}$\
+\begin{equation}\label{EstadoEspacio2}
+z_t = B_{t-1} z_{t-1} + w_{t-1}
+\end{equation}
 
 La matriz $\ B_t $\ es una matriz de coeficientes que puede depender de $\ t $\, y $\ w_t $\ es un proceso de ruido. \cite{Lutkepohl2005a}
 
-Es posible considerar los modelos estado-espacio una generalización de los modelo SARIMA y VARMA.
+Es posible considerar los modelos estado-espacio una generalización de los modelos ARIMA y VARMA.
