@@ -6,7 +6,7 @@ Blumstein, A., Cohen, J. \harvardand\ Miller, H.~D.  \harvardyearleft
   1980\harvardyearright , `{Demographically disaggregated projections of prison
   populations}', {\em Journal of Criminal Justice} {\bf 8}(1),~1--26.
 
-\harvarditem{DANE}{2009}{DANE}
+\harvarditem{DANE}{2009}{DANEPROY}
 DANE  \harvardyearleft 2009\harvardyearright , `{Estimaciones poblaci{\'{o}}n
   DANE}'.
 \newline\harvardurl{http://www.dane.gov.co/files/investigaciones/poblacion/seriesp85{\_}20/EstimacionesProyecciones1985{\_}{\_}020.xls}
@@ -42,17 +42,17 @@ Lee, R.~D. \harvardand\ Tuljapurkar, S.  \harvardyearleft 1994\harvardyearright
   89}(428),~1175.
 \newline\harvardurl{http://www.jstor.org/stable/2290980?origin=crossref}
 
-\harvarditem{L{\"{u}}tkepohl}{2005}{Lutkepohl2005}
-L{\"{u}}tkepohl, H.  \harvardyearleft 2005\harvardyearright , {State Space
-  Models}, {\em in} `New Introduction to Multiple Time Series Analysis',
-  Springer Berlin Heidelberg, Berlin, Heidelberg, pp.~611--642.
-\newline\harvardurl{http://link.springer.com/10.1007/978-3-540-27752-1{\_}18}
+\harvarditem{L{\"{u}}tkepohl}{2005}{Lutkepohl2005a}
+L{\"{u}}tkepohl, H.  \harvardyearleft 2005\harvardyearright , {\em {New
+  Introduction to Multiple Time Series Analysis}}, Springer Berlin Heidelberg,
+  Berlin, Heidelberg.
+\newline\harvardurl{http://link.springer.com/10.1007/978-3-540-27752-1}
 
 \harvarditem[Minton et~al.]{Minton, Statistician, Ginder, Brumbaugh,
   Smiley-Mcdonald \harvardand\ Rohloff}{2015}{Minton2015}
 Minton, T.~D., Statistician, B., Ginder, S., Brumbaugh, S.~M., Smiley-Mcdonald,
   H. \harvardand\ Rohloff, H.  \harvardyearleft 2015\harvardyearright ,
-  `{Census of Jails: Population Changes, 1999-2013}'.
+  `{Census of Jails: Population Changes, 1999 - 2013}'.
 \newline\harvardurl{https://www.bjs.gov/content/pub/pdf/cjpc9913.pdf}
 
 \harvarditem{Swanson \harvardand\ Tayman}{2012}{Swanson2012}
