@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.27)  1 MAY 2017 19:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.27)  14 MAY 2017 12:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -765,12 +765,12 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 100.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 719EF1C6F89F252F2D584F79B2FAB6F3;2182.
+(rerunfilecheck)             Checksum: F23FE4E6A15C20BDD927F6FDC68AC6D4;2189.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 100.
  ) 
 Here is how much of TeX's memory you used:
  9352 strings out of 494891
- 134762 string characters out of 6179039
+ 134772 string characters out of 6179039
  233720 words of memory out of 5000000
  12338 multiletter control sequences out of 15000+600000
  20487 words of font info for 51 fonts, out of 8000000 for 9000
@@ -795,9 +795,9 @@ i10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on Thesis.pdf (26 pages, 864631 bytes).
+Output written on Thesis.pdf (26 pages, 864980 bytes).
 PDF statistics:
- 937 PDF objects out of 1000 (max. 8388607)
+ 938 PDF objects out of 1000 (max. 8388607)
  407 compressed objects within 5 object streams
  77 named destinations out of 1000 (max. 500000)
  285 words of extra memory for PDF output out of 10000 (max. 10000000)
