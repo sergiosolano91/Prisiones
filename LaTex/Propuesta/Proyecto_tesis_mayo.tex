@@ -108,7 +108,7 @@ El CONPES 3828 de 2015 realiza, además,  proyecciones de la población carcelaria
 
 En este contexto resulta necesario contar con proyecciones de la población carcelaria en diferentes escenarios,para determinar la necesidad de cupos  en el corto y mediano plazo. Tales proyecciones deben tener en cuenta las dinámicas propias del sistema carcelario y deben permitir estimar el impacto de modificaciones a la política criminal y carcelaria, de forma que permitan una mejor planeación de la cantidad y/o tamaño de los centros carcelarios. Este problema se ha abordado anteriormente desde el estudio de poblaciones pequeñas.\cite {Swanson2012}
 
-Las poblaciones que se estiman y proyectan a un nivel menor que el nacional se conocen como poblaciones pequeñas (ciudad, departamento, etc...). Dentro de las poblaciones pequeñas se encuentran poblaciones especiales que "se localizan en un área especial por una acción legislativa o administrativa ".  \cite {Swanson2012}. La población carcelaria es un tipo de población especial cuyos componentes: nacimientos y defunciones no necesariamente siguen los patrones biológicos que dan vida al modelo exponencial y requieren el uso de técnicas diferentes que permitan un mejor ajuste. 
+Las poblaciones que se estiman y proyectan a un nivel menor que el nacional se conocen como poblaciones pequeñas (ciudad, departamento, etc...). Dentro de las poblaciones pequeñas se encuentran poblaciones especiales que "se localizan en un área especial por una acción legislativa o administrativa".  \cite {Swanson2012}. La población carcelaria es un tipo de población especial cuyos componentes: nacimientos y defunciones no necesariamente siguen los patrones biológicos que dan vida al modelo exponencial y requieren el uso de técnicas diferentes que permitan un mejor ajuste. 
 
 Las series de población carcelaria disponibles para Colombia son mediciones de la población al cierre de mes, agrupada por situación judicial y género. Los proyecciones de población suelen incluir las tasas de nacimiento, migración y mortalidad. En el caso de las poblaciones carcelarias, los equivalentes serían la tasa de ingreso al sistema, la tasa a la que son juzgados, la mortalidad y la duración de las penas, que determina la tasa de salida de los condenados. En el caso de Colombia estos datos no son libres, por lo tanto el modelo debe permitir estimar las tasas no observadas. Adicionalmente, estas tasas no son constantes a través del tiempo, pues dependen de la estructura del sistema judicial y del sistema carcelario.
 
@@ -130,7 +130,7 @@ El objetivo de la tesis es generar proyecciones de población, tratando la serie 
 
 \section{Revisión de Literatura}
 
-En 2016 Colombia ocupa el puesto catorce entre doscientos cincuenta y un paises por el tamaño de su población carcelaria (120 914 hbts.) y el cincuenta y uno según la tasa de encarcelamiento (240 por cada 100.000 hbts). Tasa que pasó de 51,5 en  el año 2000 a 240 por cada 100.000 hbts en 2016. Con una ocpación del 154\% de las plazas disponibles, resulta relevante contar con proyecciones de la población carcelaria en el corto, mediano y largo plazo. \cite{InstitueforCriminalPolicyResearch2016}
+En 2016 Colombia ocupa el puesto catorce entre doscientos cincuenta y un paises por el tamaño de su población carcelaria (120 914 hbts.) y el cincuenta y uno según la tasa de encarcelamiento (240 por cada 100.000 hbts). Tasa que pasó de 51,5 en  el año 2000 a 240 por cada 100.000 hbts en 2016. Con una ocpación del 154\% de las plazas disponibles, resulta relevante contar con proyecciones de la población carcelaria en el corto, mediano y largo plazo.\cite{InstitueforCriminalPolicyResearch2016}
 
 \subsection{Proyecciones de población}
 
@@ -168,7 +168,7 @@ El bureau de estadísticas e investigación del crimen en Australia proyecta las t
 
 Blummstein desarrolla un método de proyección basado en los componentes demográficos, tasas específicas de arresto por delito y reincidencias, a partir de estos datos proyecta el tamaño y la composición de las poblaciones \cite{Blumstein1980}.
 
-Con los datos libres disponibles en Colombia no se podría utilizar el enfoque ARIMA ni el método de Blummstein, pues las tasas de encarcelamiento y sentencia no se publican. La tesis busca proponer un método de proyección, para situaciones donde no se cuenta con el registro de los vitales o su equivalente en la población analizada.
+Con los datos libres disponibles en Colombia no se podría utilizar el enfoque ARIMA ni el método de Blummstein, pues las tasas de encarcelamiento y sentencia no se publican. La tesis busca proponer un método de proyección, para situaciones donde no se cuenta con el registro de los vitales o su equivalente en la población analizada. Se proponen los métodos demográficos de estimación para áreas pequeñas Censal-ratio y Ratio-Correlation, y su contraste con las metodologías ARIMA y Estado-Espacio que a diferencia de los métodos demográficos mencionados incorporan una medida de incertidumbre
 
 \subsection{Series de tiempo}
 
@@ -210,12 +210,12 @@ La estacionaridad débil se presenta cuando $E[X_j]$ y $E[X_jX_{j+h}]$ son indepe
 
 Box \& Jenkins proponen una aproximación iterativa de  cuatro etapas para la selección de un modelo \cite{Box2013}: 
 
-\begin{itemize}
+\begin{enumerate}
 	\item Selección de una clase de modelos, con base en la teoría y la práctica.
 	\item Identificación del modelo, donde se seleccionan un conjunto de parámetros que permitan explicar el sistema con parsimonia. 
 	\item Estimación de parámetros. 
 	\item Chequeo diagnóstico, para detectar fallas en el ajuste. Si se detectan fallas en el ajuste, se regresa al segundo paso. 
-\end{itemize}
+\end{enumerate}
 
 Los procesos ARMA son procesos aleatorios de la forma \cite{Shumway} : 
 
