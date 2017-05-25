@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.27)  14 MAY 2017 14:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.27)  25 MAY 2017 09:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -313,8 +313,8 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 Package: parskip 2001/04/09 non-zero parskip adjustments
 )
 (./Proyecto_tesis_mayo.aux
-LaTeX Info: Redefining \. on input line 11.
-LaTeX Info: Redefining \% on input line 11.
+LaTeX Info: Redefining \. on input line 10.
+LaTeX Info: Redefining \% on input line 10.
 )
 \openout1 = `Proyecto_tesis_mayo.aux'.
 
@@ -398,13 +398,7 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 47.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-)
-Overfull \hbox (8.75447pt too wide) in paragraph at lines 105--106
-\T1/cmr/m/n/10 cre-ció en 173,59$ $%, mien-tras la po-bla-ción pri-va-da de la 
-li-ber-tad (PPL) cre-ció en un 315,39$ $%."([]Departamento
- []
-
-[1
+) [1
 Non-PDF special ignored!
 Non-PDF special ignored!
 
@@ -437,14 +431,14 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 123.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 124.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 123.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 124.
  [2
 Non-PDF special ignored!
 Non-PDF special ignored!
@@ -458,8 +452,6 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!] [3
-Non-PDF special ignored!
-Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
@@ -493,14 +485,9 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
+Non-PDF special ignored!] [6
 Non-PDF special ignored!
 Non-PDF special ignored!
-Non-PDF special ignored!]
-Underfull \hbox (badness 10000) in paragraph at lines 296--309
-
- []
-
-[6
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
@@ -525,51 +512,49 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!]
-Underfull \hbox (badness 10000) in paragraph at lines 357--357
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 []|\T1/cmr/m/n/8 Idenficación,
  []
 
 
-Underfull \hbox (badness 1281) in paragraph at lines 357--357
+Underfull \hbox (badness 1281) in paragraph at lines 355--355
 \T1/cmr/m/n/8 es-ti-ma-ción y pro-
  []
 
 
-Underfull \hbox (badness 2556) in paragraph at lines 357--357
+Underfull \hbox (badness 2556) in paragraph at lines 355--355
 []|\T1/cmr/m/n/8 Aplicación de vi-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 357--357
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 []|\T1/cmr/m/n/8 Elaboración de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 357--357
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 []|\T1/cmr/m/n/8 Consolidación de
  []
 
-(./Proyecto_tesis_mayo.bbl
+(./Proyecto_tesis_mayo.bbl [7
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!]
 Overfull \hbox (250.11145pt too wide) in paragraph at lines 9--14
 \T1/cmr/m/n/10 *http://books.google.com/books?hl=en&lr=&id=jyrCqMBW_owC&oi=fnd&
 pg=PP1&dq=Time+Series+Analysis:+Forecasting+and+Control&ots=LPK-
  []
 
-[7
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!]
+
 Overfull \hbox (59.63019pt too wide) in paragraph at lines 32--36
 \T1/cmr/m/n/10 *http://www.dane.gov.co/files/investigaciones/poblacion/seriesp8
 5_20/EstimacionesProyecciones1985__020.xls 
@@ -615,18 +600,20 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
 Non-PDF special ignored!] (./Proyecto_tesis_mayo.aux
-LaTeX Info: Redefining \. on input line 11.
-LaTeX Info: Redefining \% on input line 11.
+LaTeX Info: Redefining \. on input line 10.
+LaTeX Info: Redefining \% on input line 10.
 ) ) 
 Here is how much of TeX's memory you used:
- 5408 strings out of 494891
- 77062 string characters out of 6179039
+ 5407 strings out of 494891
+ 77047 string characters out of 6179039
  151602 words of memory out of 5000000
- 8578 multiletter control sequences out of 15000+600000
+ 8577 multiletter control sequences out of 15000+600000
  23177 words of font info for 63 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
- 43i,11n,40p,758b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,11n,40p,796b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/sergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </home
 /sergio/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/sergio/.t
 exmf-var/fonts/pk/ljfour/jknappen/ec/ecti0900.600pk> </home/sergio/.texmf-var/f
@@ -648,9 +635,9 @@ live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on Proyecto_tesis_mayo.pdf (8 pages, 218928 bytes).
+Output written on Proyecto_tesis_mayo.pdf (8 pages, 221373 bytes).
 PDF statistics:
- 570 PDF objects out of 1000 (max. 8388607)
+ 578 PDF objects out of 1000 (max. 8388607)
  104 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
