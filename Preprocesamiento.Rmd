@@ -36,8 +36,7 @@ library("plotly")
 library("zoo")
 library("shiny")
 library("curl")
-library ("timeSeries")
-library ("ggplot2")
+library("timeSeries")
 library("dplyr")
 library("astsa")
 library("xts")
@@ -73,7 +72,7 @@ ppl_sitjur %<>% mutate (Fecha = as.Date(paste (1,mes,anio, sep = "/"),"%d/%m/%Y"
 
 ```{r gráfica de situación jurídica, echo = FALSE}
 
-ppl_sitjur %>% filter (categoria %in% c("sindicados","condenados","total"), valor >0) %>%  ggplot() + geom_line(aes(x=Fecha,y = valor, colour = categoria),stat = "identity") + ylab("Personas privadas de la libertad")-> grafica 
+ppl_sitjur %>% dplyr::filter(categoria %in% c("sindicados","condenados","total"), valor >0) %>%  ggplot() + geom_line(aes(x=Fecha,y = valor, colour = categoria),stat = "identity") + ylab("Personas privadas de la libertad")-> grafica 
 # ggplotly(grafica)
 grafica
 ggsave("sit_jur.png")
@@ -107,7 +106,7 @@ ppl_gen %<>% mutate (Fecha = as.Date(paste (1,mes,anio, sep = "/"),"%d/%m/%Y"))
 
 ```{r grafica - genero, echo = FALSE}
 
-ppl_gen %>% filter (categoria %in% c("hombres","mujeres","total"), valor >0) %>%  ggplot() + geom_line(aes(x=Fecha,y = valor, colour = categoria),stat = "identity") + ylab("Personas privadas de la libertad")-> grafica 
+ppl_gen %>% dplyr::filter (categoria %in% c("hombres","mujeres","total"), valor >0) %>%  ggplot() + geom_line(aes(x=Fecha,y = valor, colour = categoria),stat = "identity") + ylab("Personas privadas de la libertad")-> grafica 
 # ggplotly(grafica)
  grafica
  ggsave("genero.png")
@@ -268,7 +267,7 @@ Una primera aproximación a la proyección de poblaciones carcelarias será vali
 
 
 ```{r ACF, echo = FALSE}
-ppl_sitjur %>% filter(categoria == "total", !(is.na(valor))) -> ppl_total
+ppl_sitjur %>% dplyr::filter(categoria == "total", !(is.na(valor))) -> ppl_total
 ppl_total <- ppl_total$valor
 ts_total <- ts(ppl_total, start = 1991, frequency = 12)
 # plot(diff(diff(ts_total), lag = 12))
@@ -303,7 +302,7 @@ forecast <- sarima.for(ts_total,n.ahead = 36, 1,1,1,0,0,2, S = 12)
 ```
 
 ```{r ACF_sin, echo = FALSE, include = FALSE}
-ppl_sitjur %>% filter(categoria == "sindicados", !(is.na(valor))) -> ppl_sin
+ppl_sitjur %>% dplyr::filter(categoria == "sindicados", !(is.na(valor))) -> ppl_sin
 ppl_sin <- ppl_sin$valor
 ts_sin <- ts(ppl_sin, start = 1991, frequency = 12)
 # plot(diff(diff(ts_total), lag = 12))
@@ -319,7 +318,7 @@ forecast <- sarima.for(ts_sin,n.ahead = 36, 1,1,1,0,0,1, S = 12)
 ```
 
 ```{r ACF_con, echo = FALSE, include = FALSE}
-ppl_sitjur %>% filter(categoria == "condenados", !(is.na(valor))) -> ppl_con
+ppl_sitjur %>% dplyr::filter(categoria == "condenados", !(is.na(valor))) -> ppl_con
 ppl_con <- ppl_con$valor
 ts_con <- ts(ppl_con, start = 1991, frequency = 12)
 # plot(diff(diff(ts_total), lag = 12))
