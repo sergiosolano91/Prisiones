@@ -12,63 +12,59 @@ A level-1 auxiliary file: cap3.aux
 A level-1 auxiliary file: conclusiones.aux
 A level-1 auxiliary file: trabajofuturo.aux
 Database file #1: references.bib
-Repeated entry---line 464 of file references.bib
+Repeated entry---line 1133 of file references.bib
  : @misc{InstitutoNacionalPenitenciarioyCarcelario2016
  :                                                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 752 of file references.bib
- : @misc{DANE
- :           ,
-I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Blumstein1980"
 Warning--missing publisher in Box2013
+Warning--missing pages in Commandeur2011
 Warning--missing journal name in Commandeur2007
 Warning--missing journal name in DepartamentoNacionaldePlaneacion2015
 Warning--missing pages in DepartamentoNacionaldePlaneacion2015
 Warning--missing journal name in Minton2015
 Warning--missing pages in Minton2015
-Warning--missing publisher in Shumway
-Warning--missing year in Shumway
 Warning--missing institution in Wan1
 Warning--missing year in Wan1
-You've used 16 entries,
+You've used 19 entries,
             2213 wiz_defined-function locations,
-            604 strings with 6479 characters,
-and the built_in function-call counts, 4558 in all, are:
-= -- 377
-> -- 205
-< -- 1
-+ -- 82
-- -- 66
-* -- 344
-:= -- 739
-add.period$ -- 16
-call.type$ -- 16
-change.case$ -- 82
+            629 strings with 6880 characters,
+and the built_in function-call counts, 5374 in all, are:
+= -- 456
+> -- 232
+< -- 2
++ -- 93
+- -- 74
+* -- 422
+:= -- 874
+add.period$ -- 19
+call.type$ -- 19
+change.case$ -- 95
 chr.to.int$ -- 0
-cite$ -- 26
-duplicate$ -- 207
-empty$ -- 409
-format.name$ -- 66
-if$ -- 947
+cite$ -- 28
+duplicate$ -- 241
+empty$ -- 482
+format.name$ -- 74
+if$ -- 1115
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 32
-newline$ -- 58
-num.names$ -- 32
-pop$ -- 132
+int.to.str$ -- 19
+missing$ -- 38
+newline$ -- 67
+num.names$ -- 38
+pop$ -- 141
 preamble$ -- 1
-purify$ -- 65
+purify$ -- 75
 quote$ -- 0
-skip$ -- 130
+skip$ -- 145
 stack$ -- 0
-substring$ -- 195
-swap$ -- 46
-text.length$ -- 1
+substring$ -- 251
+swap$ -- 50
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 56
-warning$ -- 10
-while$ -- 43
-width$ -- 18
-write$ -- 140
-(There were 2 error messages)
+type$ -- 68
+warning$ -- 9
+while$ -- 53
+width$ -- 21
+write$ -- 170
+(There was 1 error message)

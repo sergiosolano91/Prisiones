@@ -7,24 +7,24 @@
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{10}
 
-\bibitem{Blumstein1980}
-Alfred Blumstein, Jacqueline Cohen, and Harold~D. Miller,
-  \emph{{Demographically disaggregated projections of prison populations}},
-  Journal of Criminal Justice \textbf{8} (1980), no.~1, 1--26.
-
-\bibitem{Boland2011}
-John Boland, \emph{{Box-Jenkins Time Series Models}}, International
-  Encyclopedia of Statistical Science, Springer Berlin Heidelberg, Berlin,
-  Heidelberg, 2011, pp.~178--181.
-
 \bibitem{Box2013}
 George E~P Box, Gm~Jenkins, and Gc~Reinsel, \emph{{Time series analysis:
   forecasting and control}}, 2013.
+
+\bibitem{Boland2011}
+Paolo Brandimarte, \emph{{Time Series Models}}, Quantitative Methods: An
+  Introduction for Business Management, Springer Berlin Heidelberg, Berlin,
+  Heidelberg, 2011, pp.~527--579.
 
 \bibitem{Brockwell2011}
 Peter~J. Brockwell, \emph{{Time Series}}, International Encyclopedia of
   Statistical Science, Springer Berlin Heidelberg, Berlin, Heidelberg, 2011,
   pp.~1601--1605.
+
+\bibitem{Commandeur2011}
+Jacques J~F Commandeur, Siem~Jan Koopman, and Marius Ooms, \emph{{Statistical
+  Software for State Space Methods}}, JSS Journal of Statistical Software
+  \textbf{41} (2011), no.~1.
 
 \bibitem{Commandeur2007}
 Jacques~J.F Commandeur and Siem~Jan Koopman, \emph{{An Introduction to State
@@ -37,6 +37,10 @@ Departamento Administrativo Nacional de~Estad{\'{i}}stica (DANE),
 \bibitem{DepartamentoNacionaldePlaneacion2015}
 {Departamento Nacional de Planeaci{\'{o}}n}, \emph{{Conpes 3828 POL{\'{I}}TICA
   PENITENCIARIA Y CARCELARIA EN COLOMBIA}},  (2015).
+
+\bibitem{Helske2017}
+Jouni Helske, \emph{{Exponential Family State Space Models in R}}, Journal of
+  Statistical Software \textbf{78} (2017), no.~10, 1--39.
 
 \bibitem{InstitueforCriminalPolicyResearch2016}
 {Institute for Criminal Policy Research}, \emph{{Colombia | World Prison
@@ -65,14 +69,23 @@ Todd~D Minton, Bjs Statistician, Scott Ginder, Susan~M Brumbaugh, Hope
   Smiley-Mcdonald, and Harley Rohloff, \emph{{Census of Jails: Population
   Changes, 1999 - 2013}},  (2015).
 
+\bibitem{Petris2011}
+Giovanni Petris and Sonia Petrone, \emph{{State Space Models in R}}, Journal of
+  Statistical Software \textbf{41} (2011), no.~4, 128--129.
+
 \bibitem{Shumway}
-Robert~H Shumway and David~S Stoffer, \emph{{Time Series Analysis and
-  Applications}}.
+Robert~H Shumway and David~S Stoffer, \emph{{Time Series Analysis and Its
+  Applications}}, Springer Texts in Statistics, vol.~45, Springer New York, New
+  York, NY, 2011.
 
 \bibitem{Swanson2012}
 David~A Swanson and Jeff Tayman, \emph{{Subnational Population Estimates}}, The
   Springer Series on Demographic Methods and Population Analysis, vol.~31,
   Springer Netherlands, Dordrecht, 2012.
+
+\bibitem{Tusell2011}
+Fernando Tusell, \emph{{Kalman Filtering in R}}, Journal of Statistical
+  Software \textbf{39} (2011), no.~2, 1--27.
 
 \bibitem{Wan1}
 Wai-Yin Wan1, Steve Moffatt2, Zachary Xie3, Simon Corben, and Don Weatherburn,
