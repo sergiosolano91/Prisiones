@@ -355,13 +355,58 @@ ppl_total <- ppl_total$valor
 ts_total <- ts(ppl_total, start = 1991, frequency = 12)
 #plot(diff(diff(ts_total), lag = 12))
 #acf2(diff(diff(ts_total), lag = 12), max.lag = 60, details = FALSE)
-plot (acf(diff(diff(ts_total), lag = 12), lag.max = 60, plot = FALSE),main = " ")
-dev.copy(png,'AFC_var_pob_total_desesta.png')
-dev.off()
-plot(pacf(diff(diff(ts_total), lag = 12), lag.max = 60, plot = FALSE),main = " ")
-dev.copy(png,'PAFC_var_pob_total_desesta.png')
-dev.off()
+plot(acf(diff(diff(ts_total), lag = 12), lag.max = 60, plot = FALSE),main = " ")
+#dev.copy(png,'AFC_var_pob_total_desesta.png')
+#dev.off()
+pacf_total <- plot(pacf(diff(diff(ts_total), lag = 12), lag.max = 60, plot = FALSE),main = " ")
+#dev.copy(png,'PAFC_var_pob_total_desesta.png')
+#dev.off()
+```
 
+```{r afc ggplot, fig.height=10, fig.width=7}
+## Crear variables
+# Población carcelaria total
+ppl_sitjur %>% dplyr::filter(categoria == "total", !(is.na(valor))) -> ppl_total
+ppl_total <- ppl_total$valor
+ts_total <- ts(ppl_total, start = 1991, frequency = 12)
+# Sindicados
+ppl_sitjur %>% dplyr::filter(categoria == "sindicados", !(is.na(valor))) -> ppl_sindi
+ppl_sindi <- ppl_sindi$valor
+ts_sindi <- ts(ppl_sindi, start = 1991, frequency = 12)
+# Condenados
+ppl_sitjur %>% dplyr::filter(categoria == "condenados", !(is.na(valor))) -> ppl_conde
+ppl_conde <- ppl_conde$valor
+ts_conde <- ts(ppl_conde, start = 1991, frequency = 12)
+error = 2/sqrt(length(ppl_conde))
+
+## Población total
+# Calcular acf y pacf
+acf_total <- as.data.frame(acf2(diff(diff(ts_total), lag = 12), max.lag = 60))
+# Gráfica acf total
+acf_total %>% ggplot() + geom_bar(aes(x = c(1:60), y = ACF), stat = "identity", fill = "steelblue") + scale_x_continuous(breaks = c(12,24,36,48,60)) + xlab("LAG") + ggtitle("ACF Población total") + ylim(c(-0.55,0.55)) + geom_hline(aes(yintercept = error), colour = "royalblue", linetype="dashed") + geom_hline(aes(yintercept = -error), colour = "royalblue", linetype="dashed") + theme_minimal()-> graf_acf_total
+# Gráfica pacf total  
+acf_total %>% ggplot() + geom_bar(aes(x = c(1:60), y = PACF), stat = "identity", fill = "steelblue") + scale_x_continuous(breaks = c(12,24,36,48,60)) + xlab("LAG") + ggtitle("PACF Población total") + ylim(c(-0.55,0.55)) + geom_hline(aes(yintercept = error), colour = "royalblue", linetype="dashed") + geom_hline(aes(yintercept = -error), colour = "royalblue", linetype="dashed") + theme_minimal() -> graf_pacf_total
+
+## Población sindicada
+# Calcular acf y pacf
+acf_sindi <- as.data.frame(acf2(diff(diff(ts_sindi), lag = 12), max.lag = 60))
+# Gráfica acf sindicados
+acf_sindi %>% ggplot() + geom_bar(aes(x = c(1:60), y = ACF), stat = "identity", fill = "steelblue1") + scale_x_continuous(breaks = c(12,24,36,48,60)) + xlab("LAG") + ggtitle("ACF Población sindicada") + ylim(c(-0.55,0.55)) + geom_hline(aes(yintercept = error), colour = "royalblue", linetype="dashed") + geom_hline(aes(yintercept = -error), colour = "royalblue", linetype="dashed") + theme_minimal() -> graf_acf_sindi
+# Gráfica pacf sindicados 
+acf_sindi %>% ggplot() + geom_bar(aes(x = c(1:60), y = PACF), stat = "identity", fill = "steelblue1") + scale_x_continuous(breaks = c(12,24,36,48,60)) + xlab("LAG") + ggtitle("PACF Población sindicada") + ylim(c(-0.55,0.55)) + geom_hline(aes(yintercept = error), colour = "royalblue", linetype="dashed") + geom_hline(aes(yintercept = -error), colour = "royalblue", linetype="dashed") + theme_minimal() -> graf_pacf_sindi
+
+## Población condenada
+# Calcular acf y pacf
+acf_conde <- as.data.frame(acf2(diff(diff(ts_conde), lag = 12), max.lag = 60))
+# Gráfica acf condenados
+acf_conde %>% ggplot() + geom_bar(aes(x = c(1:60), y = ACF), stat = "identity", fill = "steelblue2") + scale_x_continuous(breaks = c(12,24,36,48,60)) + xlab("LAG") + ggtitle("ACF Población condenada") + ylim(c(-0.55,0.55)) + geom_hline(aes(yintercept = error), colour = "royalblue", linetype="dashed") + geom_hline(aes(yintercept = -error), colour = "royalblue", linetype="dashed") + theme_minimal() -> graf_acf_conde
+# Gráfica pacf condenados
+acf_conde %>% ggplot() + geom_bar(aes(x = c(1:60), y = PACF), stat = "identity", fill = "steelblue2") + scale_x_continuous(breaks = c(12,24,36,48,60)) + xlab("LAG") + ggtitle("PACF Población condenada") + ylim(c(-0.55,0.55)) + geom_hline(aes(yintercept = error), colour = "royalblue", linetype="dashed") + geom_hline(aes(yintercept = -error), colour = "royalblue", linetype="dashed") + theme_minimal() -> graf_pacf_conde
+
+png(file = 'ACF_var_pob.png', height = 750, width = 500, res = 85)
+grid.arrange(graf_acf_total, graf_pacf_total,graf_acf_sindi, graf_pacf_sindi,graf_acf_conde, graf_pacf_conde, ncol = 2)
+#dev.copy(png,'ACF_var_pob')
+dev.off()
 ```
 
 Las funciones de autocorrelación y correlación cruzada, de $Y_t - Y_{t - 1} $ muestran: 

@@ -1,6 +1,16 @@
 \chapter{Modelos SARIMA}
 
+La estimación de los modelos se realiza usando software R, funciones en R base y el paquete astsa, cuyo uso es discutido en detalle por Shumway \cite{Shumway}
+
 \section{Identificación del modelo}
+
+% Variación población total, sindicada y condenada
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{variacion_intermensual}
+	\caption[Variación inter-mensual de población carcelaria]{Variación inter-mensual de población carcelaria, sindicados y condenados}
+	\label{fig:variacion_intermensual}
+\end{figure}
 
 Antes de realizar la proyección de una serie de tiempo, es necesario identificar el modelo que explique adecuadamente su comportamiento. 
 
@@ -12,15 +22,7 @@ La serie tiene un componente estacional marcado, con una reducción de la poblaci
 
 La mayor parte de la variación de la población total, se puede asociar con variaciones en a población sindicada \ref{fig:variacion_mensual_sindicados_desc}. La población condenada tiene una tendencia con una tendencia más estable.  \ref{fig:variacion_mensual_condenados_desc}
 
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{variacion_intermensual}
-	\caption[Variación inter-mensual de población carcelaria]{Variación inter-mensual de población carcelaria, sindicados y condenados}
-	\label{fig:variacion_intermensual}
-\end{figure}
-
-
+% Descomposición variación población total
 \begin{figure}
 \centering
 \includegraphics[width=0.7\linewidth]{variacion_mensual_total_desc}
@@ -28,20 +30,35 @@ La mayor parte de la variación de la población total, se puede asociar con varia
 \label{fig:variacion_mensual_total_desc}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{variacion_mensual_condenados_desc}
-	\caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria sindicada,  descompuesta por tendencia, estacionalidad y componente aleatorio.}
-	\label{fig:variacion_mensual_condenados_desc}
-\end{figure}
 
+% Descomposición variación población sindicada
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\linewidth]{variacion_mensual_condenados_desc}
-	\caption[Descomposición de la variación inter-mensual de población carcelaria condenada]{Variación mensual de población carcelaria condenada,  descompuesta por tendencia, estacionalidad y componente aleatorio.}
+	\includegraphics[width=0.7\linewidth]{variacion_mensual_sindicados_desc}
+	\caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria sindicada,  descompuesta por tendencia, estacionalidad y componente aleatorio.}
 	\label{fig:variacion_mensual_sindicados_desc}
 \end{figure}
 
+% Descomposición variación población condenada
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{variacion_mensual_condenados_desc}
+	\caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria condenada,  descompuesta por tendencia, estacionalidad y componente aleatorio.}
+	\label{fig:variacion_mensual_condenados_desc}
+\end{figure}
+
+
+La función de autocorrelación ACF(s,t) mide la predictibilidad lineal de la observación $x_s$ usando solo la observación $(x_t)$, separadas por $s-t$ observaciones \cite{Shumway}. La función de correlación de la población total, sindicada y condenada. 
+
+
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{ACF_var_pob}
+	\caption[Autocorrelación parcial de la variación inter-mensual]{Autocorrelación parcial de la variación inter-mensual de la población}
+	\label{fig:ACF_variacion_mensual}
+\end{figure}
 
 
 \section{Proyecciones 2017 - 2020}
