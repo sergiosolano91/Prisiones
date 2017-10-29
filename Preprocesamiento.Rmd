@@ -41,7 +41,7 @@ library("dplyr")
 library("astsa")
 library("xts")
 library ("vars")
-
+library("gridExtra")
 ```
 
 ```{r carga de datos, echo = FALSE, include=FALSE }
@@ -355,8 +355,12 @@ ppl_total <- ppl_total$valor
 ts_total <- ts(ppl_total, start = 1991, frequency = 12)
 #plot(diff(diff(ts_total), lag = 12))
 #acf2(diff(diff(ts_total), lag = 12), max.lag = 60, details = FALSE)
-plot (acf(diff(diff(ts_total), lag = 12), lag.max = 60, plot = FALSE),main = "AFC Variación de la población total desestacionalizado")
-plot(pacf(diff(diff(ts_total), lag = 12), lag.max = 60, plot = FALSE),main = "PAFC Variación de la población total desestacionalizado")
+plot (acf(diff(diff(ts_total), lag = 12), lag.max = 60, plot = FALSE),main = " ")
+dev.copy(png,'AFC_var_pob_total_desesta.png')
+dev.off()
+plot(pacf(diff(diff(ts_total), lag = 12), lag.max = 60, plot = FALSE),main = " ")
+dev.copy(png,'PAFC_var_pob_total_desesta.png')
+dev.off()
 
 ```
 
@@ -406,8 +410,8 @@ ppl_con <- ppl_con$valor
 ts_con <- ts(ppl_con, start = 1991, frequency = 12)
 # plot(diff(diff(ts_total), lag = 12))
 # acf2(diff(diff(ts_total), lag = 12), max.lag = 60, details = FALSE)
-plot (acf(diff(diff(ts_con), lag = 12), lag.max = 60, plot = FALSE),main = "AFC Variación de la población condenada desestacionalizado")
-plot(pacf(diff(diff(ts_con), lag = 12), lag.max = 60, plot = FALSE),main = "PAFC Variación de la población condenada desestacionalizado")
+acf <- plot (acf(diff(diff(ts_con), lag = 12), lag.max = 60, plot = FALSE),main = "AFC Variación de la población condenada desestacionalizado")
+plot(pacf(diff(diff(ts_con), lag = 12), lag.max = 60, plot = FALSE),main = "PAFC acf Variación de la población condenada desestacionalizado")
 ```
 
 Se presenta proyección de la población condenada: 
