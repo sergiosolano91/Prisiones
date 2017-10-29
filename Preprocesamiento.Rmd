@@ -169,8 +169,9 @@ ggsave("tasas_log.png")
 
 Una primera aproximación al análisis de la población carcelaria, se podría realizar al separar los componentes estacionales, de tendencia y aleatorios de la serie de tiempo. No obstante, es posible inferir que la variabilidad de la serie no es constante. Por esta razón resultaría pertinente analizar la tasa de crecimiento de la población de mes a mes. Una técnica comunmente usada es trabajar con la difencia de los logaritmos de la población, que para variaciones cercanas a cero, se aproxima a la tasa de crecimiento. 
 
-```{r tasa crecimiento, echo = FALSE,  warning = FALSE, message=FALSE}
 
+```{r tasa crecimiento lineal, echo = FALSE,  warning = FALSE, message=FALSE}
+# ajustar población sindicada y condenada para análisis
 MPPtimeseries <- ts(ppl_gen$total, frequency=12, start=c(1991,1))
 
 autoplot(as.zoo(diff(log(MPPtimeseries))), geom = "line") + ylab("tasa de crecimiento- PPL total") + xlab("Periodo") -> graf_crecimiento
@@ -181,7 +182,7 @@ graf_crecimiento
 
 
 ```{r tasa de crecimiento descompuesto, echo = FALSE,  warning = FALSE, message=FALSE }
-DeltaMPP <- decompose(diff(log(MPPtimeseries)))
+DeltaMPP <- decompose(diff(MPPtimeseries))
 
 tendencia <- as.zoo(DeltaMPP$trend)
 aleatorio <- as.zoo(DeltaMPP$random)
@@ -191,6 +192,19 @@ autoplot(merge(tendencia,estacional, aleatorio), geom = "line") + ylab("tasa de 
 graf_tendencia       
 # ggplotly(graf_tendencia)
 ggsave("desc_total.png")
+```
+
+
+
+
+```{r tasa crecimiento, echo = FALSE,  warning = FALSE, message=FALSE}
+
+MPPtimeseries <- ts(ppl_gen$total, frequency=12, start=c(1991,1))
+
+autoplot(as.zoo(diff(log(MPPtimeseries))), geom = "line") + ylab("tasa de crecimiento- PPL total") + xlab("Periodo") -> graf_crecimiento
+graf_crecimiento
+# ggplotly(graf_crecimiento)
+
 ```
 
 Crecimiento de la población privada de la libertad masculida
@@ -248,6 +262,75 @@ graf_tendencia
 # ggplotly(graf_tendencia)
 ggsave("tasa_crec_femenina.png")
 ```
+Como se evidencia que componente aleatorio no tiene varianza constante se genera componente lineal, el análisis pertinente es por sindicados y condenados, pues es el que se considera en el resto de la tesis. 
+
+```{r }
+# Población sindicada a serie de tiempo por situación
+ppl_sitjur  %>% spread(key = "categoria", value = valor) -> ppl_situacion 
+# Serie de tiempo de población total
+TPPtimeseries <- ts(ppl_situacion$total, frequency=12, start=c(1991,1))
+# Serie de tiempo de población sindicada 
+SPPtimeseries <- ts(ppl_situacion$condenados, frequency=12, start=c(1991,1))
+# Serie de tiempo de población condenada
+CPPtimeseries <- ts(ppl_situacion$sindicados, frequency=12, start=c(1991,1))
+
+# Ajustar a zoo, para poder hacer gráfica
+Total <- as.zoo(diff(TPPtimeseries))
+Sindicados <- as.zoo(diff(SPPtimeseries))
+Condenados <- as.zoo(diff(CPPtimeseries))
+
+# Gráficar crecimient de las tres
+autoplot(merge(Total, Sindicados, Condenados), geom = "line")  + ylab("N° de personas") + xlab("Periodo") -> graf_var
+graf_var
+ggsave("variacion_intermensual.png")
+```
+```{r Descomponer población total}
+# Descomponer variación intermensual
+DeltaTPP <- decompose(Total)
+
+# Asignar
+tendencia <- as.zoo(DeltaTPP$trend)
+aleatorio <- as.zoo(DeltaTPP$random)
+estacional <- as.zoo(DeltaTPP$seasonal)
+
+# Generar gráfica 
+autoplot(merge(tendencia,estacional, aleatorio), geom = "line") + ylab("N° de personas") + xlab("Periodo") -> graf_tendencia_tpp
+graf_tendencia_tpp
+ggsave("variacion_mensual_total_desc.png")
+```
+
+```{r Descomponer población sindicados}
+# Descomponer variación intermensual
+DeltaSPP <- decompose(Sindicados)
+
+# Asignar
+tendencia <- as.zoo(DeltaSPP$trend)
+aleatorio <- as.zoo(DeltaSPP$random)
+estacional <- as.zoo(DeltaSPP$seasonal)
+
+# Generar gráfica
+autoplot(merge(tendencia,estacional, aleatorio), geom = "line") + ylab("N° de personas, sindicados") + xlab("Periodo") -> graf_tendencia_spp
+
+# gráfica
+graf_tendencia_spp
+ggsave("variacion_mensual_sindicados_desc.png")
+```
+```{r Descomponer población condenados}
+# Descomponer variación intermensual
+DeltaCPP <- decompose(Condenados)
+
+# Asignar
+tendencia <- as.zoo(DeltaCPP$trend)
+aleatorio <- as.zoo(DeltaCPP$random)
+estacional <- as.zoo(DeltaCPP$seasonal)
+
+# Generar gráfica
+autoplot(merge(tendencia,estacional, aleatorio), geom = "line") + ylab("N° de personas, condenados") + xlab("Periodo") -> graf_tendencia_cpp
+
+# gráfica
+graf_tendencia_cpp
+ggsave("variacion_mensual_condenados_desc.png")
+```
 
 # Procesos ARIMA
 
@@ -270,8 +353,8 @@ Una primera aproximación a la proyección de poblaciones carcelarias será vali
 ppl_sitjur %>% dplyr::filter(categoria == "total", !(is.na(valor))) -> ppl_total
 ppl_total <- ppl_total$valor
 ts_total <- ts(ppl_total, start = 1991, frequency = 12)
-# plot(diff(diff(ts_total), lag = 12))
-# acf2(diff(diff(ts_total), lag = 12), max.lag = 60, details = FALSE)
+#plot(diff(diff(ts_total), lag = 12))
+#acf2(diff(diff(ts_total), lag = 12), max.lag = 60, details = FALSE)
 plot (acf(diff(diff(ts_total), lag = 12), lag.max = 60, plot = FALSE),main = "AFC Variación de la población total desestacionalizado")
 plot(pacf(diff(diff(ts_total), lag = 12), lag.max = 60, plot = FALSE),main = "PAFC Variación de la población total desestacionalizado")
 
