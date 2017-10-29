@@ -1,8 +1,48 @@
 \chapter{Modelos SARIMA}
 
-\section{Marco teórico}
-
 \section{Identificación del modelo}
+
+Antes de realizar la proyección de una serie de tiempo, es necesario identificar el modelo que explique adecuadamente su comportamiento. 
+
+Aunque conocemos, por la estrucutura del proceso que genera los datos, que las series de tiempo de población sindicada y condenada no son independientes, podemos simplificar la proyección, tratándolas como independientes. En este caso, los modelos ARIMA y SARIMA resultan apropiados, pues permiten explicar separadamente cada observación en función del comportamiento histórico de la serie.
+
+El capítulo anterior sugería que la población carcelaria, tanto sindicada como condenada, tiene una marcada tendencia al alza. En este caso una herramienta útil es graficar la variación mes a mes de la población. \ref{fig:variacion_intermensual}. Para tener una mejor estrucutura de análisis usamos la función "decompose" de R base. 
+
+La serie tiene un componente estacional marcado, con una reducción de la población carcelaria en diciembre. La variabilidad del componente aleatorio es elevada. La tendencia parece tener cambios estructurales en algunos periodos, por ejemplo reducción de la población carcelaria entre 2005-2007,  y 2012 - 2015, e incrementos de la población de magnitud mayor al promedio entre 2008 y 2012.
+
+La mayor parte de la variación de la población total, se puede asociar con variaciones en a población sindicada \ref{fig:variacion_mensual_sindicados_desc}. La población condenada tiene una tendencia con una tendencia más estable.  \ref{fig:variacion_mensual_condenados_desc}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{variacion_intermensual}
+	\caption[Variación inter-mensual de población carcelaria]{Variación inter-mensual de población carcelaria, sindicados y condenados}
+	\label{fig:variacion_intermensual}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{variacion_mensual_total_desc}
+\caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria descompuesta por tendencia, estacionalidad y componente aleatorio.}
+\label{fig:variacion_mensual_total_desc}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{variacion_mensual_condenados_desc}
+	\caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria sindicada,  descompuesta por tendencia, estacionalidad y componente aleatorio.}
+	\label{fig:variacion_mensual_condenados_desc}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{variacion_mensual_condenados_desc}
+	\caption[Descomposición de la variación inter-mensual de población carcelaria condenada]{Variación mensual de población carcelaria condenada,  descompuesta por tendencia, estacionalidad y componente aleatorio.}
+	\label{fig:variacion_mensual_sindicados_desc}
+\end{figure}
+
+
 
 \section{Proyecciones 2017 - 2020}
 
