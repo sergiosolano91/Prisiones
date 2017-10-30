@@ -498,21 +498,54 @@ if(nchar(system.file(package="astsa"))) citation("astsa")
 ```
 
 
-## Documento tesis
+# Documento tesis
 
-Sergio 
+```{r Estimación pob total}
+### Total 111002
+png(file = 'Arima_total_111002.png', height = 750, width = 500, res = 85)
+arima_total_1 <- sarima(ts_total,1,1,1,0,0,2, S = 12, details = FALSE)
+dev.off()
 
-```{r gráfica forecast} 
-arima_total <- sarima(ts_total,3,2,1,0,0,2, S = 12, details = FALSE)
+### Total 111001
+png(file = 'Arima_total_111001.png', height = 750, width = 500, res = 85)
+arima_total_2 <- sarima(ts_total,1,1,1,0,0,1, S = 12, details = FALSE)
+dev.off()
+
+auto.arima(ts_total)
+### Total Auto Arima
+png(file = 'Arima_total_321002.png', height = 750, width = 500, res = 85)
+arima_total_3 <- sarima(ts_total,3,2,1,0,0,2, S = 12, details = FALSE)
+dev.off()
+
+auto.arima(ts_total, ic = "aic")
+### Total 121002
+png(file = 'Arima_total_121002.png', height = 750, width = 500, res = 85)
+arima_total_4 <- sarima(ts_total,1,2,1,0,0,2, S = 12, details = FALSE)
+dev.off()
+
+Indicadores <- matrix(c(arima_total_1$AIC,arima_total_1$BIC,arima_total_2$AIC,arima_total_2$BIC,arima_total_3$AIC,arima_total_3$BIC,arima_total_4$AIC,arima_total_4$BIC),ncol = 2)
+
+AIC_total <- AIC(arima_total_1$fit,arima_total_2$fit, arima_total_3$fit,arima_total_4$fit)
+BIC_total <- BIC(arima_total_1$fit,arima_total_2$fit, arima_total_3$fit,arima_total_4$fit)
+
+Indicadores_df <- cbind(c("(1,1,1,0,0,2)","(1,1,1,0,0,1)","(3,2,1,0,0,2)","(1,2,1,0,0,2)"),round(AIC_total$AIC,2), round(BIC_total$BIC,2))
+
+colnames(Indicadores_df) <- c("ORDEN","AIC","BIC")
+#xtable(Indicadores_df)
+#xtable(arima_total_4$ttable)
+#xtable(arima_total_3$ttable, label = "parámetros_321002", caption = "Parámetros del modelo (3,2,1,0,0,2)")
+```
+
+```{r gráfica forecast total} 
 # Proyección
-forecast <- sarima.for(ts_total,n.ahead = 36, 3,2,1,0,0,2, S = 12)
-# Proyección
-forecast <- sarima.for(ts_total,n.ahead = 36, 3,2,1,0,0,2, S = 12)
+forecast <- sarima.for(ts_total,n.ahead = 36, 1,2,1,0,0,2, S = 12)
 # data frame
 forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
 #data histórica
 hist_frame <- data.frame(Historico=as.matrix(ts_total), date=as.Date(as.yearmon(time(ts_total))))
 # ggplot
-ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico"))  + theme_minimal()
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Población carcelaria total") + theme_minimal() -> graf_pry_total_4
+graf_pry_total_4
+ggsave("graf_pry_total_4.png")
 ```
 

@@ -91,10 +91,106 @@ En este caso una primera estimación se realiza para la proyección de la població
 El comportamiento de la ACF y la PACF es similar al de la población sindicada, sugiriendo el mismo modelo: SARIMA(1,1,1,0,0,1).
 
 \section{Estimación de parámtetros}
+
 El proceso de estimación se realizará para cada serie por separado, luego se validará la efectividad de incluir más parámetros, usando como criterio de comparación el BIC. A modo informativo se usa la función auto.arima del paquete forecast, para seleccionar el modelo con menor AIC. \cite{Hyndman2017}  
- \cite{Hyndman2008} 
- 
+ \cite{Hyndman2008}. 
+
 \subsection{Población total}
+
+De acuerdo con el diagnóstico se evaluaron los siguientes modelos: 
+
+\begin{enumerate}
+	\item Sarima de orden (1,1,1) y estacionalidad (0,0,2)
+	\item Sarima de orden (1,1,1) y estacionalidad (0,0,1). Se valida que el BIC y el AIC son menores en el modelo 1, como se esperaría de acuerdo con nuestro diagnóstico. Ver tabla \ref{Compara_modelos_total}
+	\item Sarima de orden (3,2,1) y estacionalidad (0,0,2). Es el modelo sugerido por la función auto.arima, sin embargo incluye parámetros autoregresivos no significativos (pvalue > 0.05). Ver tabla \ref{parámetros_321002}
+	\item Sarima de orden (1,2,1) y estacionalidad (0,0,2). Este modelo tiene un BIC menor al modelo 3, y eliminando dos parámetros no significativos conserva un AIC cercano.
+\end{enumerate}
+
+
+Para el modelo 1 y el modelo 2 la estadística de Ljung-box sugiere que aún hay correlación significativa en los residuos, el modelo 3 y el modelo 4 no tienen correlación significativa en los residuos.
+
+En las proyecciones siguientes para la población total se usará el modelo 4. 
+
+\begin{table}[H]
+	\centering
+	\caption{Comparación de criterios de información}
+	\label{Compara_modelos_total}
+	\begin{tabular}{rlll}
+		\hline
+		& Orden & AIC & BIC \\ 
+		\hline
+		1 & (1,1,1)(0,0,2) & 4885.2 & 4907.66 \\ 
+		2 & (1,1,1)(0,0,1) & 4897.79 & 4916.51 \\ 
+		3 & (3,2,1)(0,0,2) & 4874.46 & 4900.64 \\ 
+		4 & (1,2,1((0,0,2) & 4874.86 & 4893.56 \\ 
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{Parámetros del modelo (3,2,1,0,0,2)} 
+	\label{parámetros_321002}
+	\begin{tabular}{rrrrr}
+		\hline
+		& Estimate & SE & t.value & p.value \\ 
+		\hline
+		ar1 & 0.05 & 0.10 & 0.50 & 0.62 \\ 
+		ar2 & -0.09 & 0.07 & -1.16 & 0.25 \\ 
+		ar3 & -0.16 & 0.07 & -2.18 & 0.03 \\ 
+		ma1 & -0.68 & 0.09 & -7.25 & 0.00 \\ 
+		sma1 & 0.24 & 0.06 & 4.10 & 0.00 \\ 
+		sma2 & 0.19 & 0.05 & 3.88 & 0.00 \\ 
+		\hline
+	\end{tabular}
+\end{table}
+
+
+\begin{table}[H]
+	\centering
+	\caption{Parámetros del modelo (1,2,1,0,0,2)}
+	\label{parámetros_121002}
+	\begin{tabular}{rrrrr}
+		\hline
+		& Estimate & SE & t.value & p.value \\ 
+		\hline
+		ar1 & 0.19 & 0.08 & 2.39 & 0.02 \\ 
+		ma1 & -0.82 & 0.05 & -16.48 & 0.00 \\ 
+		sma1 & 0.24 & 0.06 & 4.10 & 0.00 \\ 
+		sma2 & 0.19 & 0.05 & 3.89 & 0.00 \\ 
+		\hline
+	\end{tabular}
+\end{table}
+
+%Gráficas de astsa sobre ajuste de modelos. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Arima_total_111002}
+	\caption[Diagnóstico del sarima (1,1,1)(0,0,2), población total]{Diagnóstico del Modelo 1. sarima (1,1,1)(0,0,2), para la población carcelaria total. Generado con astsa \cite{Stoffer2014}}
+	\label{fig:Arima_total_111002}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Arima_total_111001}
+	\caption[Diagnóstico del sarima (1,1,1)(0,0,1), población total]{Diagnóstico del Modelo 2. sarima (1,1,1)(0,0,1), para la población carcelaria total. Generado con astsa \cite{Stoffer2014}}
+	\label{fig:Arima_total_111001}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Arima_total_321002}
+	\caption[Diagnóstico del sarima (3,2,1)(0,0,2), población total]{Diagnóstico del Modelo 3. sarima (3,2,1)(0,0,2), para la población carcelaria total. Generado con astsa \cite{Stoffer2014}}
+	\label{fig:Arima_total_321002}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Arima_total_121002}
+	\caption[Diagnóstico del sarima (1,2,1)(0,0,2), población total]{Diagnóstico del Modelo 4. sarima (1,2,1)(0,0,2), para la población carcelaria total. Generado con astsa \cite{Stoffer2014}}
+	\label{fig:Arima_total_121002}
+\end{figure}
 
 \subsection{Población sindicada}
 
@@ -104,6 +200,17 @@ El proceso de estimación se realizará para cada serie por separado, luego se val
 \section{Proyección}
 
 \subsection{Población total}
+
+Proyección de la población total se presenta en la gráfica \ref{fig:pry_total_121002}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{graf_pry_total_4}
+	\caption[Proyección de la población carcelaria total]{Proyección de la población carcelaria total, sarima (1,2,1,0,0,2)}
+	\label{fig:pry_total_121002}
+\end{figure}
+
+
 
 \subsection{Población sindicada}
 
