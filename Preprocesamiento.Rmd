@@ -35,11 +35,12 @@ library("dplyr") # Data handling
 library("ggplot2") # gráficas
 library("plotly") # gráficas
 library("gridExtra") # gráfica
-
 library("zoo") # Handling tss
 library("shiny") # apps
 library("curl") # Data downloading
 library("timeSeries") # ts
+
+library("xtable")
 
 library("xts") # ts
 library ("vars") # ts
@@ -533,8 +534,80 @@ Indicadores_df <- cbind(c("(1,1,1,0,0,2)","(1,1,1,0,0,1)","(3,2,1,0,0,2)","(1,2,
 colnames(Indicadores_df) <- c("ORDEN","AIC","BIC")
 #xtable(Indicadores_df)
 #xtable(arima_total_4$ttable)
-#xtable(arima_total_3$ttable, label = "parámetros_321002", caption = "Parámetros del modelo (3,2,1,0,0,2)")
+#xtable(arima_total_4$ttable, label = "parámetros_121002", caption = "Parámetros del modelo (1,2,1,0,0,2)")
 ```
+
+```{r Estimación pob sindicada}
+### sindicado 111001
+png(file = 'Arima_sindi_11101.png', height = 750, width = 500, res = 85)
+arima_sindi_1 <- sarima(ts_sindi,1,1,1,0,0,1, S = 12, details = FALSE)
+dev.off()
+
+### sindicado 211001
+png(file = 'Arima_sindi_211001.png', height = 750, width = 500, res = 85)
+arima_sindi_2 <- sarima(ts_sindi,2,1,1,0,0,1, S = 12, details = FALSE)
+dev.off()
+
+auto.arima(ts_sindi, ic = "aic")
+### sindicado Auto Arima
+png(file = 'Arima_sindi_012001.png', height = 750, width = 500, res = 85)
+arima_sindi_3 <- sarima(ts_sindi,0,1,2,0,0,1, S = 12, details = FALSE)
+dev.off()
+
+### Total 121002
+png(file = 'Arima_sindi_011000.png', height = 750, width = 500, res = 85)
+arima_sindi_4 <- sarima(ts_sindi,0,1,1,0,0,0, S = 12, details = FALSE)
+dev.off()
+
+AIC_sindi <- AIC(arima_sindi_1$fit,arima_sindi_2$fit, arima_sindi_3$fit,arima_sindi_4$fit)
+BIC_sindi <- BIC(arima_sindi_1$fit,arima_sindi_2$fit, arima_sindi_3$fit,arima_sindi_4$fit)
+
+Indicadores_df_sindi <- cbind(c("(1,1,1,0,0,1)","(2,1,1,0,0,1)","(0,1,1,0,0,1)","(0,1,1,0,0,0)"),round(AIC_sindi$AIC,2), round(BIC_sindi$BIC,2))
+
+colnames(Indicadores_df_sindi) <- c("ORDEN","AIC","BIC")
+xtable(Indicadores_df_sindi)
+#xtable(arima_total_4$ttable)
+xtable(arima_sindi_3$ttable, label = "parámetros_sindi_011001", caption = "Parámetros del modelo (0,1,1,0,0,1)")
+```
+
+
+## Población condenada 
+
+```{r Estimación pob condenada}
+### condenada 111001
+png(file = 'Arima_conde_111001.png', height = 750, width = 500, res = 85)
+arima_conde_1 <- sarima(ts_conde,1,1,1,0,0,1, S = 12, details = FALSE)
+dev.off()
+
+### condenado 211001
+png(file = 'Arima_conde_211001.png', height = 750, width = 500, res = 85)
+arima_conde_2 <- sarima(ts_conde,2,1,1,0,0,1, S = 12, details = FALSE)
+dev.off()
+
+auto.arima(ts_conde, ic = "aic")
+### condenado Auto Arima
+png(file = 'Arima_conde_012001.png', height = 750, width = 500, res = 85)
+arima_conde_3 <- sarima(ts_conde,0,1,2,0,0,1, S = 12, details = FALSE)
+dev.off()
+
+### Total 121002
+png(file = 'Arima_conde_011000.png', height = 750, width = 500, res = 85)
+arima_conde_4 <- sarima(ts_conde,0,1,1,0,0,0, S = 12, details = FALSE)
+dev.off()
+
+AIC_conde <- AIC(arima_conde_1$fit,arima_conde_2$fit, arima_conde_3$fit,arima_conde_4$fit)
+BIC_conde <- BIC(arima_conde_1$fit,arima_conde_2$fit, arima_conde_3$fit,arima_conde_4$fit)
+
+Indicadores_df_conde <- cbind(c("(1,1,1,0,0,1)","(2,1,1,0,0,1)","(0,1,1,0,0,1)","(0,1,1,0,0,0)"),round(AIC_conde$AIC,2), round(BIC_conde$BIC,2))
+
+colnames(Indicadores_df_conde) <- c("ORDEN","AIC","BIC")
+xtable(Indicadores_df_conde)
+#xtable(arima_total_4$ttable)
+xtable(arima_conde_1$ttable, label = "parámetros_conde_111001", caption = "Parámetros del modelo (1,1,1,0,0,1)")
+
+```
+
+
 
 ```{r gráfica forecast total} 
 # Proyección
@@ -548,4 +621,29 @@ ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -
 graf_pry_total_4
 ggsave("graf_pry_total_4.png")
 ```
+```{r gráfica forecast sindicados} 
+# Proyección
+forecast <- sarima.for(ts_sindi,n.ahead = 36, 0,1,1,0,0,1, S = 12)
+# data frame
+forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
+#data histórica
+hist_frame <- data.frame(Historico=as.matrix(ts_sindi), date=as.Date(as.yearmon(time(ts_sindi))))
+# ggplot
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Población carcelaria sindicada") + theme_minimal() -> graf_pry_total_3
+graf_pry_total_3
+ggsave("graf_pry_sindi_3.png")
+```
 
+
+```{r gráfica forecast condenadoss} 
+# Proyección
+forecast <- sarima.for(ts_conde,n.ahead = 36, 1,1,1,0,0,1, S = 12)
+# data frame
+forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
+#data histórica
+hist_frame <- data.frame(Historico=as.matrix(ts_conde), date=as.Date(as.yearmon(time(ts_conde))))
+# ggplot
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Población carcelaria condenada") + theme_minimal() -> graf_pry_conde_1
+graf_pry_conde_1
+ggsave("graf_pry_conde_1.png")
+```

@@ -194,7 +194,154 @@ En las proyecciones siguientes para la población total se usará el modelo 4.
 
 \subsection{Población sindicada}
 
+
+% latex table generated in R 3.4.2 by xtable 1.8-2 package
+% Mon Oct 30 01:44:19 2017
+\begin{table}[ht]
+	\centering
+		\caption{Comparación de criterios de información}
+		\label{Compara_modelos_sindi}
+	\begin{tabular}{rlll}
+		\hline
+		& ORDEN & AIC & BIC \\ 
+		\hline
+		1 & (1,1,1,0,0,1) & 4968.8 & 4987.52 \\ 
+		2 & (2,1,1,0,0,1) & 4964.1 & 4986.56 \\ 
+		3 & (0,1,1,0,0,1) & 4964.26 & 4982.98 \\ 
+		4 & (0,1,1,0,0,0) & 4974.16 & 4985.39 \\ 
+		\hline
+	\end{tabular}
+\end{table}
+
+Modelo tres tiene el menor BIC y tiene pvalues for Ljung-Box que permiten descartar correlación. Ver tabla \ref{Compara_modelos_sindi}
+
+% latex table generated in R 3.4.2 by xtable 1.8-2 package
+% Mon Oct 30 01:50:26 2017
+\begin{table}[H]
+	\centering
+		\caption{Parámetros del modelo (0,1,1,0,0,1)} 
+		\label{parámetros_conde_011001}
+	\begin{tabular}{rrrrr}
+		\hline
+		& Estimate & SE & t.value & p.value \\ 
+		\hline
+		ma1 & 0.06 & 0.06 & 0.99 & 0.32 \\ 
+		ma2 & 0.16 & 0.05 & 2.91 & 0.00 \\ 
+		sma1 & 0.15 & 0.06 & 2.57 & 0.01 \\ 
+		constant & 64.94 & 53.21 & 1.22 & 0.22 \\ 
+		\hline
+	\end{tabular}
+\end{table}
+
+
+% Los criterios de información y los parámetros estimados difieren ligeramente entre paquetes
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Arima_sindi_111001}
+	\caption[Diagnóstico del sarima (1,1,1)(0,0,1), población sindicada]{Diagnóstico del Modelo 1. sarima (1,1,1)(0,0,1), para la población carcelaria sindicada. Generado con astsa \cite{Stoffer2014}}
+	\label{fig:Arima_sindi_111001}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Arima_sindi_211001}
+	\caption[Diagnóstico del sarima (2,1,1)(0,0,1), población sindicada]{Diagnóstico del Modelo 2. sarima (1,1,1)(0,0,1), para la población carcelaria sindicada. Generado con astsa \cite{Stoffer2014}}
+	\label{fig:Arima_sindi_211001}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Arima_sindi_012001}
+	\caption[Diagnóstico del sarima (0,1,2)(0,0,1), población sindicada]{Diagnóstico del Modelo 3. sarima (0,1,2)(0,0,1), para la población carcelaria sindicada. Generado con astsa \cite{Stoffer2014}}
+	\label{fig:Arima_sindi_012001}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Arima_sindi_011000}
+	\caption[Diagnóstico del sarima (0,1,2)(0,0,0), población sindicada]{Diagnóstico del Modelo 4. sarima (0,1,1)(0,0,0), para la población carcelaria total. Generado con astsa \cite{Stoffer2014}}
+	\label{fig:Arima_sindi_011000}
+\end{figure}
+
+
 \subsection{Población condenada}
+
+%%%%%%%%%%%%
+
+% latex table generated in R 3.4.2 by xtable 1.8-2 package
+% Mon Oct 30 02:09:14 2017
+\begin{table}[H]
+	\centering
+	\caption{Comparación de criterios de información}
+	\label{Compara_modelos_conde}	
+	\begin{tabular}{rlll}
+		\hline
+		& ORDEN & AIC & BIC \\ 
+		\hline
+		1 & (1,1,1,0,0,1) & 4904.08 & 4922.79 \\ 
+		2 & (2,1,1,0,0,1) & 4906 & 4928.46 \\ 
+		3 & (0,1,1,0,0,1) & 4914.84 & 4933.55 \\ 
+		4 & (0,1,1,0,0,0) & 4925.62 & 4936.85 \\ 
+		\hline
+	\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%
+
+Se escoge el modelo 1, pues aunque tiene menos parsimonia, además los pvalue de la estadística de Ljung-Box soportan rechazar la hipótesis de dependencia.
+
+Los modelos 3 y 4 se utilizan para comparar con el comportamiento de la población sindicada. En este caso, el comportamiento de la población condenada es diferente y es bien definido por el modelo 1 con los parámetros: 
+
+\begin{table}[H]
+	\centering
+	\caption{Parámetros del modelo (1,1,1,0,0,1)} 
+	\label{parámetros_conde_111001}
+	\begin{tabular}{rrrrr}
+		\hline
+		& Estimate & SE & t.value & p.value \\ 
+		\hline
+		ar1 & 0.88 & 0.06 & 13.75 & 0.00 \\ 
+		ma1 & -0.73 & 0.09 & -7.80 & 0.00 \\ 
+		sma1 & 0.09 & 0.06 & 1.55 & 0.12 \\ 
+		constant & 198.62 & 86.28 & 2.30 & 0.02 \\ 
+		\hline
+	\end{tabular}
+	\caption{Parámetros del modelo (0,1,1,0,0,1)} 
+	\label{parámetros_conde_011001}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figuras diagnóstico condenados
+%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Arima_conde_111001}
+	\caption[Diagnóstico del sarima (1,1,1)(0,0,1), población condenada]{Diagnóstico del Modelo 1. sarima (1,1,1)(0,0,1), para la población carcelaria condenada. Generado con astsa \cite{Stoffer2014}}
+	\label{fig:Arima_conde_111001}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Arima_conde_211001}
+	\caption[Diagnóstico del sarima (2,1,1)(0,0,1), población condenada]{Diagnóstico del Modelo 2. sarima (1,1,1)(0,0,1), para la población carcelaria condenada. Generado con astsa \cite{Stoffer2014}}
+	\label{fig:Arima_conde_211001}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Arima_conde_012001}
+	\caption[Diagnóstico del sarima (0,1,2)(0,0,1), población condenada]{Diagnóstico del Modelo 3. sarima (0,1,2)(0,0,1), para la población carcelaria condenada. Generado con astsa \cite{Stoffer2014}}
+	\label{fig:Arima_conde_012001}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Arima_conde_011000}
+	\caption[Diagnóstico del sarima (0,1,2)(0,0,0), población condenada]{Diagnóstico del Modelo 4. sarima (0,1,1)(0,0,0), para la población carcelaria condenada. Generado con astsa \cite{Stoffer2014}}
+	\label{fig:Arima_conde_012000}
+\end{figure}
+
 
 
 \section{Proyección}
@@ -210,11 +357,27 @@ Proyección de la población total se presenta en la gráfica \ref{fig:pry_total_12
 	\label{fig:pry_total_121002}
 \end{figure}
 
-
-
 \subsection{Población sindicada}
 
+Proyección de la población total se presenta en la gráfica \ref{fig:pry_sindi_011001}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{graf_pry_sindi_3}
+	\caption[Proyección de la población carcelaria sindicada]{Proyección de la población carcelaria sindicada, sarima (0,1,1,0,0,1)}
+	\label{fig:pry_sindi_011001}
+\end{figure}
+
 \subsection{Población condenada}
+
+Proyección de la población total se presenta en la gráfica \ref{fig:pry_conde_111001}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{graf_pry_conde_1}
+	\caption[Proyección de la población carcelaria condenada]{Proyección de la población carcelaria condenada, sarima (1,1,1,0,0,1)}
+	\label{fig:pry_conde_111001}
+\end{figure}
 
 \section{Conclusiones}
 
