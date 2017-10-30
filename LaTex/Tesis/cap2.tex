@@ -1,11 +1,13 @@
 \chapter{Modelos SARIMA}
 
-La estimación de los modelos se realiza usando software R, funciones en R base y el paquete astsa, cuyo uso es discutido en detalle por Shumway \cite{Shumway}
+La estimación de los modelos se realiza usando el paquete base del software R \cite{RCoreTeam2017}, y el paquete astsa \cite{Stoffer2014}, cuyo uso es discutido en detalle por Shumway \cite{Shumway}. 
+
+En adelante nos referiremos a la función de auctocorrelación como ACF y a la función de autocorrelación parcial como PACF. 
 
 \section{Identificación del modelo}
 
 % Variación población total, sindicada y condenada
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{variacion_intermensual}
 	\caption[Variación inter-mensual de población carcelaria]{Variación inter-mensual de población carcelaria, sindicados y condenados}
@@ -14,25 +16,24 @@ La estimación de los modelos se realiza usando software R, funciones en R base y
 
 Antes de realizar la proyección de una serie de tiempo, es necesario identificar el modelo que explique adecuadamente su comportamiento. 
 
-Aunque conocemos, por la estrucutura del proceso que genera los datos, que las series de tiempo de población sindicada y condenada no son independientes, podemos simplificar la proyección, tratándolas como independientes. En este caso, los modelos ARIMA y SARIMA resultan apropiados, pues permiten explicar separadamente cada observación en función del comportamiento histórico de la serie.
+Aunque conocemos, por la estructura del proceso que genera los datos, que las series de tiempo de población sindicada y condenada no son independientes, podemos simplificar la proyección, tratándolas como independientes. En este caso, los modelos ARIMA y SARIMA resultan apropiados, pues permiten explicar separadamente cada observación en función del comportamiento histórico de la serie.
 
-El capítulo anterior sugería que la población carcelaria, tanto sindicada como condenada, tiene una marcada tendencia al alza. En este caso una herramienta útil es graficar la variación mes a mes de la población. \ref{fig:variacion_intermensual}. Para tener una mejor estrucutura de análisis usamos la función "decompose" de R base. 
+El capítulo anterior sugería que la población carcelaria, tanto sindicada como condenada, tiene una marcada tendencia al alza. En este caso una herramienta útil es mostrar gráficamente la variación mes a mes de la población. \ref{fig:variacion_intermensual}. Para tener una mejor estrucutura de análisis usamos la función "decompose" de R base. 
 
 La serie tiene un componente estacional marcado, con una reducción de la población carcelaria en diciembre. La variabilidad del componente aleatorio es elevada. La tendencia parece tener cambios estructurales en algunos periodos, por ejemplo reducción de la población carcelaria entre 2005-2007,  y 2012 - 2015, e incrementos de la población de magnitud mayor al promedio entre 2008 y 2012.
 
-La mayor parte de la variación de la población total, se puede asociar con variaciones en a población sindicada \ref{fig:variacion_mensual_sindicados_desc}. La población condenada tiene una tendencia con una tendencia más estable.  \ref{fig:variacion_mensual_condenados_desc}
+La mayor parte de la variación de la población total se puede asociar con variaciones en a población sindicada \ref{fig:variacion_mensual_sindicados_desc}. La población condenada tiene una tendencia con una tendencia más estable.  \ref{fig:variacion_mensual_condenados_desc}
 
 % Descomposición variación población total
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.7\linewidth]{variacion_mensual_total_desc}
 \caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria descompuesta por tendencia, estacionalidad y componente aleatorio.}
 \label{fig:variacion_mensual_total_desc}
 \end{figure}
 
-
 % Descomposición variación población sindicada
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{variacion_mensual_sindicados_desc}
 	\caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria sindicada,  descompuesta por tendencia, estacionalidad y componente aleatorio.}
@@ -40,7 +41,7 @@ La mayor parte de la variación de la población total, se puede asociar con varia
 \end{figure}
 
 % Descomposición variación población condenada
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{variacion_mensual_condenados_desc}
 	\caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria condenada,  descompuesta por tendencia, estacionalidad y componente aleatorio.}
@@ -48,19 +49,66 @@ La mayor parte de la variación de la población total, se puede asociar con varia
 \end{figure}
 
 
-La función de autocorrelación ACF(s,t) mide la predictibilidad lineal de la observación $x_s$ usando solo la observación $(x_t)$, separadas por $s-t$ observaciones \cite{Shumway}. La función de correlación de la población total, sindicada y condenada. 
+Se trabaja sobre la diferencia de cada serie de tiempo con lag 1 y lag 12, al observar que la serie tiene un crecimiento sostenido entre 1991 y 2017, sugiriendo un proceso estocastico integrado. Sobre cada serie (población total, población sindicadda y población condenada)  se realiza la función de autocorrelación y autocorrelación parcial y se presenta en la figura \ref{fig:ACF_variacion_mensual}. Estas funciones son usadas como herramienta de diagnóstico, para intuir modelos adecuados en cada serie.
+
+Con base en la tabla \ref{ARMA_ACF} se realiza una revisión del comportamiento de las series de población carcelaria, población sindicada y población condenada.
+
+% Pendiente traducir este fragmento
+\begin{table}[H]
+	\centering
+	\caption{Comportamiento de la ACF y PACF en modelos ARMA(p,q) \cite{Shumway}}
+	\label{ARMA_ACF}
+	\begin{tabular}{lllll}
+		\multicolumn{1}{|l|}{}              & \multicolumn{1}{c|}{\textbf{AR(p)}}       & \multicolumn{1}{c|}{\textbf{MA(q)}}       & \multicolumn{1}{c|}{\textbf{ARMA(p,q)}} &  \\ \cline{1-4}
+		\multicolumn{1}{|l|}{\textbf{ACF}}  & \multicolumn{1}{l|}{Tails off}            & \multicolumn{1}{l|}{Cuts off after lag q} & \multicolumn{1}{l|}{Tails off}          &  \\ \cline{1-4}
+		\multicolumn{1}{|l|}{\textbf{PACF}} & \multicolumn{1}{l|}{Cuts off after lag p} & \multicolumn{1}{l|}{Tails off}            & \multicolumn{1}{l|}{Tails off}          &  \\ \cline{1-4}
+	\end{tabular}
+\end{table}
 
 
-
-
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{ACF_var_pob}
 	\caption[Autocorrelación parcial de la variación inter-mensual]{Autocorrelación parcial de la variación inter-mensual de la población}
 	\label{fig:ACF_variacion_mensual}
 \end{figure}
 
+\subsection{Población total}
 
-\section{Proyecciones 2017 - 2020}
+La tabla \ref{ARMA_ACF} presenta una guía para la interpretación de la ACF y la PACF. En la \ref{fig:ACF_variacion_mensual} podemos observar que tanto la ACF como la PACF decaen lentamente. La APCF decae progresivamente en los meses 12, 24, 36, mientra que la ACF se corta en el lag 24, lo que sugiere que el proceso es un promedio móvil de orden 1 en el componente estacional.
+
+En este caso una primera estimación se realiza para la proyección de la población total como SARIMA(1,1,1,0,0,1)
+
+
+\subsection{Población sindicada}
+
+En la \ref{fig:ACF_variacion_mensual} podemos observar que la ACF decae lentamente, mientras la PACF cae por debajo del error luego del lag 1. La APCF decae progresivamente en los meses 12, 24, 36, mientra que la ACF se corta en el lag 12, lo que sugiere que el proceso es un promedio móvil de orden 1 en el componente estacional.
+
+En este caso una primera estimación se realiza para la proyección de la población sindicada como SARIMA(1,1,1,0,0,1)
+
+\subsection{Población condenada}
+
+El comportamiento de la ACF y la PACF es similar al de la población sindicada, sugiriendo el mismo modelo: SARIMA(1,1,1,0,0,1).
+
+\section{Estimación de parámtetros}
+El proceso de estimación se realizará para cada serie por separado, luego se validará la efectividad de incluir más parámetros, usando como criterio de comparación el BIC. A modo informativo se usa la función auto.arima del paquete forecast, para seleccionar el modelo con menor AIC. \cite{Hyndman2017}  
+ \cite{Hyndman2008} 
+ 
+\subsection{Población total}
+
+\subsection{Población sindicada}
+
+\subsection{Población condenada}
+
+
+\section{Proyección}
+
+\subsection{Población total}
+
+\subsection{Población sindicada}
+
+\subsection{Población condenada}
 
 \section{Conclusiones}
+
+Al usar un ARIMA

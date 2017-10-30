@@ -12,7 +12,7 @@ A level-1 auxiliary file: cap3.aux
 A level-1 auxiliary file: conclusiones.aux
 A level-1 auxiliary file: trabajofuturo.aux
 Database file #1: references.bib
-Repeated entry---line 1133 of file references.bib
+Repeated entry---line 1123 of file references.bib
  : @misc{InstitutoNacionalPenitenciarioyCarcelario2016
  :                                                    ,
 I'm skipping whatever remains of this entry
@@ -26,45 +26,45 @@ Warning--missing journal name in Minton2015
 Warning--missing pages in Minton2015
 Warning--missing institution in Wan1
 Warning--missing year in Wan1
-You've used 19 entries,
+You've used 23 entries,
             2213 wiz_defined-function locations,
-            629 strings with 6880 characters,
-and the built_in function-call counts, 5374 in all, are:
-= -- 456
-> -- 232
+            650 strings with 7382 characters,
+and the built_in function-call counts, 6252 in all, are:
+= -- 535
+> -- 266
 < -- 2
-+ -- 93
-- -- 74
-* -- 422
-:= -- 874
-add.period$ -- 19
-call.type$ -- 19
-change.case$ -- 95
++ -- 107
+- -- 84
+* -- 479
+:= -- 1024
+add.period$ -- 23
+call.type$ -- 23
+change.case$ -- 112
 chr.to.int$ -- 0
-cite$ -- 28
-duplicate$ -- 241
-empty$ -- 482
-format.name$ -- 74
-if$ -- 1115
+cite$ -- 32
+duplicate$ -- 285
+empty$ -- 564
+format.name$ -- 84
+if$ -- 1295
 int.to.chr$ -- 0
-int.to.str$ -- 19
-missing$ -- 38
-newline$ -- 67
-num.names$ -- 38
-pop$ -- 141
+int.to.str$ -- 23
+missing$ -- 43
+newline$ -- 79
+num.names$ -- 46
+pop$ -- 165
 preamble$ -- 1
-purify$ -- 75
+purify$ -- 88
 quote$ -- 0
-skip$ -- 145
+skip$ -- 166
 stack$ -- 0
-substring$ -- 251
-swap$ -- 50
+substring$ -- 287
+swap$ -- 54
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 68
+type$ -- 84
 warning$ -- 9
-while$ -- 53
-width$ -- 21
-write$ -- 170
+while$ -- 63
+width$ -- 25
+write$ -- 202
 (There was 1 error message)

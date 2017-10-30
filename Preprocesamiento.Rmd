@@ -28,20 +28,25 @@ La población carcelaria total entre 1991 y 2017 se ha cuadruplicado, al pasar d
 
 ```{r librerías, echo = FALSE, include=FALSE }
 rm(list = ls())
-library("magrittr")
-library("tidyr")
-library("reshape2")
-library("ggplot2")
-library("plotly")
-library("zoo")
-library("shiny")
-library("curl")
-library("timeSeries")
-library("dplyr")
-library("astsa")
-library("xts")
-library ("vars")
-library("gridExtra")
+library("magrittr") # Data handling
+library("tidyr") # Data handling
+library("reshape2") # Data handling
+library("dplyr") # Data handling
+library("ggplot2") # gráficas
+library("plotly") # gráficas
+library("gridExtra") # gráfica
+
+library("zoo") # Handling tss
+library("shiny") # apps
+library("curl") # Data downloading
+library("timeSeries") # ts
+
+library("xts") # ts
+library ("vars") # ts
+
+library("astsa") # Estimar ts
+library("forecast") # Estimar ts
+
 ```
 
 ```{r carga de datos, echo = FALSE, include=FALSE }
@@ -485,6 +490,9 @@ ts_sincon_mod <- VAR(ts_sincon,p = 1)
 forecast_var <- predict(ts_sincon_mod, n.ahead = 60)
 ts_sincon_mod
 forecast_var
+
+# Cite packages 
+if(nchar(system.file(package="astsa"))) citation("astsa")
 
 ```
 

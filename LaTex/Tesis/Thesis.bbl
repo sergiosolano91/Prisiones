@@ -42,6 +42,15 @@ Departamento Administrativo Nacional de~Estad{\'{i}}stica (DANE),
 Jouni Helske, \emph{{Exponential Family State Space Models in R}}, Journal of
   Statistical Software \textbf{78} (2017), no.~10, 1--39.
 
+\bibitem{Hyndman2017}
+Rob~J Hyndman, \emph{{{\{}forecast{\}}: Forecasting functions for time series
+  and linear models}}, 2017.
+
+\bibitem{Hyndman2008}
+Rob~J. Hyndman and Yeasmin Khandakar, \emph{{Automatic Time Series Forecasting:
+  The forecast Package for R}}, Journal of Statistical Software \textbf{27}
+  (2008), no.~3, 1--22.
+
 \bibitem{InstitueforCriminalPolicyResearch2016}
 {Institute for Criminal Policy Research}, \emph{{Colombia | World Prison
   Brief}}, 2016.
@@ -73,10 +82,18 @@ Todd~D Minton, Bjs Statistician, Scott Ginder, Susan~M Brumbaugh, Hope
 Giovanni Petris and Sonia Petrone, \emph{{State Space Models in R}}, Journal of
   Statistical Software \textbf{41} (2011), no.~4, 128--129.
 
+\bibitem{RCoreTeam2017}
+{R Core Team}, \emph{{R: A Language and Environment for Statistical
+  Computing}}, R Foundation for Statistical Computing, Vienna, Austria, 2017.
+
 \bibitem{Shumway}
 Robert~H Shumway and David~S Stoffer, \emph{{Time Series Analysis and Its
   Applications}}, Springer Texts in Statistics, vol.~45, Springer New York, New
   York, NY, 2011.
+
+\bibitem{Stoffer2014}
+David Stoffer, \emph{{astsa: Applied Statistical Time Series Analysis. R
+  package version 1.3}}, 2014.
 
 \bibitem{Swanson2012}
 David~A Swanson and Jeff Tayman, \emph{{Subnational Population Estimates}}, The
