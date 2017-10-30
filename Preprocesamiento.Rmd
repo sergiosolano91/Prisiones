@@ -404,7 +404,19 @@ acf_sindi %>% ggplot() + geom_bar(aes(x = c(1:60), y = PACF), stat = "identity",
 # Calcular acf y pacf
 acf_conde <- as.data.frame(acf2(diff(diff(ts_conde), lag = 12), max.lag = 60))
 # Gráfica acf condenados
-acf_conde %>% ggplot() + geom_bar(aes(x = c(1:60), y = ACF), stat = "identity", fill = "steelblue2") + scale_x_continuous(breaks = c(12,24,36,48,60)) + xlab("LAG") + ggtitle("ACF Población condenada") + ylim(c(-0.55,0.55)) + geom_hline(aes(yintercept = error), colour = "royalblue", linetype="dashed") + geom_hline(aes(yintercept = -error), colour = "royalblue", linetype="dashed") + theme_minimal() -> graf_acf_conde
+acf_conde %>% ggplot() + geom_bar(aes(x = c(1:60), y = ACF), stat = "identity", fill = "steelblue2") + scale_x_continuous(breaks = c(12,24,36,48,60)) + xlab("LAG") + ggtitle("ACF Población condenada") + ylim(c(-0.55,0.55)) + geom_hline(aes(yintercept = error), colour = "royalblue", linetype="dashed") + geom_hline(aes(yintercept = -error), colour = "royalblue", linetype="dashed") + # Proyección
+forecast <- sarima.for(ts_total,n.ahead = 36, 3,2,1,0,0,2, S = 12)
+# data frame
+forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
+#data histórica
+hist_frame <- data.frame(Historico=as.matrix(ts_total), date=as.Date(as.yearmon(time(ts_total))))
+# ggplot
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico"))  + theme_minimal()
+#+ geom_line(data = forecast_frame, aes(x = date, y = Proyección + Error, colour = "+1 sd")) + geom_line(data = forecast_frame, aes(x = date, y = Proyección - Error, colour = "-1 sd"))
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = -Error, ymax = +Error,fill = "1 sd"  ), fill = "grey90")
+knitr::opts_chunk$set(echo = TRUE)
+autoloads <- c("dplyr", "ggplot2", "Hmisc")
+minimal() -> graf_acf_conde
 # Gráfica pacf condenados
 acf_conde %>% ggplot() + geom_bar(aes(x = c(1:60), y = PACF), stat = "identity", fill = "steelblue2") + scale_x_continuous(breaks = c(12,24,36,48,60)) + xlab("LAG") + ggtitle("PACF Población condenada") + ylim(c(-0.55,0.55)) + geom_hline(aes(yintercept = error), colour = "royalblue", linetype="dashed") + geom_hline(aes(yintercept = -error), colour = "royalblue", linetype="dashed") + theme_minimal() -> graf_pacf_conde
 
@@ -494,5 +506,19 @@ forecast_var
 # Cite packages 
 if(nchar(system.file(package="astsa"))) citation("astsa")
 
+```
+
+```{r gráfica forecast} 
+arima_total <- sarima(ts_total,3,2,1,0,0,2, S = 12, details = FALSE)
+# Proyección
+forecast <- sarima.for(ts_total,n.ahead = 36, 3,2,1,0,0,2, S = 12)
+# Proyección
+forecast <- sarima.for(ts_total,n.ahead = 36, 3,2,1,0,0,2, S = 12)
+# data frame
+forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
+#data histórica
+hist_frame <- data.frame(Historico=as.matrix(ts_total), date=as.Date(as.yearmon(time(ts_total))))
+# ggplot
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico"))  + theme_minimal()
 ```
 
