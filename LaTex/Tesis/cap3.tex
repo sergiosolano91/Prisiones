@@ -1,38 +1,20 @@
-\chapter{Modelos estado-espacio}
+\chapter{Métodos demográficos para poblaciones pequeñas}
 
-\section{Marco teórico}
 
-\section{Selección de Software}
+\section{Selección de variables}
 
-Dado que el alcance del trabajo es aplicado, se recurre a software prediseñado para estimar los parámetros de los modelos planteados. En el caso de ARIMA hay varios paquetes que soportan la estimación de los modelos, el análisis de los resultados y la elaboración de los pronósticos. A propósito del software usado al trabajar con modelos estado-espacio \cite{Commandeur2011} presenta una revisión de los principales programas y paquetes, dentro de los que incluye: 
+Aunque es posible usar los métodos demográficos para realizar proyecciones fuera del intervalo de medición, su uso más frecuente es realizar interpolación de poblaciones pequeñas en periodos no censales. Uno de los inconvenientes mencionados es la dificultad de realizar extrapolación, puesto que para los periodos post-censales, los indicadores no están necesariamente disponibles. Una posible solución es realizar la estimación usando periodos rezagados. \cite{Swanson2012}. 
+
+Para realizar la proyección a tres años, como en el capítulo anterior, se utilizan variables que tengan una proyección oficial, por lo menos anual para los siguientes tres años. La metodología de proyección de Blumstein sugiere que bajo un sistema normativo estable, la proporción de la población carcelaria por rango etario resulta fundamental en la proyección de poblaciones carcelarias \cite{Blumstein1980a}. Dado que el DANE genera poblaciones de población desagregadas por rango etario, usaremos estas en el método de ratio-correlación.
 
 % Es posible copiar la tabla completa. 
- 
-\begin{itemize}
-\item Eview
-\item gretl
-\item MATLAB
-\item R base
-\item R + KFAS
-\item RATS
-\item REGCMPNT 
-\item SAS
-\item S-PLUS
-\item SsfPack
-\item SsfPack
-\item STAMP
-\item Stata
-\end{itemize}
 
-Para mantener un único ambiente de desarrollo, nos enfocamos en los paquetes desarrollados en R, como los mencionados por Petris \cite{Petris2011}, Helske \cite{Helske2017} y Tusell \cite{Tusell2011}
+\section{Población colombiana 1991-2020}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{POB_NAL_EDAD.png}
+	\caption[Proyección de la población nacional por rango de edad]{Proyección de la población nacional por rango de edad}{Fuente: DANE\\} {Elaboración propia}
+	\label{fig:pob_nal_dane_edad}
+\end{figure}
 
-\section{Identificación del modelo}
-
-\section{Simulación Monte-Carlo}
-
-\section{Estimación de parámetros}
-
-\section{Proyecciones 2017 - 2020}
-
-\section{Conclusiones}

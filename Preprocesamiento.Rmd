@@ -7,9 +7,8 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+rm(list = ls())
 knitr::opts_chunk$set(echo = TRUE)
-autoloads <- c("dplyr", "ggplot2", "Hmisc")
-options(defaultPackages = c(getOption("defaultPackages"), autoloads))
 ```
 
 ## Data 
@@ -32,22 +31,25 @@ library("magrittr") # Data handling
 library("tidyr") # Data handling
 library("reshape2") # Data handling
 library("dplyr") # Data handling
+library("curl") # Data downloading
+
 library("ggplot2") # gráficas
 library("plotly") # gráficas
-library("gridExtra") # gráfica
+library("gridExtra") # gráficas
+library("RColorBrewer") # Gráficas
+library("colorRamps") # Gráficas
+
 library("zoo") # Handling tss
-library("shiny") # apps
-library("curl") # Data downloading
 library("timeSeries") # ts
 
-library("xtable")
+library("xtable") # Tablas
+library("shiny") # apps
 
 library("xts") # ts
 library ("vars") # ts
 
 library("astsa") # Estimar ts
 library("forecast") # Estimar ts
-
 ```
 
 ```{r carga de datos, echo = FALSE, include=FALSE }
@@ -647,3 +649,51 @@ ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -
 graf_pry_conde_1
 ggsave("graf_pry_conde_1.png")
 ```
+
+
+# Método de ratio Correlation.
+
+
+
+```{r descargar datos rc, fig.height=10, fig.width=7}
+url <- "https://www.dropbox.com/s/94oblxtlc8anlk1/PRY_POB_NAL_DANE_EDAD.csv?dl=1"
+destfile <- "POB_NAL_DAN_EDAD.csv"
+curl_download(url, destfile)
+```
+
+```{r cargar datos rc, fig.height=10, fig.width=7}
+
+pob_nal_dane_edad = read.csv("POB_NAL_DAN_EDAD.csv",header = TRUE,sep = ",",stringsAsFactors=FALSE)
+
+pob_nal_dane_edad %<>% gather(Rango_edad, Poblacion, -Año, -Grupos.de.edad) %>% spread(Grupos.de.edad, Poblacion)
+
+pob_nal_dane_edad %<>% dplyr::filter(Año>1985)
+
+pob_nal_dane_edad$Rango_edad<- gsub("X","",pob_nal_dane_edad$Rango_edad)
+pob_nal_dane_edad$Rango_edad<- gsub("\\.","-",pob_nal_dane_edad$Rango_edad)
+pob_nal_dane_edad$Rango_edad<- gsub("0-4","00-04",pob_nal_dane_edad$Rango_edad)
+pob_nal_dane_edad$Rango_edad<- gsub("400-044","40-44",pob_nal_dane_edad$Rango_edad)
+pob_nal_dane_edad$Rango_edad<- gsub("5-9","05-09",pob_nal_dane_edad$Rango_edad)
+
+pob_nal_dane_edad %>% ggplot(aes(x=Año, y = Total/1000000, fill = Rango_edad)) + geom_bar(stat="identity", width = 1) + theme_minimal() + ylab("Proyecciones de población nacional (MM)") + scale_fill_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(17)) + theme(legend.position="none") -> pob_total_edad_stack
+
+pob_nal_dane_edad %>% ggplot(aes(x=Año, y = Total/1000000, colour = Rango_edad)) + geom_line() + theme_minimal() + ylab("Proyecciones de población nacional (MM)") + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(17)) + theme(legend.position="none") -> pob_total_edad
+
+### Crear columna de participación 
+
+pob_nal_dane_edad %<>% group_by(Año) %>% summarise(Totales_año = sum(Total)) %>% right_join(pob_nal_dane_edad, by = NULL) %>% mutate (Participacion= Total/Totales_año*100) 
+
+pob_nal_dane_edad %>% ggplot(aes(x=Año, y = Participacion, fill = Rango_edad)) + geom_bar(stat="identity", width = 1) + theme_minimal() + ylab("Proyecciones de población nacional (%)") + scale_fill_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(17)) -> pob_total_edad_stack_part
+
+pob_nal_dane_edad %>% ggplot(aes(x=Año, y = Participacion, colour = Rango_edad)) + geom_line() + theme_minimal() + ylab("Proyecciones de población nacional (%)") + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(17)) -> pob_total_edad_part
+
+# Generar gráfica
+png(file = 'POB_NAL_EDAD.png', height = 850, width = 600, res = 85)
+grid.arrange(pob_total_edad_stack, pob_total_edad_stack_part,pob_total_edad, pob_total_edad_part, ncol = 2)
+dev.off()
+```
+
+
+
+
+

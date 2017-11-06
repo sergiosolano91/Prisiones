@@ -7,6 +7,11 @@
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{10}
 
+\bibitem{Blumstein1980a}
+Alfred Blumstein, Jacqueline Cohen, and Harold~D. Miller,
+  \emph{{Demographically disaggregated projections of prison populations}},
+  Journal of Criminal Justice \textbf{8} (1980), no.~1, 1--26.
+
 \bibitem{Box2013}
 George E~P Box, Gm~Jenkins, and Gc~Reinsel, \emph{{Time series analysis:
   forecasting and control}}, 2013.
