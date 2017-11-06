@@ -10,7 +10,7 @@ En adelante nos referiremos a la función de auctocorrelación como ACF y a la fun
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{variacion_intermensual}
-	\caption[Variación inter-mensual de población carcelaria]{Variación inter-mensual de población carcelaria, sindicados y condenados}
+	\caption[Variación inter-mensual de población carcelaria]{Variación inter-mensual de población carcelaria, sindicados y condenados}{Fuente: INPEC} {Elaboración propia}
 	\label{fig:variacion_intermensual}
 \end{figure}
 
@@ -28,7 +28,7 @@ La mayor parte de la variación de la población total se puede asociar con variac
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\linewidth]{variacion_mensual_total_desc}
-\caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria descompuesta por tendencia, estacionalidad y componente aleatorio.}
+\caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria descompuesta por tendencia, estacionalidad y componente aleatorio.}{Fuente: INPEC} {Elaboración propia}
 \label{fig:variacion_mensual_total_desc}
 \end{figure}
 
@@ -36,7 +36,7 @@ La mayor parte de la variación de la población total se puede asociar con variac
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{variacion_mensual_sindicados_desc}
-	\caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria sindicada,  descompuesta por tendencia, estacionalidad y componente aleatorio.}
+	\caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria sindicada,  descompuesta por tendencia, estacionalidad y componente aleatorio.}{Fuente: INPEC} {Elaboración propia}
 	\label{fig:variacion_mensual_sindicados_desc}
 \end{figure}
 
@@ -44,12 +44,12 @@ La mayor parte de la variación de la población total se puede asociar con variac
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{variacion_mensual_condenados_desc}
-	\caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria condenada,  descompuesta por tendencia, estacionalidad y componente aleatorio.}
+	\caption[Descomposición de la variación inter-mensual de población carcelaria total]{Variación mensual de población carcelaria condenada,  descompuesta por tendencia, estacionalidad y componente aleatorio.}{Fuente: INPEC} {Elaboración propia}
 	\label{fig:variacion_mensual_condenados_desc}
 \end{figure}
 
 
-Se trabaja sobre la diferencia de cada serie de tiempo con lag 1 y lag 12, al observar que la serie tiene un crecimiento sostenido entre 1991 y 2017, sugiriendo un proceso estocastico integrado. Sobre cada serie (población total, población sindicadda y población condenada)  se realiza la función de autocorrelación y autocorrelación parcial y se presenta en la figura \ref{fig:ACF_variacion_mensual}. Estas funciones son usadas como herramienta de diagnóstico, para intuir modelos adecuados en cada serie.
+Se trabaja sobre la diferencia de cada serie de tiempo con lag 1 y lag 12, al observar que la serie tiene un crecimiento sostenido entre 1991 y 2017, sugiriendo un proceso estocastico integrado. Sobre cada serie (población total, población sindicadda y población condenada)  se realiza la función de autocorrelación y autocorrelación parcial y se presenta en la figura \ref{fig:ACF_variacion_mensual}. Estas funciones son usadas como herramienta de diagnóstico, para identificar modelos adecuados en cada serie.
 
 Con base en la tabla \ref{ARMA_ACF} se realiza una revisión del comportamiento de las series de población carcelaria, población sindicada y población condenada.
 
@@ -68,8 +68,8 @@ Con base en la tabla \ref{ARMA_ACF} se realiza una revisión del comportamiento d
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{ACF_var_pob}
-	\caption[Autocorrelación parcial de la variación inter-mensual]{Autocorrelación parcial de la variación inter-mensual de la población}
+	\includegraphics[width=0.7\linewidth]{ACF_var_pob-4.pdf}
+	\caption[Autocorrelación parcial de la variación inter-mensual]{Autocorrelación parcial de la variación inter-mensual de la población}{Fuente: INPEC} {Elaboración propia}
 	\label{fig:ACF_variacion_mensual}
 \end{figure}
 
@@ -167,28 +167,28 @@ En las proyecciones siguientes para la población total se usará el modelo 4.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_total_111002}
-	\caption[Diagnóstico del sarima (1,1,1)(0,0,2), población total]{Diagnóstico del Modelo 1. sarima (1,1,1)(0,0,2), para la población carcelaria total. Generado con astsa \cite{Stoffer2014}}
+	\caption[Diagnóstico del sarima (1,1,1)(0,0,2), población total]{Diagnóstico del Modelo 1. sarima (1,1,1)(0,0,2), para la población carcelaria total. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_total_111002}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_total_111001}
-	\caption[Diagnóstico del sarima (1,1,1)(0,0,1), población total]{Diagnóstico del Modelo 2. sarima (1,1,1)(0,0,1), para la población carcelaria total. Generado con astsa \cite{Stoffer2014}}
+	\caption[Diagnóstico del sarima (1,1,1)(0,0,1), población total]{Diagnóstico del Modelo 2. sarima (1,1,1)(0,0,1), para la población carcelaria total. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_total_111001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_total_321002}
-	\caption[Diagnóstico del sarima (3,2,1)(0,0,2), población total]{Diagnóstico del Modelo 3. sarima (3,2,1)(0,0,2), para la población carcelaria total. Generado con astsa \cite{Stoffer2014}}
+	\caption[Diagnóstico del sarima (3,2,1)(0,0,2), población total]{Diagnóstico del Modelo 3. sarima (3,2,1)(0,0,2), para la población carcelaria total. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_total_321002}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_total_121002}
-	\caption[Diagnóstico del sarima (1,2,1)(0,0,2), población total]{Diagnóstico del Modelo 4. sarima (1,2,1)(0,0,2), para la población carcelaria total. Generado con astsa \cite{Stoffer2014}}
+	\caption[Diagnóstico del sarima (1,2,1)(0,0,2), población total]{Diagnóstico del Modelo 4. sarima (1,2,1)(0,0,2), para la población carcelaria total. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_total_121002}
 \end{figure}
 
@@ -239,28 +239,28 @@ Modelo tres tiene el menor BIC y tiene pvalues for Ljung-Box que permiten descar
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_sindi_111001}
-	\caption[Diagnóstico del sarima (1,1,1)(0,0,1), población sindicada]{Diagnóstico del Modelo 1. sarima (1,1,1)(0,0,1), para la población carcelaria sindicada. Generado con astsa \cite{Stoffer2014}}
+	\caption[Diagnóstico del sarima (1,1,1)(0,0,1), población sindicada]{Diagnóstico del Modelo 1. sarima (1,1,1)(0,0,1), para la población carcelaria sindicada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_sindi_111001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_sindi_211001}
-	\caption[Diagnóstico del sarima (2,1,1)(0,0,1), población sindicada]{Diagnóstico del Modelo 2. sarima (1,1,1)(0,0,1), para la población carcelaria sindicada. Generado con astsa \cite{Stoffer2014}}
+	\caption[Diagnóstico del sarima (2,1,1)(0,0,1), población sindicada]{Diagnóstico del Modelo 2. sarima (1,1,1)(0,0,1), para la población carcelaria sindicada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_sindi_211001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_sindi_012001}
-	\caption[Diagnóstico del sarima (0,1,2)(0,0,1), población sindicada]{Diagnóstico del Modelo 3. sarima (0,1,2)(0,0,1), para la población carcelaria sindicada. Generado con astsa \cite{Stoffer2014}}
+	\caption[Diagnóstico del sarima (0,1,2)(0,0,1), población sindicada]{Diagnóstico del Modelo 3. sarima (0,1,2)(0,0,1), para la población carcelaria sindicada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_sindi_012001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_sindi_011000}
-	\caption[Diagnóstico del sarima (0,1,2)(0,0,0), población sindicada]{Diagnóstico del Modelo 4. sarima (0,1,1)(0,0,0), para la población carcelaria total. Generado con astsa \cite{Stoffer2014}}
+	\caption[Diagnóstico del sarima (0,1,2)(0,0,0), población sindicada]{Diagnóstico del Modelo 4. sarima (0,1,1)(0,0,0), para la población carcelaria total. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_sindi_011000}
 \end{figure}
 
@@ -317,28 +317,28 @@ Los modelos 3 y 4 se utilizan para comparar con el comportamiento de la població
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_conde_111001}
-	\caption[Diagnóstico del sarima (1,1,1)(0,0,1), población condenada]{Diagnóstico del Modelo 1. sarima (1,1,1)(0,0,1), para la población carcelaria condenada. Generado con astsa \cite{Stoffer2014}}
+	\caption[Diagnóstico del sarima (1,1,1)(0,0,1), población condenada]{Diagnóstico del Modelo 1. sarima (1,1,1)(0,0,1), para la población carcelaria condenada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_conde_111001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_conde_211001}
-	\caption[Diagnóstico del sarima (2,1,1)(0,0,1), población condenada]{Diagnóstico del Modelo 2. sarima (1,1,1)(0,0,1), para la población carcelaria condenada. Generado con astsa \cite{Stoffer2014}}
+	\caption[Diagnóstico del sarima (2,1,1)(0,0,1), población condenada]{Diagnóstico del Modelo 2. sarima (1,1,1)(0,0,1), para la población carcelaria condenada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_conde_211001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_conde_012001}
-	\caption[Diagnóstico del sarima (0,1,2)(0,0,1), población condenada]{Diagnóstico del Modelo 3. sarima (0,1,2)(0,0,1), para la población carcelaria condenada. Generado con astsa \cite{Stoffer2014}}
+	\caption[Diagnóstico del sarima (0,1,2)(0,0,1), población condenada]{Diagnóstico del Modelo 3. sarima (0,1,2)(0,0,1), para la población carcelaria condenada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_conde_012001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_conde_011000}
-	\caption[Diagnóstico del sarima (0,1,2)(0,0,0), población condenada]{Diagnóstico del Modelo 4. sarima (0,1,1)(0,0,0), para la población carcelaria condenada. Generado con astsa \cite{Stoffer2014}}
+	\caption[Diagnóstico del sarima (0,1,2)(0,0,0), población condenada]{Diagnóstico del Modelo 4. sarima (0,1,1)(0,0,0), para la población carcelaria condenada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_conde_012000}
 \end{figure}
 
@@ -354,7 +354,7 @@ Proyección de la población total se presenta en la gráfica \ref{fig:pry_total_12
 	\centering
 	\includegraphics[width=0.7\linewidth]{graf_pry_total_4}
 	\caption[Proyección de la población carcelaria total]{Proyección de la población carcelaria total, sarima (1,2,1,0,0,2)}
-	\label{fig:pry_total_121002}
+	\label{fig:pry_total_121002} {Fuente: INPEC} {Elaboración propia}
 \end{figure}
 
 \subsection{Población sindicada}
@@ -364,7 +364,7 @@ Proyección de la población total se presenta en la gráfica \ref{fig:pry_sindi_01
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{graf_pry_sindi_3}
-	\caption[Proyección de la población carcelaria sindicada]{Proyección de la población carcelaria sindicada, sarima (0,1,1,0,0,1)}
+	\caption[Proyección de la población carcelaria sindicada]{Proyección de la población carcelaria sindicada, sarima (0,1,1,0,0,1)} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:pry_sindi_011001}
 \end{figure}
 
@@ -375,7 +375,7 @@ Proyección de la población total se presenta en la gráfica \ref{fig:pry_conde_11
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{graf_pry_conde_1}
-	\caption[Proyección de la población carcelaria condenada]{Proyección de la población carcelaria condenada, sarima (1,1,1,0,0,1)}
+	\caption[Proyección de la población carcelaria condenada]{Proyección de la población carcelaria condenada, sarima (1,1,1,0,0,1)} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:pry_conde_111001}
 \end{figure}
 

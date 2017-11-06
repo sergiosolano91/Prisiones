@@ -8,7 +8,7 @@ output:
 
 ```{r setup, include=FALSE}
 rm(list = ls())
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
 ## Data 
@@ -371,7 +371,7 @@ pacf_total <- plot(pacf(diff(diff(ts_total), lag = 12), lag.max = 60, plot = FAL
 #dev.off()
 ```
 
-```{r afc ggplot, fig.height=10, fig.width=7}
+```{r ACF_var_pob, fig.height=11, fig.width=7}
 ## Crear variables
 # Población carcelaria total
 ppl_sitjur %>% dplyr::filter(categoria == "total", !(is.na(valor))) -> ppl_total
@@ -412,10 +412,12 @@ acf_conde %>% ggplot() + geom_bar(aes(x = c(1:60), y = ACF), stat = "identity", 
 # Gráfica pacf condenados
 acf_conde %>% ggplot() + geom_bar(aes(x = c(1:60), y = PACF), stat = "identity", fill = "steelblue2") + scale_x_continuous(breaks = c(12,24,36,48,60)) + xlab("LAG") + ggtitle("PACF Población condenada") + ylim(c(-0.55,0.55)) + geom_hline(aes(yintercept = error), colour = "royalblue", linetype="dashed") + geom_hline(aes(yintercept = -error), colour = "royalblue", linetype="dashed") + theme_minimal() -> graf_pacf_conde
 
-png(file = 'ACF_var_pob.png', height = 750, width = 500, res = 85)
-grid.arrange(graf_acf_total, graf_pacf_total,graf_acf_sindi, graf_pacf_sindi,graf_acf_conde, graf_pacf_conde, ncol = 2)
+#png(file = 'ACF_var_pob.png', height = 750, width = 500, res = 85)
+ACF_var_pob <- grid.arrange(graf_acf_total, graf_pacf_total,graf_acf_sindi, graf_pacf_sindi,graf_acf_conde, graf_pacf_conde, ncol = 2)
+
+ACF_var_pob
 #dev.copy(png,'ACF_var_pob')
-dev.off()
+#dev.off()
 ```
 
 Las funciones de autocorrelación y correlación cruzada, de $Y_t - Y_{t - 1} $ muestran: 
@@ -661,13 +663,13 @@ destfile <- "POB_NAL_DAN_EDAD.csv"
 curl_download(url, destfile)
 ```
 
-```{r cargar datos rc, fig.height=10, fig.width=7}
+```{r POB_NAL_EDAD, fig.height=10, fig.width=7}
 
 pob_nal_dane_edad = read.csv("POB_NAL_DAN_EDAD.csv",header = TRUE,sep = ",",stringsAsFactors=FALSE)
 
 pob_nal_dane_edad %<>% gather(Rango_edad, Poblacion, -Año, -Grupos.de.edad) %>% spread(Grupos.de.edad, Poblacion)
 
-pob_nal_dane_edad %<>% dplyr::filter(Año>1985)
+pob_nal_dane_edad %<>% dplyr::filter(Año>1990)
 
 pob_nal_dane_edad$Rango_edad<- gsub("X","",pob_nal_dane_edad$Rango_edad)
 pob_nal_dane_edad$Rango_edad<- gsub("\\.","-",pob_nal_dane_edad$Rango_edad)
@@ -688,9 +690,10 @@ pob_nal_dane_edad %>% ggplot(aes(x=Año, y = Participacion, fill = Rango_edad)) 
 pob_nal_dane_edad %>% ggplot(aes(x=Año, y = Participacion, colour = Rango_edad)) + geom_line() + theme_minimal() + ylab("Proyecciones de población nacional (%)") + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(17)) -> pob_total_edad_part
 
 # Generar gráfica
-png(file = 'POB_NAL_EDAD.png', height = 850, width = 600, res = 85)
-grid.arrange(pob_total_edad_stack, pob_total_edad_stack_part,pob_total_edad, pob_total_edad_part, ncol = 2)
-dev.off()
+#png(file = 'POB_NAL_EDAD.png', height = 850, width = 600, res = 85)
+POB_NAL_EDAD <- grid.arrange(pob_total_edad_stack, pob_total_edad_stack_part,pob_total_edad, pob_total_edad_part, ncol = 2)
+POB_NAL_EDAD
+#dev.off()
 ```
 
 

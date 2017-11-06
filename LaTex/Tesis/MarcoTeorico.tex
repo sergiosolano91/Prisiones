@@ -1,78 +1,77 @@
 \chapter{Antecedentes teóricos}
 
-En 2016 Colombia ocupa el puesto catorce entre doscientos cincuenta y un paises por el tamaño de su población carcelaria (120 914 hbts.) y el cincuenta y uno según la tasa de encarcelamiento (240 por cada 100.000 hbts). Tasa que pasó de 51,5 en  el año 2000 a 240 por cada 100.000 hbts en 2016. Con una ocupación del 154\% de las plazas disponibles, resulta relevante contar con proyecciones de la población carcelaria en el corto, mediano y largo plazo. \cite{InstitueforCriminalPolicyResearch2016}
+En 2016 Colombia ocupó el puesto catorce entre doscientos cincuenta y un paises por el tamaño de su población carcelaria (120 914 hbts.) y el cincuenta y uno según la tasa de encarcelamiento (240 por cada 100.000 hbts). Tasa que pasó de 51,5 en  el año 2000 a 240 por cada 100.000 hbts en 2016. Con una ocpación del 154\% de las plazas disponibles, resulta relevante contar con proyecciones de la población carcelaria en el corto, mediano y largo plazo.\cite{InstitueforCriminalPolicyResearch2016}
 
-\section{Proyecciones de población}
+\subsection{Proyecciones de población}
 
-"Una estimación poblacional consiste en determinar el tamaño o las características de una población, para el momento actual o para uno anterior, en ausencia de información. Cuando se realizan un conjunto de supuestos sobre el comportamiento de los vitales hacia el futuro, hablamos de proyección, y cuando se escoge un escenario como el más probable, hablamos de pronóstico"\cite {Swanson2012}.
+``Una estimación poblacional consiste en determinar el tamaño o las características de una población, para el momento actual o para uno anterior, en ausencia de información. Cuando se realizan un conjunto de supuestos sobre el comportamiento de los vitales hacia el futuro, hablamos de proyección, y cuando se escoge un escenario como el más probable, hablamos de pronóstico'' \cite {Swanson2012}.
 
 Para incluir la incertidumbre en las proyecciones de población Lee enumera los siguientes métodos \cite {Lee1994}: 
 \begin{itemize}
-	\item El enfoque de escenarios alto, medio y bajo: Asume comportamientos fijos para la fertilidad, la mortalidad y las migraciones durante el periodo de proyección, basado en algunos supuestos \cite {Lee1994}.
+	\item El enfoque de escenarios alto, medio y bajo: Asume comportamientos fijos para la fertilidad, la mortalidad y las migraciones durante el período de proyección, basado en algunos supuestos \cite {Lee1994}.
 	\item Análisis estocásticos
 	\begin{itemize}
 		\item Análisis ex-post: consiste en evaluar el error de pronóstico en proyecciones anteriores y aplicarlo a las nuevas proyecciones \cite {Lee1994}.
 		\item Simulación estocástica: Permite hacer proyecciones de población, al asignar una distribución de probabilidad a las tasas vitales (mortalidad, natalidad, migraciones) \cite {Lee1994}.
 		\item Modelos estocásticos de la tasa de crecimiento: Consiste en estimar la tasa de crecimiento del total de la población; aunque permite estimar intervalos de confianza, no permite separar la proyección de las tasas vitales, ni de las franjas etarias \cite {Lee1994}.
-		\item Matrices de Leslie con modelos estimados para las tasas vitales:  Al usar matrices de Leslie se estima la población por rangos etarios para un instante i, y se calcula la población en el instante i + 1 aplicando la natalidad y la mortalidad proyectadas para el periodo i. Puesto que las series de población carcelaria no se publican separadas por edad, no se abordará esta técnica.
+		\item Matrices de Leslie con modelos estimados para las tasas vitales:  Al usar matrices de Leslie se estima la población por rangos etarios para un instante i, y se calcula la población en el instante i + 1 aplicando la natalidad y la mortalidad proyectadas para el período i. Puesto que las series de población carcelaria no se publican separadas por edad, no se abordará esta técnica.
 	\end{itemize}
 \end{itemize}
 
 \subsection{Proyección de poblaciones pequeñas}
 
 La proyección de áreas pequeñas es entendida como la proyección a un nivel geográfico menor al nacional. Estas proyecciones pueden incluir, departamentos, ciudades o poblaciones especiales \cite {Swanson2012}.
-"Una población especial es un grupo poblacional que se encuentra restringido a un área por una medida administrativa o legislativa. Dentro de los grupos usualmente considerados se encuentran las prisiones, universidades, hospitales e instituciones militares".
-Este tipo de población puede tener una estructura etaria y de sexo,  y unos vitales diferentes al resto de la población; además no suelen envejecer en el mismo lugar, lo que permite mantener una estructura etaria que no varía a través del tiempo. \cite {Swanson2012}.
+``Una población especial es un grupo poblacional que se encuentra restringido a un área por una medida administrativa o legislativa. Dentro de los grupos usualmente considerados se encuentran las prisiones, universidades, hospitales e instituciones militares''.
+Este tipo de población puede tener una estructura etaria y de sexo, y unos vitales diferentes al resto de la población; además no suelen envejecer en el mismo lugar, lo que permite mantener una estructura etaria que no varía a través del tiempo. \cite {Swanson2012}.
 
 \subsection{Aplicaciones nacionales e internacionales}
 
 Las proyecciones de poblaciones carcelarias oficiales analizadas corresponden, en buena parte, a los métodos expuestos en los capítulos anteriores:  Proyecciones por escenarios, proyección de la tasa de crecimiento, modelos ARIMA para las tasas de ingreso y salida.
 
-En Colombia (CONPES 3828) se proyectó la población carcelaria usando la tasa media de crecimiento anual (1993-2014) \cite {DepartamentoNacionaldePlaneacion2015}. Esta proyección no tiene en cuenta la incertidumbre asociada con las variaciones aleatorias en las tasas, ni las asociadas a cambios estructurales.  
+En Colombia (CONPES 3828) se proyectó la población carcelaria usando la tasa media de crecimiento anual (1993-2014) \cite {DepartamentoNacionaldePlaneacion2015}. Esta proyección no tiene en cuenta la incertidumbre asociada con las variaciones aleatorias en las tasas, ni las asociadas a cambios estructurales, ni que son una población especial, con patrones muy distintos a los del resto de la población \cite{Swanson2012} .
 
 El Reino Unido hasta 2015 realizaba una proyección por escenarios (alto, medio y bajo), año en el cual cambió a un modelo de proyección de la media y su incertidumbre. La incertidumbre se incluyó a través de un análisis ex-post, de la  desviación de la proyección en años anteriores \cite {Justice2014}.
 
-El departamento de Justicia de los Estados Unidos realizó estimaciones de la población carcelaria por estado para el periodo 2013-2014. Las estimaciones parten del censo de prisiones 1993-2014. Estas proyecciones se puede enmarcar dentro de las proyecciones de áreas pequeñas \cite {Minton2015}.
+El departamento de Justicia de los Estados Unidos realizó estimaciones de la población carcelaria por estado para el período 2013-2014. Las estimaciones parten del censo de prisiones 1993-2014. Estas proyecciones se puede enmarcar dentro de las proyecciones de áreas pequeñas \cite {Minton2015}.
 
-El bureau de estadísticas e investigación del crimen en Australia proyecta las tasas de arresto y sentencia usando modelos ARIMA;  a partir de estas tasas proyecta la población carcelaria. Estas proyecciones incluyen un periodo de validación de tres años. Los resultados mostraban que la serie real se encuentra dentro de los intervalos de confianza de la proyección, cercano a la proyección de la media \cite{Wan1}.
+El bureau de estadísticas e investigación del crimen en Australia proyecta las tasas de arresto y sentencia usando modelos ARIMA;  a partir de estas tasas proyecta la población carcelaria. Estas proyecciones incluyen un período de validación de tres años. Los resultados mostraban que la serie real se encuentra dentro de los intervalos de confianza de la proyección, cercano a la proyección de la media \cite{Wan1}.
 
-Blummstein desarrolla un método de proyección basado en los componentes demográficos, tasas específicas de arresto por delito y reincidencias, a partir de estos datos proyecta el tamaño y la composición de las poblaciones \cite{Blumstein1980}.
+Blummstein desarrolla un método de proyección basado en los componentes demográficos, tasas específicas de arresto por delito y reincidencias, a partir de estos datos proyecta el tamaño y la composición de las poblaciones \cite{Blumstein1980a}.
 
-Con los datos libres disponibles en Colombia no se podría utilizar el enfoque ARIMA ni el método de Blummstein, pues las tasas de encarcelamiento y sentencia no se publican. La tesis busca proponer un método de proyección, para situaciones donde no se cuenta con el registro de los vitales o su equivalente en la población analizada.
+Con los datos libres disponibles en Colombia no se podría utilizar el enfoque ARIMA ni el método de Blummstein, pues las tasas de encarcelamiento y sentencia no se publican. La tesis busca proponer un método de proyección, para situaciones donde no se cuenta con el registro de los vitales o su equivalente en la población analizada, en este escenario resulta conveniente usar las series ARIMA sobre la series de población sindicada y población sindicada, y los modelos estado-espacio para la serie bivariada. Se proponen los métodos demográficos de estimación para áreas pequeñas Censal-ratio y Ratio-Correlation, y su contraste con las metodologías ARIMA y Estado-Espacio que a diferencia de los métodos demográficos mencionados incorporan una medida de incertidumbre.
 
-\section{Series de tiempo}
+\subsection{Series de tiempo}
 
 % SECCIÓN EN PROCESO. 
 % Una vez tenga una versión preliminar me encargaré de corregir y referenciar.
-
 Una serie de tiempo es un conjunto de observaciones ${x_t}$ asociadas a un instante de tiempo t. Es usual referirse como series de tiempo, tanto a las realizaciones ${x_t}$ como a las variables aleatorias ${X_t}$ que las generan.\cite{Brockwell2011} 
 
 En una regresión lineal clásica, una variable $Y$ es explicada o predicha en función de una variable $X$. La diferencia entre el valor observado $y_i$ y el valor predicho se suponen provenientes de un proceso aleatorio con media cero. \cite{Commandeur2007}
 
 \begin{equation}\label{eq:regresion}
-	Y_i = \beta_{0} + \beta_{1} X_i + \epsilon_i
+Y_i = \beta_{0} + \beta_{1} X_i + \epsilon_i
 \end{equation}
 
 Donde $\{\epsilon_1, \epsilon_2, ...\}$ son independientes e idénticamente distribuidas (i.i.d.). Es posible representar una serie de tiempo en esta forma, tomando como variable explicativa el tiempo. Sin embargo, el análisis de series de tiempo se ha desarrollado como un área particular de la estadística, pues es este supuesto no suele cumplirse, enfocándose particularmente en variables aleatorias dependientes, que pueden ser representadas en la forma \cite{Brockwell2011}: 
 %  this commented blank line prevents start of a new paragraph
 \begin{equation}\label{eq:serierecursiva}
-	Y_i = \beta_{0} + \beta_{1} Y_1 + \beta_{2} Y_2 + ... + \beta_{i-1} Y_{i-1} + \ \epsilon_i
+Y_i = \beta_{0} + \beta_{1} Y_1 + \beta_{2} Y_2 + ... + \beta_{i-1} Y_{i-1} + \ \epsilon_i
 \end{equation}
 Para medir la dependencia entre las observaciones recurrimos a la función de autocovarianca y a la función de autocorrelación. La función de autocovarianza se define como: 
 
 \begin{equation}\label{covarianza}
-	\gamma(h, h+k) = cov(x_h, x_{h+k}) = E[(x_h - \mu_h)(x_{h+k} - µ{h+k})]
+\gamma(h, h+k) = cov(x_h, x_{h+k}) = E[(x_h - \mu_h)(x_{h+k} - µ{h+k})]
 \end{equation}
 
 para todo h y k mayor a cero. La autocovarianza mide la dependencia lineal entre dos puntos en la misma serie en diferentes instantes. \cite{Shumway}. 
 
 La función de autocorrelación se define como \cite{Shumway}: 
 
- \begin{equation}\label{correlacion}
- 	\rho (h, h+k) = \dfrac{\gamma(h, h+k)}{\sqrt{\gamma(h, h) \gamma(h+k, h+k)}}
- \end{equation}
+\begin{equation}\label{correlacion}
+\rho (h, h+k) = \dfrac{\gamma(h, h+k)}{\sqrt{\gamma(h, h) \gamma(h+k, h+k)}}
+\end{equation}
 
-Para poder realizar predicciones sobre el estado futuro de una serie de tiempo, es necesario suponer que el comportamiento de la serie es estable a través del tiempo, incluso con un componente aleatorio. La estacionaridad es el concepto que permite articular esta necesidad. Estamos ante un \textbf{proceso estacionario} cuando las variables $\{X_1,..., X_k\}$ tienen la misma distribución conjunta que $\{X_{h+1},...,X_{h+k}\}$, para todos los enteros $h$ y $k$. \cite{Brockwell2011}
+Para poder realizar predicciones sobre el estado futuro de una serie de tiempo, es necesario suponer que el comportamiento de la serie es estable a través del tiempo, incluso con un componente aleatorio. La estacionaridad es el concepto que permite articular esta necesidad. Estamos ante un \textbf{proceso estacionario} cuando las variables $\{X_1,..., X_k\}$ tienen la misma distribución conjunta que $\{X_{h+1},...,X_{h+k}\}$, para todos los enteros $h$ y $k$ \cite{Brockwell2011}.
 
 La estacionaridad débil se presenta cuando $E[X_j]$ y $E[X_jX_{j+h}]$ son independientes de $j$, es decir: i) Presenta media $\mu$ constante e independiente de $t$ ii) La función de autocovarianza $\gamma(h, h+k)$ depende solamente de la cantidad de pasos que separa las observaciones ($k$). \cite{Shumway}
 
@@ -80,17 +79,17 @@ La estacionaridad débil se presenta cuando $E[X_j]$ y $E[X_jX_{j+h}]$ son indepe
 
 Box \& Jenkins proponen una aproximación iterativa de  cuatro etapas para la selección de un modelo \cite{Box2013}: 
 
-\begin{itemize}
+\begin{enumerate}
 	\item Selección de una clase de modelos, con base en la teoría y la práctica.
 	\item Identificación del modelo, donde se seleccionan un conjunto de parámetros que permitan explicar el sistema con parsimonia. 
 	\item Estimación de parámetros. 
 	\item Chequeo diagnóstico, para detectar fallas en el ajuste. Si se detectan fallas en el ajuste, se regresa al segundo paso. 
-\end{itemize}
+\end{enumerate}
 
 Los procesos ARMA son procesos aleatorios de la forma \cite{Shumway} : 
 
 \begin{equation}\label{arma}
-	Y_t = \gamma Y_{t-1} + \gamma_2 Y_{t-2} ...+ + \gamma_i Y_{t-i} + \epsilon + \theta_1\epsilon_{t-1} + \theta_2\epsilon_{t-2} ... \theta_j\epsilon_{t-j}
+Y_t = \gamma Y_{t-1} + \gamma_2 Y_{t-2} ...+ + \gamma_i Y_{t-i} + \epsilon + \theta_1\epsilon_{t-1} + \theta_2\epsilon_{t-2} ... \theta_j\epsilon_{t-j}
 \end{equation}
 
 A este modelo se le conoce como ARMA(i,0,j).
@@ -98,7 +97,7 @@ A este modelo se le conoce como ARMA(i,0,j).
 Los procesos ARIMA resultan al considerar una serie de la forma \cite{Shumway}: 
 
 \begin{equation}\label{ARIMA}
-	Y_t = \alpha +  Y_{t-1}
+Y_t = \alpha +  Y_{t-1}
 \end{equation}
 
 Tal que el proceso $Y_t - Y_{t-1}$ es un proceso ARMA.
@@ -106,7 +105,7 @@ Tal que el proceso $Y_t - Y_{t-1}$ es un proceso ARMA.
 Los criterios para identificar el orden de un ARMA son \cite{Boland2011}: 
 
 \begin{itemize}
-	\item Cuando la función de autocorrelación (ACF) se reduce progresivamente, y  la función de autocorrelación parcial(PACF) no tiene picos en lags luego de p, es un proceso autoregresivo de orden p  AR(p) 
+	\item Cuando la función de autocorrelación (ACF) se reduce progresivamente, y  la función de autocorrelación parcial (PACF) no tiene picos en lags luego de p, es un proceso autoregresivo de orden p  AR(p) 
 	\item Cuando la función de autocorrelación tiene un pico en el lag q, y la función de autocorrelación parcial se reduce progresivamente, es un proceso de media mmovil de orden q MA(q)
 	\item Si ambas funciones se reducen gradualmente, se trata de un ARMA (p,q)
 \end{itemize}
@@ -128,4 +127,4 @@ z_t = B_{t-1} z_{t-1} + w_{t-1}
 
 La matriz $\ B_t $\ es una matriz de coeficientes que puede depender de $\ t $\, y $\ w_t $\ es un proceso de ruido. \cite{Lutkepohl2005a}
 
-Es posible considerar los modelos estado-espacio una generalización de los modelos ARIMA y VARMA.
+Es posible considerar los modelos estado-espacio una generalización de los modelos ARIMA y VARMA

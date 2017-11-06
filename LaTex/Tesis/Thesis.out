@@ -2,45 +2,41 @@
 \BOOKMARK [0][-]{Doc-Start}{\315ndice de tablas}{}% 2
 \BOOKMARK [0][-]{Doc-Start}{\315ndice de figuras}{}% 3
 \BOOKMARK [0][-]{Doc-Start}{Introducci\363n}{}% 4
-\BOOKMARK [1][-]{section.0.1}{Objetivos}{Doc-Start}% 5
-\BOOKMARK [2][-]{subsection.0.1.1}{Objectivo General}{section.0.1}% 6
-\BOOKMARK [2][-]{subsection.0.1.2}{Objetivos Espec\355ficos}{section.0.1}% 7
-\BOOKMARK [0][-]{chapter.1}{Antecedentes te\363ricos}{}% 8
-\BOOKMARK [1][-]{section.1.1}{Proyecciones de poblaci\363n}{chapter.1}% 9
-\BOOKMARK [2][-]{subsection.1.1.1}{Proyecci\363n de poblaciones peque\361as}{section.1.1}% 10
-\BOOKMARK [2][-]{subsection.1.1.2}{Aplicaciones nacionales e internacionales}{section.1.1}% 11
-\BOOKMARK [1][-]{section.1.2}{Series de tiempo}{chapter.1}% 12
-\BOOKMARK [2][-]{subsection.1.2.1}{Modelos ARIMA}{section.1.2}% 13
-\BOOKMARK [2][-]{subsection.1.2.2}{Modelos Estado-Espacio}{section.1.2}% 14
-\BOOKMARK [0][-]{chapter.2}{La poblaci\363n carcelaria en Colombia 1991 - 2017}{}% 15
-\BOOKMARK [1][-]{section.2.1}{An\341lisis exploratorio}{chapter.2}% 16
-\BOOKMARK [1][-]{section.2.2}{El sistema penitenciario en Colombia}{chapter.2}% 17
-\BOOKMARK [2][-]{subsection.2.2.1}{Identificaci\363n del modelo}{section.2.2}% 18
-\BOOKMARK [0][-]{chapter.3}{Modelos SARIMA}{}% 19
-\BOOKMARK [1][-]{section.3.1}{Identificaci\363n del modelo}{chapter.3}% 20
-\BOOKMARK [2][-]{subsection.3.1.1}{Poblaci\363n total}{section.3.1}% 21
-\BOOKMARK [2][-]{subsection.3.1.2}{Poblaci\363n sindicada}{section.3.1}% 22
-\BOOKMARK [2][-]{subsection.3.1.3}{Poblaci\363n condenada}{section.3.1}% 23
-\BOOKMARK [1][-]{section.3.2}{Estimaci\363n de par\341mtetros}{chapter.3}% 24
-\BOOKMARK [2][-]{subsection.3.2.1}{Poblaci\363n total}{section.3.2}% 25
-\BOOKMARK [2][-]{subsection.3.2.2}{Poblaci\363n sindicada}{section.3.2}% 26
-\BOOKMARK [2][-]{subsection.3.2.3}{Poblaci\363n condenada}{section.3.2}% 27
-\BOOKMARK [1][-]{section.3.3}{Proyecci\363n}{chapter.3}% 28
-\BOOKMARK [2][-]{subsection.3.3.1}{Poblaci\363n total}{section.3.3}% 29
-\BOOKMARK [2][-]{subsection.3.3.2}{Poblaci\363n sindicada}{section.3.3}% 30
-\BOOKMARK [2][-]{subsection.3.3.3}{Poblaci\363n condenada}{section.3.3}% 31
-\BOOKMARK [1][-]{section.3.4}{Conclusiones}{chapter.3}% 32
-\BOOKMARK [0][-]{chapter.4}{M\351todos demogr\341ficos para poblaciones peque\361as}{}% 33
-\BOOKMARK [1][-]{section.4.1}{Selecci\363n de variables}{chapter.4}% 34
-\BOOKMARK [1][-]{section.4.2}{Poblaci\363n colombiana 1991-2020}{chapter.4}% 35
-\BOOKMARK [0][-]{chapter.5}{Modelos estado-espacio}{}% 36
-\BOOKMARK [1][-]{section.5.1}{Marco te\363rico}{chapter.5}% 37
-\BOOKMARK [1][-]{section.5.2}{Selecci\363n de Software}{chapter.5}% 38
-\BOOKMARK [1][-]{section.5.3}{Identificaci\363n del modelo}{chapter.5}% 39
-\BOOKMARK [1][-]{section.5.4}{Simulaci\363n Monte-Carlo}{chapter.5}% 40
-\BOOKMARK [1][-]{section.5.5}{Estimaci\363n de par\341metros}{chapter.5}% 41
-\BOOKMARK [1][-]{section.5.6}{Proyecciones 2017 - 2020}{chapter.5}% 42
-\BOOKMARK [1][-]{section.5.7}{Conclusiones}{chapter.5}% 43
-\BOOKMARK [0][-]{section.5.7}{Conclusiones}{}% 44
-\BOOKMARK [0][-]{section.5.7}{Trabajo futuro}{}% 45
-\BOOKMARK [0][-]{section.5.7}{Bibliograf\355a}{}% 46
+\BOOKMARK [0][-]{chapter.1}{Antecedentes te\363ricos}{}% 5
+\BOOKMARK [1][-]{subsection.1.0.1}{Proyecciones de poblaci\363n}{chapter.1}% 6
+\BOOKMARK [2][-]{subsection.1.0.2}{Proyecci\363n de poblaciones peque\361as}{subsection.1.0.1}% 7
+\BOOKMARK [2][-]{subsection.1.0.3}{Aplicaciones nacionales e internacionales}{subsection.1.0.1}% 8
+\BOOKMARK [2][-]{subsection.1.0.4}{Series de tiempo}{subsection.1.0.1}% 9
+\BOOKMARK [2][-]{subsection.1.0.5}{Modelos ARIMA}{subsection.1.0.1}% 10
+\BOOKMARK [2][-]{subsection.1.0.6}{Modelos Estado-Espacio}{subsection.1.0.1}% 11
+\BOOKMARK [0][-]{chapter.2}{La poblaci\363n carcelaria en Colombia 1991 - 2017}{}% 12
+\BOOKMARK [1][-]{section.2.1}{An\341lisis exploratorio}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.2}{El sistema penitenciario en Colombia}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.2.1}{Identificaci\363n del modelo}{section.2.2}% 15
+\BOOKMARK [0][-]{chapter.3}{Modelos SARIMA}{}% 16
+\BOOKMARK [1][-]{section.3.1}{Identificaci\363n del modelo}{chapter.3}% 17
+\BOOKMARK [2][-]{subsection.3.1.1}{Poblaci\363n total}{section.3.1}% 18
+\BOOKMARK [2][-]{subsection.3.1.2}{Poblaci\363n sindicada}{section.3.1}% 19
+\BOOKMARK [2][-]{subsection.3.1.3}{Poblaci\363n condenada}{section.3.1}% 20
+\BOOKMARK [1][-]{section.3.2}{Estimaci\363n de par\341mtetros}{chapter.3}% 21
+\BOOKMARK [2][-]{subsection.3.2.1}{Poblaci\363n total}{section.3.2}% 22
+\BOOKMARK [2][-]{subsection.3.2.2}{Poblaci\363n sindicada}{section.3.2}% 23
+\BOOKMARK [2][-]{subsection.3.2.3}{Poblaci\363n condenada}{section.3.2}% 24
+\BOOKMARK [1][-]{section.3.3}{Proyecci\363n}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.3.1}{Poblaci\363n total}{section.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.2}{Poblaci\363n sindicada}{section.3.3}% 27
+\BOOKMARK [2][-]{subsection.3.3.3}{Poblaci\363n condenada}{section.3.3}% 28
+\BOOKMARK [1][-]{section.3.4}{Conclusiones}{chapter.3}% 29
+\BOOKMARK [0][-]{chapter.4}{M\351todos demogr\341ficos para poblaciones peque\361as}{}% 30
+\BOOKMARK [1][-]{section.4.1}{Selecci\363n de variables}{chapter.4}% 31
+\BOOKMARK [1][-]{section.4.2}{Poblaci\363n colombiana 1991-2020}{chapter.4}% 32
+\BOOKMARK [0][-]{chapter.5}{Modelos estado-espacio}{}% 33
+\BOOKMARK [1][-]{section.5.1}{Selecci\363n de Software}{chapter.5}% 34
+\BOOKMARK [1][-]{section.5.2}{Identificaci\363n del modelo}{chapter.5}% 35
+\BOOKMARK [1][-]{section.5.3}{Simulaci\363n Monte-Carlo}{chapter.5}% 36
+\BOOKMARK [1][-]{section.5.4}{Estimaci\363n de par\341metros}{chapter.5}% 37
+\BOOKMARK [1][-]{section.5.5}{Proyecciones 2017 - 2020}{chapter.5}% 38
+\BOOKMARK [1][-]{section.5.6}{Conclusiones}{chapter.5}% 39
+\BOOKMARK [0][-]{section.5.6}{Conclusiones}{}% 40
+\BOOKMARK [0][-]{section.5.6}{Trabajo futuro}{}% 41
+\BOOKMARK [0][-]{section.5.6}{Bibliograf\355a}{}% 42
