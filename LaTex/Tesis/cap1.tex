@@ -34,18 +34,20 @@ A la población privada de la libertad antes del juicio se le denomina pobación s
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=10cm]{sit_jur.png}
-	\caption{Población carcelaria por situación jurídica\\} {Fuente: INPEC} {Elaboración propia}
+or	\caption{Población carcelaria por situación jurídica\\} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:sit_jur}
 \end{figure}
 
 \subsection{Identificación del modelo}
 
 Podemos modelar el sistema penitenciario de la siguiente manera:
+
 %
 \begin{equation}\label{Sindicados}
-	S_t = S_{t-1} + \alpha {N_t} - \gamma S_{t-1}
+	P_t = S_{t-1} + \alpha {N_t} - \gamma S_{t-1}
 \end{equation} 
 %
+
 \begin{equation}\label{Condenados}
 	C_t = C_{t-1} - \omega C_{t-1} + \beta \gamma S_{t-1}
 \end{equation} 

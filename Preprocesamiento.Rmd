@@ -50,6 +50,8 @@ library ("vars") # ts
 
 library("astsa") # Estimar ts
 library("forecast") # Estimar ts
+
+library("rms") #regression
 ```
 
 ```{r carga de datos, echo = FALSE, include=FALSE }
@@ -695,6 +697,63 @@ POB_NAL_EDAD <- grid.arrange(pob_total_edad_stack, pob_total_edad_stack_part,pob
 POB_NAL_EDAD
 #dev.off()
 ```
+
+
+```{r REG_POB_NAL_EDAD, fig.height=10, fig.width=7}
+# Cargar datos 
+pob_nal_dane_edad = read.csv("POB_NAL_DAN_EDAD.csv",header = TRUE,sep = ",",stringsAsFactors=FALSE)
+
+# cambiar estructura donde el genero es columna y los gruposde edad es fila
+pob_nal_dane_edad %<>% gather(Rango_edad, Poblacion, -Año, -Grupos.de.edad) %>% spread(Grupos.de.edad, Poblacion)
+
+pob_nal_dane_edad %<>% dplyr::filter(Año>1990)
+
+# Corregir titulos de rango etario
+pob_nal_dane_edad$Rango_edad<- gsub("X","",pob_nal_dane_edad$Rango_edad)
+pob_nal_dane_edad$Rango_edad<- gsub("\\.","-",pob_nal_dane_edad$Rango_edad)
+pob_nal_dane_edad$Rango_edad<- gsub("0-4","00-04",pob_nal_dane_edad$Rango_edad)
+pob_nal_dane_edad$Rango_edad<- gsub("400-044","40-44",pob_nal_dane_edad$Rango_edad)
+pob_nal_dane_edad$Rango_edad<- gsub("5-9","05-09",pob_nal_dane_edad$Rango_edad)
+
+# Población DANE por edad
+pob_nal_dane_edad %>% dplyr::select(Año, Rango_edad, Total) %>% tidyr::spread(Rango_edad, Total) -> pob_dane_edad
+
+# Acumular rangos etarios que se trabajan acumulados
+Menor_14 <-apply(pob_dane_edad[,2:4],1,sum)
+Mayor_60 <- apply(pob_dane_edad[,16:18],1,sum)
+
+# Crear arreglo de regresores
+Regresores <- cbind(Menor_14,pob_dane_edad[,5:15],Mayor_60)
+
+# Calcular población total
+Pob_total <- apply(Regresores,1,sum)
+
+# Población total en mayo de cada año
+ppl_sitjur %>% dplyr::filter(categoria =="total", mes == 5, !is.na(valor)) %>% dplyr::select(valor, anio) -> pob_inpec_total
+
+# Calcular tasa de encarcelamiento
+registros <- dim(pob_inpec_total)[1]
+tasa_encar <- pob_inpec_total[,1]/Pob_total[1:registros]
+
+# Guardar modelo de regresión
+tasa_regresores <- cbind(tasa_encar = pob_inpec_total[,1],Regresores[1:registros,]) 
+
+# Salvar
+write.table(tasa_regresores,"tasa_regresores.csv",sep=",",row.names = FALSE)
+```
+
+```{r REGRESION}
+tasa_regresores <- read.table("tasa_regresores.csv", sep = ",", header = TRUE)
+
+ddist <- datadist(tasa_regresores)
+options(datadst = "ddist")
+
+reg <- lm(tasa_encar ~ -1 + X15.19 + X20.24  + X20.24 + X25.29 + X30.34 + X35.39 + X40.44 + X45.49 + X50.54 + X55.59 + Mayor_60, data = tasa_regresores)
+summary(reg)
+
+step(reg,direction="backward")
+```
+
 
 
 

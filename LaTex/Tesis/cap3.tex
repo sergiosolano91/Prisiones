@@ -1,5 +1,8 @@
 \chapter{Métodos demográficos para poblaciones pequeñas}
 
+Los métodos demográficos para poblaciones pequeñas usuales son ratio-correlation y censal-ratio. Estos métodos requieren contar con indicadores sintomáticos para la población total y la población pequeña, por ejemplo número de muertes o nacimientos, licencias de conducir o inscripciones escolares, para poder estimar la proporción de la población total, ubicada en la población pequeña.
+
+En el caso de la población privada de la libertad en Colombia, el INPEC no publica otras series de indicadores históricas además de los conteos de población sindicada y condenada, y separada por género. Así pues, se propone utilizar métodos de regresión sobre la tasa de encarcelamiento, usando como variables regresoras la proporción entre población carcelaria y población por rango etario.
 
 \section{Selección de variables}
 
@@ -11,10 +14,40 @@ Para realizar la proyección a tres años, como en el capítulo anterior, se utiliz
 
 \section{Población colombiana 1991-2020}
 
+Las proyecciones de población carcelaria en Colombia del DANE dan cuenta de un proceso de cambio en la estructura de población en Colombia, entre 1985 y 2020. En la figura \ref{fig:pob_nal_dane_edad} se puede observar la proyección de población nacional del DANE, entre 1991 y 2020, a nivel anual, por grupo de edad. \cite{DANE2013}
+
+La población total pasa de 35 millones en 1991, a 51 millones en 2020. No todos los rangos etarios crecen al mismo ritmo, la población de cero a cuatro años tiene un decrecimiento en la población total. Los siguientes grupos etarios reducen su proporción frente a la población total en el periodo analizado: cero a cuatro, de cinco a nueve, de diez a catorce, de quince a diecinueve, de veinte a veinticuatro y veinticinco a veintinueve años. Esto representa un proceso de envejecimiento de la población, sin embargo el perfil de cambio en cada perfil es diferente según el grupo etario; por ejemplo, la población total de cero a cuatro años, tiene un pico entre 1990 y 2000, luego de lo cual decrece su participación en la población total. Este pico en la población de cinco a nueve, se presenta entre el 2000 y el 2005.
+
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{POB_NAL_EDAD-1.pdf}
 	\caption[Proyección de la población nacional por rango de edad]{Proyección de la población nacional por rango de edad}{Fuente: DANE} {Elaboración propia}
 	\label{fig:pob_nal_dane_edad}
 \end{figure}
+
+Los grupos etarios usualmente asociados con altas tasas de criminalidad están entre quince y veinticuatro años \cite{Blumstein1980a}. La población total en ambos grupos crece sostenidamente en el periodo 1991-2020. Como porcentaje de la población total, decrecen en dos puntos porcentuales en el mismo periodo. El crecimiento de este grupo etario, particularmente en hombres podría ser un buen predictor de la población carcelaria, razón por la cual se realiza una regresión sobre el total de población. Los grupos etarios hasta los catorce años se tratarán como un solo grupo poblacional, al igual que los grupos por encima de sesenta años.
+
+
+\section{Identificación del modelo}
+
+El modelo propuesto corresponde a: 
+
+\begin{equation}\label{Sindicados}
+p_t =  B_0 - B_a* P_{t,a} + \varepsilon
+\end{equation} 
+
+donde: 
+
+$ p_t = $ {Tasa de encarcelamiento}
+
+$ B_0 = $ Intercepto
+
+$ B_a =$  $ Parámetro para el rango etario a $
+
+$ P_{t,a} = $  $ Población total en el rango etario a estimar$
+
+$\varepsilon \sim N(0,\sigma ^ 2) $ 
+
+Las proyecciones de población total por rango etario generadas por el DANE corresponden a la proyección al primero de junio de cada año. Se utiliza entonces la proyección carcelaria al cierre del mes de mayo, en el cálculo de la tasa de encarcelamiento.
 

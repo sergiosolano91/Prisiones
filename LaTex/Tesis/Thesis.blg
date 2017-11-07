@@ -13,14 +13,13 @@ A level-1 auxiliary file: cap4.aux
 A level-1 auxiliary file: conclusiones.aux
 A level-1 auxiliary file: trabajofuturo.aux
 Database file #1: references.bib
-Repeated entry---line 1123 of file references.bib
+Repeated entry---line 1129 of file references.bib
  : @misc{InstitutoNacionalPenitenciarioyCarcelario2016
  :                                                    ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "Blumstein1980"
 Warning--missing publisher in Box2013
-Warning--missing pages in Commandeur2011
 Warning--missing journal name in Commandeur2007
+Warning--missing institution in DANE2013
 Warning--missing journal name in DepartamentoNacionaldePlaneacion2015
 Warning--missing pages in DepartamentoNacionaldePlaneacion2015
 Warning--missing journal name in Minton2015
@@ -29,32 +28,32 @@ Warning--missing institution in Wan1
 Warning--missing year in Wan1
 You've used 24 entries,
             2213 wiz_defined-function locations,
-            659 strings with 7541 characters,
-and the built_in function-call counts, 6583 in all, are:
-= -- 566
-> -- 284
+            655 strings with 7538 characters,
+and the built_in function-call counts, 6486 in all, are:
+= -- 560
+> -- 270
 < -- 2
-+ -- 114
-- -- 90
-* -- 512
-:= -- 1079
++ -- 109
+- -- 85
+* -- 495
+:= -- 1060
 add.period$ -- 24
 call.type$ -- 24
-change.case$ -- 118
+change.case$ -- 117
 chr.to.int$ -- 0
 cite$ -- 33
 duplicate$ -- 296
-empty$ -- 589
-format.name$ -- 90
-if$ -- 1361
+empty$ -- 587
+format.name$ -- 85
+if$ -- 1344
 int.to.chr$ -- 0
 int.to.str$ -- 24
-missing$ -- 45
+missing$ -- 44
 newline$ -- 82
-num.names$ -- 48
-pop$ -- 171
+num.names$ -- 47
+pop$ -- 170
 preamble$ -- 1
-purify$ -- 93
+purify$ -- 91
 quote$ -- 0
 skip$ -- 171
 stack$ -- 0
@@ -65,7 +64,7 @@ text.prefix$ -- 0
 top$ -- 0
 type$ -- 88
 warning$ -- 9
-while$ -- 67
+while$ -- 66
 width$ -- 26
 write$ -- 211
 (There was 1 error message)
