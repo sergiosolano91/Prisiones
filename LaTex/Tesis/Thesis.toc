@@ -16,29 +16,20 @@
 \contentsline {subsection}{\numberline {2.2.1}Identificaci\'on del modelo}{7}{subsection.2.2.1}
 \contentsline {chapter}{\numberline {3}Modelos SARIMA}{9}{chapter.3}
 \contentsline {section}{\numberline {3.1}Identificaci\'on del modelo}{9}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Poblaci\'on total}{12}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Poblaci\'on sindicada}{13}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Poblaci\'on condenada}{13}{subsection.3.1.3}
 \contentsline {section}{\numberline {3.2}Estimaci\'on de par\'amtetros}{13}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Poblaci\'on total}{13}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Poblaci\'on sindicada}{18}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Poblaci\'on condenada}{22}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Proyecci\'on}{27}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Poblaci\'on total}{27}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Poblaci\'on sindicada}{28}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Poblaci\'on condenada}{28}{subsection.3.3.3}
-\contentsline {section}{\numberline {3.4}Conclusiones}{29}{section.3.4}
-\contentsline {chapter}{\numberline {4}M\'etodos demogr\'aficos para poblaciones peque\~nas}{30}{chapter.4}
-\contentsline {section}{\numberline {4.1}Selecci\'on de variables}{30}{section.4.1}
-\contentsline {section}{\numberline {4.2}Poblaci\'on colombiana 1991-2020}{30}{section.4.2}
-\contentsline {section}{\numberline {4.3}Identificaci\'on del modelo}{32}{section.4.3}
-\contentsline {chapter}{\numberline {5}Modelos estado-espacio}{33}{chapter.5}
-\contentsline {section}{\numberline {5.1}Selecci\'on de Software}{33}{section.5.1}
-\contentsline {section}{\numberline {5.2}Identificaci\'on del modelo}{33}{section.5.2}
-\contentsline {section}{\numberline {5.3}Simulaci\'on Monte-Carlo}{33}{section.5.3}
-\contentsline {section}{\numberline {5.4}Estimaci\'on de par\'ametros}{33}{section.5.4}
-\contentsline {section}{\numberline {5.5}Proyecciones 2017 - 2020}{33}{section.5.5}
-\contentsline {section}{\numberline {5.6}Conclusiones}{33}{section.5.6}
-\contentsline {chapter}{Conclusiones}{34}{section.5.6}
-\contentsline {chapter}{Trabajo futuro}{35}{section.5.6}
-\contentsline {chapter}{Bibliograf\'{\i }a}{36}{section.5.6}
+\contentsline {section}{\numberline {3.3}Proyecci\'on}{28}{section.3.3}
+\contentsline {section}{\numberline {3.4}Conclusiones}{30}{section.3.4}
+\contentsline {chapter}{\numberline {4}M\'etodos demogr\'aficos para poblaciones peque\~nas}{32}{chapter.4}
+\contentsline {section}{\numberline {4.1}Selecci\'on de variables}{32}{section.4.1}
+\contentsline {section}{\numberline {4.2}Poblaci\'on colombiana 1991-2020}{32}{section.4.2}
+\contentsline {section}{\numberline {4.3}Identificaci\'on del modelo}{34}{section.4.3}
+\contentsline {chapter}{\numberline {5}Modelos estado-espacio}{35}{chapter.5}
+\contentsline {section}{\numberline {5.1}Selecci\'on de Software}{35}{section.5.1}
+\contentsline {section}{\numberline {5.2}Identificaci\'on del modelo}{35}{section.5.2}
+\contentsline {section}{\numberline {5.3}Simulaci\'on Monte-Carlo}{35}{section.5.3}
+\contentsline {section}{\numberline {5.4}Estimaci\'on de par\'ametros}{35}{section.5.4}
+\contentsline {section}{\numberline {5.5}Proyecciones 2017 - 2020}{35}{section.5.5}
+\contentsline {section}{\numberline {5.6}Conclusiones}{35}{section.5.6}
+\contentsline {chapter}{Conclusiones}{36}{section.5.6}
+\contentsline {chapter}{Trabajo futuro}{37}{section.5.6}
+\contentsline {chapter}{Bibliograf\'{\i }a}{38}{section.5.6}

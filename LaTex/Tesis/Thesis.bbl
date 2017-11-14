@@ -50,11 +50,6 @@ Jouni Helske, \emph{{Exponential Family State Space Models in R}}, Journal of
 Rob~J Hyndman, \emph{{{\{}forecast{\}}: Forecasting functions for time series
   and linear models}}, 2017.
 
-\bibitem{Hyndman2008}
-Rob~J. Hyndman and Yeasmin Khandakar, \emph{{Automatic Time Series Forecasting:
-  The forecast Package for R}}, Journal of Statistical Software \textbf{27}
-  (2008), no.~3, 1--22.
-
 \bibitem{InstitueforCriminalPolicyResearch2016}
 {Institute for Criminal Policy Research}, \emph{{Colombia | World Prison
   Brief}}, 2016.

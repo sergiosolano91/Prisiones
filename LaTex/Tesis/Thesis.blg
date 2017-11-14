@@ -26,45 +26,45 @@ Warning--missing journal name in Minton2015
 Warning--missing pages in Minton2015
 Warning--missing institution in Wan1
 Warning--missing year in Wan1
-You've used 24 entries,
+You've used 23 entries,
             2213 wiz_defined-function locations,
-            655 strings with 7538 characters,
-and the built_in function-call counts, 6486 in all, are:
-= -- 560
-> -- 270
+            648 strings with 7404 characters,
+and the built_in function-call counts, 6186 in all, are:
+= -- 531
+> -- 257
 < -- 2
-+ -- 109
-- -- 85
-* -- 495
-:= -- 1060
-add.period$ -- 24
-call.type$ -- 24
-change.case$ -- 117
++ -- 104
+- -- 81
+* -- 467
+:= -- 1011
+add.period$ -- 23
+call.type$ -- 23
+change.case$ -- 112
 chr.to.int$ -- 0
-cite$ -- 33
-duplicate$ -- 296
-empty$ -- 587
-format.name$ -- 85
-if$ -- 1344
+cite$ -- 32
+duplicate$ -- 285
+empty$ -- 562
+format.name$ -- 81
+if$ -- 1283
 int.to.chr$ -- 0
-int.to.str$ -- 24
-missing$ -- 44
-newline$ -- 82
-num.names$ -- 47
-pop$ -- 170
+int.to.str$ -- 23
+missing$ -- 42
+newline$ -- 79
+num.names$ -- 45
+pop$ -- 165
 preamble$ -- 1
-purify$ -- 91
+purify$ -- 87
 quote$ -- 0
-skip$ -- 171
+skip$ -- 165
 stack$ -- 0
-substring$ -- 308
-swap$ -- 55
+substring$ -- 287
+swap$ -- 54
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 88
+type$ -- 84
 warning$ -- 9
-while$ -- 66
-width$ -- 26
-write$ -- 211
+while$ -- 62
+width$ -- 25
+write$ -- 202
 (There was 1 error message)

@@ -34,20 +34,29 @@ Los grupos etarios usualmente asociados con altas tasas de criminalidad están en
 El modelo propuesto corresponde a: 
 
 \begin{equation}\label{Sindicados}
-p_t =  B_0 - B_a* P_{t,a} + \varepsilon
+p_t =  B_a* P_{t,a} + \varepsilon
 \end{equation} 
 
 donde: 
 
-$ p_t = $ {Tasa de encarcelamiento}
+$ p_t = $ {Población encarcelada total}
 
-$ B_0 = $ Intercepto
+$ B_a =$   Tasa de encarcelamiento específica para el rango etario $ a $
 
-$ B_a =$  $ Parámetro para el rango etario a $
-
-$ P_{t,a} = $  $ Población total en el rango etario a estimar$
+$ P_{t,a} = $   Población total en el rango etario $a$
 
 $\varepsilon \sim N(0,\sigma ^ 2) $ 
 
 Las proyecciones de población total por rango etario generadas por el DANE corresponden a la proyección al primero de junio de cada año. Se utiliza entonces la proyección carcelaria al cierre del mes de mayo, en el cálculo de la tasa de encarcelamiento.
 
+
+Nota: Proyecciones de población por rango etario tienen una alta correlación entre sí, lo que genera en el modelo de regresión: 
+
+\begin{itemize}
+	\item $R^2 > 0.9$ 
+	\item Parámetros negativos
+	\item Parámetros no significativos
+	\item Al eliminar variables con parámetros no significativos, los valores de los otros parámetros cambian drásticamentee.
+\end{itemize}
+
+Ravishanker sugiere usar en estos casos regresión de ridge. (Pendiente citar)
