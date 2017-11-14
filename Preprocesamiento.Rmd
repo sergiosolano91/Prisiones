@@ -83,6 +83,7 @@ ppl_sitjur %<>% mutate (Fecha = as.Date(paste (1,mes,anio, sep = "/"),"%d/%m/%Y"
 ```{r sit_jur, echo = FALSE}
 
 ppl_sitjur %>% dplyr::filter(categoria %in% c("sindicados","condenados","total"), valor >0) %>%  ggplot() + geom_line(aes(x=Fecha,y = valor, colour = categoria),stat = "identity") + ylab("Personas privadas de la libertad") + theme_minimal()-> grafica 
+ppl_sitjur %>% dplyr::filter(categoria %in% c("sindicados","condenados","total"), valor >0) %>%  ggplot() + geom_line(aes(x=Fecha,y = valor, colour = categoria),stat = "identity") + ylab("Personas privadas de la libertad") + theme_minimal() + theme(legend.title = element_blank())-> grafica 
 # ggplotly(grafica)
 grafica
 ggsave("sit_jur.png")
