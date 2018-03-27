@@ -1,0 +1,76 @@
+---
+title: "EstCrimen"
+author: "Sergio Solano"
+date: "26 de marzo de 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+rm(list = ls())
+library("lubridate") # Fechas
+library("readxl") # Importar excel
+library("magrittr") # pipes
+library("purrr") # Listas
+library("dplyr") # Data handling
+library("tidyr") # Data handling
+library("knitr") # Imprimir pdf
+library("ggplot2") # Graficas
+
+```
+
+```{r Carga xlsx}
+
+estrucutra <- c("FECHA","DEPARTAMENTO","MUNICIPIO","DIA","HORA","BARRIO","ZONA","CLASE_SITIO","ARMA_EMPLEADA","MOVIL_AGRESOR","MOVIL_VICTIMA","EDAD","SEXO","ESTADO_CIVIL","PAIS_NACE","CLASE EMPLEADO","PROFESIONES","ESCOLARIDAD","CODIGO_DANE","CANTIDAD")
+# Listar archivos 
+archivos <- list.files(pattern="xlsx")
+
+# Separar años en variable
+anio <- substr(archivos,12,15)
+origen = paste("homicidios-",anio,".xlsx",sep = "")
+destino = paste("data",anio,sep = "_")
+n = length(archivos)
+
+#Crear lista que se va a llenar con los archivos
+homicidiosxlsx = list()
+
+#Leer archivos
+for (i in 1:n) {
+temporal <- as.data.frame(read_excel(origen[i], sheet = "HOMICIDIOS ", range = "A10:T90000"))
+colnames(temporal) <- estrucutra
+homicidiosxlsx[[i]] <- list(temporal)
+}
+rm(temporal)
+```
+
+```{r a data.frame}
+# Transformar a dataframe 
+homicidiosxlsx %>%  map_df(bind_rows) -> base_homicidiosxlsx
+
+# Filtrar datos con registros
+base_homicidiosxlsx %<>% dplyr::filter(grepl("201",FECHA))
+# Columna anio 
+base_homicidiosxlsx %<>% mutate(Year = substr(FECHA,1,4))
+
+# resumen  dia
+base_homicidiosxlsx %>% group_by(FECHA) %>% summarise(cantidad = sum(CANTIDAD)) ->  resumen_dia
+resumen_dia %>% ggplot()+geom_line(aes(x=FECHA, y=cantidad)) -> ggresumen_dia
+
+# resumen mes 
+base_homicidiosxlsx$MES <- floor_date(base_homicidiosxlsx$FECHA,"month")
+base_homicidiosxlsx %>% group_by(MES) %>% summarise(cantidad = sum(CANTIDAD)) ->  resumen_mes
+resumen_mes %>% ggplot()+geom_line(aes(x=MES, y=cantidad)) -> ggresumen_mes
+```
+```{r}
+ggresumen_dia
+```
+
+```{r}
+ggresumen_mes
+```
+
+
+
+
+
+
