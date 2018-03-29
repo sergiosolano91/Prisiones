@@ -21,22 +21,18 @@ library("ggplot2") # Graficas
 
 ```{r Carga xlsx}
 
-estrucutra <- c("FECHA","DEPARTAMENTO","MUNICIPIO","DIA","HORA","BARRIO","ZONA","CLASE_SITIO","ARMA_EMPLEADA","MOVIL_AGRESOR","MOVIL_VICTIMA","EDAD","SEXO","ESTADO_CIVIL","PAIS_NACE","CLASE EMPLEADO","PROFESIONES","ESCOLARIDAD","CODIGO_DANE","CANTIDAD")
+#estrucutra <- c("FECHA","DEPARTAMENTO","MUNICIPIO","DIA","HORA","BARRIO","ZONA","CLASE_SITIO","ARMA_EMPLEADA","MOVIL_AGRESOR","MOVIL_VICTIMA","EDAD","SEXO","ESTADO_CIVIL","PAIS_NACE","CLASE EMPLEADO","PROFESIONES","ESCOLARIDAD","CODIGO_DANE","CANTIDAD")
 # Listar archivos 
 archivos <- list.files(pattern="xls")
-
-# Separar años en variable
-anio <- substr(archivos,12,15)
-origen = paste(archivos,sep = "")
-destino = paste("data",anio,sep = "_")
 n = length(archivos)
 
 #Crear lista que se va a llenar con los archivos
-delitosxlsx = list()
-
+Inpecxlsx = list()
+read
+temporal <- read_excel(archivos[4],sheet = 6, range = "A7:L15")
 #Leer archivos
 for (i in 1:n) {
-temporal <- as.data.frame(read_excel(origen[i], range = "A10:T90000"))
+temporal <- as.data.frame(read_excel(archivos[i], sheet = 1, range = "A17:L15"))
 colnames(temporal) <- estrucutra
 largo <- dim(temporal)[1]
 temporal$documento <- rep(origen[i],largo)
