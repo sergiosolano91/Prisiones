@@ -16,58 +16,94 @@ library("dplyr") # Data handling
 library("tidyr") # Data handling
 library("knitr") # Imprimir pdf
 library("ggplot2") # Graficas
-
+library("stringr") # Texto
 ```
 
 ```{r Carga xlsx}
+#Estrucutra / Pendiente hacer independiente de la estrucutura
+estrucutra <- c('Regional','Hombre_18 - 24',	'Mujer_18 - 24',	'Hombre_25 - 29',	'Mujer_25 - 29',	'Hombre_30 - 34',	'Mujer_30 - 34',	'Hombre_35 - 39',	'Mujer_35 - 39',	'Hombre_40 - 44',	'Mujer_40 - 44',	'Hombre_45 - 49',	'Mujer_45 - 49',	'Hombre_50 - 54',	'Mujer_50 - 54',	'Hombre_55 - 59',	'Mujer_55 - 59',	'Hombre_60 - 64',	'Mujer_60 - 64',	'Hombre_65 - 69',	'Mujer_65 - 69',	'Hombre_Mayor a 70',	'Mujer_Mayor a 70')
 
-#estrucutra <- c("FECHA","DEPARTAMENTO","MUNICIPIO","DIA","HORA","BARRIO","ZONA","CLASE_SITIO","ARMA_EMPLEADA","MOVIL_AGRESOR","MOVIL_VICTIMA","EDAD","SEXO","ESTADO_CIVIL","PAIS_NACE","CLASE EMPLEADO","PROFESIONES","ESCOLARIDAD","CODIGO_DANE","CANTIDAD")
 # Listar archivos 
 archivos <- list.files(pattern="xls")
 n = length(archivos)
 
 #Crear lista que se va a llenar con los archivos
 Inpecxlsx = list()
-read
-temporal <- read_excel(archivos[4],sheet = 6, range = "A7:L15")
+
 #Leer archivos
 for (i in 1:n) {
-temporal <- as.data.frame(read_excel(archivos[i], sheet = 1, range = "A17:L15"))
-colnames(temporal) <- estrucutra
-largo <- dim(temporal)[1]
-temporal$documento <- rep(origen[i],largo)
-print(paste(class(temporal$CODIGO_DANE),origen[i],sep=" "))
-delitosxlsx[[i]] <- list(temporal)
+  hojas <- excel_sheets(archivos[i])
+  hoja <- hojas[grepl("EDAD",hojas)]
+  temporal <- as.data.frame(read_excel(archivos[i], sheet = hoja, range = "A9:W15"))
+  colnames(temporal) <- estrucutra
+  largo <- dim(temporal)[1]
+  temporal$documento <- rep(archivos[i],largo)
+  #print(paste(class(temporal[,2]),archivos[i],sep=" "))
+  Inpecxlsx[[i]] <- list(temporal)
 }
 rm(temporal)
 ```
 
 ```{r a data.frame}
-# Transformar a dataframe 
-delitosxlsx %>%  map_df(bind_rows) %>% filter(grepl("201",FECHA)) -> base_delitosxlsx
+######## Agregar columna de fecha y poner en formato BD por fecha, edad y sexo
 
-# Filtrar datos con registros
-base_delitosxlsx %<>% mutate(tipo= if_else(grepl("hurto",documento),"hurto","homicidios"))
-#base_delitosxlsx %>% filter(grepl("hurto",documento)) -> base_homicidiosxlsx
-base_delitosxlsx  -> base_homicidiosxlsx
-# Columna anio 
-base_homicidiosxlsx %<>% mutate(Year = substr(FECHA,1,4))
+### Transformar a dataframe uniendo listas de cada archivo
+Inpecxlsx %>%  map_df(bind_rows) -> base_inpecxlsx
 
-# resumen  dia
-base_homicidiosxlsx %>% group_by(FECHA,tipo) %>% summarise(cantidad = sum(CANTIDAD)) ->  resumen_homi_dia
-resumen_homi_dia %>% ggplot()+geom_line(aes(x=FECHA, y=cantidad,colour=tipo)) -> ggresumen_homi_dia
+#%>% filter(grepl("TOTAL",Regional)|grepl("Total",Regional))
 
-# resumen mes 
-base_homicidiosxlsx$MES <- floor_date(base_homicidiosxlsx$FECHA,"month")
-base_homicidiosxlsx %>% group_by(MES,tipo) %>% summarise(cantidad = sum(CANTIDAD)) ->  resumen_homi_mes
-resumen_homi_mes %>% ggplot()+geom_line(aes(x=MES, y=cantidad,colour = tipo)) -> ggresumen_homi_mes
+
+#### Crear vectores de meses y año
+months <- data.frame(month_text = c ("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"),month_number = seq(1:12))
+year <- c('2016','2017','2018')
+
+
+#### Separar nombre del archivo en texto
+lista <- str_split(unique(base_inpecxlsx$documento)," ")
+#### Indexar por documento
+names(lista) <- as.vector(unique(base_inpecxlsx$documento))
+
+#### convertir a data.frame
+doc_date <- data.frame(documento = rep(names(lista), sapply(lista, length)),
+                 palabra = unlist(lista))
+
+#### Eliminar extensión del archivo
+doc_date$palabra <-  gsub(".xlsx","",doc_date$palabra)
+doc_date$palabra <-  gsub(".xls","",doc_date$palabra)
+
+#### Crear vectores de mes y año
+doc_date %>% filter (palabra%in% months[,1]) -> doc_month
+doc_date %>% filter (palabra%in% year) -> doc_year
+colnames(doc_month) <- c("documento","month_text")
+colnames(doc_year) <- c("documento","year")
+
+#### Concatenar base de Inpec con mes y año para crear fecha
+base_inpecxlsx %>% left_join(doc_month,by = NULL) %>% left_join(months,by=NULL) %>% left_join(doc_year)%>% mutate(fecha = as.Date(paste(year,month_number,15, sep ="/"),"%Y/%m/%d")) -> Inpecxlsx_date
+
+#### Poner en formato indexado por edad y fecha
+Inpecxlsx_date %>% filter(grepl("TOTAL",Regional)|grepl("Total",Regional)) %>% select(-documento, -month_text, -month_number, -year) %>%  gather(Edad,Poblacion,-Regional, -fecha) -> InpecEdad_tidy
+
+#### Columnas de sexo y edad 
+Edad_genero <- as.data.frame(str_split_fixed(InpecEdad_tidy$Edad,"_",2))
+InpecEdad_tidy <- cbind(InpecEdad_tidy,Edad_genero)
+colnames(InpecEdad_tidy) <- c("Region","Fecha","SexoEdad","Poblacion","Sexo","Edad")
 ```
-```{r}
-ggresumen_homi_dia
+
+```{r }
+## Gráfica 
+InpecEdad_tidy %>% ggplot() + geom_line(aes(x=Fecha, y = Poblacion, colour = Edad )) + facet_wrap(~Sexo, ncol = 2, scales = "free") -> gginpec_edad_genero1
+gginpec_edad_genero1
+#ggplotly(gato)
 ```
 
 ```{r}
-ggresumen_homi_mes
+InpecEdad_tidy %>% filter(Fecha == as.Date("2017/06/15","%Y/%m/%d")) %>% ggplot() + geom_bar(aes(x=Edad, y = if_else(Sexo=="Hombre", -Poblacion,Poblacion), fill = Sexo), stat="identity") + coord_flip() + xlab("Edad")+ ylab("Población a Junio 2017") + scale_y_continuous(labels = abs)-> gginpec_edad_genero2
+gginpec_edad_genero2
+```
+
+```{r, fig.height=9, fig.width=8}
+InpecEdad_tidy %>% ggplot() + geom_line(aes(x=Edad, y = Poblacion, group = paste(Sexo,Fecha,sep=""), colour = Fecha)) + xlab("Edad")+ ylab("Población a Junio 2017") + facet_wrap(~ Sexo,ncol=1, scales = "free")  -> gginpec_edad_genero3
+gginpec_edad_genero3
 ```
 
 
