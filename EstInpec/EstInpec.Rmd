@@ -17,14 +17,17 @@ library("tidyr") # Data handling
 library("knitr") # Imprimir pdf
 library("ggplot2") # Graficas
 library("stringr") # Texto
+library("curl") #Descargar desde internet
+library("arules") # Crear intervalos
 ```
 
 ```{r Carga xlsx}
 #Estrucutra / Pendiente hacer independiente de la estrucutura
-estrucutra <- c('Regional','Hombre_18 - 24',	'Mujer_18 - 24',	'Hombre_25 - 29',	'Mujer_25 - 29',	'Hombre_30 - 34',	'Mujer_30 - 34',	'Hombre_35 - 39',	'Mujer_35 - 39',	'Hombre_40 - 44',	'Mujer_40 - 44',	'Hombre_45 - 49',	'Mujer_45 - 49',	'Hombre_50 - 54',	'Mujer_50 - 54',	'Hombre_55 - 59',	'Mujer_55 - 59',	'Hombre_60 - 64',	'Mujer_60 - 64',	'Hombre_65 - 69',	'Mujer_65 - 69',	'Hombre_Mayor a 70',	'Mujer_Mayor a 70')
+estrucutra <- c('Regional','Hombres_18 - 24',	'Mujeres_18 - 24',	'Hombres_25 - 29',	'Mujeres_25 - 29',	'Hombres_30 - 34',	'Mujeres_30 - 34',	'Hombres_35 - 39',	'Mujeres_35 - 39',	'Hombres_40 - 44',	'Mujeres_40 - 44',	'Hombres_45 - 49',	'Mujeres_45 - 49',	'Hombres_50 - 54',	'Mujeres_50 - 54',	'Hombres_55 - 59',	'Mujeres_55 - 59',	'Hombres_60 - 64',	'Mujeres_60 - 64',	'Hombres_65 - 69',	'Mujeres_65 - 69',	'Hombres_Mayor a 70',	'Mujeres_Mayor a 70')
 
 # Listar archivos 
 archivos <- list.files(pattern="xls")
+archivos <- archivos[!grepl("DANE",archivos)]
 n = length(archivos)
 
 #Crear lista que se va a llenar con los archivos
@@ -97,17 +100,50 @@ gginpec_edad_genero1
 #ggplotly(gato)
 ```
 
-```{r}
-InpecEdad_tidy %>% filter(Fecha == as.Date("2017/06/15","%Y/%m/%d")) %>% ggplot() + geom_bar(aes(x=Edad, y = if_else(Sexo=="Hombre", -Poblacion,Poblacion), fill = Sexo), stat="identity") + coord_flip() + xlab("Edad")+ ylab("Población a Junio 2017") + scale_y_continuous(labels = abs)-> gginpec_edad_genero2
+```{r }
+InpecEdad_tidy %>% filter(Fecha == as.Date("2017/06/15","%Y/%m/%d")) %>% ggplot() + geom_bar(aes(x=Edad, y = if_else(Sexo=="Hombres", -Poblacion,Poblacion), fill = Sexo), stat="identity") + coord_flip() +theme_minimal() + xlab("Edad")+ ylab("Población a Junio 2017") + scale_y_continuous(labels = abs) + facet_wrap(~Fecha,ncol=1)-> gginpec_edad_genero2
+
 gginpec_edad_genero2
 ```
 
 ```{r, fig.height=9, fig.width=8}
 InpecEdad_tidy %>% ggplot() + geom_line(aes(x=Edad, y = Poblacion, group = paste(Sexo,Fecha,sep=""), colour = Fecha)) + xlab("Edad")+ ylab("Población a Junio 2017") + facet_wrap(~ Sexo,ncol=1, scales = "free")  -> gginpec_edad_genero3
-gginpec_edad_genero3
+gginpec_edad_genero3 
 ```
 
 
+```{r carga dane pry edad}
+#### PROYECCIONES DE POBLACIÓN DANE
+
+# Descargar archivo de la página del dane
+url <- "https://www.dane.gov.co/files/investigaciones/poblacion/proyepobla06_20/proyecciones-nivel-nacional-departamental-por-sexo-y-edades-simples-hasta-80-anos-y-mas.xls"
+destfile <- "POB_PRY_DANE_EDAD.xls"
+curl_download(url, destfile)
+
+# Carga de archivo de proyección por edad
+base_pry_dane_edad <- as.data.frame(read_excel(destfile, range = "E12:IQ28"))
+
+# Indexar por EdadGenero, tomar totales por cotrol
+base_pry_dane_edad %>% gather(EdadGenero,Poblacion,-Año) -> base_pry_dane_edad_tidy
+
+# Indexar por EdadGenero, eliminar totales.
+base_pry_dane_edad_tidy %>% filter(EdadGenero %in% c('Total Total','Hombres Total','Mujeres Total')) %>% spread(EdadGenero,Poblacion)-> base_pry_dane_totales
+
+# Indexar por EdadGenero, eliminar totales.
+base_pry_dane_edad_tidy %>% filter(!(grepl("Total",EdadGenero))) -> base_pry_dane_edades
+
+Edad_genero_dane <- as.data.frame(str_split_fixed( base_pry_dane_edades$EdadGenero," ",2))
+
+base_pry_dane_edades <- cbind(base_pry_dane_edades, Edad_genero_dane)
+colnames(base_pry_dane_edades) <- c("Year","EdadGenero","Poblacion_pry","Sexo","EdadYear")
+base_pry_dane_edades$EdadYear <- as.integer(base_pry_dane_edades$EdadYear)
+
+# Se crean rangos iguales a los de la población INPEC
+base_pry_dane_edades$Edad <- discretize(base_pry_dane_edades$EdadYear, method = "fixed", breaks = c(-Inf,0,18, seq(from=25,to=65,by = 5),Inf),labels = c("0 - 17","18 - 24","25 -29","30 - 34","35 - 39","40 - 44","45 - 49","50 - 54","55 - 59","60 - 64","65 - 69", "Mayor a 70"))
+
+#Crear columna Fecha 
+base_pry_dane_edades$Fecha <- as.Date(paste("2017","06","15",sep="/"),"%Y/%m/%d")
+```
 
 
 
