@@ -37,7 +37,7 @@ Inpecxlsx = list()
 for (i in 1:n) {
   hojas <- excel_sheets(archivos[i])
   hoja <- hojas[grepl("EDAD",hojas)]
-  temporal <- as.data.frame(read_excel(archivos[i], sheet = hoja, range = "A9:W14"))
+  temporal <- as.data.frame(read_excel(archivos[i], sheet = hoja, range = "A8:W14"))
   colnames(temporal) <- estrucutra
   largo <- dim(temporal)[1]
   temporal$documento <- rep(archivos[i],largo)
@@ -91,6 +91,8 @@ Edad_genero <- as.data.frame(str_split_fixed(InpecEdad_tidyTotal$Edad,"_",2))
 InpecEdad_tidyTotal <- cbind(InpecEdad_tidyTotal,Edad_genero)
 colnames(InpecEdad_tidyTotal) <- c("Region","Fecha","SexoEdad","Poblacion","Sexo","Edad")
 InpecEdad_tidyTotal %>%  group_by(Fecha,SexoEdad,Sexo,Edad) %>% summarise(Poblacion=sum(Poblacion)) -> InpecEdad_tidy
+
+InpecEdad_tidyTotal %>%  group_by(Fecha) %>% summarise(Poblacion=sum(Poblacion)) -> InpecEdad_tidy2
 ```
 
 ```{r }
@@ -136,14 +138,47 @@ Edad_genero_dane <- as.data.frame(str_split_fixed( base_pry_dane_edades$EdadGene
 
 base_pry_dane_edades <- cbind(base_pry_dane_edades, Edad_genero_dane)
 colnames(base_pry_dane_edades) <- c("Year","EdadGenero","Poblacion_pry","Sexo","EdadYear")
+
 base_pry_dane_edades$EdadYear <- as.integer(base_pry_dane_edades$EdadYear)
 
 # Se crean rangos iguales a los de la población INPEC
-base_pry_dane_edades$Edad <- discretize(base_pry_dane_edades$EdadYear, method = "fixed", breaks = c(-Inf,0,18, seq(from=25,to=65,by = 5),Inf),labels = c("0 - 17","18 - 24","25 -29","30 - 34","35 - 39","40 - 44","45 - 49","50 - 54","55 - 59","60 - 64","65 - 69", "Mayor a 70"))
+base_pry_dane_edades$Edad <- discretize(base_pry_dane_edades$EdadYear, method = "fixed", breaks = c(-Inf,18, seq(from=25,to=70,by = 5),Inf),labels = c("0 - 17","18 - 24","25 - 29","30 - 34","35 - 39","40 - 44","45 - 49","50 - 54","55 - 59","60 - 64","65 - 69", "Mayor a 70"))
 
 #Crear columna Fecha 
-base_pry_dane_edades$Fecha <- as.Date(paste("2017","06","15",sep="/"),"%Y/%m/%d")
+base_pry_dane_edades %<>%  mutate(Fecha = as.Date(paste(Year,"06","15",sep="/"),"%Y/%m/%d"))
+
+dane_edades <-base_pry_dane_edades %>% group_by(Fecha,Edad,Sexo) %>% summarise(Poblacion_pry=sum(Poblacion_pry))
 ```
+
+```{r unir DANE e INPEC}
+InpecEdad_tidy %>% left_join(dane_edades, by = c("Fecha"="Fecha","Edad"="Edad","Sexo"="Sexo")) %>% mutate(tasa_encarcelamiento=Poblacion*100000/Poblacion_pry) -> InpecDane
+```
+
+```{r}
+InpecDane %>% filter(Fecha == as.Date("2017/06/15","%Y/%m/%d")) %>% ggplot() + geom_bar(aes(x=Edad, y = if_else(Sexo=="Hombres", -tasa_encarcelamiento,tasa_encarcelamiento), fill = Sexo), stat="identity") + coord_flip() +theme_minimal() + xlab("Edad")+ ylab("Tasa de encarcelamiento a Junio 2017") + scale_y_continuous(labels = abs) + facet_wrap(~Fecha,ncol=1)-> gginpec_edad_genero2
+
+gginpec_edad_genero2
+```
+
+```{r tasa encarcelamiento curva, fig.height=7}
+InpecDane %<>% filter(Fecha %in% c(as.Date("2017/06/15","%Y/%m/%d"), as.Date("2016/06/15","%Y/%m/%d")))  
+InpecDane %>%  ggplot() + geom_line(aes(x=Edad, y = tasa_encarcelamiento, group = paste(Sexo,Fecha,sep=""), colour = as.character(Fecha))) + theme_minimal()+ xlab("Edad") + ylab("Tasa de encarcelamiento") + facet_wrap(~ Sexo,ncol=1, scales = "free") + theme(legend.title=element_blank(), legend.position="top") -> gginpec_edad_genero4
+gginpec_edad_genero4
+```
+
+
+```{r Proyecciones DANE, fig.height=7}
+dane_edades %>%filter(!(Edad %in% c("0 - 17"))) %>% ggplot() + geom_line(aes(x=Fecha,y=Poblacion_pry,colour = Edad)) + facet_wrap(~Sexo) + theme_minimal()
+
+InpecDane %>% filter (Fecha == as.Date("2017/06/15","%Y/%m/%d"))%>% group_by(Sexo,Edad) %>% summarise(tasa_encarcelamiento=sum(tasa_encarcelamiento)) -> InpecDaneTasa
+
+dane_edades %>% left_join(InpecDaneTasa) %>% filter(!(tasa_encarcelamiento %in% c(NA))) %>% mutate(PobCar_pry = Poblacion_pry*tasa_encarcelamiento/100000) -> DaneInpecPry
+
+DaneInpecPry %>%filter(!(Edad %in% c("0 - 17"))) %>% ggplot() + geom_bar(aes(x=Fecha,y=PobCar_pry,fill = Edad), stat="identity") + facet_wrap(~Sexo, scales = "free") + theme_minimal() 
+```
+
+
+
 
 
 
