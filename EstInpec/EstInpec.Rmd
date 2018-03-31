@@ -34,7 +34,7 @@ Inpecxlsx = list()
 for (i in 1:n) {
   hojas <- excel_sheets(archivos[i])
   hoja <- hojas[grepl("EDAD",hojas)]
-  temporal <- as.data.frame(read_excel(archivos[i], sheet = hoja, range = "A9:W15"))
+  temporal <- as.data.frame(read_excel(archivos[i], sheet = hoja, range = "A9:W14"))
   colnames(temporal) <- estrucutra
   largo <- dim(temporal)[1]
   temporal$documento <- rep(archivos[i],largo)
@@ -81,12 +81,13 @@ colnames(doc_year) <- c("documento","year")
 base_inpecxlsx %>% left_join(doc_month,by = NULL) %>% left_join(months,by=NULL) %>% left_join(doc_year)%>% mutate(fecha = as.Date(paste(year,month_number,15, sep ="/"),"%Y/%m/%d")) -> Inpecxlsx_date
 
 #### Poner en formato indexado por edad y fecha
-Inpecxlsx_date %>% filter(grepl("TOTAL",Regional)|grepl("Total",Regional)) %>% select(-documento, -month_text, -month_number, -year) %>%  gather(Edad,Poblacion,-Regional, -fecha) -> InpecEdad_tidy
+Inpecxlsx_date %>% select(-documento, -month_text, -month_number, -year) %>%  gather(Edad,Poblacion,-Regional, -fecha) -> InpecEdad_tidyTotal
 
 #### Columnas de sexo y edad 
-Edad_genero <- as.data.frame(str_split_fixed(InpecEdad_tidy$Edad,"_",2))
-InpecEdad_tidy <- cbind(InpecEdad_tidy,Edad_genero)
-colnames(InpecEdad_tidy) <- c("Region","Fecha","SexoEdad","Poblacion","Sexo","Edad")
+Edad_genero <- as.data.frame(str_split_fixed(InpecEdad_tidyTotal$Edad,"_",2))
+InpecEdad_tidyTotal <- cbind(InpecEdad_tidyTotal,Edad_genero)
+colnames(InpecEdad_tidyTotal) <- c("Region","Fecha","SexoEdad","Poblacion","Sexo","Edad")
+InpecEdad_tidyTotal %>%  group_by(Fecha,SexoEdad,Sexo,Edad) %>% summarise(Poblacion=sum(Poblacion)) -> InpecEdad_tidy
 ```
 
 ```{r }
