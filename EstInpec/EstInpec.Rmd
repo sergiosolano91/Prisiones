@@ -167,7 +167,7 @@ gginpec_edad_genero4
 ```
 
 
-```{r Proyecciones DANE, fig.height=7}
+```{r Proyecciones_DANE, fig.height=7}
 #dane_edades %>%filter(!(Edad %in% c("0 - 17"))) %>% ggplot() + geom_line(aes(x=Fecha,y=Poblacion_pry,colour = Edad)) + facet_wrap(~Sexo) + theme_minimal()
 
 InpecDane %>% filter (Fecha == as.Date("2017/06/15","%Y/%m/%d"))%>% group_by(Sexo,Edad) %>% summarise(tasa_encarcelamiento=sum(tasa_encarcelamiento)) -> InpecDaneTasa

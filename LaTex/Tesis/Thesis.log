@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.29)  1 APR 2018 17:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.29)  1 APR 2018 17:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2396,14 +2396,11 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 68.
  [35 <./inpec_edad_genero3-1.pdf> <./gginpec_edad_generotasa1-1.pdf>]
+<Proyecciones_DANE-1.pdf, id=677, 457.71pt x 490.83376pt>
+File: Proyecciones_DANE-1.pdf Graphic file (type pdf)
 
-LaTeX Warning: File `Proyecciones DANE-1.pdf' not found on input line 71.
-
-<Proyecciones DANE-1.pdf, id=677, 457.71pt x 490.83376pt>
-File: Proyecciones DANE-1.pdf Graphic file (type pdf)
-
-<use Proyecciones DANE-1.pdf>
-Package pdftex.def Info: Proyecciones DANE-1.pdf used on input line 71.
+<use Proyecciones_DANE-1.pdf>
+Package pdftex.def Info: Proyecciones_DANE-1.pdf used on input line 71.
 (pdftex.def)             Requested size: 298.75262pt x 320.38626pt.
 LaTeX Info: Redefining \. on input line 75.
 LaTeX Info: Redefining \% on input line 75.
@@ -2458,7 +2455,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 96.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 96.
- [37 <./Proyecciones DANE-1.pdf>]
+ [37 <./Proyecciones_DANE-1.pdf>]
 \openout2 = `cap4.aux'.
 
  (./cap4.tex
@@ -2752,7 +2749,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 107.
  ) 
 Here is how much of TeX's memory you used:
  9740 strings out of 494891
- 141932 string characters out of 6179039
+ 141936 string characters out of 6179039
  240848 words of memory out of 5000000
  12608 multiletter control sequences out of 15000+600000
  20487 words of font info for 51 fonts, out of 8000000 for 9000
@@ -2777,7 +2774,7 @@ i10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on Thesis.pdf (53 pages, 1306436 bytes).
+Output written on Thesis.pdf (53 pages, 1306524 bytes).
 PDF statistics:
  1387 PDF objects out of 1440 (max. 8388607)
  704 compressed objects within 8 object streams
