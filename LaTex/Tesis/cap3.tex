@@ -2,13 +2,13 @@
 
 Los métodos demográficos para poblaciones pequeñas usuales son ratio-correlation y censal-ratio. Estos métodos requieren contar con indicadores sintomáticos para la población total y la población pequeña, por ejemplo número de muertes o nacimientos, licencias de conducir o inscripciones escolares, para poder estimar la proporción de la población total, ubicada en la población pequeña.
 
-En el caso de la población privada de la libertad en Colombia, el INPEC no publica otras series de indicadores históricas además de los conteos de población sindicada y condenada, y separada por género. Así pues, se propone utilizar métodos de regresión sobre la tasa de encarcelamiento, usando como variables regresoras la proporción entre población carcelaria y población por rango etario.
+En el caso de la población privada de la libertad en Colombia, el INPEC no publica otras series de indicadores históricas además de los conteos de población sindicada y condenada, y separada por género.
 
-\section{Selección de variables}
-
-Aunque es posible usar los métodos demográficos para realizar proyecciones fuera del intervalo de medición, su uso más frecuente es realizar interpolación de poblaciones pequeñas en periodos no censales. Uno de los inconvenientes mencionados es la dificultad de realizar extrapolación, puesto que para los periodos post-censales, los indicadores no están necesariamente disponibles. Una posible solución es realizar la estimación usando periodos rezagados. \cite{Swanson2012}. 
+Un uso frecuente de los métodos de proyección para poblaciones pequeñas es realizar interpolación en periodos no censales. Uno de los inconvenientes mencionados es la dificultad de realizar extrapolación, puesto que para los periodos post-censales, los indicadores no están necesariamente disponibles. Una posible solución es realizar la estimación usando periodos rezagados. \cite{Swanson2012}. 
 
 Para realizar la proyección a tres años, como en el capítulo anterior, se utilizan variables que tengan una proyección oficial, por lo menos anual para los siguientes tres años. La metodología de proyección de Blumstein sugiere que bajo un sistema normativo estable, la proporción de la población carcelaria por rango etario resulta fundamental en la proyección de poblaciones carcelarias \cite{Blumstein1980a}. Dado que el DANE genera poblaciones de población desagregadas por rango etario, usaremos estas en el método de ratio-correlación.
+
+
 
 % Es posible copiar la tabla completa. 
 
@@ -26,37 +26,50 @@ La población total pasa de 35 millones en 1991, a 51 millones en 2020. No todos 
 	\label{fig:pob_nal_dane_edad}
 \end{figure}
 
-Los grupos etarios usualmente asociados con altas tasas de criminalidad están entre quince y veinticuatro años \cite{Blumstein1980a}. La población total en ambos grupos crece sostenidamente en el periodo 1991-2020. Como porcentaje de la población total, decrecen en dos puntos porcentuales en el mismo periodo. El crecimiento de este grupo etario, particularmente en hombres podría ser un buen predictor de la población carcelaria, razón por la cual se realiza una regresión sobre el total de población. Los grupos etarios hasta los catorce años se tratarán como un solo grupo poblacional, al igual que los grupos por encima de sesenta años.
+Los grupos etarios usualmente asociados con altas tasas de criminalidad están entre quince y veinticuatro años \cite{Blumstein1980a}. La población total en ambos grupos crece sostenidamente en el periodo 1991-2020. Como porcentaje de la población total, decrecen en dos puntos porcentuales en el mismo periodo. El crecimiento de este grupo etario, particularmente en hombres podría ser un buen predictor de la población carcelaria.
+
+\section{Población privada de la libertad por rango de edad 2016-2017}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{inpec_edad_genero1-1.pdf}
+	\caption[Población privada de la libertad. Febrero-2016 a Diciembre-2017]{Población privada de la libertad por rango etario. Febrero-2016 a Diciembre-2017}{Fuente: INPEC} {Elaboración propia}
+	\label{fig:inpec_edad_genero1}
+\end{figure}
 
 
-\section{Identificación del modelo}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{gginpec_edad_genero2-1.pdf}
+	\caption[Piramide poblacional, población privada de la libertad, Junio - 2017]{Piramide poblacional, población privada de la libertad, Junio - 2017}{Fuente: INPEC} {Elaboración propia}
+	\label{fig:inpec_edad_genero2}
+\end{figure}
 
-El modelo propuesto corresponde a: 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{inpec_edad_genero3-1.pdf}
+	\caption[Población privada de la libertad. Febrero-2016 a Diciembre-2017]{Población privada de la libertad. Febrero-2016 a Diciembre-2017}{Fuente: INPEC} {Elaboración propia}
+	\label{fig:inpec_edad_genero3}
+\end{figure}
 
-\begin{equation}\label{Sindicados}
-p_t =  B_a* P_{t,a} + \varepsilon
-\end{equation} 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{gginpec_edad_generotasa1-1.pdf}
+	\caption[Tasa de específica de encarcelamiento. Junio-2017]{Tasa de específica de encarcelamiento. Junio-2017}{Fuente: INPEC, DANE} {Elaboración propia}
+	\label{fig:inpec_edad_generotasa1}
+\end{figure}
 
-donde: 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{inpec_edad_generotasa2-1.pdf}
+	\caption[Tasa específica de encarcelamiento. Junio-2016, Junio -2017]{Tasa específica de encarcelamiento. Junio-2016, Junio -2017}{Fuente: INPEC, DANE} {Elaboración propia}
+	\label{fig:inpec_edad_generotasa2}
+\end{figure}
 
-$ p_t = $ {Población encarcelada total}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Proyecciones DANE-1.pdf}
+	\caption[Población privada de la libertad. 2005-2020]{Proyección de la población privada de la libertad. 2005 - 2020}{Fuente: INPEC, DANE} {Elaboración propia}
+	\label{fig:Proyecciones DANE}
+\end{figure}
 
-$ B_a =$   Tasa de encarcelamiento específica para el rango etario $ a $
-
-$ P_{t,a} = $   Población total en el rango etario $a$
-
-$\varepsilon \sim N(0,\sigma ^ 2) $ 
-
-Las proyecciones de población total por rango etario generadas por el DANE corresponden a la proyección al primero de junio de cada año. Se utiliza entonces la proyección carcelaria al cierre del mes de mayo, en el cálculo de la tasa de encarcelamiento.
-
-
-Nota: Proyecciones de población por rango etario tienen una alta correlación entre sí, lo que genera en el modelo de regresión: 
-
-\begin{itemize}
-	\item $R^2 > 0.9$ 
-	\item Parámetros negativos
-	\item Parámetros no significativos
-	\item Al eliminar variables con parámetros no significativos, los valores de los otros parámetros cambian drásticamentee.
-\end{itemize}
-
-Ravishanker sugiere usar en estos casos regresión de ridge. (Pendiente citar)

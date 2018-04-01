@@ -2,7 +2,6 @@
 \contentsline {chapter}{\'Indice general}{I}{Doc-Start}
 \contentsline {chapter}{\'Indice de tablas}{III}{Doc-Start}
 \contentsline {chapter}{\'{I}ndice de figuras}{IV}{Doc-Start}
-\contentsline {chapter}{Introducci\'on}{V}{Doc-Start}
 \contentsline {chapter}{\numberline {1}Antecedentes te\'oricos}{1}{chapter.1}
 \contentsline {subsection}{\numberline {1.0.1}Proyecciones de poblaci\'on}{1}{subsection.1.0.1}
 \contentsline {subsection}{\numberline {1.0.2}Proyecci\'on de poblaciones peque\~nas}{2}{subsection.1.0.2}
@@ -20,16 +19,15 @@
 \contentsline {section}{\numberline {3.3}Proyecci\'on}{28}{section.3.3}
 \contentsline {section}{\numberline {3.4}Conclusiones}{30}{section.3.4}
 \contentsline {chapter}{\numberline {4}M\'etodos demogr\'aficos para poblaciones peque\~nas}{32}{chapter.4}
-\contentsline {section}{\numberline {4.1}Selecci\'on de variables}{32}{section.4.1}
-\contentsline {section}{\numberline {4.2}Poblaci\'on colombiana 1991-2020}{32}{section.4.2}
-\contentsline {section}{\numberline {4.3}Identificaci\'on del modelo}{34}{section.4.3}
-\contentsline {chapter}{\numberline {5}Modelos estado-espacio}{35}{chapter.5}
-\contentsline {section}{\numberline {5.1}Selecci\'on de Software}{35}{section.5.1}
-\contentsline {section}{\numberline {5.2}Identificaci\'on del modelo}{35}{section.5.2}
-\contentsline {section}{\numberline {5.3}Simulaci\'on Monte-Carlo}{35}{section.5.3}
-\contentsline {section}{\numberline {5.4}Estimaci\'on de par\'ametros}{35}{section.5.4}
-\contentsline {section}{\numberline {5.5}Proyecciones 2017 - 2020}{35}{section.5.5}
-\contentsline {section}{\numberline {5.6}Conclusiones}{35}{section.5.6}
-\contentsline {chapter}{Conclusiones}{36}{section.5.6}
-\contentsline {chapter}{Trabajo futuro}{37}{section.5.6}
-\contentsline {chapter}{Bibliograf\'{\i }a}{38}{section.5.6}
+\contentsline {section}{\numberline {4.1}Poblaci\'on colombiana 1991-2020}{32}{section.4.1}
+\contentsline {section}{\numberline {4.2}Poblaci\'on privada de la libertad por rango de edad 2016-2017}{34}{section.4.2}
+\contentsline {chapter}{\numberline {5}Modelos estado-espacio}{38}{chapter.5}
+\contentsline {section}{\numberline {5.1}Selecci\'on de Software}{38}{section.5.1}
+\contentsline {section}{\numberline {5.2}Identificaci\'on del modelo}{38}{section.5.2}
+\contentsline {section}{\numberline {5.3}Simulaci\'on Monte-Carlo}{38}{section.5.3}
+\contentsline {section}{\numberline {5.4}Estimaci\'on de par\'ametros}{38}{section.5.4}
+\contentsline {section}{\numberline {5.5}Proyecciones 2017 - 2020}{38}{section.5.5}
+\contentsline {section}{\numberline {5.6}Conclusiones}{38}{section.5.6}
+\contentsline {chapter}{Conclusiones}{39}{section.5.6}
+\contentsline {chapter}{Trabajo futuro}{40}{section.5.6}
+\contentsline {chapter}{Bibliograf\'{\i }a}{41}{section.5.6}
