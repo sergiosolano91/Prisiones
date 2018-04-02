@@ -5,14 +5,42 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Proyecci\'on de la poblaci\'on nacional por rango de edad}}{2}{figure.caption.1}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Diciembre-2017}}{3}{figure.caption.2}
-\contentsline {figure}{\numberline {1.3}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Diciembre-2017}}{4}{figure.caption.3}
-\contentsline {figure}{\numberline {1.4}{\ignorespaces Piramide poblacional, poblaci\'on privada de la libertad, Junio - 2017}}{5}{figure.caption.4}
-\contentsline {figure}{\numberline {1.5}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Diciembre-2017}}{5}{figure.caption.5}
-\contentsline {figure}{\numberline {1.6}{\ignorespaces Tasa de espec\IeC {\'\i }fica de encarcelamiento. Junio-2017}}{6}{figure.caption.6}
-\contentsline {figure}{\numberline {1.7}{\ignorespaces Tasa espec\IeC {\'\i }fica de encarcelamiento. Junio-2016, Junio -2017}}{6}{figure.caption.7}
-\contentsline {figure}{\numberline {1.8}{\ignorespaces Poblaci\'on privada de la libertad. 2005-2020}}{7}{figure.caption.8}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Poblaci\'on privada de la libertad 1991 - 2017\relax }}{6}{figure.caption.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Tasa de encarcelamiento seg\'un genero 1991 - 2017 \relax }}{7}{figure.caption.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Poblaci\'on carcelaria por situaci\'on jur\IeC {\'\i }dica \relax }}{8}{figure.caption.3}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Variaci\'on inter-mensual de poblaci\'on carcelaria}}{9}{figure.caption.4}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Descomposici\'on de la variaci\'on inter-mensual de poblaci\'on carcelaria total}}{10}{figure.caption.5}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Descomposici\'on de la variaci\'on inter-mensual de poblaci\'on carcelaria total}}{11}{figure.caption.6}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Descomposici\'on de la variaci\'on inter-mensual de poblaci\'on carcelaria total}}{11}{figure.caption.7}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Autocorrelaci\'on parcial de la variaci\'on inter-mensual}}{12}{figure.caption.9}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Diagn\'ostico del sarima (1,1,1)(0,0,2), poblaci\'on total}}{15}{figure.caption.13}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Diagn\'ostico del sarima (1,1,1)(0,0,1), poblaci\'on total}}{16}{figure.caption.14}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Diagn\'ostico del sarima (3,2,1)(0,0,2), poblaci\'on total}}{17}{figure.caption.15}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Diagn\'ostico del sarima (1,2,1)(0,0,2), poblaci\'on total}}{18}{figure.caption.16}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Diagn\'ostico del sarima (1,1,1)(0,0,1), poblaci\'on sindicada}}{20}{figure.caption.19}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Diagn\'ostico del sarima (2,1,1)(0,0,1), poblaci\'on sindicada}}{21}{figure.caption.20}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Diagn\'ostico del sarima (0,1,2)(0,0,1), poblaci\'on sindicada}}{22}{figure.caption.21}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Diagn\'ostico del sarimfa (0,1,2)(0,0,0), poblaci\'on sindicada}}{23}{figure.caption.22}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Diagn\'ostico del sarima (1,1,1)(0,0,1), poblaci\'on condenada}}{25}{figure.caption.25}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Diagn\'ostico del sarima (2,1,1)(0,0,1), poblaci\'on condenada}}{26}{figure.caption.26}
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Diagn\'ostico del sarima (0,1,2)(0,0,1), poblaci\'on condenada}}{27}{figure.caption.27}
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Diagn\'ostico del sarima (0,1,2)(0,0,0), poblaci\'on condenada}}{28}{figure.caption.28}
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Proyecci\'on de la poblaci\'on carcelaria total}}{29}{figure.caption.29}
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Proyecci\'on de la poblaci\'on carcelaria sindicada}}{29}{figure.caption.30}
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Proyecci\'on de la poblaci\'on carcelaria condenada}}{30}{figure.caption.31}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Proyecci\'on de la poblaci\'on nacional por rango de edad}}{33}{figure.caption.32}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Piramide poblacional, poblaci\'on privada de la libertad, Junio - 2017}}{34}{figure.caption.33}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Febrero-2018}}{35}{figure.caption.34}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Febrero-2018}}{35}{figure.caption.37}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Poblaci\'on privada de la libertad, por edad-regional. Febrero-2016 a Febrero-2018}}{36}{figure.caption.35}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Febrero-2018}}{37}{figure.caption.36}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Tasa de espec\IeC {\'\i }fica de encarcelamiento. Junio-2017}}{38}{figure.caption.38}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Tasa espec\IeC {\'\i }fica de encarcelamiento. Junio-2016, Junio -2017}}{38}{figure.caption.39}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Poblaci\'on privada de la libertad. 2005-2020}}{39}{figure.caption.40}
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -1,10 +1,33 @@
 \select@language {spanish}
 \contentsline {chapter}{\'Indice general}{I}{Doc-Start}
-\contentsline {chapter}{\'Indice de tablas}{II}{Doc-Start}
-\contentsline {chapter}{\'{I}ndice de figuras}{III}{Doc-Start}
-\contentsline {chapter}{\numberline {1}M\'etodos demogr\'aficos para poblaciones peque\~nas}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Poblaci\'on colombiana 1991-2020}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Poblaci\'on privada de la libertad por rango de edad 2016-2017}{3}{section.1.2}
-\contentsline {chapter}{Conclusiones}{8}{figure.caption.8}
-\contentsline {chapter}{Trabajo futuro}{9}{figure.caption.8}
-\contentsline {chapter}{Bibliograf\'{\i }a}{10}{figure.caption.8}
+\contentsline {chapter}{\'Indice de tablas}{III}{Doc-Start}
+\contentsline {chapter}{\'{I}ndice de figuras}{IV}{Doc-Start}
+\contentsline {chapter}{\numberline {1}Antecedentes te\'oricos}{1}{chapter.1}
+\contentsline {subsection}{\numberline {1.0.1}Proyecciones de poblaci\'on}{1}{subsection.1.0.1}
+\contentsline {subsection}{\numberline {1.0.2}Proyecci\'on de poblaciones peque\~nas}{2}{subsection.1.0.2}
+\contentsline {subsection}{\numberline {1.0.3}Aplicaciones nacionales e internacionales}{2}{subsection.1.0.3}
+\contentsline {subsection}{\numberline {1.0.4}Series de tiempo}{3}{subsection.1.0.4}
+\contentsline {subsection}{\numberline {1.0.5}Modelos ARIMA}{4}{subsection.1.0.5}
+\contentsline {subsection}{\numberline {1.0.6}Modelos Estado-Espacio}{4}{subsection.1.0.6}
+\contentsline {chapter}{\numberline {2}La poblaci\'on carcelaria en Colombia 1991 - 2017}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}An\'alisis exploratorio}{6}{section.2.1}
+\contentsline {section}{\numberline {2.2}El sistema penitenciario en Colombia}{7}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Identificaci\'on del modelo}{7}{subsection.2.2.1}
+\contentsline {chapter}{\numberline {3}Modelos SARIMA}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Identificaci\'on del modelo}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Estimaci\'on de par\'amtetros}{13}{section.3.2}
+\contentsline {section}{\numberline {3.3}Proyecci\'on}{28}{section.3.3}
+\contentsline {section}{\numberline {3.4}Conclusiones}{30}{section.3.4}
+\contentsline {chapter}{\numberline {4}M\'etodos demogr\'aficos para poblaciones peque\~nas}{32}{chapter.4}
+\contentsline {section}{\numberline {4.1}Poblaci\'on colombiana 1991-2020}{32}{section.4.1}
+\contentsline {section}{\numberline {4.2}Poblaci\'on privada de la libertad por rango de edad Febrero 2016 a Febrero 2018}{34}{section.4.2}
+\contentsline {chapter}{\numberline {5}Modelos estado-espacio}{40}{chapter.5}
+\contentsline {section}{\numberline {5.1}Selecci\'on de Software}{40}{section.5.1}
+\contentsline {section}{\numberline {5.2}Identificaci\'on del modelo}{40}{section.5.2}
+\contentsline {section}{\numberline {5.3}Simulaci\'on Monte-Carlo}{40}{section.5.3}
+\contentsline {section}{\numberline {5.4}Estimaci\'on de par\'ametros}{40}{section.5.4}
+\contentsline {section}{\numberline {5.5}Proyecciones 2017 - 2020}{40}{section.5.5}
+\contentsline {section}{\numberline {5.6}Conclusiones}{40}{section.5.6}
+\contentsline {chapter}{Conclusiones}{41}{section.5.6}
+\contentsline {chapter}{Trabajo futuro}{42}{section.5.6}
+\contentsline {chapter}{Bibliograf\'{\i }a}{43}{section.5.6}

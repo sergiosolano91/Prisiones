@@ -1,9 +1,32 @@
 \BOOKMARK [0][-]{Doc-Start}{\315ndice general}{}% 1
 \BOOKMARK [0][-]{Doc-Start}{\315ndice de tablas}{}% 2
 \BOOKMARK [0][-]{Doc-Start}{\315ndice de figuras}{}% 3
-\BOOKMARK [0][-]{chapter.1}{M\351todos demogr\341ficos para poblaciones peque\361as}{}% 4
-\BOOKMARK [1][-]{section.1.1}{Poblaci\363n colombiana 1991-2020}{chapter.1}% 5
-\BOOKMARK [1][-]{section.1.2}{Poblaci\363n privada de la libertad por rango de edad 2016-2017}{chapter.1}% 6
-\BOOKMARK [0][-]{figure.caption.8}{Conclusiones}{}% 7
-\BOOKMARK [0][-]{figure.caption.8}{Trabajo futuro}{}% 8
-\BOOKMARK [0][-]{figure.caption.8}{Bibliograf\355a}{}% 9
+\BOOKMARK [0][-]{chapter.1}{Antecedentes te\363ricos}{}% 4
+\BOOKMARK [1][-]{subsection.1.0.1}{Proyecciones de poblaci\363n}{chapter.1}% 5
+\BOOKMARK [2][-]{subsection.1.0.2}{Proyecci\363n de poblaciones peque\361as}{subsection.1.0.1}% 6
+\BOOKMARK [2][-]{subsection.1.0.3}{Aplicaciones nacionales e internacionales}{subsection.1.0.1}% 7
+\BOOKMARK [2][-]{subsection.1.0.4}{Series de tiempo}{subsection.1.0.1}% 8
+\BOOKMARK [2][-]{subsection.1.0.5}{Modelos ARIMA}{subsection.1.0.1}% 9
+\BOOKMARK [2][-]{subsection.1.0.6}{Modelos Estado-Espacio}{subsection.1.0.1}% 10
+\BOOKMARK [0][-]{chapter.2}{La poblaci\363n carcelaria en Colombia 1991 - 2017}{}% 11
+\BOOKMARK [1][-]{section.2.1}{An\341lisis exploratorio}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.2}{El sistema penitenciario en Colombia}{chapter.2}% 13
+\BOOKMARK [2][-]{subsection.2.2.1}{Identificaci\363n del modelo}{section.2.2}% 14
+\BOOKMARK [0][-]{chapter.3}{Modelos SARIMA}{}% 15
+\BOOKMARK [1][-]{section.3.1}{Identificaci\363n del modelo}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.2}{Estimaci\363n de par\341mtetros}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.3}{Proyecci\363n}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.4}{Conclusiones}{chapter.3}% 19
+\BOOKMARK [0][-]{chapter.4}{M\351todos demogr\341ficos para poblaciones peque\361as}{}% 20
+\BOOKMARK [1][-]{section.4.1}{Poblaci\363n colombiana 1991-2020}{chapter.4}% 21
+\BOOKMARK [1][-]{section.4.2}{Poblaci\363n privada de la libertad por rango de edad Febrero 2016 a Febrero 2018}{chapter.4}% 22
+\BOOKMARK [0][-]{chapter.5}{Modelos estado-espacio}{}% 23
+\BOOKMARK [1][-]{section.5.1}{Selecci\363n de Software}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.2}{Identificaci\363n del modelo}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.3}{Simulaci\363n Monte-Carlo}{chapter.5}% 26
+\BOOKMARK [1][-]{section.5.4}{Estimaci\363n de par\341metros}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.5}{Proyecciones 2017 - 2020}{chapter.5}% 28
+\BOOKMARK [1][-]{section.5.6}{Conclusiones}{chapter.5}% 29
+\BOOKMARK [0][-]{section.5.6}{Conclusiones}{}% 30
+\BOOKMARK [0][-]{section.5.6}{Trabajo futuro}{}% 31
+\BOOKMARK [0][-]{section.5.6}{Bibliograf\355a}{}% 32
