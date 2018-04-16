@@ -193,6 +193,43 @@ DaneInpecPry %>%filter(!(Edad %in% c("0-17"))) %>% ggplot() + geom_bar(aes(x=Fec
 ggInpecDanepry
 ```
 
+### Ratio censal
+
+El método de ratio censal se define como: 
+
+$$R_{i,j,t} = S_{i,t,j}/P_{i,t}$$
+
+Donde 
+$R_i$ : Ratio 
+$S_{i,t}$ = indicador sintomático en el periodo t, para la población pequeña
+$P_{i,t}$ = Población pequeña en el periodo t
+
+Así, una vez estimado $R_{i,j,t}$, la estimación de $t+k$ periodos es:
+
+$$\hat{P}_{i,t+k} = S_{i,t+k,j}/\hat{R}_{i,j,t}$$
+ 
+Si se cuenta con un estimado de la población que contiene el área i, en este caso $\sum{P_{i,j}}$
+
+Tendremos un pronóstico ajustado $Pa_{i,t}$ : 
+
+$$Pa_{t,i} = ( \hat{P_{t,i}} * \sum{\hat{P_{t,i}}})* \sum{P_{t,i}}$$
+
+En el caso de la población carcelaria, se realizará el proceso en dos etapas
+
+1) Tomar como poblaciones pequeñas la población privada de la libertad y la población libre, para los rangos de edad descritos.
+
+2) Tomar la estimaciones generadas para la población carcelaria por rango de edad y ajustar con los datos observados en el conteo de población privada de la libertad.
+
+Dado que no contamos con variables sintomáticas en la población carcelaria, como nacimientos, muertes o ingreso a la escuela. Asumiremos que tiene un comportamiento identico a la población total. En tal caso utilizaremos una variable sintomática = 1, como una variable dummy constante a través del tiempo. 
+
+En tal caso tenemos que, para cada rango de edad: 
+
+$$R_{i,j,t} = 1/P_{i,t}$$
+y los valores estimados para cada periodo t+k serán: 
+
+$$\hat{P}_{i,t+k} = 1/\hat{R}_{i,j,t} == {P}_{i,t+k}$$
+En el caso de la población 
+
 
 
 
