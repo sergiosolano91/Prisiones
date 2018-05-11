@@ -1,0 +1,162 @@
+\chapter{Métodos demográficos para poblaciones pequeñas}
+
+No todas las personas tenemos la misma probabilidad de ser encarceladas. Los hombres tienen tasas de encarcelamiento más altas que las mujeres, y las personas entre 18 y 40 años son más susceptibles que los mayores de 40 \cite{Blumstein1980a}. Las cifras  de encarcelamiento, presentadas en la figura \ref{fig:inpec_edad_genero1} sugieren que estas tasas son estables en periodos cortos de tiempo y proporcionales entre los diferentes rangos de edad (si el encarcelamiento en un rango de edad se eleva sucede un incremento proporcional en los otros).  
+
+La población colombiana ha cambiado significativamente desde 1991, tanto en su magnitud como en su composición por edad. Hemos pasado de 35 millones en 1991 a 45 millones en la segunda década del siglo XXI. También hemos presenciado una reducción en la proporción de menores de 18 años, que ha pasado de XXX en 1991 a XXX en 2016. Se proyecta que en 2020 tendremos tantas personas entre 15 y 29 años, como entre 0 y 14, cuando en 1991 la diferencia era del XXX \%. \cite{DANEPROY}
+
+El grupo etario con mayor tasa de encarcelamiento está entre los 18 y 29 años.  \cite{Blumstein1980a}. La población total en este grupo crece sostenidamente en el periodo 1991-2020. Como porcentaje de la población total, decrecen en dos puntos porcentuales en el mismo periodo, cediendo espacio a una población de mayor edad. El crecimiento de este grupo etario, particularmente en hombres podría ser un buen predictor de la población carcelaria.
+
+Para incorporar la relación entre la población nacional y la población carcelaria se recurre al método censal-ratio,comúnmente usado en la proyección de poblaciones pequeñas. Este método requiere la inclusión de variables sintomáticas que agreguen información sobre la población pequeña.
+
+% Es posible copiar la tabla completa. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{POB_NAL_EDAD-1.pdf}
+	\caption[Proyección de la población nacional por rango de edad]{Proyección de la población nacional por rango de edad}{Fuente: DANE} {Elaboración propia}
+	\label{fig:pob_nal_dane_edad}
+\end{figure}
+
+
+\section{Censal ratio}
+
+Dentro de los métodos para proyectar poblaciones pequeñas se encuentra censal-ratio (razón-censal). Éste método se vale una variable sintomática asociada a la población pequeña, a la que se supone es directamente proporcional. Un ejemplo de variable sintomática es la cantidad de nacimientos en una ciudad, con respecto a su población total; otro ejemplo es la cantidad de niños enrolados en un curso, con respecto a un rango etario en determinado espacio geográfico.
+
+El censal-ratio supone que la relación entre la variable sintomática y la población a estimar es una variable aleatoria cuyo valor esperado no cambia a través del tiempo. 
+
+Cuando se cuenta con estimaciones independientes de la población total en periodos inter-censales se realiza una corrección sobre las proyecciones de cada área, tal que la suma de las proyecciones de áreas pequeñas sea igual a la estimada independientemente. La corrección mantiene la proporción entre proyecciones de áreas pequeñas.
+
+Un uso frecuente de los métodos de proyección para poblaciones pequeñas es realizar interpolación en periodos no censales. Uno de los inconvenientes mencionados es la dificultad de realizar extrapolación, puesto que para los periodos post-censales, los indicadores no están necesariamente disponibles. Una posible solución es realizar la estimación usando periodos rezagados o utilizar la última proyección de la variable sintomática como proyección. \cite{Swanson2012}. 
+
+Siguiendo a Swanson \cite{Swanson2012} tenemos: 
+
+$$ R_{A,t,j} = \frac{S_{A,t,j}}{P_{A,t}}$$
+
+$ R $ = Razón entre variable sintomática y población pequeña
+
+$ A $ = A-ésima área pequeña
+
+$ S $ = Valor de la variable sintomática
+
+$ t $ = periodo
+
+$ j $ = indicador
+
+Si tenemos un R observado en el periodo T tendremos que la proyección del periodo $t + k$ será:
+
+$$ \hat{P}_{A,t+k} = \frac{S_{A,t + k ,j}}{R_{A,T,j}} $$
+
+Cuando se tiene un estimado independiente para la población padre se realiza un control, de manera que la suma de proyección para las áreas pequeñas sea igual a la proyección del área padre: 
+
+\begin{equation}
+\hat{Q}_{A,t+k} = \frac{P_{A,t+k,j}}{\sum{P_{A,t+k,j}}} * P_{t+k}
+\label{equ:inpec_edad_generotasa2}
+\end{equation}
+
+$\hat{Q}_{A,t+k}$ = Proyección corregida para el área A 
+
+$ P_{t+k}$ = Proyección independiente total en el periodo $t + k$
+
+
+
+La variable sintomática cumple la tarea de agregar información conocida al modelo para hacerlo más preciso. En un primer paso se considera la población privada de la libertad una población pequeña, dentro de la población nacional. Dentro de las estadísticas publicadas periodicamente por el INPEC no se han encontrado variables sintomáticas que cubran más de dos años \cite{INPEC2018}, razón por la cual se realiza el siguiente proceso: se utiliza una constante en el lugar de la variable sintomática, lo que da lugar a una proyección constante por edad genero; luego ajustamos la proyección al total nacional por rango de edad proyectado por el DANE. Este modelo es equivalente a proyectar una tasa de encarcelamiento constante para cada rango de edad. Para el periodo 2017 - 2020 se utiliza la tasa de encarcelamiento.
+
+Aunque no conocemos el comportamiento de la tasa de encarcelamiento específica por edad, conocemos la población carcelaria total y la tasa de encarcelamiento. Usamos el supuesto de proporción estable por rango etario, para ajustar la proyección 2005 - 2016 a la población carcelaria total.
+
+$R_e = \frac{1} {P_{c,e, 2017}} $
+
+$\hat{P}_{c, 2017 + k} = P{c, e, 2017}$
+
+y 
+
+$\hat{Q}_{c, e, 2017+k} = (\hat{P}_{c, e, 2017} * P_{e,2017}) * P_{e,2017 + k}$ 
+
+donde: 
+
+$\hat{Q}_{c, e, 2017+k}$ = Proyección de población carcelaria ajustada, para el rango etario, en el periodo $2017 + k$ 
+
+$P_{c, 2017}$ = Población carcelaria en 2017, a mitad de periodo, en el rango etario e.
+
+$P_{e,2017}$ = Población estimada 2017 DANE a mitad de periodo en el rango etario e. 
+
+$P_{e,2017 + k}$ = Población estimada en $2017 + k$, del DANE a mitad de periodo en el rango etario e.
+
+Al aplicar esta proyección a periodos anteriores a 2017 tenemos una estimación de lo que habría sido la población carcelaria, en un escenario de tasas de encarcelamiento específicas constantes. Al comparar esta proyección con la población privada de la libertad observada, es posible evidenciar el impacto que ha tenido el proceso de cambio demográfico en la población carcelaria, además de poner en evidencia que no es el principal factor detrás de este cambio. El incremento debe además corresponder con un incremento de las tasas de encarcelamiento específicas.
+
+Para ajustar la proyección de las tasas de encarcelamiento específicas se trata la población carcelaria como un área padre y a las poblaciones por rango etario como poblaciones pequeñas. Usando la ecuación \ref{equ:inpec_edad_generotasa2} tenemos: 
+
+$$\hat{V}_{c, e, 2017+k} = (\hat{P}_{c, e, 2017} * \hat{P}_{c,2017+k}) * P_{c,2017 + k}$$
+
+donde: 
+
+$\hat{V}_{c, e, 2017+k}$ = Población carcelaria ajustada por edad. 
+
+$ \hat{P}_{c,2017+k}$ = Población carcelaria estimada por genero.
+
+$ P_{c,2017 + k} $ = Población carcelaria observada. 
+
+\section{Población privada de la libertad por rango de edad Febrero 2016 a Febrero 2018}
+
+El INPEC publica un reporte mensual con estadísticas detalladas de la población carcelaria al cierre de mes. Los reportes están disponibles en la página del INPEC desde Enero 2013 e incluyen la composición de la población privada de la libertad por sexo y edad. La estructura de los reportes no es uniforme para todos los periodos, la composición por rangos etarios antes de febrero 2016 consolidaba en las categorías: 18 a 29 años, 29 a 54 años, 55 a 64 años, y mayor de 65 años. A partir de marzo de 2016 se agrupa 18 a 24 y grupos quinquenales hasta los 65 años. \cite{INPEC2018}
+
+
+En la figura \ref{fig:inpec_edad_genero2} podemos observar la composición demográfica de la población privada de la libertad en Junio 2017. Es una población compuesta por hombres en su mayoría. Tanto en hombres como mujeres se observa un patrón similar en la estructura etaria, el punto más alto se encuentra entre 25 y 29 años, 18 a 25 y 29 a 35 tienen un orden de magnitud comparable. Después de los 35 años la población se reduce en cada grupo quinquenal. Esta estructura podría ser producto del azar, por esto presentamos la figura \ref{fig:inpec_edad_genero3}, donde cada linea representa la población carcelaria por edad, en un mes diferente. El periodo de análisis se escogió a conveniencia por la disponibilidad de los datos del INPEC donde se mantiene una misma estrucutura etaria y está fuera del rango de proyección. La figura \ref{fig:inpec_edad_genero3} muestra que la población carcelaria mantiene la forma de campana, con pico en 25-29, en todos los meses analizados, tanto en hombres como mujeres. En hombres el rango de edad con mayor variabilidad es el rango 18-24. En mujeres la variabilidad se presetnta en los rangos 18-24, 25-29 y 30-34.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{gginpec_edad_genero2-1.pdf}
+	\caption[Piramide poblacional, población privada de la libertad, Junio - 2017]{Piramide poblacional, población privada de la libertad, Junio - 2017}{Fuente: INPEC} {Elaboración propia}
+	\label{fig:inpec_edad_genero2}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{inpec_edad_genero3-1.pdf}
+	\caption[Población privada de la libertad. Febrero-2016 a Febrero-2018]{Población privada de la libertad. Febrero-2016 a Febrero-2018}{Fuente: INPEC} {Elaboración propia}
+	\label{fig:inpec_edad_genero3}
+\end{figure}
+
+Esta variabilidad podría estar asociada a un componente estacional o a un componente aleatorio. Aunque la longitud de la serie disponible no permite realizar inferencia sobre componentes de estacionalidad y tendencia la tendencia de la figura muestra que: A través del año la serie 18-24 crece, para caer abruptamente en enero del año siguiente, comportamiento repetido en enero 2016 y enero 2017. El comportamiento es similar en orden y mujeres una vez se controla por el orden de magnitud. El comportamiento en las demás series es similar, se reduce durante todo el año, para subir nuevamente en enero. Este comportamiento es coherente en hombres y mujeres, una vez se escala. \ref{fig:inpec_edad_genero3} Este comportamiento implica que no es conveniente trabajar la proyección de la tasa de encarcelamiento a nivel mensual pues no se puede estimar el aparente componente de estacionalidad de la serie. A conveniencia se escoge trabajar con la proyección de población a mitad de periodo, y tratar en un primer momento la tasa de encarcelamiento como una variable aleatoria cuyo valor esperado se mantiene a través del tiempo.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{inpec_edad_genero1-1.pdf}
+	\caption[Población privada de la libertad. Febrero-2016 a Febrero-2018]{Población privada de la libertad por rango etario. Febrero-2016 a Febrero-2018}{Fuente: INPEC} {Elaboración propia}
+	\label{fig:inpec_edad_genero1}
+\end{figure}
+
+El comportamiento es similar en cada regional. 
+
+\begin{figure}%[H]
+	\centering
+	\includegraphics[width=1.1\linewidth]{inpec_edad_generoregion2-1.pdf}
+	\caption[Población privada de la libertad. Febrero-2016 a Febrero-2018]{Población privada de la libertad por rango etario. Febrero-2016 a Febrero-2018}{Fuente: INPEC} {Elaboración propia}
+	\label{fig:inpec_edad_generoregion2}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{gginpec_edad_generotasa1-1.pdf}
+	\caption[Tasa de específica de encarcelamiento. Junio-2017]{Tasa de específica de encarcelamiento. Junio-2017}{Fuente: INPEC, DANE} {Elaboración propia}
+	\label{fig:inpec_edad_generotasa1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{inpec_edad_generotasa2-1.pdf}
+	\caption[Tasa específica de encarcelamiento. Junio-2016, Junio -2017]{Tasa específica de encarcelamiento. Junio-2016, Junio -2017}{Fuente: INPEC, DANE} {Elaboración propia}
+	\label{fig:inpec_edad_generotasa2}
+\end{figure}
+
+\section{Proyecciones Censal Ratio}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Proyecciones_DANE-1.pdf}
+	\caption[Población privada de la libertad. 2005-2020]{Proyección de la población privada de la libertad,  2005 - 2020, ajustado por rango etario DANE}{Fuente: INPEC, DANE} {Elaboración propia}
+	\label{fig:inpec_edad_pry}
+\end{figure}
+
+
