@@ -12,3 +12,6 @@ curl
 Matrix
 arules
 bindrcpp
+RColorBrewer
+colorRamps
+wesanderson

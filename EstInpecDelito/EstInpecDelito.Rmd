@@ -1,0 +1,128 @@
+---
+title: "EstCrimen"
+author: "Sergio Solano"
+date: "26 de marzo de 2018"
+output:
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
+rm(list = ls())
+library("lubridate") # Fechas
+library("readxl") # Importar excel
+library("magrittr") # pipes
+library("purrr") # Listas
+library("dplyr") # Data handling
+library("tidyr") # Data handling
+library("knitr") # Imprimir pdf
+library("ggplot2") # Graficas
+library("stringr") # Texto
+library("curl") #Descargar desde internet
+library("arules") # Crear intervalos
+library("RColorBrewer") # Gráficas
+library("colorRamps") # Gráficas
+library("wesanderson") # Gráficas
+
+```
+
+```{r Carga xlsx}
+#Estrucutra / Pendiente hacer independiente de la estrucutura
+estructura <- c('Delito','Hombres sindicados','Hombres condenados','Mujeres sindicadas','Mujeres condenadas','Total')
+
+tipo <- c("text","numeric","numeric","numeric","numeric","numeric")
+
+# Listar archivos 
+archivos <- list.files(pattern="xls")
+archivos <- archivos[!grepl("DANE",archivos)]
+n = length(archivos)
+
+#Crear lista que se va a llenar con los archivos
+Inpecxlsxperfil = list()
+
+#Leer archivos
+for (i in 1:n) {
+  hojas <- excel_sheets(archivos[i])
+  hoja <- hojas[grepl("DELICTIVO",hojas)]
+  #print(archivos[i])
+  temporal <- as.data.frame(read_excel(archivos[i], sheet = hoja, range = "A9:F23", col_types = tipo, col_names = estructura))
+  largo <- dim(temporal)[1]
+  temporal$documento <- rep(archivos[i],largo)
+  #print(paste(class(temporal[,2]),archivos[i],sep=" "))
+  Inpecxlsxperfil[[i]] <- list(temporal)
+}
+
+rm(temporal)
+Inpecxlsxperfil %>%  map_df(bind_rows) -> base_inpecxlsxperfiles
+
+# Crear mes y año
+months <- data.frame(month_text = c ("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"),month_number = seq(1:12))
+year <- c('2014','2015','2016','2017','2018')
+
+#### Separar nombre del archivo en texto
+lista <- str_split(unique(base_inpecxlsxperfiles$documento)," ")
+#### Indexar por documento
+names(lista) <- as.vector(unique(base_inpecxlsxperfiles$documento))
+
+#### convertir a data.frame
+doc_date <- data.frame(documento = rep(names(lista), sapply(lista, length)),
+                 palabra = unlist(lista))
+
+#### Eliminar extensión del archivo
+doc_date$palabra <-  gsub(".xlsx","",doc_date$palabra)
+doc_date$palabra <-  gsub(".xls","",doc_date$palabra)
+
+#### Crear vectores de mes y año
+doc_date %>% dplyr::filter(palabra %in% months[,1]) -> doc_month
+doc_date %>% dplyr::filter (palabra %in% year) -> doc_year
+colnames(doc_month) <- c("documento","month_text")
+colnames(doc_year) <- c("documento","year")
+
+#### Concatenar base de Inpec con mes y año para crear fecha
+base_inpecxlsxperfiles %>% left_join(doc_month,by = NULL) %>% left_join(months,by=NULL) %>% left_join(doc_year)%>% mutate(fecha = as.Date(paste(year,month_number,15, sep ="/"),"%Y/%m/%d")) -> Inpecxlsxperfiles_date
+
+Inpecxlsxperfiles_date$Delito <- tolower(Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('ó','o',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('otrosa','otros',Inpecxlsxperfiles_date$Delito)
+
+Inpecxlsxperfiles_date %<>% mutate(impacto = if_else(Total > 10000, "SI","NO"))
+
+Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Total`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal()-> historico_delitos1
+
+Inpecxlsxperfiles_date %>% filter(impacto == "NO") %>% ggplot() + geom_line(aes( x=fecha,y = Total, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal()-> historico_delitos2
+
+Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Hombres sindicados`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal()-> historico_delitos3
+
+Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Hombres condenados`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal()-> historico_delitos4
+
+Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Mujeres sindicadas`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal() -> historico_delitos5
+
+Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Mujeres condenadas`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal() -> historico_delitos6
+```
+
+```{r delitosmayorfrecuencia}
+historico_delitos1
+```
+```{r delitosmenorfrecuencia}
+historico_delitos2
+```
+```{r historicodelitos3}
+historico_delitos3
+```
+
+```{r historicodelitos4}
+historico_delitos4
+```
+
+```{r historicodelitos5}
+historico_delitos5
+```
+
+```{r historicodelitos6}
+historico_delitos6
+```
+
+
+
+

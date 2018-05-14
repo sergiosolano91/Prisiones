@@ -8,11 +8,9 @@ El grupo etario con mayor tasa de encarcelamiento está entre los 18 y 29 años.  
 
 Para incorporar la relación entre la población nacional y la población carcelaria se recurre al método censal-ratio,comúnmente usado en la proyección de poblaciones pequeñas. Este método requiere la inclusión de variables sintomáticas que agreguen información sobre la población pequeña.
 
-% Es posible copiar la tabla completa. 
-
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{POB_NAL_EDAD-1.pdf}
+	\includegraphics[width=0.9\linewidth]{POB_NAL_EDAD-1.pdf}
 	\caption[Proyección de la población nacional por rango de edad]{Proyección de la población nacional por rango de edad}{Fuente: DANE} {Elaboración propia}
 	\label{fig:pob_nal_dane_edad}
 \end{figure}
@@ -97,10 +95,11 @@ $ P_{c,2017 + k} $ = Población carcelaria observada.
 
 \section{Población privada de la libertad por rango de edad Febrero 2016 a Febrero 2018}
 
-El INPEC publica un reporte mensual con estadísticas detalladas de la población carcelaria al cierre de mes. Los reportes están disponibles en la página del INPEC desde Enero 2013 e incluyen la composición de la población privada de la libertad por sexo y edad. La estructura de los reportes no es uniforme para todos los periodos, la composición por rangos etarios antes de febrero 2016 consolidaba en las categorías: 18 a 29 años, 29 a 54 años, 55 a 64 años, y mayor de 65 años. A partir de marzo de 2016 se agrupa 18 a 24 y grupos quinquenales hasta los 65 años. \cite{INPEC2018}
+El INPEC publica un reporte mensual con estadísticas detalladas de la población carcelaria al cierre de mes. Los reportes están disponibles en la página del INPEC desde e incluyen la composición de la población privada de la libertad desde Enero 2013. La estructura de los reportes no es uniforme para todos los periodos. La composición por rangos etarios antes de febrero 2016 consolidaba en las categorías: 18 a 29 años, 29 a 54 años, 55 a 64 años, y mayor de 65 años. A partir de marzo de 2016 se agrupa 18 a 24 y grupos quinquenales hasta los 65 años. \cite{INPEC2018}
 
+En la figura \ref{fig:inpec_edad_genero2} podemos observar la composición demográfica de la población privada de la libertad en Junio 2017. Es una población compuesta mayoritariamente por hombres. Tanto en hombres como mujeres se observa un patrón similar en la estructura etaria, el punto más alto se encuentra entre 25 y 29 años, 18 a 25 y 29 a 35 tienen un orden de magnitud comparable. Después de los 35 años la población se reduce en cada grupo quinquenal. 
 
-En la figura \ref{fig:inpec_edad_genero2} podemos observar la composición demográfica de la población privada de la libertad en Junio 2017. Es una población compuesta por hombres en su mayoría. Tanto en hombres como mujeres se observa un patrón similar en la estructura etaria, el punto más alto se encuentra entre 25 y 29 años, 18 a 25 y 29 a 35 tienen un orden de magnitud comparable. Después de los 35 años la población se reduce en cada grupo quinquenal. Esta estructura podría ser producto del azar, por esto presentamos la figura \ref{fig:inpec_edad_genero3}, donde cada linea representa la población carcelaria por edad, en un mes diferente. El periodo de análisis se escogió a conveniencia por la disponibilidad de los datos del INPEC donde se mantiene una misma estrucutura etaria y está fuera del rango de proyección. La figura \ref{fig:inpec_edad_genero3} muestra que la población carcelaria mantiene la forma de campana, con pico en 25-29, en todos los meses analizados, tanto en hombres como mujeres. En hombres el rango de edad con mayor variabilidad es el rango 18-24. En mujeres la variabilidad se presetnta en los rangos 18-24, 25-29 y 30-34.
+En la figura \ref{fig:inpec_edad_genero3} se presenta la población privada de la libertad, separada por genero y edad desde marzo 2016 hasta marzo 2018. El periodo de análisis se escogió a conveniencia, considerando la disponibilidad de datos del INPEC con grupos etarios uniformes. La figura \ref{fig:inpec_edad_genero3} muestra que la población carcelaria mantiene la forma de campana, con pico en 25-29, en todos los meses analizados, tanto en hombres como mujeres. En hombres el rango de edad con mayor variabilidad es el rango 18-24. En mujeres la variabilidad se presetnta en los rangos 18-24, 25-29 y 30-34. \cite{Ram2018}
 
 
 \begin{figure}[H]
@@ -110,14 +109,15 @@ En la figura \ref{fig:inpec_edad_genero2} podemos observar la composición demogr
 	\label{fig:inpec_edad_genero2}
 \end{figure}
 
-\begin{figure}[H]
+
+\begin{figure}	
 	\centering
 	\includegraphics[width=0.7\linewidth]{inpec_edad_genero3-1.pdf}
 	\caption[Población privada de la libertad. Febrero-2016 a Febrero-2018]{Población privada de la libertad. Febrero-2016 a Febrero-2018}{Fuente: INPEC} {Elaboración propia}
 	\label{fig:inpec_edad_genero3}
 \end{figure}
 
-Esta variabilidad podría estar asociada a un componente estacional o a un componente aleatorio. Aunque la longitud de la serie disponible no permite realizar inferencia sobre componentes de estacionalidad y tendencia la tendencia de la figura muestra que: A través del año la serie 18-24 crece, para caer abruptamente en enero del año siguiente, comportamiento repetido en enero 2016 y enero 2017. El comportamiento es similar en orden y mujeres una vez se controla por el orden de magnitud. El comportamiento en las demás series es similar, se reduce durante todo el año, para subir nuevamente en enero. Este comportamiento es coherente en hombres y mujeres, una vez se escala. \ref{fig:inpec_edad_genero3} Este comportamiento implica que no es conveniente trabajar la proyección de la tasa de encarcelamiento a nivel mensual pues no se puede estimar el aparente componente de estacionalidad de la serie. A conveniencia se escoge trabajar con la proyección de población a mitad de periodo, y tratar en un primer momento la tasa de encarcelamiento como una variable aleatoria cuyo valor esperado se mantiene a través del tiempo.
+Esta variabilidad podría estar asociada a un componente estacional o a un componente aleatorio. Aunque la longitud de la serie disponible no permite realizar inferencia sobre componentes de estacionalidad y tendencia, la figura muestra que: A través del año el grupo 18-24 crece, para caer abruptamente en enero del año siguiente; comportamiento repetido en enero 2016 y enero 2017. El comportamiento es similar en mujeres una vez se controla por el orden de magnitud. El comportamiento en las demás series es similar, se reduce durante todo el año, para subir nuevamente en enero. Este comportamiento es coherente en hombres y mujeres, una vez se controla la magnitud. \ref{fig:inpec_edad_genero3} Este comportamiento implica que no es conveniente trabajar la proyección de la tasa de encarcelamiento a nivel mensual pues no se puede estimar el aparente componente de estacionalidad de la serie. Por conveniencia se trabaja con la proyección de población a mitad de periodo, y se trata la tasa de encarcelamiento como una variable aleatoria cuyo valor esperado se mantiene a través del tiempo.
 
 \begin{figure}[H]
 	\centering
@@ -126,14 +126,25 @@ Esta variabilidad podría estar asociada a un componente estacional o a un compon
 	\label{fig:inpec_edad_genero1}
 \end{figure}
 
-El comportamiento es similar en cada regional. 
+Puesto que no se cuenta con información de periodos más extensos se valida análisis a un menor nivel de granularidad. Dentro de la información disponible se encuentra separada la población carcelaria por regional. En la figura \ref{fig:inpec_edad_generoregion2} se observa nuevamente, en todas las regionales, la población carcelaria con forma de campana. Consistentemente las mujeres tienen mayor variabilidad que los hombres en cada rango de edad y poblaciones carcelarias más pequeñas se encuentran asociadas a una mayor variabilidad.
 
-\begin{figure}%[H]
+La forma del aparente componente estacional también se replica a nivel regional. Ver figura \ref{fig:inpec_edad_generoregion3}. 
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=1.1\linewidth]{inpec_edad_generoregion2-1.pdf}
-	\caption[Población privada de la libertad. Febrero-2016 a Febrero-2018]{Población privada de la libertad por rango etario. Febrero-2016 a Febrero-2018}{Fuente: INPEC} {Elaboración propia}
+	\caption[Población privada de la libertad. Febrero-2016 a Febrero-2018]{Población privada de la libertad por rango etario, región. Febrero-2016 a Febrero-2018}{Fuente: INPEC} {Elaboración propia}
 	\label{fig:inpec_edad_generoregion2}
 \end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.1\linewidth]{gginpec_edad_genero_region-1.pdf}
+	\caption[Población privada de la libertad. Febrero-2016 a Febrero-2018]{Población privada de la libertad por rango etario, región. Febrero-2016 a Febrero-2018}{Fuente: INPEC} {Elaboración propia}
+	\label{fig:inpec_edad_generoregion3}
+\end{figure}
+
+Las personas no aparecen de la nada en la carcel. 
 
 
 \begin{figure}[H]
@@ -154,7 +165,7 @@ El comportamiento es similar en cada regional.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{Proyecciones_DANE-1.pdf}
+	\includegraphics[width=0.9\linewidth]{Proyecciones_DANE-1.pdf}
 	\caption[Población privada de la libertad. 2005-2020]{Proyección de la población privada de la libertad,  2005 - 2020, ajustado por rango etario DANE}{Fuente: INPEC, DANE} {Elaboración propia}
 	\label{fig:inpec_edad_pry}
 \end{figure}

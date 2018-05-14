@@ -4,22 +4,16 @@ The top-level auxiliary file: Thesis.aux
 The style file: amsplain.bst
 A level-1 auxiliary file: dedicatoria.aux
 A level-1 auxiliary file: agradecimientos.aux
-A level-1 auxiliary file: introduccion.aux
 A level-1 auxiliary file: MarcoTeorico.aux
 A level-1 auxiliary file: cap1.aux
 A level-1 auxiliary file: cap2.aux
-A level-1 auxiliary file: cap3.aux
+A level-1 auxiliary file: cap3-new.aux
 A level-1 auxiliary file: cap4.aux
 A level-1 auxiliary file: conclusiones.aux
 A level-1 auxiliary file: trabajofuturo.aux
 Database file #1: references.bib
-Repeated entry---line 1129 of file references.bib
- : @misc{InstitutoNacionalPenitenciarioyCarcelario2016
- :                                                    ,
-I'm skipping whatever remains of this entry
 Warning--missing publisher in Box2013
 Warning--missing journal name in Commandeur2007
-Warning--missing institution in DANE2013
 Warning--missing journal name in DepartamentoNacionaldePlaneacion2015
 Warning--missing pages in DepartamentoNacionaldePlaneacion2015
 Warning--missing journal name in Minton2015
@@ -28,43 +22,43 @@ Warning--missing institution in Wan1
 Warning--missing year in Wan1
 You've used 23 entries,
             2213 wiz_defined-function locations,
-            648 strings with 7404 characters,
-and the built_in function-call counts, 6186 in all, are:
-= -- 531
-> -- 257
+            649 strings with 7117 characters,
+and the built_in function-call counts, 6229 in all, are:
+= -- 534
+> -- 266
 < -- 2
-+ -- 104
-- -- 81
++ -- 107
+- -- 84
 * -- 467
-:= -- 1011
+:= -- 1021
 add.period$ -- 23
 call.type$ -- 23
 change.case$ -- 112
 chr.to.int$ -- 0
-cite$ -- 32
+cite$ -- 31
 duplicate$ -- 285
-empty$ -- 562
-format.name$ -- 81
-if$ -- 1283
+empty$ -- 563
+format.name$ -- 84
+if$ -- 1292
 int.to.chr$ -- 0
 int.to.str$ -- 23
 missing$ -- 42
 newline$ -- 79
-num.names$ -- 45
-pop$ -- 165
+num.names$ -- 46
+pop$ -- 167
 preamble$ -- 1
-purify$ -- 87
+purify$ -- 88
 quote$ -- 0
-skip$ -- 165
+skip$ -- 166
 stack$ -- 0
 substring$ -- 287
-swap$ -- 54
+swap$ -- 53
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 84
-warning$ -- 9
-while$ -- 62
+warning$ -- 8
+while$ -- 63
 width$ -- 25
-write$ -- 202
-(There was 1 error message)
+write$ -- 201
+(There were 8 warnings)

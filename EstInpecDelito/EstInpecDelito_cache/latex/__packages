@@ -1,0 +1,17 @@
+base
+lubridate
+readxl
+magrittr
+purrr
+dplyr
+tidyr
+knitr
+ggplot2
+stringr
+curl
+Matrix
+arules
+RColorBrewer
+colorRamps
+wesanderson
+bindrcpp

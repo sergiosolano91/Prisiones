@@ -666,7 +666,7 @@ destfile <- "POB_NAL_DAN_EDAD.csv"
 curl_download(url, destfile)
 ```
 
-```{r POB_NAL_EDAD, fig.height=10, fig.width=7}
+```{r POB_NAL_EDAD, fig.height=11, fig.width=7}
 
 pob_nal_dane_edad = read.csv("POB_NAL_DAN_EDAD.csv",header = TRUE,sep = ",",stringsAsFactors=FALSE)
 
@@ -680,7 +680,7 @@ pob_nal_dane_edad$Rango_edad<- gsub("0-4","00-04",pob_nal_dane_edad$Rango_edad)
 pob_nal_dane_edad$Rango_edad<- gsub("400-044","40-44",pob_nal_dane_edad$Rango_edad)
 pob_nal_dane_edad$Rango_edad<- gsub("5-9","05-09",pob_nal_dane_edad$Rango_edad)
 
-pob_nal_dane_edad %>% ggplot(aes(x=Año, y = Total/1000000, fill = Rango_edad)) + geom_bar(stat="identity", width = 1) + theme_minimal() + ylab("Proyecciones de población nacional (MM)") + scale_fill_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(17)) + theme(legend.position="none") -> pob_total_edad_stack
+pob_nal_dane_edad %>% ggplot(aes(x=Año, y = Total/1000000, fill = Rango_edad)) + geom_area(stat="identity") + theme_minimal() + ylab("Proyecciones de población nacional (MM)") + scale_fill_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(17)) + theme(legend.position="none") -> pob_total_edad_stack
 
 pob_nal_dane_edad %>% ggplot(aes(x=Año, y = Total/1000000, colour = Rango_edad)) + geom_line() + theme_minimal() + ylab("Proyecciones de población nacional (MM)") + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(17)) + theme(legend.position="none") -> pob_total_edad
 
@@ -688,7 +688,7 @@ pob_nal_dane_edad %>% ggplot(aes(x=Año, y = Total/1000000, colour = Rango_edad)
 
 pob_nal_dane_edad %<>% group_by(Año) %>% summarise(Totales_año = sum(Total)) %>% right_join(pob_nal_dane_edad, by = NULL) %>% mutate (Participacion= Total/Totales_año*100) 
 
-pob_nal_dane_edad %>% ggplot(aes(x=Año, y = Participacion, fill = Rango_edad)) + geom_bar(stat="identity", width = 1) + theme_minimal() + ylab("Proyecciones de población nacional (%)") + scale_fill_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(17)) -> pob_total_edad_stack_part
+pob_nal_dane_edad %>% ggplot(aes(x=Año, y = Participacion, fill = Rango_edad)) + geom_area(stat="identity") + theme_minimal() + ylab("Proyecciones de población nacional (%)") + scale_fill_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(17)) -> pob_total_edad_stack_part
 
 pob_nal_dane_edad %>% ggplot(aes(x=Año, y = Participacion, colour = Rango_edad)) + geom_line() + theme_minimal() + ylab("Proyecciones de población nacional (%)") + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(17)) -> pob_total_edad_part
 

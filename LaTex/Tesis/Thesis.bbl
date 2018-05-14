@@ -33,11 +33,6 @@ Jacques~J.F Commandeur and Siem~Jan Koopman, \emph{{An Introduction to State
 \bibitem{DANEPROY}
 DANE, \emph{{Estimaciones poblaci{\'{o}}n DANE}}, 2009.
 
-\bibitem{DANE2013}
-\bysame, \emph{{Estimaci{\'{o}}n y proyecci{\'{o}}n de poblaci{\'{o}}n
-  nacional, departamental y municipal por sexo, grupos quinquenales de edad y
-  edades simples de 0 a 26 a{\~{n}}os 1985-2020}}, Tech. report, 2013.
-
 \bibitem{DepartamentoNacionaldePlaneacion2015}
 {Departamento Nacional de Planeaci{\'{o}}n}, \emph{{Conpes 3828 POL{\'{I}}TICA
   PENITENCIARIA Y CARCELARIA EN COLOMBIA}},  (2015).
@@ -50,14 +45,12 @@ Jouni Helske, \emph{{Exponential Family State Space Models in R}}, Journal of
 Rob~J Hyndman, \emph{{{\{}forecast{\}}: Forecasting functions for time series
   and linear models}}, 2017.
 
+\bibitem{INPEC2018}
+INPEC, \emph{{Estadisticas - Estad{\'{i}}stica - INPEC}}, 2018.
+
 \bibitem{InstitueforCriminalPolicyResearch2016}
 {Institute for Criminal Policy Research}, \emph{{Colombia | World Prison
   Brief}}, 2016.
-
-\bibitem{InstitutoNacionalPenitenciarioyCarcelario2016}
-{Instituto Nacional Penitenciario y Carcelario}, \emph{{Plan de
-  direccionamiento estrat{\{}{\'{e}}{\}}gico 2015-108, Misi{\{}{\'{o}}{\}}n y
-  Visi{\{}{\'{o}}{\}}n}}, 2016.
 
 \bibitem{Justice2014}
 Ministry Justice, \emph{{Prison Population Projections 2014 - 2020, England and
@@ -84,6 +77,10 @@ Giovanni Petris and Sonia Petrone, \emph{{State Space Models in R}}, Journal of
 \bibitem{RCoreTeam2017}
 {R Core Team}, \emph{{R: A Language and Environment for Statistical
   Computing}}, R Foundation for Statistical Computing, Vienna, Austria, 2017.
+
+\bibitem{Ram2018}
+Karthik Ram and Hadley Wickham, \emph{{wesanderson: A Wes Anderson Palette
+  Generator}}, 2018.
 
 \bibitem{Shumway}
 Robert~H Shumway and David~S Stoffer, \emph{{Time Series Analysis and Its
