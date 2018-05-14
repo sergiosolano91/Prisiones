@@ -2,7 +2,7 @@
 
 No todas las personas tenemos la misma probabilidad de ser encarceladas. Los hombres tienen tasas de encarcelamiento más altas que las mujeres, y las personas entre 18 y 40 años son más susceptibles que los mayores de 40 \cite{Blumstein1980a}. Las cifras  de encarcelamiento, presentadas en la figura \ref{fig:inpec_edad_genero1} sugieren que estas tasas son estables en periodos cortos de tiempo y proporcionales entre los diferentes rangos de edad (si el encarcelamiento en un rango de edad se eleva sucede un incremento proporcional en los otros).  
 
-La población colombiana ha cambiado significativamente desde 1991, tanto en su magnitud como en su composición por edad. Hemos pasado de 35 millones en 1991 a 45 millones en la segunda década del siglo XXI. También hemos presenciado una reducción en la proporción de menores de 18 años, que ha pasado de XXX en 1991 a XXX en 2016. Se proyecta que en 2020 tendremos tantas personas entre 15 y 29 años, como entre 0 y 14, cuando en 1991 la diferencia era del XXX \%. \cite{DANEPROY}
+La población colombiana ha cambiado significativamente desde 1991, tanto en su magnitud como en su composición por edad. Hemos pasado de 35 millones en 1991 a 45 millones en la segunda década del siglo XXI. También hemos presenciado una reducción en la proporción de menores de 14 años, que ha pasado de 35\% en 1991 a 26\% en 2016. Se proyecta que en 2020 tendremos tantas personas entre 15 y 29 años, como entre 0 y 14, cuando en 1991 la diferencia era del 25 millones de personas. \cite{DANEPROY}
 
 El grupo etario con mayor tasa de encarcelamiento está entre los 18 y 29 años.  \cite{Blumstein1980a}. La población total en este grupo crece sostenidamente en el periodo 1991-2020. Como porcentaje de la población total, decrecen en dos puntos porcentuales en el mismo periodo, cediendo espacio a una población de mayor edad. El crecimiento de este grupo etario, particularmente en hombres podría ser un buen predictor de la población carcelaria.
 
@@ -144,8 +144,8 @@ La forma del aparente componente estacional también se replica a nivel regional.
 	\label{fig:inpec_edad_generoregion3}
 \end{figure}
 
-Las personas no aparecen de la nada en la carcel. 
 
+El comportamiento, cosistente a través del periodo de análisis en cada regional, de la población carcelaria sugiere una tasa de encarcelamiento particular en cada rango de edad. Con la proyección quinquenal del DANE 2005 - 2020 y la tasa de encarcelamiento en mitad de periodo de 2016 se realiza la proyección de 2017 - 2020 y 2005 a 2015. Si el supuesto de tasas de encarcelamiento estables por rango de edad es coherente la población carcelaria total sería similar a la estimada por rango de edad. La diferencia entre la población observada y la población estimada con este método es un indicador del impacto que el cambio demográfico ha tenido en la población carcelaria.  Las tasas de encarcelamiento en Junio 2016 y Junio 2017 se presentan en las Figuras \ref{fig:inpec_edad_generotasa1} y \ref{fig:inpec_edad_generotasa2}.
 
 \begin{figure}[H]
 	\centering
@@ -163,11 +163,97 @@ Las personas no aparecen de la nada en la carcel.
 
 \section{Proyecciones Censal Ratio}
 
+La proyección por rango de edad bajo el supuesto de tasas de encarcelamiento estables se presenta en la figura \ref{fig:inpec_edad_pry}. 
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{Proyecciones_DANE-1.pdf}
-	\caption[Población privada de la libertad. 2005-2020]{Proyección de la población privada de la libertad,  2005 - 2020, ajustado por rango etario DANE}{Fuente: INPEC, DANE} {Elaboración propia}
+	\caption[Población privada de la libertad. 2005-2020]{Proyección de la población privada de la libertad,  2005 - 2020, por rango etario DANE}{Fuente: INPEC, DANE} {Elaboración propia}
 	\label{fig:inpec_edad_pry}
 \end{figure}
 
+La proyecciones de población carcelaria a mitad de periodo para el periodo 2005 - 2020 se presentan en la tabla \ref{tab::pplajuste}. Para el periodo 2005 - 2016 se ajustó la proyección total al valor observado. Para proyectar 2017 a 2020 se usó una tasa de encarcelamiento constante.
 
+Con la tasa de encarcelamiento específica observada en 2016, se esperarían alrededor de 96.000 hombres privados de la libertad en 2005. En ese periodo habían 65.885 hombres privados de la libertad. Esto indica que el proceso de cambio demográfico habría explicado el 34\% del incremento de la población carcelaria en este periodo. En las mujeres el porcentaje explicado es 31\%.
+
+
+% latex table generated in R 3.4.4 by xtable 1.8-2 package
+% Sun May 13 22:58:52 2018
+\begin{table}[H]
+	\centering
+	\begin{tabular}{rllrrr}
+		\hline
+		& Fecha & Sexo & Poblacion & Pry\_ppl\_base & Ajuste \\ 
+		\hline
+		1 & 2005-06-15 & Hombres & 65885 & 96463 & 0.68 \\ 
+		2 & 2005-06-15 & Mujeres & 4750 & 7196 & 0.66 \\ 
+		3 & 2006-06-15 & Hombres & 59386 & 97693 & 0.61 \\ 
+		4 & 2006-06-15 & Mujeres & 3727 & 7296 & 0.51 \\ 
+		5 & 2007-06-15 & Hombres & 56718 & 98877 & 0.57 \\ 
+		6 & 2007-06-15 & Mujeres & 3457 & 7392 & 0.47 \\ 
+		7 & 2008-06-15 & Hombres & 63562 & 100110 & 0.63 \\ 
+		8 & 2008-06-15 & Mujeres & 4047 & 7487 & 0.54 \\ 
+		9 & 2009-06-15 & Hombres & 69826 & 101406 & 0.69 \\ 
+		10 & 2009-06-15 & Mujeres & 4768 & 7582 & 0.63 \\ 
+		11 & 2010-06-15 & Hombres & 75702 & 102782 & 0.74 \\ 
+		12 & 2010-06-15 & Mujeres & 5078 & 7679 & 0.66 \\ 
+		13 & 2011-06-15 & Hombres & 86698 & 104287 & 0.83 \\ 
+		14 & 2011-06-15 & Mujeres & 6689 & 7782 & 0.86 \\ 
+		15 & 2012-06-15 & Hombres & 101432 & 105874 & 0.96 \\ 
+		16 & 2012-06-15 & Mujeres & 8277 & 7888 & 1.05 \\ 
+		17 & 2013-06-15 & Hombres & 108882 & 107543 & 1.01 \\ 
+		18 & 2013-06-15 & Mujeres & 8981 & 7996 & 1.12 \\ 
+		19 & 2014-06-15 & Hombres & 108929 & 109277 & 1.00 \\ 
+		20 & 2014-06-15 & Mujeres & 8302 & 8105 & 1.02 \\ 
+		21 & 2015-06-15 & Hombres & 112423 & 111066 & 1.01 \\ 
+		22 & 2015-06-15 & Mujeres & 8482 & 8214 & 1.03 \\ 
+		23 & 2016-06-15 & Hombres & 112907 & 112907 & 1.00 \\ 
+		24 & 2016-06-15 & Mujeres & 8323 & 8323 & 1.00 \\ 
+		25 & 2017-06-15 & Hombres &  & 114790 &  \\ 
+		26 & 2017-06-15 & Mujeres &  & 8432 &  \\ 
+		27 & 2018-06-15 & Hombres &  & 116692 &  \\ 
+		28 & 2018-06-15 & Mujeres &  & 8540 &  \\ 
+		29 & 2019-06-15 & Hombres &  & 118591 &  \\ 
+		30 & 2019-06-15 & Mujeres &  & 8646 &  \\ 
+		31 & 2020-06-15 & Hombres &  & 120461 &  \\ 
+		32 & 2020-06-15 & Mujeres &  & 8748 &  \\ 
+		\hline
+	\end{tabular}
+	\caption{Proyección de la población carcelaria vs real} 
+	\label{tab::pplajuste}
+\end{table}
+
+En la figura \ref{fig:Inpecpryageaju} se presenta la población carcelaria proyectada por rango de edad, luego de ajustar con la población observada. En la figura \ref{fig:Inpecpryageajutasa} se presenta la tasa de encarcelamiento por edad proyectada para el periodo 1995 - 2020.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ggInpecDanepryAju-1}
+	\caption[Población privada de la libertad. 2005-2020]{Proyección de la población privada de la libertad,  2005 - 2020, ajustado por rango etario DANE}{Fuente: INPEC, DANE} {Elaboración propia}
+	\label{fig:Inpecpryageaju}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ggInpecDanepryAjuTasa-1}
+	\caption[Población privada de la libertad. 2005-2020]{Proyección de tasa de encarcelamiento específica por rango de edad, por cada 100.000 habitantes, 2005 - 2020}{Fuente: INPEC, DANE}{Elaboración propia}
+	\label{fig:Inpecpryageajutasa}
+\end{figure}
+
+\section{Conclusiones}
+
+Los métodos usuales en la proyección de poblaciones pequeñas se han adaptado en este capítulo, de acuerdo con la información disponible. Los datos evidencian que la tasa de encarcelamiento es diferente según la edad; bajo el supuesto de una tasa de encarcelamiento estable a través del tiempo se pueden realizar proyecciones de mediano plazo de la población carcelaria (3 años). Una proyección para años anteriores permite separar la variación de la población carcelaria asociada con los procesos de cambio demográfico (incremento y envejecimiento) de la variación asociada a otros factores. 
+
+Es posible utilizar variables como desempleo nacional, desempleo juvenil o pobreza para mejorar las proyecciones y entender los determinantes de la tasa de encarcelamiento. En este capítulo se utilizo el método de censal-ratio sin una variable sintomática asociada, para separar el efecto del cambio demográfico.
+
+El comportamiento de cada regional tiene componentes diferentes en tendencia, aunque comparte aparentemente el componente estacional. Realizar proyecciones de la tasa de encarcelamiento a nivel regional permitiría realizar un mejor dimensionamiento de la infraestructura carcelaria de cada región asociada a sus propias dinámicas demográficas.
+
+Mejorar la calidad de los datos abiertos del INPEC permitiría desarrollar éstas y otras preguntas de investigación. Medidas que podrían mejorar la calidad de estos datos son:
+
+\begin{itemize}
+	\item Mantener grupos de análisis consistentes a través del tiempo. Dentro de los datos analizados, los rangos de edad observados cambiaron desde febrero 2016 a un menor nivel de granularidad. Este cambio permite análisis de la tasa de encarcelamiento más precisos; sin embargo, no permite comparar con periodos anteriores a ésta fecha. 
+	\item Publicar series detalladas con un periodo de análisis más largo. Las estadísticas detalladas por delito, edad, tiempo de condena,...,etc están disponibles desde 2013. Es decir, con los datos abiertos actualmente disponibles no es posible analizar, por ejemplo, el comportamiento de la tasa de encarcelamiento por edad en periodos anteriores.
+	\item Incluir análisis multivariados de la población carcelaria. Los informes publicados actualmente no incluyen análisis multivariados como edad, genero, delito, que son pertinentes para la toma de decisiones en política criminal.
+	\item Publicar informes detallados con seguimiento histórico. Parte del trabajo realizado para llegara este capítulo consistió en ensamblar informes históricos en una sola base de datos, publicar las series históricas permitiría acelerar el tiempo de análisis.
+\end{itemize}
+ 
