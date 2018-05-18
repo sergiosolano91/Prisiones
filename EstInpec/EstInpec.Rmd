@@ -22,6 +22,7 @@ library("arules") # Crear intervalos
 library("RColorBrewer") # Gráficas
 library("colorRamps") # Gráficas
 library("wesanderson") # Gráficas
+library("xtable") # tabla
 
 ```
 
@@ -117,7 +118,7 @@ gginpec_edad_genero_region1
 
 
 ```{r gginpec_edad_genero2}
-InpecEdad_tidy %>% dplyr::filter(Fecha == as.Date("2017/06/15","%Y/%m/%d")) %>% ggplot() + geom_bar(aes(x=Edad, y = if_else(Sexo=="Hombres", -Poblacion,Poblacion), fill = Sexo), stat="identity") + coord_flip() +theme_minimal() + xlab("Edad")+ ylab("Población privada de la libertad-Junio 2017") + scale_y_continuous(labels = abs) + facet_wrap(~Fecha,ncol=1) +  scale_fill_manual(values = wes_palette("Moonrise3")) -> gginpec_edad_genero2
+InpecEdad_tidy %>% dplyr::filter(Fecha == as.Date("2016/06/15","%Y/%m/%d")) %>% ggplot() + geom_bar(aes(x=Edad, y = if_else(Sexo=="Hombres", -Poblacion,Poblacion), fill = Sexo), stat="identity") + coord_flip() +theme_minimal() + xlab("Edad")+ ylab("Población privada de la libertad-Junio 2017") + scale_y_continuous(labels = abs) + facet_wrap(~Fecha,ncol=1) +  scale_fill_manual(values = wes_palette("Moonrise3")) -> gginpec_edad_genero2
 
 gginpec_edad_genero2
 ```
@@ -173,7 +174,7 @@ InpecEdad_tidy %>% left_join(dane_edades, by = c("Fecha"="Fecha","Edad"="Edad","
 ```
 
 ```{r gginpec_edad_generotasa1}
-InpecDane %>% dplyr::filter(Fecha == as.Date("2017/06/15","%Y/%m/%d")) %>% ggplot() + geom_bar(aes(x=Edad, y = if_else(Sexo=="Hombres", -tasa_encarcelamiento,tasa_encarcelamiento), fill = Sexo), stat="identity") + coord_flip() +theme_minimal() + xlab("Edad")+ ylab("Tasa de encarcelamiento a Junio 2017") + scale_y_continuous(labels = abs) + facet_wrap(~Fecha,ncol=1) +  scale_fill_manual(values = wes_palette("Moonrise3")) -> gginpec_edad_genero2 
+InpecDane %>% dplyr::filter(Fecha == as.Date("2016/06/15","%Y/%m/%d")) %>% ggplot() + geom_bar(aes(x=Edad, y = if_else(Sexo=="Hombres", -tasa_encarcelamiento,tasa_encarcelamiento), fill = Sexo), stat="identity") + coord_flip() +theme_minimal() + xlab("Edad")+ ylab("Tasa de encarcelamiento a Junio 2016") + scale_y_continuous(labels = abs) + facet_wrap(~Fecha,ncol=1) +  scale_fill_manual(values = wes_palette("Moonrise3")) -> gginpec_edad_genero2 
 
 gginpec_edad_genero2
 ```
@@ -188,7 +189,8 @@ gginpec_edad_genero4
 ```{r Proyecciones_DANE}
 #dane_edades %>%filter(!(Edad %in% c("0-17"))) %>% ggplot() + geom_line(aes(x=Fecha,y=Poblacion_pry,colour = Edad)) + facet_wrap(~Sexo) + theme_minimal()
 
-InpecDane %>% dplyr::filter (Fecha == as.Date("2017/06/15","%Y/%m/%d"))%>% group_by(Sexo,Edad) %>% summarise(tasa_encarcelamiento=sum(tasa_encarcelamiento)) -> InpecDaneTasa
+
+InpecDane %>% dplyr::filter (Fecha == as.Date("2016/06/15","%Y/%m/%d"))%>% group_by(Sexo,Edad) %>% summarise(tasa_encarcelamiento=sum(tasa_encarcelamiento)) -> InpecDaneTasa
 
 dane_edades %>% left_join(InpecDaneTasa) %>% dplyr::filter(!(tasa_encarcelamiento %in% c(NA))) %>% mutate(PobCar_pry = Poblacion_pry*tasa_encarcelamiento/100000) -> DaneInpecPry
 
@@ -196,6 +198,54 @@ DaneInpecPry %>% dplyr::filter(!(Edad %in% c("0-17"))) %>% ggplot() + geom_area(
 
 ggInpecDanepry
 ```
+
+```{r población real}
+# carga población
+ppl_gen <- read.csv("ppl_gen.csv")
+ppl_gen %<>% filter(mes == 6, anio >= 2005, anio < 2017) 
+ppl_gen %<>% mutate(Date = as.Date(paste(anio,mes,"15", sep = "/"),"%Y/%m/%d")) %>% select(hombres,mujeres,Date)
+colnames(ppl_gen) <- c("Hombres","Mujeres","Fecha")
+ppl_gen %<>% gather(Sexo,Poblacion,-Fecha) 
+```
+
+```{r factor ajuste}
+DaneInpecPry %>% group_by(Fecha, Sexo) %>% summarise(Pry_ppl_base = sum(PobCar_pry)) %>% left_join(ppl_gen, by = NULL) %>% mutate(Ajuste = Poblacion/Pry_ppl_base) %>% select(Fecha, Sexo, Ajuste) -> Pry
+
+Pry[is.na(Pry$Ajuste),'Ajuste'] <- 1
+```
+
+```{r Proyeccion ajustada}
+DaneInpecPry %>% left_join (Pry, by = NULL) %>% mutate(ppl_pry_aju = PobCar_pry*Ajuste) %>% mutate(tasa_pry_aju = ppl_pry_aju/Poblacion_pry*100000)-> DaneInpecPryAju
+
+DaneInpecPryAju %>% dplyr::filter(!(Edad %in% c("0-17"))) %>% ggplot() + geom_area(aes(x=Fecha,y=ppl_pry_aju,fill = factor(Edad,levels=rev(levels(factor(Edad))))), stat="identity") + facet_wrap(~Sexo, scales = "free") + theme_minimal() + labs(y = "Proyección de población privada de la libertad ajustada", fill = "Edad")  + scale_fill_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) -> ggInpecDanepryAju
+
+DaneInpecPryAju %>% dplyr::filter(!(Edad %in% c("0-17"))) %>% ggplot() + geom_line(aes(x=Fecha,y=tasa_pry_aju,colour = factor(Edad,levels=rev(levels(factor(Edad))))), stat="identity") + facet_wrap(~Sexo, scales = "free") + theme_minimal() + labs(y = "Proyección de tasa de encarcelamiento ajustada", fill = "Edad")  + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + theme(legend.title = element_blank()) -> ggInpecDanepryAjuTasa
+```
+
+```{r ggInpecDanepryAju}
+ggInpecDanepryAju
+```
+
+```{r ggInpecDanepryAjuTasa}
+ggInpecDanepryAjuTasa
+```
+
+```{r tabla pry1} 
+DaneInpecPry %>% group_by(Fecha, Sexo) %>% summarise(Pry_ppl_base = sum(PobCar_pry)) %>% left_join(ppl_gen, by = NULL) %>% mutate(Ajuste = Poblacion/Pry_ppl_base) %>% select(Fecha, Sexo, Poblacion, Pry_ppl_base, Ajuste) -> Pry2
+
+Pry2$Fecha <- as.character(Pry2$Fecha)
+xtable(Pry2, digits=c(0,0,0,0,0,2), caption = "PplAjuste", label = c("Proyección de la población carcelaria vs real"))
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
