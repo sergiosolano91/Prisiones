@@ -4,6 +4,8 @@ author: "Sergio Solano"
 date: "26 de marzo de 2018"
 output:
   pdf_document: default
+  html_document:
+    df_print: paged
   word_document: default
 ---
 
@@ -24,7 +26,7 @@ library("arules") # Crear intervalos
 library("RColorBrewer") # Gráficas
 library("colorRamps") # Gráficas
 library("wesanderson") # Gráficas
-
+library("zoo")
 ```
 
 ```{r Carga xlsx}
@@ -45,7 +47,7 @@ Inpecxlsxperfil = list()
 for (i in 1:n) {
   hojas <- excel_sheets(archivos[i])
   hoja <- hojas[grepl("DELICTIVO",hojas)]
-  #print(archivos[i])
+  print(archivos[i])
   temporal <- as.data.frame(read_excel(archivos[i], sheet = hoja, range = "A9:F23", col_types = tipo, col_names = estructura))
   largo <- dim(temporal)[1]
   temporal$documento <- rep(archivos[i],largo)
@@ -58,7 +60,7 @@ Inpecxlsxperfil %>%  map_df(bind_rows) -> base_inpecxlsxperfiles
 
 # Crear mes y año
 months <- data.frame(month_text = c ("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"),month_number = seq(1:12))
-year <- c('2014','2015','2016','2017','2018')
+year <- c('2013','2014','2015','2016','2017','2018')
 
 #### Separar nombre del archivo en texto
 lista <- str_split(unique(base_inpecxlsxperfiles$documento)," ")
@@ -84,13 +86,17 @@ base_inpecxlsxperfiles %>% left_join(doc_month,by = NULL) %>% left_join(months,b
 
 Inpecxlsxperfiles_date$Delito <- tolower(Inpecxlsxperfiles_date$Delito)
 Inpecxlsxperfiles_date$Delito <- gsub('ó','o',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('á','a',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('í','i',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('ú','u',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub(',','',Inpecxlsxperfiles_date$Delito)
 Inpecxlsxperfiles_date$Delito <- gsub('otrosa','otros',Inpecxlsxperfiles_date$Delito)
 
 Inpecxlsxperfiles_date %<>% mutate(impacto = if_else(Total > 10000, "SI","NO"))
 
 Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Total`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal()-> historico_delitos1
 
-Inpecxlsxperfiles_date %>% filter(impacto == "NO") %>% ggplot() + geom_line(aes( x=fecha,y = Total, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal()-> historico_delitos2
+Inpecxlsxperfiles_date %>% filter(impacto == "NO") %>% ggplot() + geom_line(aes( x=fecha,y = Total, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(21)) + ylim(0,NA) + theme_minimal()-> historico_delitos2
 
 Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Hombres sindicados`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal()-> historico_delitos3
 
@@ -102,6 +108,8 @@ Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes(
 ```
 
 ```{r delitosmayorfrecuencia}
+#Validación faltantes
+#Inpecxlsxperfiles_date %>% ggplot + geom_bar(aes(x = fecha), stat = "count")
 historico_delitos1
 ```
 ```{r delitosmenorfrecuencia}
@@ -124,5 +132,89 @@ historico_delitos6
 ```
 
 
+```{r state space models}
+Inpecxlsxperfiles_date %>% dplyr::filter(Delito=="hurto") %>% select(`Hombres sindicados`,fecha) -> df_test
+ts_test <- ts(zoo(df_test$`Hombres sindicados`,order.by = df_test$fecha), frequency = 12, start = c(2013,10))
+plot(ts_test)
 
+#y <- datasets::Nile
+y <- ts_test
+struct <- StructTS(y, type = "trend")
+print(struct$coef)
+cat("Transitional variance:", struct$coef["level"],
+"\n", "Slope variance:", struct$coef["slope"],
+"\n", "Observational variance:", struct$coef["epsilon"],
+"\n", "Initial level of mu:", struct$model0$a[1],
+"\n", "Initial level of lambda:", struct$model0$a[2],
+"\n")
+plot(struct$residuals)
+tsdiag(struct)
+filt <- KalmanRun(y, struct$model)
+plot.ts(filt$states[,1])
+par(new=TRUE)
+plot(ts_test)
+```
+
+
+
+```{r}
+## an ARIMA fit
+fit3 <- arima(presidents, c(3, 0, 0))
+predict(fit3, 12)
+## reconstruct this
+pr <- KalmanForecast(12, fit3$model)
+pr$pred + fit3$coef[4]
+sqrt(pr$var * fit3$sigma2)
+## and now do it year by year
+mod <- fit3$model
+for(y in 1:3) {
+  pr <- KalmanForecast(4, mod, TRUE)
+  print(list(pred = pr$pred + fit3$coef["intercept"], 
+             se = sqrt(pr$var * fit3$sigma2)))
+  mod <- attr(pr, "mod")
+}
+
+```
+
+```{r MARSS paquete}
+library("MARSS")
+data(graywhales)
+years = graywhales[,1]
+loggraywhales = log(graywhales[,2])
+kem = MARSS(loggraywhales)
+
+plank.dat = t(log(ivesDataByWeek[,c("Large Phyto", "Small Phyto","Daphnia","Non-daphnia")]))
+```
+
+```{r hurto}
+Inpecxlsxperfiles_date %>% dplyr::filter(Delito=="hurto") %>% select(`Hombres sindicados`,fecha)  -> df_test
+
+Inpecxlsxperfiles_date %>% dplyr::filter(Delito=="hurto") %>% select(`Hombres condenados`,fecha)  -> df_test2
+
+Inpecxlsxperfiles_date %>% dplyr::filter(Delito=="hurto")  %>%  ggplot() + geom_line(aes(x=fecha, y = `Hombres sindicados`, colour = 'sindicados')) + geom_line(aes(x=fecha, y = `Hombres condenados`, colour = 'condenados'))
+
+seqdate <- data.frame(fecha = seq(min(df_test$fecha), by = "month", max(df_test$fecha)))
+
+seqdate %>% left_join(df_test) %>% spread(fecha, `Hombres sindicados`)-> sindicados_hurto
+seqdate %>% left_join(df_test2) %>% spread(fecha, `Hombres condenados`)-> condenados_hurto
+
+hurto <- as.matrix(rbind(sindicados_hurto,condenados_hurto))
+rownames(hurto) <- c("sindicados","condenados")
+```
+
+```{r estado espacio urto}
+B1 = matrix(list("b1","b2", 0, "b4"), 2, 2) 
+U1 = matrix(0,2, 1) 
+Q1 = matrix(c("q11", "q12", "q12" , "q22"), 2, 2) 
+Z1 = matrix(c(1, 0, 0, 1), 2, 2) 
+A1 = matrix(list(0, 0), 2, 1) 
+R1 = matrix(list(1, 0, 0, 1), 2, 2) 
+pi1 = matrix("pi", 2, 1) 
+V1 = diag(1, 2)
+
+model.list = list(B = B1, U = U1, Q = Q1, Z = Z1, A = A1, R = R1, x0 = pi1, V0 = V1)
+
+model.hurtos <- MARSS(hurto, model = model.list, control = list(safe=TRUE))
+plot(model.hurtos)
+```
 
