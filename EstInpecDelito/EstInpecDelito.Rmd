@@ -204,25 +204,48 @@ rownames(hurto) <- c("sindicados","condenados")
 
 ```{r estado espacio urto}
 B1 = matrix(list("b1","b2", 0, "b4"), 2, 2) 
-U1 = matrix(0,2, 1) 
+U1 = matrix(list("u1","u2"),2, 1) 
 Q1 = matrix(c("q11", "q12", "q12" , "q22"), 2, 2) 
-Z1 = matrix(c(1, 0, 0, 1), 2, 2) 
+Z1 = matrix(list(1, 0, 0, 1), 2, 2) 
 A1 = matrix(list(0, 0), 2, 1) 
 R1 = matrix(list(1, 0, 0, 1), 2, 2) 
-pi1 = matrix("pi", 2, 1) 
-V1 = diag(1, 2)
+pi1 = matrix(list(hurto[1,1],hurto[2,1]), 2, 1) 
+V1 = diag(0, 2)
 
 model.list = list(B = B1, U = U1, Q = Q1, Z = Z1, A = A1, R = R1, x0 = pi1, V0 = V1)
 
-model.hurtos <- MARSS(hurto, model = model.list, control = list(safe=TRUE))
-plot(model.hurtos)
+model.hurtos <- MARSS(hurto, model = model.list, control = list(safe=TRUE, maxit=1000))
+model.hurtos$par
+#plot(model.hurtos)
 ```
 
+```{r MARSS pry}
+
+B_est <- model.hurtos$par$B
+B_est_mat <- matrix(c(B_est[1,1],B_est[2,1],0,B_est[3,1]),2,2)
+
+U_est <- model.hurtos$par$U
+
+x_ult <- hurto[,ncol(hurto)]
+
+pry <- data.frame(V1 = c(0,0))
+
+for (i in 1:36) {
+pry[,i] <- B_est_mat %*% x_ult+U_est
+x_ult <- pry[,i]
+}
+gato <- data.frame(t(pry))
+plot(gato[,1])
+plot(gato[,2])
+```
 
 ```{r simulacion}
-sim.hurtos <- MARSSsimulate(model.hurtos, tSteps = 36, nsim = 100, silent = TRUE,miss.loc = NULL)
-f.table.hurtos <- ftable (sim.hurtos$sim.states)
-plot(f.table.hurtos)
+# sim.hurtos <- MARSSsimulate(model.hurtos, tSteps = 60, nsim = 1, silent = TRUE,miss.loc = NULL)
+# f.table.hurtos <- ftable(sim.hurtos$sim.states)
+# sim.hurtos.df <- as.data.frame(sim.hurtos$sim.states)
+# plot(t(sim.hurtos.df)[,1])
+# plot(t(sim.hurtos.df)[,2])
 ```
+
 
 
