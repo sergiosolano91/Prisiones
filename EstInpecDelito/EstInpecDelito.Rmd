@@ -218,3 +218,11 @@ model.hurtos <- MARSS(hurto, model = model.list, control = list(safe=TRUE))
 plot(model.hurtos)
 ```
 
+
+```{r simulacion}
+sim.hurtos <- MARSSsimulate(model.hurtos, tSteps = 36, nsim = 100, silent = TRUE,miss.loc = NULL)
+f.table.hurtos <- ftable (sim.hurtos$sim.states)
+plot(f.table.hurtos)
+```
+
+
