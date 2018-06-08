@@ -27,6 +27,7 @@ library("RColorBrewer") # Gráficas
 library("colorRamps") # Gráficas
 library("wesanderson") # Gráficas
 library("zoo")
+library("xtable")
 ```
 
 ```{r Carga xlsx}
@@ -187,11 +188,11 @@ plank.dat = t(log(ivesDataByWeek[,c("Large Phyto", "Small Phyto","Daphnia","Non-
 ```
 
 ```{r hurto}
-Inpecxlsxperfiles_date %>% dplyr::filter(Delito=="hurto") %>% select(`Hombres sindicados`,fecha)  -> df_test
+Inpecxlsxperfiles_date %>% filter(year < 2017) %>% dplyr::filter(Delito=="hurto") %>% select(`Hombres sindicados`,fecha)  -> df_test
 
-Inpecxlsxperfiles_date %>% dplyr::filter(Delito=="hurto") %>% select(`Hombres condenados`,fecha)  -> df_test2
+Inpecxlsxperfiles_date %>% filter(year < 2017) %>% dplyr::filter(Delito=="hurto") %>% select(`Hombres condenados`,fecha)  -> df_test2
 
-Inpecxlsxperfiles_date %>% dplyr::filter(Delito=="hurto")  %>%  ggplot() + geom_line(aes(x=fecha, y = `Hombres sindicados`, colour = 'sindicados')) + geom_line(aes(x=fecha, y = `Hombres condenados`, colour = 'condenados'))
+Inpecxlsxperfiles_date %>% filter(year < 2017) %>% dplyr::filter(Delito=="hurto")  %>%  ggplot() + geom_line(aes(x=fecha, y = `Hombres sindicados`, colour = 'sindicados')) + geom_line(aes(x=fecha, y = `Hombres condenados`, colour = 'condenados'))
 
 seqdate <- data.frame(fecha = seq(min(df_test$fecha), by = "month", max(df_test$fecha)))
 
@@ -202,7 +203,7 @@ hurto <- as.matrix(rbind(sindicados_hurto,condenados_hurto))
 rownames(hurto) <- c("sindicados","condenados")
 ```
 
-```{r estado espacio urto}
+```{r estado espacio hurto}
 B1 = matrix(list("b1","b2", 0, "b4"), 2, 2) 
 U1 = matrix(list("u1","u2"),2, 1) 
 Q1 = matrix(c("q11", "q12", "q12" , "q22"), 2, 2) 
@@ -216,7 +217,11 @@ model.list = list(B = B1, U = U1, Q = Q1, Z = Z1, A = A1, R = R1, x0 = pi1, V0 =
 
 model.hurtos <- MARSS(hurto, model = model.list, control = list(safe=TRUE, maxit=1000))
 model.hurtos$par
-#plot(model.hurtos)
+plot.states <- plot(model.hurtos, plot.type = "states")
+plot.model.qqplot <-  plot(model.hurtos, plot.type = "model.residuals.qqplot")
+
+plot.states + theme_minimal() + labs(x="Periodo", y = "Estado")
+plot.model.qqplot + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Quantiles teóricos")
 ```
 
 ```{r MARSS pry}
@@ -225,8 +230,11 @@ B_est <- model.hurtos$par$B
 B_est_mat <- matrix(c(B_est[1,1],B_est[2,1],0,B_est[3,1]),2,2)
 
 U_est <- model.hurtos$par$U
-
+Q_est <- model.hurtos$par$Q
 x_ult <- hurto[,ncol(hurto)]
+
+est <- rbind(B_est,U_est,Q_est)
+xtable(est)
 
 pry <- data.frame(V1 = c(0,0))
 
@@ -237,6 +245,13 @@ x_ult <- pry[,i]
 gato <- data.frame(t(pry))
 plot(gato[,1])
 plot(gato[,2])
+gato <- round(gato,0)
+fecha_pry = seq(as.Date("15/01/2017", "%d/%m/%Y"), by = "month", length.out = 36)
+Pry_hurto <- cbind(fecha_pry,gato)
+
+colnames(Pry_hurto) <- c("Periodo","Sindicados","Condenados")
+Pry_hurto$Periodo <- as.character(Pry_hurto$Periodo)
+xtable(Pry_hurto)
 ```
 
 ```{r simulacion}
@@ -256,13 +271,14 @@ estructuras <- cbind(estrucutra,pob)
 estructuras$Estado <- gsub("sindicadas","sindicados",estructuras$Estado)
 estructuras$Estado <- gsub("condenadas","condenados",estructuras$Estado)
 ```
+
 ```{r delitosmujeres, fig.width=8, fig.height=11}
-estructuras %>% filter(Género == "Mujeres") %>%  filter(!(Delito == "NA")) %>%  ggplot() + geom_line(aes(x=fecha,y=Valor,colour = Estado)) + facet_wrap(~str_wrap(Delito,25), ncol = 4, scales = "free_y") + theme(legend.position = "top") + labs(colour = " ", y = "Población privada de la libertad - Mujeres") + ylim(c(0,NA)) + theme_minimal() -> delitosmujeres
+estructuras %>% filter(Género == "Mujeres") %>%  filter(!(Delito == "NA")) %>%  ggplot() + geom_line(aes(x=fecha,y=Valor,colour = Estado)) + facet_wrap(~str_wrap(Delito,25), ncol = 4, scales = "free_y") + theme(legend.position = "top") + labs(colour = " ", y = "Población privada de la libertad - Mujeres") + ylim(c(0,NA)) + theme_minimal()  + theme(legend.position = "top") -> delitosmujeres
 delitosmujeres
 ```
 
 ```{r delitoshombres, fig.width=8, fig.height=11}
-estructuras %>% filter(Género == "Hombres") %>%  filter(!(Delito == "NA")) %>%  ggplot() + geom_line(aes(x=fecha,y=Valor,colour = Estado)) + facet_wrap(~str_wrap(Delito,25), ncol = 4, scales = "free_y") + theme(legend.position = "top") + labs(colour = " ", y = "Población privada de la libertad - Hombres") + ylim(c(0,NA)) + theme_minimal()-> delitoshombres
+estructuras %>% filter(Género == "Hombres") %>%  filter(!(Delito == "NA")) %>%  ggplot() + geom_line(aes(x=fecha,y=Valor,colour = Estado)) + facet_wrap(~str_wrap(Delito,25), ncol = 4, scales = "free_y") + labs(colour = " ", y = "Población privada de la libertad - Hombres") + ylim(c(0,NA)) + theme_minimal()+ theme(legend.position = "top")  -> delitoshombres
 delitoshombres
 ```
 

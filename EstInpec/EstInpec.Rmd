@@ -252,3 +252,6 @@ xtable(Pry2, digits=c(0,0,0,0,0,2), caption = "PplAjuste", label = c("Proyecció
 
 
 
+
+
+
