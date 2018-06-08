@@ -118,7 +118,7 @@ gginpec_edad_genero_region1
 
 
 ```{r gginpec_edad_genero2}
-InpecEdad_tidy %>% dplyr::filter(Fecha == as.Date("2016/06/15","%Y/%m/%d")) %>% ggplot() + geom_bar(aes(x=Edad, y = if_else(Sexo=="Hombres", -Poblacion,Poblacion), fill = Sexo), stat="identity") + coord_flip() +theme_minimal() + xlab("Edad")+ ylab("Población privada de la libertad-Junio 2017") + scale_y_continuous(labels = abs) + facet_wrap(~Fecha,ncol=1) +  scale_fill_manual(values = wes_palette("Moonrise3")) -> gginpec_edad_genero2
+InpecEdad_tidy %>% dplyr::filter(Fecha == as.Date("2016/06/15","%Y/%m/%d")) %>% ggplot() + geom_bar(aes(x=Edad, y = if_else(Sexo=="Hombres", -Poblacion,Poblacion), fill = Sexo), stat="identity") + coord_flip() +theme_minimal() + xlab("Edad")+ ylab("Población privada de la libertad-Junio 2017") + scale_y_continuous(labels = abs) + facet_wrap(~Fecha,ncol=1) +  scale_fill_manual(values = wes_palette("Moonrise3")) + labs(fill = "Género") -> gginpec_edad_genero2
 
 gginpec_edad_genero2
 ```
@@ -174,7 +174,7 @@ InpecEdad_tidy %>% left_join(dane_edades, by = c("Fecha"="Fecha","Edad"="Edad","
 ```
 
 ```{r gginpec_edad_generotasa1}
-InpecDane %>% dplyr::filter(Fecha == as.Date("2016/06/15","%Y/%m/%d")) %>% ggplot() + geom_bar(aes(x=Edad, y = if_else(Sexo=="Hombres", -tasa_encarcelamiento,tasa_encarcelamiento), fill = Sexo), stat="identity") + coord_flip() +theme_minimal() + xlab("Edad")+ ylab("Tasa de encarcelamiento a Junio 2016") + scale_y_continuous(labels = abs) + facet_wrap(~Fecha,ncol=1) +  scale_fill_manual(values = wes_palette("Moonrise3")) -> gginpec_edad_genero2 
+InpecDane %>% dplyr::filter(Fecha == as.Date("2016/06/15","%Y/%m/%d")) %>% ggplot() + geom_bar(aes(x=Edad, y = if_else(Sexo=="Hombres", -tasa_encarcelamiento,tasa_encarcelamiento), fill = Sexo), stat="identity") + coord_flip() +theme_minimal() + xlab("Edad")+ ylab("Tasa de encarcelamiento a Junio 2016") + scale_y_continuous(labels = abs) + facet_wrap(~Fecha,ncol=1) +  scale_fill_manual(values = wes_palette("Moonrise3")) + labs(fill = "Género")-> gginpec_edad_genero2 
 
 gginpec_edad_genero2
 ```

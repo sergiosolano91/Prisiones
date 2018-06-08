@@ -94,17 +94,17 @@ Inpecxlsxperfiles_date$Delito <- gsub('otrosa','otros',Inpecxlsxperfiles_date$De
 
 Inpecxlsxperfiles_date %<>% mutate(impacto = if_else(Total > 10000, "SI","NO"))
 
-Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Total`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal()-> historico_delitos1
+Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Total`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal() + labs(colour = "Delito")-> historico_delitos1
 
-Inpecxlsxperfiles_date %>% filter(impacto == "NO") %>% ggplot() + geom_line(aes( x=fecha,y = Total, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(21)) + ylim(0,NA) + theme_minimal()-> historico_delitos2
+Inpecxlsxperfiles_date %>% filter(impacto == "NO") %>% ggplot() + geom_line(aes( x=fecha,y = Total, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(21)) + ylim(0,NA) + theme_minimal() + labs(colour = "Delito")-> historico_delitos2
 
-Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Hombres sindicados`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal()-> historico_delitos3
+Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Hombres sindicados`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal() + labs(colour = "Delito") -> historico_delitos3
 
-Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Hombres condenados`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal()-> historico_delitos4
+Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Hombres condenados`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal() + labs(colour = "Delito") -> historico_delitos4
 
-Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Mujeres sindicadas`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal() -> historico_delitos5
+Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Mujeres sindicadas`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal()  + labs(colour = "Delito") -> historico_delitos5
 
-Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Mujeres condenadas`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal() -> historico_delitos6
+Inpecxlsxperfiles_date %>% filter(impacto == "SI") %>% ggplot() + geom_line(aes( x=fecha,y = `Mujeres condenadas`, colour = str_wrap(Delito,30))) + guides(colour=guide_legend(ncol=1)) + theme(legend.title = element_blank()) + scale_colour_manual(values = colorRampPalette(brewer.pal(12, "Paired"))(12)) + ylim(0,NA) + theme_minimal()  + labs(colour = "Delito") -> historico_delitos6
 ```
 
 ```{r delitosmayorfrecuencia}
@@ -247,5 +247,30 @@ plot(gato[,2])
 # plot(t(sim.hurtos.df)[,2])
 ```
 
+```{r delitosgenero, fig.width=8, fig.height=10}
+Inpecxlsxperfiles_date %>% filter(year < 2017) %>%  select(-impacto, -month_text, -month_number, -year,-documento) %>% gather(Poblacion, Valor, -Delito,-fecha) %>% filter(!(Poblacion=="Total"))-> estrucutra
 
+pob <- data.frame(str_split_fixed(estrucutra$Poblacion,' ',2))
+colnames(pob) <- c("Género","Estado")
+estructuras <- cbind(estrucutra,pob)
+estructuras$Estado <- gsub("sindicadas","sindicados",estructuras$Estado)
+estructuras$Estado <- gsub("condenadas","condenados",estructuras$Estado)
+```
+```{r delitosmujeres, fig.width=8, fig.height=11}
+estructuras %>% filter(Género == "Mujeres") %>%  filter(!(Delito == "NA")) %>%  ggplot() + geom_line(aes(x=fecha,y=Valor,colour = Estado)) + facet_wrap(~str_wrap(Delito,25), ncol = 4, scales = "free_y") + theme(legend.position = "top") + labs(colour = " ", y = "Población privada de la libertad - Mujeres") + ylim(c(0,NA)) + theme_minimal() -> delitosmujeres
+delitosmujeres
+```
+
+```{r delitoshombres, fig.width=8, fig.height=11}
+estructuras %>% filter(Género == "Hombres") %>%  filter(!(Delito == "NA")) %>%  ggplot() + geom_line(aes(x=fecha,y=Valor,colour = Estado)) + facet_wrap(~str_wrap(Delito,25), ncol = 4, scales = "free_y") + theme(legend.position = "top") + labs(colour = " ", y = "Población privada de la libertad - Hombres") + ylim(c(0,NA)) + theme_minimal()-> delitoshombres
+delitoshombres
+```
+
+
+```{r delito, fig.width=6, fig.height=6}
+estructuras %>% group_by(Delito, Género) %>% summarise(Media = mean(Valor)) %>% arrange(- Media)-> estructuras_resumen 
+
+estructuras_resumen   %>%  ggplot()+geom_bar(aes(x=reorder(str_wrap(Delito,40),Media),y=if_else(Género=="Hombres",-Media,Media), fill = Género),stat = "identity") + coord_flip() + labs(x = "Delito", y = "Población promedio") + scale_y_continuous(labels = abs) + theme_minimal()+ scale_fill_manual(values = wes_palette("Moonrise3")) ->delitoperfil
+delitoperfil
+```
 
