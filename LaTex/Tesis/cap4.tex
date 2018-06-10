@@ -1,30 +1,39 @@
-\chapter{Modelos estado-espacio}
+\chapter{Modelos Estado-Espacio}
 
-Se presenta resumen de los datos, luego se define paquete a usar, se especifica el modelo usado, se presenta estimación y se realizan proyecciones. Se trabaja el análisis con hurto, y luego se presentan proyecciones separadas por cada delito. 
+El comportamiento de la población carcelaria es diferente según el delito y tiene relación con un componente demográfico y un componente normativo. El componente demográfico se ha tratado en el capítulo anterior y en este capítulo se abordara el componente de delitos. La interacción entre ambos no ha sido analizada pues no se cuenta con la información necesaria.
+
+Las personas que se encuentran a la espera de juicio se llaman sindicados, y condenados quienes ya han recibido una sentencia. Cada mes una proporción de las personas sindicadas es sentenciada, puede entonces salir en libertad o cambiar a condenado, y una proporción de los condenados sale en libertad. También se pueden presentar salidas por mortalidad. Un modelo auto-regresivo bivariado para la población total puede modelar estas interacciones; particularmente la población privada de la libertad está compuesta por series separadas de diferentes delitos, cada una con un comportamiento diferente, como lo sugieren la figuras \ref{fig:delitoshombres} y \ref{fig:delitosmujeres}.
+
+Se presentan el comportamiento de la población carcelaria por delito y genero. Con esta información se estima un modelo estado-espacio en cada una de las series bivariadas. Los modelos estado-espacio se formulan de forma tal que permitan incluir la interacción entre la población sindicada y condenada. 
 
 \section{Población privada de la libertad 2013-2016 por delito}
 
-El inpec en las estadísticas mensuales incluye la población privada de la libertad separada por delito, estado (sindicado, condenado) y género. Se han consolidado los reportes disponibles entre Julio 2013 y Diciembre 2016. Octubre 2015 es un dato faltante, pues a la fecha de descarga el reporte no se encuentra disponible en la página del INPEC. \cite{INPEC2018}
-
+El INPEC incluye en sus estadísticas mensuales la población privada de la libertad separada por delito, estado (sindicado, condenado) y género. Se ha consolidado la información disponible en reportes individuales entre Julio 2013 y Diciembre 2016, en una sola base de datos. Octubre 2015 se considera un dato faltante, pues a la fecha de descarga el reporte no se encuentra disponible en la página del INPEC, \cite{INPEC2018}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{delito-1.pdf}
-	\caption{Población carcelaria promedio por delito genero Octubre 2013-Diciembre 2016} {Fuente: INPEC} {Elaboración propia}
+	\caption{Población carcelaria promedio por delito y genero Julio 2013-Diciembre 2016} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:delito}
 \end{figure}
+
+En la figura \ref{fig:delito} se observa la población privada de la libertad promedio entre julio 20113 y diciembre 2016. Los delitos más comunes son: hurto; homicidio; fabricación y porte de armas de fuego o municiones; tráfico, fabricación o porte de estupefacientes y concierto para delinquir. Tanto en hombres como mujeres estos cinco delitos son los más comunes; en los hombres se manifiestan en el orden presentado, pero en las mujeres los delitos más frecuentes son tráfico, fabricación o porte de estupefacientes y concierto para delinquir, seguidos por hurto, homicidio y fabricación y porte de armas de fuego. 
+
+Las figuras \ref{fig:delitoshombres} y \ref{fig:delitosmujeres} presentan la evolución de la población carcelaria por delito entre Julio 2013 y Diciembre 2016, para hombres y mujeres respectivamente. Las gráficas evidencian un comportamiento aparentemente independiente de las series: Por ejemplo:  mientras las series de hurto, extorsión y secuestro simple presentan un descenso de la población condenada en 2014 y una posterior estabilización, concierto para delinquir presenta una tendencia al alza, tanto en sindicados como en condenados.
+
+
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{delitoshombres-1.pdf}
-	\caption{Evolución de la población carcelaria masculina, Octubre 2013-Diciembre 2016} {Fuente: INPEC} {Elaboración propia}
+	\caption{Evolución de la población carcelaria masculina, Julio 2013-Diciembre 2016} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:delitoshombres}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{delitosmujeres-1.pdf}
-	\caption{Evolución de la población carcelaria femenina, Octubre 2013-Diciembre 2016} {Fuente: INPEC} {Elaboración propia}
+	\caption{Evolución de la población carcelaria femenina, Julio 2013-Diciembre 2016} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:delitosmujeres}
 \end{figure}
 
@@ -184,4 +193,5 @@ Se realiza proyección de la población media sindicada y condenada en la tabla
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 PENDIENTE REALIZAR PROYECCIONES DEL RESTO DE SERIES Y PRESENTAR CONSOLIDADO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Discusión}

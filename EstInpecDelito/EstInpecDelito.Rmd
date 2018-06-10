@@ -92,6 +92,10 @@ Inpecxlsxperfiles_date$Delito <- gsub('í','i',Inpecxlsxperfiles_date$Delito)
 Inpecxlsxperfiles_date$Delito <- gsub('ú','u',Inpecxlsxperfiles_date$Delito)
 Inpecxlsxperfiles_date$Delito <- gsub(',','',Inpecxlsxperfiles_date$Delito)
 Inpecxlsxperfiles_date$Delito <- gsub('otrosa','otros',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- trimws(Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('fabricacion  trafico','fabricacion trafico',Inpecxlsxperfiles_date$Delito)
+  
+
 
 Inpecxlsxperfiles_date %<>% mutate(impacto = if_else(Total > 10000, "SI","NO"))
 
@@ -149,11 +153,11 @@ cat("Transitional variance:", struct$coef["level"],
 "\n", "Initial level of lambda:", struct$model0$a[2],
 "\n")
 plot(struct$residuals)
-tsdiag(struct)
-filt <- KalmanRun(y, struct$model)
-plot.ts(filt$states[,1])
-par(new=TRUE)
-plot(ts_test)
+#tsdiag(struct)
+#filt <- KalmanRun(y, struct$model)
+#plot.ts(filt$states[,1])
+#par(new=TRUE)
+#plot(ts_test)
 ```
 
 
@@ -203,25 +207,27 @@ hurto <- as.matrix(rbind(sindicados_hurto,condenados_hurto))
 rownames(hurto) <- c("sindicados","condenados")
 ```
 
-```{r estado espacio hurto}
+```{r estado espacio hurto dummy}
 B1 = matrix(list("b1","b2", 0, "b4"), 2, 2) 
 U1 = matrix(list("u1","u2"),2, 1) 
 Q1 = matrix(c("q11", "q12", "q12" , "q22"), 2, 2) 
 Z1 = matrix(list(1, 0, 0, 1), 2, 2) 
 A1 = matrix(list(0, 0), 2, 1) 
-R1 = matrix(list(1, 0, 0, 1), 2, 2) 
+R1 = matrix(list("r11", "r12","r12" , "r22"), 2, 2) 
 pi1 = matrix(list(hurto[1,1],hurto[2,1]), 2, 1) 
 V1 = diag(0, 2)
 
 model.list = list(B = B1, U = U1, Q = Q1, Z = Z1, A = A1, R = R1, x0 = pi1, V0 = V1)
 
-model.hurtos <- MARSS(hurto, model = model.list, control = list(safe=TRUE, maxit=1000))
+model.hurtos <- MARSS(hurto, model = model.list, control = list( maxit=5000), method = "BFGS")
 model.hurtos$par
 plot.states <- plot(model.hurtos, plot.type = "states")
 plot.model.qqplot <-  plot(model.hurtos, plot.type = "model.residuals.qqplot")
+plot.model.residuals <-  plot(model.hurtos, plot.type = "model.residuals")
 
 plot.states + theme_minimal() + labs(x="Periodo", y = "Estado")
 plot.model.qqplot + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Quantiles teóricos")
+plot.model.residuals + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Observación")
 ```
 
 ```{r MARSS pry}
@@ -252,6 +258,8 @@ Pry_hurto <- cbind(fecha_pry,gato)
 colnames(Pry_hurto) <- c("Periodo","Sindicados","Condenados")
 Pry_hurto$Periodo <- as.character(Pry_hurto$Periodo)
 xtable(Pry_hurto)
+
+plot(model.hurtos$states)
 ```
 
 ```{r simulacion}
@@ -283,10 +291,44 @@ delitoshombres
 ```
 
 
-```{r delito, fig.width=6, fig.height=6}
-estructuras %>% group_by(Delito, Género) %>% summarise(Media = mean(Valor)) %>% arrange(- Media)-> estructuras_resumen 
+```{r delito, fig.width=7, fig.height=6}
+estructuras %>% group_by(Delito, Género) %>% summarise(Media = mean(Valor)) %>% arrange(- Media)-> estructuras_resumen
 
-estructuras_resumen   %>%  ggplot()+geom_bar(aes(x=reorder(str_wrap(Delito,40),Media),y=if_else(Género=="Hombres",-Media,Media), fill = Género),stat = "identity") + coord_flip() + labs(x = "Delito", y = "Población promedio") + scale_y_continuous(labels = abs) + theme_minimal()+ scale_fill_manual(values = wes_palette("Moonrise3")) ->delitoperfil
+estructuras_resumen   %>%  ggplot()+geom_bar(aes(x=reorder(str_wrap(Delito,40),Media),y=if_else(Género=="Hombres",-Media,Media), fill = Género),stat = "identity") + geom_text(aes(x=reorder(str_wrap(Delito,40),Media), y=if_else(Género=="Hombres",-Media-2000,Media+2000), label = round(Media,0)))+ theme_minimal() + coord_flip() + labs(x = "Delito", y = "Población promedio") + scale_y_continuous(labels = abs) + scale_fill_manual(values = wes_palette("Moonrise3")) + ylim(-20000,10000) ->delitoperfil
 delitoperfil
+```
+
+
+
+
+### DUMMY 2014
+
+
+
+```{r estado espacio hurto}
+dummy <- c(rep(0,7),rep(1,12),rep(0,23))
+
+B1 = matrix(list("b1","b2", 0, "b4"), 2, 2) 
+U1 = matrix(list("u1","u2"),2, 1) 
+Q1 = matrix(c("q11", "q12", "q12" , "q22"), 2, 2) 
+Z1 = matrix(list(1, 0, 0, 1), 2, 2) 
+A1 = matrix(list(0, 0), 2, 1) 
+R1 = matrix(list("R11", "R12", "R12" ,"R22"), 2, 2) 
+c1 = matrix(dummy, 1, 42) 
+C1 = "unconstrained"
+pi1 = matrix(list(hurto[1,1],hurto[2,1]), 2, 1) 
+V1 = diag(0, 2)
+
+model.list = list(B = B1, U = U1, Q = Q1, Z = Z1, A = A1, R = R1, x0 = pi1, V0 = V1, C = C1, c = c1)
+
+model.hurtos <- MARSS(hurto, model = model.list, control = list( maxit=5000), method = "BFGS")
+model.hurtos$par
+plot.states <- plot(model.hurtos, plot.type = "states")
+plot.model.qqplot <-  plot(model.hurtos, plot.type = "model.residuals.qqplot")
+plot.model.residuals <-  plot(model.hurtos, plot.type = "model.residuals")
+
+plot.states + theme_minimal() + labs(x="Periodo", y = "Estado")
+plot.model.qqplot + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Quantiles teóricos")
+plot.model.residuals + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Observación")
 ```
 
