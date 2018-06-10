@@ -46,23 +46,45 @@ Para mantener un único ambiente de desarrollo, nos enfocamos en los paquetes des
 Holmes \& Ward \& Willis (2018) definen los modelos MARSS, Modelos auto-regresivos multivariados, de forma general como: 
 
 \begin{equation}
-x_{t}  B_{t}x_{t-1} +u_t +C_tc_t +G_tw_t \quad donde \quad w_t \sim MVN(0,Q_t)
+\bm{x_{t}  = B_{t}x_{t-1} +u_t +C_tc_t +G_tw_t} \quad donde \quad \bm{w_t} \sim MVN(0,\bm{Q_t})
 \end{equation}
 
 \begin{equation}
-y_{t} = Z_{t}x_{t} +a_{t} +D_{t}d_{t} +H_{t}v_{t} \quad donde \quad v_t \sim MVN(0,R_t)
+\bm{y_{t} = Z_{t}x_{t} +a_{t} +D_{t}d_{t} +H_{t}v_{t}} \quad donde \quad \bm{v_t} \sim MVN(0,\bm{R_t})
 \end{equation}
-
 
 \begin{equation}
 x_1 \sim MVN(\pi,\Lambda)\, o \, x_0 \sim MVN(\pi,\Lambda)
 \end{equation}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-PENDIENTE PONER SIGNIFICADO DE LAS ECUACIONES
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$\bm{x}$ es una matriz de $m \times T$, donde cada $x_t$ es una realización de la variable aleatoria $X_t$ en el instante $t$.
 
-En este capítulo se usará el modelo bivariado: 
+$\bm{w}$ es el error de proceso y tiene distribución normal multivariada (MVN) con media cero y matriz de varianzas covarianzas $\bm{Q}$
+
+$\bm{y}$ es una matriz de $n \times T$, con T observaciones. Algunas observaciones pueden ser faltantes. 
+
+$\bm{v}$ es el error de observación de tamaño $n \times T$, con media cero y varianza $\bm{R}$
+
+$\bm{B_t}$ y $\bm{Z_t}$ son parámetros y son de dimensión $m \times m$ y $n \times m$. 
+
+$\bm{u_t}$ y $\bm{a_t}$ son parámetros de vectores de dimensión $m \times 1$ y $n \times 1$
+
+$\bm{Q_t}$ y $\bm{R_t}$ son matrices de varianzas y covarianzas de tamaño  $m \times m$ y $n \times n$.
+
+$\pi$ y $\Lambda$ son parámetros o son fijados con antelación.
+
+$\bm{C_t}$ y $\bm{D_t}$ son matrices de varianzas y covarianzas de tamaño  $m \times p$ y $n \times q$.
+
+$\bm{c}$ y $\bm{d}$ son inputs, variables exógenas, sin datos faltantes.
+
+$\bm{G_t}$ y $\bm{H_t}$ son inputs, matrices de tamaño   $m \times g$ y $n \times h$.
+
+En este capítulo se analizará un modelo bivariado, donde $\bm{x_t}$ corresponde a la población sindicada y condenada. Se restringe el modelo con las siguientes consideraciones: 
+
+\begin{itemize}
+	\item No hay una interacción entre la población de sindicados en el periodo $t$, y la población de condenados el periodo $t-1$. Es decir se modelo que no hay paso de condenados a sindicados. 
+	\item La observación $y_t$ se considera una insesgada frente al valor de la variable $x_t$. Esto implica $a_t = 0$, $v_t \sim MVN(0,R) $  se considera cero. 
+\end{itemize}
 
 \begin{equation}
 \begin{bmatrix} X1_t  \\ X2_t \end{bmatrix} =
@@ -80,7 +102,7 @@ b2 & b4 &
 1 & 0 \\ 0 & 1
 \end{bmatrix} 
 \begin{bmatrix} X1_{t-1}  \\ X2_{t-1} \end{bmatrix} +
-\begin{bmatrix} V1_t  \\ V2_t \end{bmatrix} , \begin{bmatrix} V1_t  \\ V2_t \end{bmatrix} \sim MVN(\begin{bmatrix} 0  \\ 0 \end{bmatrix},  \begin{bmatrix} 0 &  0 \\ 0 & 0 \end{bmatrix})
+\begin{bmatrix} v1_t  \\ v2_t \end{bmatrix} , \begin{bmatrix} v1_t  \\ v2_t \end{bmatrix} \sim MVN(\begin{bmatrix} 0  \\ 0 \end{bmatrix},  \begin{bmatrix} R11 &  R12 \\ R12 & R22 \end{bmatrix})
 \label{equ:observado}
 \end{equation}
 
@@ -92,9 +114,11 @@ $X2_t$ = Población condenada en el periodo t
 
 $U_1t$ = Variación mensual en la población sindicada no asociada a la población sindicada en el periodo anterior. 
 
-$U_1t$ = Variación mensual en la población condenada no asociada a la población sindicada, ni condenada en el periodo anterior. 
+$U_1t$ = Variación mensual en la población condenada no asociada a la población sindicada, ni condenada en el periodo anterior.
 
-La ecuación \ref{equ:observado} implica que el estado observado es idéntico al estado real del sistema. Sin embargo, tratarlo como un modelo estado espacio permite trabajar los datos faltantes sin inconvenientes.
+Modelar el sistema a partir de este modelo teórico, nos permite estimar sus parámetros usando el paquete MARSS. Tratar la serie como un modelo estado-espacio también permite tratar los faltantes con facilidad.
+
+En el ejercicio con datos reales se ajustó un segundo modelo con una variable Dummy $\bm{c}$ en 2014, debido al efecto de los cambios normativos en la tendencia de la población. 
 
 \section{Estimación de parámetros}
 
