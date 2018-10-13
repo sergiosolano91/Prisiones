@@ -37,10 +37,6 @@ DANE, \emph{{Estimaciones poblaci{\'{o}}n DANE}}, 2009.
 {Departamento Nacional de Planeaci{\'{o}}n}, \emph{{Conpes 3828 POL{\'{I}}TICA
   PENITENCIARIA Y CARCELARIA EN COLOMBIA}},  (2015).
 
-\bibitem{Helske2017}
-Jouni Helske, \emph{{Exponential Family State Space Models in R}}, Journal of
-  Statistical Software \textbf{78} (2017), no.~10, 1--39.
-
 \bibitem{Hyndman2017}
 Rob~J Hyndman, \emph{{{\{}forecast{\}}: Forecasting functions for time series
   and linear models}}, 2017.
@@ -51,6 +47,11 @@ INPEC, \emph{{Estadisticas - Estad{\'{i}}stica - INPEC}}, 2018.
 \bibitem{InstitueforCriminalPolicyResearch2016}
 {Institute for Criminal Policy Research}, \emph{{Colombia | World Prison
   Brief}}, 2016.
+
+\bibitem{InstitutoNacionalPenitenciarioyCarcelario2016}
+{Instituto Nacional Penitenciario y Carcelario}, \emph{{Plan de
+  direccionamiento estrat{\{}{\'{e}}{\}}gico 2015-108, Misi{\{}{\'{o}}{\}}n y
+  Visi{\{}{\'{o}}{\}}n}}, 2016.
 
 \bibitem{Justice2014}
 Ministry Justice, \emph{{Prison Population Projections 2014 - 2020, England and
@@ -69,10 +70,6 @@ Helmut L{\"{u}}tkepohl, \emph{{New Introduction to Multiple Time Series
 Todd~D Minton, Bjs Statistician, Scott Ginder, Susan~M Brumbaugh, Hope
   Smiley-Mcdonald, and Harley Rohloff, \emph{{Census of Jails: Population
   Changes, 1999 - 2013}},  (2015).
-
-\bibitem{Petris2011}
-Giovanni Petris and Sonia Petrone, \emph{{State Space Models in R}}, Journal of
-  Statistical Software \textbf{41} (2011), no.~4, 128--129.
 
 \bibitem{RCoreTeam2017}
 {R Core Team}, \emph{{R: A Language and Environment for Statistical
@@ -95,10 +92,6 @@ David Stoffer, \emph{{astsa: Applied Statistical Time Series Analysis. R
 David~A Swanson and Jeff Tayman, \emph{{Subnational Population Estimates}}, The
   Springer Series on Demographic Methods and Population Analysis, vol.~31,
   Springer Netherlands, Dordrecht, 2012.
-
-\bibitem{Tusell2011}
-Fernando Tusell, \emph{{Kalman Filtering in R}}, Journal of Statistical
-  Software \textbf{39} (2011), no.~2, 1--27.
 
 \bibitem{Wan1}
 Wai-Yin Wan1, Steve Moffatt2, Zachary Xie3, Simon Corben, and Don Weatherburn,
