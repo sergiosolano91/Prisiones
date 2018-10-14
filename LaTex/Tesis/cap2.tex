@@ -2,7 +2,7 @@
 
 La estimación de los modelos se realiza usando el paquete base del software R \cite{RCoreTeam2017}, y el paquete astsa \cite{Stoffer2014}, cuyo uso es discutido en detalle por Shumway \cite{Shumway}. 
 
-En adelante nos referiremos a la función de auctocorrelación como ACF y a la función de autocorrelación parcial como PACF. 
+En adelante nos referiremos a la función de autocorrelación como ACF y a la función de autocorrelación parcial como PACF. 
 
 \section{Identificación del modelo}
 
@@ -18,11 +18,11 @@ Antes de realizar la proyección de una serie de tiempo, es necesario identificar
 
 Aunque se conoce, por la estructura del proceso que genera los datos, que las series de población sindicada y condenada no son independientes, podemos simplificar la proyección, tratándolas como independientes. En este caso, los modelos ARIMA y SARIMA resultan apropiados, pues permiten explicar separadamente cada observación en función del comportamiento histórico de la serie.
 
-El capítulo anterior sugería que la población carcelaria, tanto sindicada como condenada, tiene una marcada tendencia al alza. En este caso una herramienta útil es mostrar gráficamente la variación mes a mes de la población. \ref{fig:variacion_intermensual}. Para tener una mejor estructura de análisis usamos la función "decompose" de R base. 
+El capítulo anterior sugería que la población carcelaria, tanto sindicada como condenada, tiene una marcada tendencia al alza. En este caso una herramienta útil es mostrar gráficamente la variación mes a mes de la población. \ref{fig:variacion_intermensual}. Para tener una mejor estructura de análisis usamos la función "decompose" de R base \cite{RCoreTeam2017}. 
 
 La serie tiene un componente estacional marcado, con una reducción de la población carcelaria en diciembre. La variabilidad del componente aleatorio es elevada. La tendencia parece tener cambios estructurales en algunos periodos, por ejemplo reducción de la población carcelaria entre 2005-2007,  y 2012 - 2015, e incrementos de la población de magnitud mayor al promedio entre 2008 y 2012.
 
-La mayor parte de la variación de la población total se puede asociar con variaciones en a población sindicada \ref{fig:variacion_mensual_sindicados_desc}. La población condenada tiene una tendencia con una tendencia más estable.  \ref{fig:variacion_mensual_condenados_desc}
+La mayor parte de la variación de la población total se puede asociar con variaciones en a población sindicada \ref{fig:variacion_mensual_sindicados_desc}. La población condenada tiene una tendencia con un comportamiento más estable.  \ref{fig:variacion_mensual_condenados_desc}
 
 % Descomposición variación población total
 \begin{figure}[H]
@@ -49,7 +49,7 @@ La mayor parte de la variación de la población total se puede asociar con variac
 \end{figure}
 
 
-Se trabaja sobre la diferencia de cada serie de tiempo con lag 1 y lag 12, al observar que la serie tiene un crecimiento sostenido entre 1991 y 2017, sugiriendo un proceso estocastico integrado. Sobre cada serie (población total, población sindicadda y población condenada)  se realiza la función de autocorrelación y autocorrelación parcial y se presenta en la figura \ref{fig:ACF_variacion_mensual}. Estas funciones son usadas como herramienta de diagnóstico, para identificar modelos adecuados en cada serie.
+Se trabaja sobre la diferencia de cada serie de tiempo con lag 1 y lag 12, al observar que la serie tiene un crecimiento sostenido entre 1991 y 2017, sugiriendo un proceso estocástico integrado. Sobre cada serie (población total, población sindicada y población condenada)  se realiza la función de autocorrelación y autocorrelación parcial y se presenta en la figura \ref{fig:ACF_variacion_mensual}. Estas funciones son usadas como herramienta de diagnóstico, para identificar modelos adecuados en cada serie.
 
 Con base en la tabla \ref{ARMA_ACF} se realiza una revisión del comportamiento de las series de población carcelaria, población sindicada y población condenada.
 
@@ -85,17 +85,17 @@ En este caso un primer acercamiento a la proyección de la población sindicada se
 
 El comportamiento de la ACF y la PACF de la población condenada es similar al de la población sindicada, sugiriendo el mismo modelo: SARIMA(1,1,1,0,0,1).
 
-\section{Estimación de parámtetros}
+\section{Estimación de parámetros}
 
 Para cada serie (población total, población sindicada, población condenada) se evalúa el modelo sugerido por el análisis de la ACF y de la PACF; a partir de este modelo se propone un segundo modelo con un parámetro AR adicional, para identificar si se logra un ajuste mejor (medido con el AIC y el BIC); como tercer paso se utiliza la funcion \textit{auto.arima} para identificar el modelo con menor AIC \cite{Hyndman2017}; a partir del paso anterior se propone un modelo con menos parámetros, para buscar una solución más parsimoniosa.
 
 De acuerdo con el diagnóstico se evaluaron los siguientes modelos para proyectar la población total:
  
 \begin{enumerate}
-	\item Sarima de orden (1,1,1) y estacionalidad (0,0,2)
-	\item Sarima de orden (1,1,1) y estacionalidad (0,0,1). Se valida que el BIC y el AIC son menores en el modelo 1, como se esperaría de acuerdo con nuestro diagnóstico y se presenta en la tabla \ref{Compara_modelos_total}
-	\item Sarima de orden (3,2,1) y estacionalidad (0,0,2). Es el modelo sugerido por la función auto.arima, sin embargo incluye parámetros autoregresivos no significativos (pvalue > 0.05). El detalle de los resultados se presenta en la tabla tabla \ref{parámetros_321002}
-	\item Sarima de orden (1,2,1) y estacionalidad (0,0,2). Este modelo tiene un BIC menor al modelo 3, y eliminando dos parámetros no significativos conserva un AIC cercano.
+	\item SARIMA de orden (1,1,1) y estacionalidad (0,0,2)
+	\item SARIMA de orden (1,1,1) y estacionalidad (0,0,1). Se valida que el BIC y el AIC son menores en el modelo 1, como se esperaría de acuerdo con nuestro diagnóstico y se presenta en la tabla \ref{Compara_modelos_total}
+	\item SARIMA de orden (3,2,1) y estacionalidad (0,0,2). Es el modelo sugerido por la función auto.arima, sin embargo incluye parámetros autoregresivos no significativos (pvalue > 0.05). El detalle de los resultados se presenta en la tabla tabla \ref{parámetros_321002}
+	\item SARIMA de orden (1,2,1) y estacionalidad (0,0,2). Este modelo tiene un BIC menor al modelo 3, y eliminando dos parámetros no significativos conserva un AIC cercano.
 \end{enumerate}
 
 Para el modelo 1 y el modelo 2, Ljung-box sugiere que aún hay correlación significativa en los residuos, el modelo 3 y el modelo 4 no tienen correlación significativa en los residuos.
@@ -126,12 +126,12 @@ En las proyecciones siguientes para la población total se usará el modelo 4.
 		\hline
 		& Estimate & SE & t.value & p.value \\ 
 		\hline
-		ar1 & 0.05 & 0.10 & 0.50 & 0.62 \\ 
-		ar2 & -0.09 & 0.07 & -1.16 & 0.25 \\ 
-		ar3 & -0.16 & 0.07 & -2.18 & 0.03 \\ 
-		ma1 & -0.68 & 0.09 & -7.25 & 0.00 \\ 
-		sma1 & 0.24 & 0.06 & 4.10 & 0.00 \\ 
-		sma2 & 0.19 & 0.05 & 3.88 & 0.00 \\ 
+		AR1 & 0.05 & 0.10 & 0.50 & 0.62 \\ 
+		AR2 & -0.09 & 0.07 & -1.16 & 0.25 \\ 
+		AR3 & -0.16 & 0.07 & -2.18 & 0.03 \\ 
+		MA1 & -0.68 & 0.09 & -7.25 & 0.00 \\ 
+		SMA1 & 0.24 & 0.06 & 4.10 & 0.00 \\ 
+		SMA2 & 0.19 & 0.05 & 3.88 & 0.00 \\ 
 		\hline
 	\end{tabular}
 \end{table}
@@ -145,10 +145,10 @@ En las proyecciones siguientes para la población total se usará el modelo 4.
 		\hline
 		& Estimate & SE & t.value & p.value \\ 
 		\hline
-		ar1 & 0.19 & 0.08 & 2.39 & 0.02 \\ 
-		ma1 & -0.82 & 0.05 & -16.48 & 0.00 \\ 
-		sma1 & 0.24 & 0.06 & 4.10 & 0.00 \\ 
-		sma2 & 0.19 & 0.05 & 3.89 & 0.00 \\ 
+		AR1 & 0.19 & 0.08 & 2.39 & 0.02 \\ 
+		MA1 & -0.82 & 0.05 & -16.48 & 0.00 \\ 
+		SMA1 & 0.24 & 0.06 & 4.10 & 0.00 \\ 
+		SMA2 & 0.19 & 0.05 & 3.89 & 0.00 \\ 
 		\hline
 	\end{tabular}
 \end{table}
@@ -158,28 +158,28 @@ En las proyecciones siguientes para la población total se usará el modelo 4.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_total_111002}
-	\caption[Diagnóstico del sarima (1,1,1)(0,0,2), población total]{Diagnóstico del Modelo 1. sarima (1,1,1)(0,0,2), para la población carcelaria total. } {Fuente: INPEC} {Elaboración propia}
+	\caption[Diagnóstico del SARIMA (1,1,1)(0,0,2), población total]{Diagnóstico del Modelo 1. SARIMA (1,1,1)(0,0,2), para la población carcelaria total. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_total_111002}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_total_111001}
-	\caption[Diagnóstico del sarima (1,1,1)(0,0,1), población total]{Diagnóstico del Modelo 2. sarima (1,1,1)(0,0,1), para la población carcelaria total. } {Fuente: INPEC} {Elaboración propia}
+	\caption[Diagnóstico del SARIMA (1,1,1)(0,0,1), población total]{Diagnóstico del Modelo 2. SARIMA (1,1,1)(0,0,1), para la población carcelaria total. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_total_111001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_total_321002}
-	\caption[Diagnóstico del sarima (3,2,1)(0,0,2), población total]{Diagnóstico del Modelo 3. sarima (3,2,1)(0,0,2), para la población carcelaria total. } {Fuente: INPEC} {Elaboración propia}
+	\caption[Diagnóstico del SARIMA (3,2,1)(0,0,2), población total]{Diagnóstico del Modelo 3. SARIMA (3,2,1)(0,0,2), para la población carcelaria total. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_total_321002}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_total_121002}
-	\caption[Diagnóstico del sarima (1,2,1)(0,0,2), población total]{Diagnóstico del Modelo 4. sarima (1,2,1)(0,0,2), para la población carcelaria total. } {Fuente: INPEC} {Elaboración propia}
+	\caption[Diagnóstico del SARIMA (1,2,1)(0,0,2), población total]{Diagnóstico del Modelo 4. SARIMA (1,2,1)(0,0,2), para la población carcelaria total. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_total_121002}
 \end{figure}
 
@@ -188,10 +188,10 @@ En las proyecciones siguientes para la población total se usará el modelo 4.
 Para la población sindicada se usaron los siguiente modelos, de acuerdo con el diagnóstico realizado de la ACF y la ACPF.
 
 \begin{enumerate}
-	\item Sarima de orden (1,1,1) y estacionalidad (0,0,1)
-	\item Sarima de orden (2,1,1) y estacionalidad (0,0,1). Se valida que el BIC y el AIC son menores que en el modelo 1, tiene el menor AIC de los modelos probados. \ref{Compara_modelos_total}
-	\item Sarima de orden (0,1,2) y estacionalidad (0,0,1). Es el modelo sugerido por la función auto.arima, tiene el menor BIC y un AIC cercano al modelo 2. 
-	\item Sarima de orden (0,1,1) y estacionalidad (0,0,0). Este modelo tiene un BIC mayor al modelo 3, y a los dos modelos iniciales.
+	\item SARIMA de orden (1,1,1) y estacionalidad (0,0,1)
+	\item SARIMA de orden (2,1,1) y estacionalidad (0,0,1). Se valida que el BIC y el AIC son menores que en el modelo 1, tiene el menor AIC de los modelos probados. \ref{Compara_modelos_total}
+	\item SARIMA de orden (0,1,2) y estacionalidad (0,0,1). Es el modelo sugerido por la función auto.arima, tiene el menor BIC y un AIC cercano al modelo 2. 
+	\item SARIMA de orden (0,1,1) y estacionalidad (0,0,0). Este modelo tiene un BIC mayor al modelo 3, y a los dos modelos iniciales.
 \end{enumerate}
 
 % latex table generated in R 3.4.2 by xtable 1.8-2 package
@@ -224,10 +224,10 @@ Modelo 3 tiene el menor BIC y tiene pvalues for Ljung-Box que permiten descartar
 		\hline
 		& Estimate & SE & t.value & p.value \\ 
 		\hline
-		ma1 & 0.06 & 0.06 & 0.99 & 0.32 \\ 
-		ma2 & 0.16 & 0.05 & 2.91 & 0.00 \\ 
-		sma1 & 0.15 & 0.06 & 2.57 & 0.01 \\ 
-		constant & 64.94 & 53.21 & 1.22 & 0.22 \\ 
+		MA1 & 0.06 & 0.06 & 0.99 & 0.32 \\ 
+		MA2 & 0.16 & 0.05 & 2.91 & 0.00 \\ 
+		SMA1 & 0.15 & 0.06 & 2.57 & 0.01 \\ 
+		Constante & 64.94 & 53.21 & 1.22 & 0.22 \\ 
 		\hline
 	\end{tabular}
 \end{table}
@@ -238,28 +238,28 @@ Modelo 3 tiene el menor BIC y tiene pvalues for Ljung-Box que permiten descartar
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_sindi_111001}
-	\caption[Diagnóstico del sarima (1,1,1)(0,0,1), población sindicada]{Diagnóstico del Modelo 1. sarima (1,1,1)(0,0,1), población carcelaria sindicada. } {Fuente: INPEC} {Elaboración propia}
+	\caption[Diagnóstico del SARIMA (1,1,1)(0,0,1), población sindicada]{Diagnóstico del Modelo 1. SARIMA (1,1,1)(0,0,1), población carcelaria sindicada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_sindi_111001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_sindi_211001}
-	\caption[Diagnóstico del sarima (2,1,1)(0,0,1), población sindicada]{Diagnóstico del Modelo 2. sarima (2,1,1)(0,0,1), población carcelaria sindicada. } {Fuente: INPEC} {Elaboración propia}
+	\caption[Diagnóstico del SARIMA (2,1,1)(0,0,1), población sindicada]{Diagnóstico del Modelo 2. SARIMA (2,1,1)(0,0,1), población carcelaria sindicada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_sindi_211001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_sindi_012001}
-	\caption[Diagnóstico del sarima (0,1,2)(0,0,1), población sindicada]{Diagnóstico del Modelo 3. sarima (0,1,2)(0,0,1), población carcelaria sindicada. } {Fuente: INPEC} {Elaboración propia}
+	\caption[Diagnóstico del SARIMA (0,1,2)(0,0,1), población sindicada]{Diagnóstico del Modelo 3. SARIMA (0,1,2)(0,0,1), población carcelaria sindicada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_sindi_012001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_sindi_011000}
-	\caption[Diagnóstico del sarimfa (0,1,2)(0,0,0), población sindicada]{Diagnóstico del Modelo 4. sarima (0,1,1)(0,0,0), población carcelaria sindicada.} {Fuente: INPEC} {Elaboración propia}
+	\caption[Diagnóstico del SARIMA (0,1,2)(0,0,0), población sindicada]{Diagnóstico del Modelo 4. SARIMA (0,1,1)(0,0,0), población carcelaria sindicada.} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_sindi_011000}
 \end{figure}
 
@@ -269,10 +269,10 @@ Modelo 3 tiene el menor BIC y tiene pvalues for Ljung-Box que permiten descartar
 Para la población condenada se utilizaron los siguientes modelos: 
 
 \begin{enumerate}
-	\item Sarima de orden (1,1,1) y estacionalidad (0,0,1).
-	\item Sarima de orden (2,1,1) y estacionalidad (0,0,1).
-	\item Sarima de orden (0,1,2) y estacionalidad (0,0,1).
-	\item Sarima de orden (0,1,1) y estacionalidad (0,0,0).
+	\item SARIMA de orden (1,1,1) y estacionalidad (0,0,1).
+	\item SARIMA de orden (2,1,1) y estacionalidad (0,0,1).
+	\item SARIMA de orden (0,1,2) y estacionalidad (0,0,1).
+	\item SARIMA de orden (0,1,1) y estacionalidad (0,0,0).
 \end{enumerate}
 
 %%%%%%%%%%%%
@@ -309,10 +309,10 @@ Los modelos 3 y 4 se utilizan para comparar con el comportamiento de la població
 		\hline
 		& Estimate & SE & t.value & p.value \\ 
 		\hline
-		ar1 & 0.88 & 0.06 & 13.75 & 0.00 \\ 
-		ma1 & -0.73 & 0.09 & -7.80 & 0.00 \\ 
-		sma1 & 0.09 & 0.06 & 1.55 & 0.12 \\ 
-		constant & 198.62 & 86.28 & 2.30 & 0.02 \\ 
+		AR1 & 0.88 & 0.06 & 13.75 & 0.00 \\ 
+		MA1 & -0.73 & 0.09 & -7.80 & 0.00 \\ 
+		SMA1 & 0.09 & 0.06 & 1.55 & 0.12 \\ 
+		Constante & 198.62 & 86.28 & 2.30 & 0.02 \\ 
 		\hline
 	\end{tabular}
 \end{table}
@@ -323,28 +323,28 @@ Los modelos 3 y 4 se utilizan para comparar con el comportamiento de la població
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_conde_111001}
-	\caption[Diagnóstico del sarima (1,1,1)(0,0,1), población condenada]{Diagnóstico del Modelo 1. sarima (1,1,1)(0,0,1), población carcelaria condenada. } {Fuente: INPEC} {Elaboración propia}
+	\caption[Diagnóstico del SARIMA (1,1,1)(0,0,1), población condenada]{Diagnóstico del Modelo 1. SARIMA (1,1,1)(0,0,1), población carcelaria condenada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_conde_111001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_conde_211001}
-	\caption[Diagnóstico del sarima (2,1,1)(0,0,1), población condenada]{Diagnóstico del Modelo 2. sarima (1,1,1)(0,0,1), población carcelaria condenada. } {Fuente: INPEC} {Elaboración propia}
+	\caption[Diagnóstico del SARIMA (2,1,1)(0,0,1), población condenada]{Diagnóstico del Modelo 2. SARIMA (1,1,1)(0,0,1), población carcelaria condenada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_conde_211001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_conde_012001}
-	\caption[Diagnóstico del sarima (0,1,2)(0,0,1), población condenada]{Diagnóstico del Modelo 3. sarima (0,1,2)(0,0,1), población carcelaria condenada. } {Fuente: INPEC} {Elaboración propia}
+	\caption[Diagnóstico del SARIMA (0,1,2)(0,0,1), población condenada]{Diagnóstico del Modelo 3. SARIMA (0,1,2)(0,0,1), población carcelaria condenada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_conde_012001}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_conde_011000}
-	\caption[Diagnóstico del sarima (0,1,2)(0,0,0), población condenada]{Diagnóstico del Modelo 4. sarima (0,1,1)(0,0,0), la población carcelaria condenada. } {Fuente: INPEC} {Elaboración propia}
+	\caption[Diagnóstico del SARIMA (0,1,2)(0,0,0), población condenada]{Diagnóstico del Modelo 4. SARIMA (0,1,1)(0,0,0), la población carcelaria condenada. } {Fuente: INPEC} {Elaboración propia}
 	\label{fig:Arima_conde_012000}
 \end{figure}
 
@@ -357,7 +357,7 @@ Proyección de la población total se presenta en la gráfica \ref{fig:pry_total_12
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{graf_pry_total_4}
-	\caption[Proyección de la población carcelaria total]{Proyección de la población carcelaria total, sarima (1,2,1,0,0,2)}
+	\caption[Proyección de la población carcelaria total]{Proyección de la población carcelaria total, SARIMA (1,2,1,0,0,2)}
 	\label{fig:pry_total_121002} {Fuente: INPEC} {Elaboración propia}
 \end{figure}
 
@@ -368,7 +368,7 @@ Proyección de la población sindicada se presenta en la gráfica \ref{fig:pry_sind
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{graf_pry_sindi_3}
-	\caption[Proyección de la población carcelaria sindicada]{Proyección de la población carcelaria sindicada, sarima (0,1,1,0,0,1)} {Fuente: INPEC} {Elaboración propia}
+	\caption[Proyección de la población carcelaria sindicada]{Proyección de la población carcelaria sindicada, SARIMA (0,1,1,0,0,1)} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:pry_sindi_011001}
 \end{figure}
 
@@ -379,7 +379,7 @@ Proyección de la población condenada se presenta en la gráfica \ref{fig:pry_cond
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{graf_pry_conde_1}
-	\caption[Proyección de la población carcelaria condenada]{Proyección de la población carcelaria condenada, sarima (1,1,1,0,0,1)} {Fuente: INPEC} {Elaboración propia}
+	\caption[Proyección de la población carcelaria condenada]{Proyección de la población carcelaria condenada, SARIMA (1,1,1,0,0,1)} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:pry_conde_111001}
 \end{figure}
 
@@ -394,7 +394,7 @@ Puesto que la población carcelaria total esta compuesta en su totalidad por la p
 
 % Ventajas: autocorrelación, peso a las últimas observaciones.
 
-Usar modelos ARIMA permite tener en cuenta la correlación del error y el comportamiento de las últimas observaciones, generando proyecciones precisas de corto plazo; sin embargo, dado que los modelos propuestos tienen un componente integrado, los intervalos de confianza se hacen significativamente más amplios, a medida que se alejan del inicio de la proyección, haciendolos poco prácticos para proyecciones de largo plazo.
+Usar modelos ARIMA permite tener en cuenta la correlación del error y el comportamiento de las últimas observaciones, generando proyecciones precisas de corto plazo; sin embargo, dado que los modelos propuestos tienen un componente integrado, los intervalos de confianza se hacen significativamente más amplios, a medida que se alejan del inicio de la proyección, haciéndolos poco prácticos para proyecciones de largo plazo.
 
 % Desventajas: supuesto de normalidad, colas pesadas, cambios de régimen. 
 La elaboración de los intervalos de confianza descansa en el supuesto de normalidad del error, sin embargo, los Q-Q plot residuales muestran varias observaciones fuera de los intervalos de confianza para población sindicada y condenada, sugiriendo varios cambios de nivel o una distribución no normal del error. Contrastar los periodos donde el error está fuera de los intervalos de confianza contra los cambios en el sistema penitenciario, permitiría identificar cambios de nivel y controlarlos a través de variables dummy.  

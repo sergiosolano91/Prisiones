@@ -2,9 +2,9 @@
 
 El comportamiento de la población carcelaria es diferente según el delito y tiene relación con un componente demográfico y un componente normativo. El componente demográfico se ha tratado en el capítulo anterior y en este capítulo se abordara el componente de delitos. La interacción entre ambos no ha sido analizada pues no se cuenta con la información necesaria.
 
-Las personas que se encuentran a la espera de juicio se llaman sindicados, y condenados quienes ya han recibido una sentencia. Cada mes una proporción de las personas sindicadas es sentenciada, puede entonces salir en libertad o cambiar a condenado, y una proporción de los condenados sale en libertad. También se pueden presentar salidas por mortalidad. Un modelo auto-regresivo bivariado para la población total puede modelar estas interacciones; particularmente la población privada de la libertad está compuesta por series separadas de diferentes delitos, cada una con un comportamiento diferente, como lo sugieren la figuras \ref{fig:delitoshombres} y \ref{fig:delitosmujeres}.
+Las personas que se encuentran a la espera de juicio se llaman sindicados, y condenados quienes ya han recibido una sentencia. Cada mes una proporción de las personas sindicadas es sentenciada, puede entonces salir en libertad o cambiar a condenado, y una proporción de los condenados sale en libertad. También se pueden presentar salidas por mortalidad. Un modelo auto-regresivo bivariado para la población total puede modelar estas interacciones; particularmente la población privada de la libertad está compuesta por series separadas de diferentes delitos, cada una con un comportamiento diferente, como lo sugieren la figuras \ref{fig:delitoshombres} y \ref{fig:delitosmujeres}. 
 
-Se presentan el comportamiento de la población carcelaria por delito y genero. Con esta información se estima un modelo estado-espacio en cada una de las series bivariadas. Los modelos estado-espacio se formulan de forma tal que permitan incluir la interacción entre la población sindicada y condenada. 
+Se presentan el comportamiento de la población carcelaria por delito y género. Con esta información se estima un modelo estado-espacio en cada una de las series bivariadas. Los modelos estado-espacio se formulan de forma tal que permitan modelar la interacción entre la población sindicada y condenada. 
 
 \section{Población privada de la libertad 2013-2016 por delito}
 
@@ -13,14 +13,13 @@ El INPEC incluye en sus estadísticas mensuales la población privada de la libert
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{delito-1.pdf}
-	\caption{Población carcelaria promedio por delito y genero Julio 2013-Diciembre 2016} {Fuente: INPEC} {Elaboración propia}
+	\caption{Población carcelaria promedio por delito y género. Julio 2013-Diciembre 2016} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:delito}
 \end{figure}
 
-En la figura \ref{fig:delito} se observa la población privada de la libertad promedio entre julio 20113 y diciembre 2016. Los delitos más comunes son: hurto; homicidio; fabricación y porte de armas de fuego o municiones; tráfico, fabricación o porte de estupefacientes y concierto para delinquir. Tanto en hombres como mujeres estos cinco delitos son los más comunes; en los hombres se manifiestan en el orden presentado, pero en las mujeres los delitos más frecuentes son tráfico, fabricación o porte de estupefacientes y concierto para delinquir, seguidos por hurto, homicidio y fabricación y porte de armas de fuego. 
+En la figura \ref{fig:delito} se observa la población privada de la libertad promedio entre julio 2013 y diciembre 2016. Los delitos más comunes son: hurto; homicidio; fabricación y porte de armas de fuego o municiones; tráfico, fabricación o porte de estupefacientes y concierto para delinquir. Tanto en hombres como mujeres estos cinco delitos son los más comunes; en los hombres se manifiestan en el orden presentado, pero en las mujeres los delitos más frecuentes son tráfico, fabricación o porte de estupefacientes y concierto para delinquir, seguidos por hurto, homicidio y fabricación y porte de armas de fuego. 
 
-Las figuras \ref{fig:delitoshombres} y \ref{fig:delitosmujeres} presentan la evolución de la población carcelaria por delito entre Julio 2013 y Diciembre 2016, para hombres y mujeres respectivamente. Las gráficas evidencian un comportamiento aparentemente independiente de las series: Por ejemplo:  mientras las series de hurto, extorsión y secuestro simple presentan un descenso de la población condenada en 2014 y una posterior estabilización, concierto para delinquir presenta una tendencia al alza, tanto en sindicados como en condenados.
-
+Las figuras \ref{fig:delitoshombres} y \ref{fig:delitosmujeres} presentan la evolución de la población carcelaria por delito entre Julio 2013 y Diciembre 2016, para hombres y mujeres respectivamente. Las gráficas evidencian un comportamiento aparentemente independiente de las series: Por ejemplo:  mientras las series de hurto, extorsión y secuestro simple presentan un descenso de la población condenada en 2014 y una posterior estabilización, concierto para delinquir presenta una tendencia al alza estable, tanto en sindicados como en condenados.
 
 
 \begin{figure}[H]
@@ -39,7 +38,7 @@ Las figuras \ref{fig:delitoshombres} y \ref{fig:delitosmujeres} presentan la evo
 
 \section{Selección de Software}
 
-Para mantener un único ambiente de desarrollo, nos enfocamos en los paquetes desarrollados en R, como los mencionados por Petris \cite{Petris2011}, Helske \cite{Helske2017} y Tusell \cite{Tusell2011}. Dentro de los paquetes analizados se encuentran  \textit{Kfas} por Helske(2017) \cite{Helske2017} y \textit{MARSS} de Holmes(2018) \cite{Holmes2018}. Se utiliza \textit{MARSS} por la simplicidad en la definición del modelo.
+Para mantener un único ambiente de desarrollo, nos enfocamos en los paquetes desarrollados en R, como los mencionados por Petris \cite{Petris2011}, Helske \cite{Helske2017} y Tusell \cite{Tusell2011}. Dentro de los paquetes analizados se encuentran  \textit{Kfas} por Helske(2017) \cite{Helske2017} y \textit{MARSS} de Holmes(2018) \cite{Holmes2018}. Se utiliza \textit{MARSS} por la flexibilidad en la definición del modelo.
 
 \section{Identificación del modelo}
 
@@ -83,7 +82,8 @@ En este capítulo se analizará un modelo bivariado, donde $\bm{x_t}$ corresponde 
 
 \begin{itemize}
 	\item No hay una interacción entre la población de sindicados en el periodo $t$, y la población de condenados el periodo $t-1$. Es decir se modelo que no hay paso de condenados a sindicados. 
-	\item La observación $y_t$ se considera una insesgada frente al valor de la variable $x_t$. Esto implica $a_t = 0$, $v_t \sim MVN(0,R) $  se considera cero. 
+	\item La observación $y_t$ se considera una insesgada frente al valor de la variable $x_t$. Esto implica $a_t = 0$ y  $v_t \sim MVN(0,R) $. 
+	\item La población condenada en el periodo t depende solamente de la población en el periodo sindicada y condenada en el periodo t-1. $U2_t = 0$. Las salidas son proporcionales a la población condenada $0 \leq b4 \leq 1$.
 \end{itemize}
 
 \begin{equation}
@@ -93,7 +93,8 @@ b1 & 0 \\
 b2 & b4 &
 \end{bmatrix} 
 \begin{bmatrix} X1_{t-1}  \\ X2_{t-1} \end{bmatrix} +
-\begin{bmatrix} U1_t  \\ U2_t \end{bmatrix} , \begin{bmatrix} U1_t  \\ U2_t \end{bmatrix} \sim MVN(\begin{bmatrix} 0  \\ 0 \end{bmatrix},  \begin{bmatrix} q_{11}  &  q_{12} \\ q_{12} & 1_{22}\end{bmatrix})
+\begin{bmatrix} U1_t  \\ 0 \end{bmatrix} +
+\begin{bmatrix} W1_t  \\ W2_t \end{bmatrix}, \begin{bmatrix} W1_t  \\ W2_t \end{bmatrix} \sim MVN(\begin{bmatrix} 0  \\ 0 \end{bmatrix},  \begin{bmatrix} q_{11}  &  q_{12} \\ q_{12} & 1_{22}\end{bmatrix})
 \end{equation}
 
 \begin{equation}
@@ -124,98 +125,234 @@ En el ejercicio con datos reales se ajustó un segundo modelo con una variable Du
 
 La estimación se realiza en series bivariadas por delito, género. Se presenta en detalle procedimiento para la serie de hurto en hombres, en series adicionales se presentan resultados de la proyección.
 
+Una variable Dummy correspondiente a 2014 se agregó al modelo. En este periodo se detuve el crecimiento de la población carcelaria gracias a la entrada en vigor de la ley 1709 de 2014. Dos mediciones del impacto de la ley 1709 son realizadas por el INPEC en 2014, señalando el cambio observado en la tendencia de la población carcelaria \cite{OficinaAsesoradePlaneacion2014} \cite{Asesora2014}. Las gráficas \ref{fig:delitoshombres} y \ref{fig:delitosmujeres} muestran que en 2015 y 2016 la población carcelaria regresa a su comportamiento usual.
+
 % latex table generated in R 3.4.4 by xtable 1.8-2 package
-% Fri Jun  8 10:38:47 2018
+% Mon Jun 11 23:12:33 2018
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{rr}
 		\hline
-		Parámetro & estimado \\ 
+		& x \\ 
 		\hline
 		b1 & 0.94 \\ 
-		b2 & 0.07 \\ 
-		b4 & 0.97 \\ 
-		u1 & 557.98 \\ 
-		u2 & -147.10 \\ 
-		q11 & 33191.09 \\ 
-		q12 & -5113.90 \\ 
-		q22 & 33454.10 \\ 
+		b2 & 0.05 \\ 
+		b4 & 0.98 \\ 
+		U1 & 514.58 \\ 
+		q11 & 23317.33 \\ 
+		q12 & -11076.07 \\ 
+		q22 & 18110.12 \\ 
 		\hline
 	\end{tabular}
-	\caption{Parámetros estimados hurto hombres} {Fuente: INPEC} {Elaboración propia}
+	\caption{Parámetros estimados: hurto, hombres} {Fuente: INPEC} {Elaboración propia}
 	\label{tab:Estimadoshurtohombres}
 \end{table}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{estado_espacio_hurto-1.pdf}
+	\includegraphics[width=0.7\linewidth]{ajuste_hurtos-1.pdf}
 	\caption{Población sindicada y condenada por hurto, hombres} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:estadoespacioinputa}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{estado_espacio_hurto-2.pdf}
-	\caption{Población carcelaria promedio por delito genero Octubre 2013-Diciembre 2016} {Fuente: INPEC} {Elaboración propia}
+	\includegraphics[width=0.7\linewidth]{ajuste_hurtos-2.pdf}
+	\caption{Población carcelaria promedio por delito y género. Octubre 2013-Diciembre 2016} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:estadoespacioqqplot}
 \end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{ajuste_hurtos-3.pdf}
+	\caption{Población carcelaria promedio por delito y género. Octubre 2013-Diciembre 2016} {Fuente: INPEC} {Elaboración propia}
+	\label{fig:estadoespacioerror}
+\end{figure}
+
+El qqplot sugiere un comportamiento normal del error con presencia de datos atípicos. La gráfica muestra rachas de puntos arriba y abajo de cero, lo que sugiere la presencia de autocorrelación en el error. Esta aparente autocorrelación puede estar asociada a componentes estacionales o cambios estructurales.
+
+
 \section{Proyecciones 2017 - 2020}
 
-Se realiza proyección de la población media sindicada y condenada en la tabla 
+Se realiza proyección de la población media sindicada y condenada en la tabla \ref{tab:Estimadoshurtohombres}
 
 % latex table generated in R 3.4.4 by xtable 1.8-2 package
-% Fri Jun  8 11:27:07 2018
+% Mon Jun 11 23:17:58 2018
 \begin{table}[H]
 	\centering
 	\begin{tabular}{rlrr}
 		\hline
 		& Periodo & Sindicados & Condenados \\ 
 		\hline
-		V1 & 2017-01-15 & 8866.00 & 18988.00 \\ 
-		V2 & 2017-02-15 & 8887.00 & 18946.00 \\ 
-		V3 & 2017-03-15 & 8907.00 & 18905.00 \\ 
-		V4 & 2017-04-15 & 8926.00 & 18868.00 \\ 
-		V5 & 2017-05-15 & 8944.00 & 18832.00 \\ 
-		V6 & 2017-06-15 & 8960.00 & 18799.00 \\ 
-		V7 & 2017-07-15 & 8976.00 & 18768.00 \\ 
-		V8 & 2017-08-15 & 8991.00 & 18739.00 \\ 
-		V9 & 2017-09-15 & 9004.00 & 18711.00 \\ 
-		V10 & 2017-10-15 & 9017.00 & 18686.00 \\ 
-		V11 & 2017-11-15 & 9029.00 & 18661.00 \\ 
-		V12 & 2017-12-15 & 9041.00 & 18639.00 \\ 
-		V13 & 2018-01-15 & 9052.00 & 18617.00 \\ 
-		V14 & 2018-02-15 & 9062.00 & 18598.00 \\ 
-		V15 & 2018-03-15 & 9071.00 & 18579.00 \\ 
-		V16 & 2018-04-15 & 9080.00 & 18561.00 \\ 
-		V17 & 2018-05-15 & 9088.00 & 18545.00 \\ 
-		V18 & 2018-06-15 & 9096.00 & 18529.00 \\ 
-		V19 & 2018-07-15 & 9104.00 & 18515.00 \\ 
-		V20 & 2018-08-15 & 9111.00 & 18501.00 \\ 
-		V21 & 2018-09-15 & 9117.00 & 18489.00 \\ 
-		V22 & 2018-10-15 & 9123.00 & 18477.00 \\ 
-		V23 & 2018-11-15 & 9129.00 & 18465.00 \\ 
-		V24 & 2018-12-15 & 9134.00 & 18455.00 \\ 
-		V25 & 2019-01-15 & 9140.00 & 18445.00 \\ 
-		V26 & 2019-02-15 & 9144.00 & 18436.00 \\ 
-		V27 & 2019-03-15 & 9149.00 & 18427.00 \\ 
-		V28 & 2019-04-15 & 9153.00 & 18419.00 \\ 
-		V29 & 2019-05-15 & 9157.00 & 18411.00 \\ 
-		V30 & 2019-06-15 & 9161.00 & 18404.00 \\ 
-		V31 & 2019-07-15 & 9164.00 & 18398.00 \\ 
-		V32 & 2019-08-15 & 9167.00 & 18391.00 \\ 
-		V33 & 2019-09-15 & 9171.00 & 18386.00 \\ 
-		V34 & 2019-10-15 & 9173.00 & 18380.00 \\ 
-		V35 & 2019-11-15 & 9176.00 & 18375.00 \\ 
-		V36 & 2019-12-15 & 9179.00 & 18370.00 \\ 
+		V1 & 2017-01-15 & 8862.00 & 19050.00 \\ 
+		V2 & 2017-02-15 & 8880.00 & 19067.00 \\ 
+		V3 & 2017-03-15 & 8897.00 & 19085.00 \\ 
+		V4 & 2017-04-15 & 8913.00 & 19103.00 \\ 
+		V5 & 2017-05-15 & 8929.00 & 19121.00 \\ 
+		V6 & 2017-06-15 & 8943.00 & 19140.00 \\ 
+		V7 & 2017-07-15 & 8956.00 & 19159.00 \\ 
+		V8 & 2017-08-15 & 8969.00 & 19178.00 \\ 
+		V9 & 2017-09-15 & 8981.00 & 19198.00 \\ 
+		V10 & 2017-10-15 & 8993.00 & 19217.00 \\ 
+		V11 & 2017-11-15 & 9003.00 & 19237.00 \\ 
+		V12 & 2017-12-15 & 9014.00 & 19257.00 \\ 
+		V13 & 2018-01-15 & 9023.00 & 19277.00 \\ 
+		V14 & 2018-02-15 & 9032.00 & 19297.00 \\ 
+		V15 & 2018-03-15 & 9041.00 & 19317.00 \\ 
+		V16 & 2018-04-15 & 9049.00 & 19337.00 \\ 
+		V17 & 2018-05-15 & 9056.00 & 19357.00 \\ 
+		V18 & 2018-06-15 & 9064.00 & 19377.00 \\ 
+		V19 & 2018-07-15 & 9070.00 & 19397.00 \\ 
+		V20 & 2018-08-15 & 9077.00 & 19417.00 \\ 
+		V21 & 2018-09-15 & 9083.00 & 19436.00 \\ 
+		V22 & 2018-10-15 & 9089.00 & 19456.00 \\ 
+		V23 & 2018-11-15 & 9094.00 & 19475.00 \\ 
+		V24 & 2018-12-15 & 9099.00 & 19494.00 \\ 
+		V25 & 2019-01-15 & 9104.00 & 19513.00 \\ 
+		V26 & 2019-02-15 & 9108.00 & 19532.00 \\ 
+		V27 & 2019-03-15 & 9113.00 & 19550.00 \\ 
+		V28 & 2019-04-15 & 9117.00 & 19569.00 \\ 
+		V29 & 2019-05-15 & 9120.00 & 19587.00 \\ 
+		V30 & 2019-06-15 & 9124.00 & 19605.00 \\ 
+		V31 & 2019-07-15 & 9127.00 & 19622.00 \\ 
+		V32 & 2019-08-15 & 9131.00 & 19640.00 \\ 
+		V33 & 2019-09-15 & 9134.00 & 19657.00 \\ 
+		V34 & 2019-10-15 & 9137.00 & 19674.00 \\ 
+		V35 & 2019-11-15 & 9139.00 & 19690.00 \\ 
+		V36 & 2019-12-15 & 9142.00 & 19707.00 \\ 
 		\hline
 	\end{tabular}
-	\caption{Proyección a treinta y seis meses hurto hombres} {Fuente: INPEC} {Elaboración propia}
+	\caption{Proyección a treinta y seis meses: hurto, hombres} {Fuente: INPEC} {Elaboración propia}
 	\label{tab:Estimadoshurtohombres}
 \end{table}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-PENDIENTE REALIZAR PROYECCIONES DEL RESTO DE SERIES Y PRESENTAR CONSOLIDADO
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% latex table generated in R 3.4.4 by xtable 1.8-2 package
+% Tue Jun 12 01:05:12 2018
+\begin{table}[H]
+	\centering
+	\begin{tabular}{rllrrr}
+		\hline
+		& Periodo & Género & Sindicados & Condenados & Total \\ 
+		\hline
+		1 & 2017-01-15 & Hombres & 56331 & 116190 & 172521 \\ 
+		2 & 2017-02-15 & Hombres & 56393 & 116397 & 172790 \\ 
+		3 & 2017-03-15 & Hombres & 56447 & 116603 & 173050 \\ 
+		4 & 2017-04-15 & Hombres & 56495 & 116807 & 173302 \\ 
+		5 & 2017-05-15 & Hombres & 56536 & 117009 & 173544 \\ 
+		6 & 2017-06-15 & Hombres & 56570 & 117208 & 173778 \\ 
+		7 & 2017-07-15 & Hombres & 56598 & 117405 & 174003 \\ 
+		8 & 2017-08-15 & Hombres & 56619 & 117599 & 174218 \\ 
+		9 & 2017-09-15 & Hombres & 56634 & 117790 & 174424 \\ 
+		10 & 2017-10-15 & Hombres & 56643 & 117978 & 174621 \\ 
+		11 & 2017-11-15 & Hombres & 56646 & 118163 & 174809 \\ 
+		12 & 2017-12-15 & Hombres & 56642 & 118344 & 174987 \\ 
+		13 & 2018-01-15 & Hombres & 56633 & 118522 & 175155 \\ 
+		14 & 2018-02-15 & Hombres & 56618 & 118696 & 175314 \\ 
+		15 & 2018-03-15 & Hombres & 56596 & 118866 & 175462 \\ 
+		16 & 2018-04-15 & Hombres & 56569 & 119032 & 175601 \\ 
+		17 & 2018-05-15 & Hombres & 56535 & 119195 & 175730 \\ 
+		18 & 2018-06-15 & Hombres & 56496 & 119353 & 175849 \\ 
+		19 & 2018-07-15 & Hombres & 56450 & 119507 & 175957 \\ 
+		20 & 2018-08-15 & Hombres & 56398 & 119657 & 176055 \\ 
+		21 & 2018-09-15 & Hombres & 56340 & 119802 & 176142 \\ 
+		22 & 2018-10-15 & Hombres & 56276 & 119943 & 176219 \\ 
+		23 & 2018-11-15 & Hombres & 56262 & 120080 & 176342 \\ 
+		24 & 2018-12-15 & Hombres & 56251 & 120212 & 176463 \\ 
+		25 & 2019-01-15 & Hombres & 56236 & 120340 & 176576 \\ 
+		26 & 2019-02-15 & Hombres & 56219 & 120463 & 176681 \\ 
+		27 & 2019-03-15 & Hombres & 56197 & 120581 & 176779 \\ 
+		28 & 2019-04-15 & Hombres & 56173 & 120695 & 176868 \\ 
+		29 & 2019-05-15 & Hombres & 56145 & 120805 & 176949 \\ 
+		30 & 2019-06-15 & Hombres & 56114 & 120909 & 177023 \\ 
+		31 & 2019-07-15 & Hombres & 56080 & 121009 & 177088 \\ 
+		32 & 2019-08-15 & Hombres & 56042 & 121104 & 177146 \\ 
+		33 & 2019-09-15 & Hombres & 56001 & 121194 & 177196 \\ 
+		34 & 2019-10-15 & Hombres & 55957 & 121280 & 177237 \\ 
+		35 & 2019-11-15 & Hombres & 55910 & 121361 & 177271 \\ 
+		36 & 2019-12-15 & Hombres & 55860 & 121437 & 177296 \\ 
+		\hline
+	\end{tabular}
+	\caption{Proyección de la población carcelaria total, hombres} {Fuente: INPEC} {Elaboración propia}
+	\label{tab:Pryhombres}
+\end{table}
+
+% latex table generated in R 3.4.4 by xtable 1.8-2 package
+% Tue Jun 12 01:05:12 2018
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{rllrrr}
+		\hline
+		& Periodo & Género & Sindicados & Condenados & Total \\ 
+		\hline
+		1 & 2017-01-15 & Mujeres & 4396 & 7511 & 11907 \\ 
+		2 & 2017-02-15 & Mujeres & 4413 & 7528 & 11941 \\ 
+		3 & 2017-03-15 & Mujeres & 4429 & 7544 & 11973 \\ 
+		4 & 2017-04-15 & Mujeres & 4446 & 7560 & 12005 \\ 
+		5 & 2017-05-15 & Mujeres & 4461 & 7575 & 12037 \\ 
+		6 & 2017-06-15 & Mujeres & 4477 & 7591 & 12068 \\ 
+		7 & 2017-07-15 & Mujeres & 4492 & 7606 & 12098 \\ 
+		8 & 2017-08-15 & Mujeres & 4507 & 7621 & 12128 \\ 
+		9 & 2017-09-15 & Mujeres & 4523 & 7635 & 12158 \\ 
+		10 & 2017-10-15 & Mujeres & 4538 & 7650 & 12187 \\ 
+		11 & 2017-11-15 & Mujeres & 4552 & 7664 & 12217 \\ 
+		12 & 2017-12-15 & Mujeres & 4567 & 7679 & 12246 \\ 
+		13 & 2018-01-15 & Mujeres & 4582 & 7693 & 12275 \\ 
+		14 & 2018-02-15 & Mujeres & 4597 & 7707 & 12304 \\ 
+		15 & 2018-03-15 & Mujeres & 4612 & 7721 & 12334 \\ 
+		16 & 2018-04-15 & Mujeres & 4628 & 7736 & 12363 \\ 
+		17 & 2018-05-15 & Mujeres & 4643 & 7750 & 12393 \\ 
+		18 & 2018-06-15 & Mujeres & 4658 & 7764 & 12423 \\ 
+		19 & 2018-07-15 & Mujeres & 4674 & 7779 & 12452 \\ 
+		20 & 2018-08-15 & Mujeres & 4689 & 7793 & 12483 \\ 
+		21 & 2018-09-15 & Mujeres & 4705 & 7808 & 12513 \\ 
+		22 & 2018-10-15 & Mujeres & 4721 & 7823 & 12544 \\ 
+		23 & 2018-11-15 & Mujeres & 4737 & 7838 & 12575 \\ 
+		24 & 2018-12-15 & Mujeres & 4754 & 7852 & 12606 \\ 
+		25 & 2019-01-15 & Mujeres & 4770 & 7868 & 12638 \\ 
+		26 & 2019-02-15 & Mujeres & 4787 & 7883 & 12670 \\ 
+		27 & 2019-03-15 & Mujeres & 4804 & 7898 & 12703 \\ 
+		28 & 2019-04-15 & Mujeres & 4822 & 7914 & 12736 \\ 
+		29 & 2019-05-15 & Mujeres & 4839 & 7930 & 12769 \\ 
+		30 & 2019-06-15 & Mujeres & 4857 & 7946 & 12803 \\ 
+		31 & 2019-07-15 & Mujeres & 4875 & 7962 & 12837 \\ 
+		32 & 2019-08-15 & Mujeres & 4894 & 7978 & 12872 \\ 
+		33 & 2019-09-15 & Mujeres & 4913 & 7995 & 12907 \\ 
+		34 & 2019-10-15 & Mujeres & 4932 & 8011 & 12943 \\ 
+		35 & 2019-11-15 & Mujeres & 4951 & 8028 & 12979 \\ 
+		36 & 2019-12-15 & Mujeres & 4971 & 8045 & 13016 \\ 
+		\hline
+	\end{tabular}
+	\caption{Proyección de la población carcelaria total, mujeres} {Fuente: INPEC} {Elaboración propia}
+	\label{tab:Prymujeres}
+\end{table}
+
+La proyección de la población total se obtiene como la suma de las proyecciones por delito. Proyecciones par hombres y mujeres se presentan en las tablas \ref{tab:Pryhombres} y \ref{tab:Prymujeres}. Las gráficas \ref{fig:prydelitoshombres} y \ref{fig:prydelitosmujeres} presentan la proyección por delito. Las proyecciones son coherentes con el comportamiento histórico de cada serie. En fabricación, tráfico y porte de armas y municiones de uso privativo de las fuerzas armadas no resulta coherente la proyección, pues presenta una serie de sindicados que cae a cero y una serie de condenados que continua creciendo luego, para resolver este inconveniente se podrían restringir los parámetros del modelo, tal que $0 \leq b1, b2, b3 \leq 1$.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{pry_delitos_hombres-1.pdf}
+	\caption{Proyección de población carcelaria o por delito, hombres  2017 - 2020} {Fuente: INPEC} {Elaboración propia}
+	\label{fig:prydelitoshombres}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{pry_delitos_mujeres-1.pdf}
+	\caption{Proyección de población carcelaria o por delito, mujeres  2017 - 2020} {Fuente: INPEC} {Elaboración propia}
+	\label{fig:prydelitosmujeres}
+\end{figure}
 
 \section{Discusión}
+
+Los modelos estado-espacio son una herramienta potente que permite estimar modelos interpretables en series de tiempo, incluso con variables no observadas, como las sentencias y en presencia de datos faltantes.El desarrollo de paquetes en R que permitan realizar estimaciones de máxima verosimilitud bajo restricciones en los parámetros, en forma simple, como la trabajada en el paquete MARSS quedan dentro de trabajo futuro. Por ejemplo restringir los parámetros $b1$ y $b2$ a ser valores entre cero y uno.
+
+Tratar cada delito como una población separada, considerando la interacción entre la población sindicada y condenada permite analizar la 
+tendencia y variabilidad de cada serie. En este capítulo se evidenció comportamientos diferentes para cada serie en tendencia y variabilidad, con algunos componentes compartidos, como el efecto de los cambios de regulación en 2014 orientados a reducir la población carcelaria.
+
+Al imponer un modelo teórico en todas las series de delitos, se puede perder información específica de las series de delitos. Como trabajo futuro está analizar el comportamiento individual de cada serie, y sus cambios estructurales. 
+
+La longitud de la serie disponible no permite estimar un comportamiento estacional, y en consecuencia dificulta separar los efectos estacionales de cambios de régimen. En cada delito se presentan errores atípicos, donde no se puede asignar a un componente estacional, o a cambios en la reglamentación.
+
+El modelo no incluye en principio el efecto de la estructura etaria, así que puede resultar menos efectivo en el largo plazo que los modelos de poblaciones pequeñas.

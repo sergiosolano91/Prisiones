@@ -57,7 +57,7 @@ $ P_{t+k}$ = Proyección independiente total en el periodo $t + k$
 
 
 
-La variable sintomática cumple la tarea de agregar información conocida al modelo para hacerlo más preciso. En un primer paso se considera la población privada de la libertad una población pequeña, dentro de la población nacional. Dentro de las estadísticas publicadas periodicamente por el INPEC no se han encontrado variables sintomáticas que cubran más de dos años \cite{INPEC2018}, razón por la cual se realiza el siguiente proceso: se utiliza una constante en el lugar de la variable sintomática, lo que da lugar a una proyección constante por edad genero; luego ajustamos la proyección al total nacional por rango de edad proyectado por el DANE. Este modelo es equivalente a proyectar una tasa de encarcelamiento constante para cada rango de edad. Para el periodo 2017 - 2020 se utiliza la tasa de encarcelamiento.
+La variable sintomática cumple la tarea de agregar información conocida al modelo para hacerlo más preciso. En un primer paso se considera la población privada de la libertad una población pequeña, dentro de la población nacional. Dentro de las estadísticas publicadas periodicamente por el INPEC no se han encontrado variables sintomáticas que cubran más de dos años \cite{INPEC2018}, razón por la cual se realiza el siguiente proceso: se utiliza una constante en el lugar de la variable sintomática, lo que da lugar a una proyección constante por edad y genero; luego ajustamos la proyección al total nacional por rango de edad proyectado por el DANE. Este modelo es equivalente a proyectar una tasa de encarcelamiento constante para cada rango de edad. Para el periodo 2017 - 2020 se utiliza la tasa de encarcelamiento.
 
 Aunque no conocemos el comportamiento de la tasa de encarcelamiento específica por edad, conocemos la población carcelaria total y la tasa de encarcelamiento. Usamos el supuesto de proporción estable por rango etario, para ajustar la proyección 2005 - 2016 a la población carcelaria total.
 
@@ -89,7 +89,7 @@ donde:
 
 $\hat{V}_{c, e, 2017+k}$ = Población carcelaria ajustada por edad. 
 
-$ \hat{P}_{c,2017+k}$ = Población carcelaria estimada por genero.
+$ \hat{P}_{c,2017+k}$ = Población carcelaria estimada por género.
 
 $ P_{c,2017 + k} $ = Población carcelaria observada. 
 
@@ -99,13 +99,13 @@ El INPEC publica un reporte mensual con estadísticas detalladas de la población 
 
 En la figura \ref{fig:inpec_edad_genero2} podemos observar la composición demográfica de la población privada de la libertad en Junio 2017. Es una población compuesta mayoritariamente por hombres. Tanto en hombres como mujeres se observa un patrón similar en la estructura etaria, el punto más alto se encuentra entre 25 y 29 años, 18 a 25 y 29 a 35 tienen un orden de magnitud comparable. Después de los 35 años la población se reduce en cada grupo quinquenal. 
 
-En la figura \ref{fig:inpec_edad_genero3} se presenta la población privada de la libertad, separada por genero y edad desde marzo 2016 hasta marzo 2018. El periodo de análisis se escogió a conveniencia, considerando la disponibilidad de datos del INPEC con grupos etarios uniformes. La figura \ref{fig:inpec_edad_genero3} muestra que la población carcelaria mantiene la forma de campana, con pico en 25-29, en todos los meses analizados, tanto en hombres como mujeres. En hombres el rango de edad con mayor variabilidad es el rango 18-24. En mujeres la variabilidad se presetnta en los rangos 18-24, 25-29 y 30-34. \cite{Ram2018}
+En la figura \ref{fig:inpec_edad_genero3} se presenta la población privada de la libertad, separada por género y edad desde marzo 2016 hasta marzo 2018. El periodo de análisis se escogió a conveniencia, considerando la disponibilidad de datos del INPEC con grupos etarios uniformes. La figura \ref{fig:inpec_edad_genero3} muestra que la población carcelaria mantiene la forma de campana, con pico en 25-29, en todos los meses analizados, tanto en hombres como mujeres. En hombres el rango de edad con mayor variabilidad es el rango 18-24. En mujeres la variabilidad se presetnta en los rangos 18-24, 25-29 y 30-34. \cite{Ram2018}
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{gginpec_edad_genero2-1.pdf}
-	\caption[Piramide poblacional, población privada de la libertad, Junio - 2017]{Piramide poblacional, población privada de la libertad, Junio - 2017}{Fuente: INPEC} {Elaboración propia}
+	\caption[Pirámide poblacional, población privada de la libertad, Junio - 2017]{Pirámide poblacional, población privada de la libertad, Junio - 2017}{Fuente: INPEC} {Elaboración propia}
 	\label{fig:inpec_edad_genero2}
 \end{figure}
 
@@ -253,7 +253,7 @@ Mejorar la calidad de los datos abiertos del INPEC permitiría desarrollar éstas 
 \begin{itemize}
 	\item Mantener grupos de análisis consistentes a través del tiempo. Dentro de los datos analizados, los rangos de edad observados cambiaron desde febrero 2016 a un menor nivel de granularidad. Este cambio permite análisis de la tasa de encarcelamiento más precisos; sin embargo, no permite comparar con periodos anteriores a ésta fecha. 
 	\item Publicar series detalladas con un periodo de análisis más largo. Las estadísticas detalladas por delito, edad, tiempo de condena,...,etc están disponibles desde 2013. Es decir, con los datos abiertos actualmente disponibles no es posible analizar, por ejemplo, el comportamiento de la tasa de encarcelamiento por edad en periodos anteriores.
-	\item Incluir análisis multivariados de la población carcelaria. Los informes publicados actualmente no incluyen análisis multivariados como edad, genero, delito, que son pertinentes para la toma de decisiones en política criminal.
+	\item Incluir análisis multivariados de la población carcelaria. Los informes publicados actualmente no incluyen análisis multivariados como edad, género, delito, que son pertinentes para la toma de decisiones en política criminal.
 	\item Publicar informes detallados con seguimiento histórico. Parte del trabajo realizado para llegara este capítulo consistió en ensamblar informes históricos en una sola base de datos, publicar las series históricas permitiría acelerar el tiempo de análisis.
 \end{itemize}
  

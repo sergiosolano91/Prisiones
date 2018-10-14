@@ -7,6 +7,10 @@
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{10}
 
+\bibitem{Asesora2014}
+Oficina Asesora, De~Planeaci{\'{o}}n Grupo, Luis Eduardo, and Castro Gil,
+  \emph{{Impacto Ley 1709 de 2014 Primer Informe}},  (2014).
+
 \bibitem{Blumstein1980a}
 Alfred Blumstein, Jacqueline Cohen, and Harold~D. Miller,
   \emph{{Demographically disaggregated projections of prison populations}},
@@ -36,6 +40,14 @@ DANE, \emph{{Estimaciones poblaci{\'{o}}n DANE}}, 2009.
 \bibitem{DepartamentoNacionaldePlaneacion2015}
 {Departamento Nacional de Planeaci{\'{o}}n}, \emph{{Conpes 3828 POL{\'{I}}TICA
   PENITENCIARIA Y CARCELARIA EN COLOMBIA}},  (2015).
+
+\bibitem{Helske2017}
+Jouni Helske, \emph{{Exponential Family State Space Models in R}}, Journal of
+  Statistical Software \textbf{78} (2017), no.~10, 1--39.
+
+\bibitem{Holmes2018}
+Elizabeth Holmes, Eric Ward, and Kellie Wills, \emph{{MARSS: Multivariate
+  Autoregressive State-Space Modeling}}, 2018.
 
 \bibitem{Hyndman2017}
 Rob~J Hyndman, \emph{{{\{}forecast{\}}: Forecasting functions for time series
@@ -71,6 +83,14 @@ Todd~D Minton, Bjs Statistician, Scott Ginder, Susan~M Brumbaugh, Hope
   Smiley-Mcdonald, and Harley Rohloff, \emph{{Census of Jails: Population
   Changes, 1999 - 2013}},  (2015).
 
+\bibitem{OficinaAsesoradePlaneacion2014}
+{Oficina Asesora de Planeaci{\'{o}}n} and {Grupo Estadistica}, \emph{{Impacto
+  Ley 1709 de 2014 Segundo Informe}}, Tech. report, 2014.
+
+\bibitem{Petris2011}
+Giovanni Petris and Sonia Petrone, \emph{{State Space Models in R}}, Journal of
+  Statistical Software \textbf{41} (2011), no.~4, 128--129.
+
 \bibitem{RCoreTeam2017}
 {R Core Team}, \emph{{R: A Language and Environment for Statistical
   Computing}}, R Foundation for Statistical Computing, Vienna, Austria, 2017.
@@ -92,6 +112,10 @@ David Stoffer, \emph{{astsa: Applied Statistical Time Series Analysis. R
 David~A Swanson and Jeff Tayman, \emph{{Subnational Population Estimates}}, The
   Springer Series on Demographic Methods and Population Analysis, vol.~31,
   Springer Netherlands, Dordrecht, 2012.
+
+\bibitem{Tusell2011}
+Fernando Tusell, \emph{{Kalman Filtering in R}}, Journal of Statistical
+  Software \textbf{39} (2011), no.~2, 1--27.
 
 \bibitem{Wan1}
 Wai-Yin Wan1, Steve Moffatt2, Zachary Xie3, Simon Corben, and Don Weatherburn,
