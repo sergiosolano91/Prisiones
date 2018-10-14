@@ -13,10 +13,6 @@ A level-1 auxiliary file: cap4.aux
 A level-1 auxiliary file: conclusiones.aux
 A level-1 auxiliary file: trabajofuturo.aux
 Database file #1: references.bib
-Repeated entry---line 1799 of file references.bib
- : @misc{InstitutoNacionalPenitenciarioyCarcelario2016
- :                                                    ,
-I'm skipping whatever remains of this entry
 Warning--missing journal name in Asesora2014
 Warning--missing pages in Asesora2014
 Warning--missing publisher in Box2013
@@ -30,7 +26,7 @@ Warning--missing institution in Wan1
 Warning--missing year in Wan1
 You've used 27 entries,
             2213 wiz_defined-function locations,
-            666 strings with 7810 characters,
+            666 strings with 7786 characters,
 and the built_in function-call counts, 7240 in all, are:
 = -- 614
 > -- 327
@@ -69,4 +65,4 @@ warning$ -- 11
 while$ -- 71
 width$ -- 29
 write$ -- 230
-(There was 1 error message)
+(There were 11 warnings)
