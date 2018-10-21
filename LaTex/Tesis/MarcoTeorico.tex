@@ -7,6 +7,7 @@ En 2016 Colombia ocupó el puesto catorce entre doscientos cincuenta y un paises 
 ``Una estimación poblacional consiste en determinar el tamaño o las características de una población, para el momento actual o para uno anterior, en ausencia de información. Cuando se realizan un conjunto de supuestos sobre el comportamiento de los vitales hacia el futuro, hablamos de proyección, y cuando se escoge un escenario como el más probable, hablamos de pronóstico'' \cite {Swanson2012}.
 
 Para incluir la incertidumbre en las proyecciones de población Lee(1994) considera los siguientes métodos \cite {Lee1994}: 
+
 \begin{itemize}
 	\item El enfoque de escenarios alto, medio y bajo: Asume comportamientos fijos para la fertilidad, la mortalidad y las migraciones durante el período de proyección, basado en algunos supuestos \cite {Lee1994}.
 	\item Análisis estocásticos
@@ -44,38 +45,42 @@ Con los datos libres disponibles en Colombia no se podría utilizar el enfoque AR
 
 % SECCIÓN EN PROCESO. 
 % Una vez tenga una versión preliminar me encargaré de corregir y referenciar.
-Una serie de tiempo es un conjunto de observaciones ${x_t}$ asociadas a un instante de tiempo t. Es usual referirse como series de tiempo, tanto a las realizaciones ${x_t}$ como a las variables aleatorias ${X_t}$ que las generan.\cite{Brockwell2011} 
+Una serie de tiempo es un conjunto de observaciones ${y_t}$ asociadas a un instante de tiempo t. Es usual referirse como series de tiempo, tanto a las realizaciones ${y_t}$ como a las variables aleatorias ${Y_t}$ que las generan.\cite{Brockwell2011} 
 
-En una regresión lineal clásica, una variable $Y$ es explicada o predicha en función de una variable $X$. La diferencia entre el valor observado $y_i$ y el valor predicho se suponen provenientes de un proceso aleatorio con media cero. \cite{Commandeur2007}
+En una regresión lineal clásica, una variable $Y$ es explicada o predicha en función de un conjunto de n variables $X$. La diferencia entre el valor observado en el instante t $y_t$ y el valor predicho se suponen provenientes de un proceso aleatorio con media cero. \cite{Commandeur2007}
 
 \begin{equation}\label{eq:regresion}
-Y_i = \beta_{0} + \beta_{1} X_i + \epsilon_i
+y_t = \beta_{0} + \beta_{1} x_{t1} + \beta_{2} x_{t2} ... \beta_{n} x_{tn}  + w_t
 \end{equation}
 
-Donde $\{\epsilon_1, \epsilon_2, ...\}$ son independientes e idénticamente distribuidas (i.i.d.). Es posible representar una serie de tiempo en esta forma, tomando como variable explicativa el tiempo. Sin embargo, el análisis de series de tiempo se ha desarrollado como un área particular de la estadística, pues es este supuesto no suele cumplirse, enfocándose particularmente en variables aleatorias dependientes, que pueden ser representadas en la forma \cite{Brockwell2011}: 
+También es posible representar la observación $y_t$ en función de las observaciones anteriores como:
+
 %  this commented blank line prevents start of a new paragraph
 \begin{equation}\label{eq:serierecursiva}
-Y_i = \beta_{0} + \beta_{1} Y_1 + \beta_{2} Y_2 + ... + \beta_{i-1} Y_{i-1} + \ \epsilon_i
+y_T = \beta_{0} + \beta_{1} y_1 + \beta_{2} y_2 + ... + \beta_{t-1} y_{t-1} +  w_t
 \end{equation}
-Para medir la dependencia entre las observaciones recurrimos a la función de autocovarianca y a la función de autocorrelación. La función de autocovarianza se define como: 
+
+La variable aleatoria $Y$ en el instante i, es una combinación lineal de los valores observados de la variable aleatoria, más un error aleatorio, donde $\{\epsilon_1, \epsilon_2, ...\}$ son independientes e idénticamente distribuidas (i.i.d.). \cite{Shumway} Este supuesto no suele cumplirse, razón por la cual el análisis de series de tiempo se ha desarrollado como un área particular de la estadística \cite{Brockwell2011}.
+
+Para medir la dependencia entre las observaciones recurrimos a la función de autocovarianca y a la función de autocorrelación. La función de autocovarianza se define como \cite{Shumway}: 
 
 \begin{equation}\label{covarianza}
-\gamma(h, h+k) = cov(x_h, x_{h+k}) = E[(x_h - \mu_h)(x_{h+k} - µ{h+k})]
+\gamma(s,t) = cov(y_{s}, y_{t}) = E[(y_{s} - \mu_{s})(y_{t} - \mu_{t})]
 \end{equation}
 
-para todo h y k mayor a cero. La autocovarianza mide la dependencia lineal entre dos puntos en la misma serie en diferentes instantes. \cite{Shumway}. 
+para todo s y t, donde $\mu = EY_t$ y k representa la cantidad de pasos entre dos observaciones. La autocovarianza mide la dependencia lineal entre dos puntos en la misma serie en diferentes instantes. \cite{Shumway}. 
 
-La función de autocorrelación se define como \cite{Shumway}: 
+La función de autocorrelación (ACF) se define como \cite{Brockwell2011}: 
 
 \begin{equation}\label{correlacion}
-\rho (h, h+k) = \dfrac{\gamma(h, h+k)}{\sqrt{\gamma(h, h) \gamma(h+k, h+k)}}
+\rho (s,t) = \dfrac{\gamma(s,t)}{\sqrt{\gamma(s,s) \gamma(t,t)}} 
 \end{equation}
 
 Para poder realizar predicciones sobre el estado futuro de una serie de tiempo, es necesario suponer que el comportamiento de la serie es estable a través del tiempo, incluso con un componente aleatorio. La estacionaridad es el concepto que permite articular esta necesidad. Estamos ante un \textbf{proceso estacionario} cuando las variables $\{X_1,..., X_k\}$ tienen la misma distribución conjunta que $\{X_{h+1},...,X_{h+k}\}$, para todos los enteros $h$ y $k$ \cite{Brockwell2011}.
 
-La estacionaridad débil se presenta cuando $E[X_j]$ y $E[X_jX_{j+h}]$ son independientes de $j$, es decir: i) Presenta media $\mu$ constante e independiente de $t$ ii) La función de autocovarianza $\gamma(h, h+k)$ depende solamente de la cantidad de pasos que separa las observaciones ($k$). \cite{Shumway}
+La estacionaridad débil se presenta cuando $E[X_j]$ y $E[X_jX_{j+h}]$ son independientes de $j$, es decir: i) Presenta media $\mu$ constante e independiente de $t$ ii) La función de autocovarianza $\gamma(h, h+k)$ depende solamente de la cantidad de pasos que separa las observaciones ($k$). En adelante, al referirse a estacionaridad, se tratará de estacionaridad debil, a menos que se indique lo contrario.\cite{Shumway}
 
-\subsection{Modelos ARIMA}
+\subsection{Modelos SARIMA}
 
 Box \& Jenkins proponen una aproximación iterativa de  cuatro etapas para la selección de un modelo \cite{Box2013}: 
 
@@ -86,21 +91,53 @@ Box \& Jenkins proponen una aproximación iterativa de  cuatro etapas para la sel
 	\item Chequeo diagnóstico, para detectar fallas en el ajuste. Si se detectan fallas en el ajuste, se regresa al segundo paso. 
 \end{enumerate}
 
-Los procesos ARMA son procesos aleatorios de la forma \cite{Shumway} : 
+Shumway en \cite{Shumway} plantea que un proceso es auto-regresivo de orden p o AR(p) si:
+
+\begin{equation}\label{ar}
+y_t = \phi_1 y_{t-1} + \phi_2 y_{t-2} ... + \phi_p y_{t-p} + w_t
+\end{equation}
+
+Donde $y_t$ es estacionaria con $\mu = 0$ ;  $ \phi_1,  \phi_2,...  ,\phi_p$ son constantes  ($\phi_p \neq 0$) y los $w_t$ son independientes e idénticamente distribuidos. Cuando la $\mu \neq 0$
+
+\begin{equation}\label{ar}
+y_t - \mu  = \phi_1 (y_{t-1} - \mu) + \phi_2 (y_{t-2}-\mu) ... + \phi_p (y_{t-p}-\mu) + w_t
+\end{equation}
+
+Que se puede representar como:
+
+\begin{equation}\label{ar}
+y_t  = \mu(1 - \phi_1 ... - \phi_p) + \phi_1 (y_{t-1}) + \phi_2 (y_{t-2}) ... + \phi_p (y_{t-p}) + w_t
+\end{equation}
+
+Se considera un proceso de promedio móvil de orden q o MA(p) si:
+
+\begin{equation}\label{ma}
+y_t = \theta_1 w_{t-1} + \theta_2 w_{t-2} ... \theta_q w_{t-q} + w_t
+\end{equation}
+
+Donde $ \theta_1,  \theta_2,...  ,\theta_q$ son parámetros  ($\phi_p \neq 0$) y los $w_t$ son independientes e idénticamente distribuidos y $y_t$ tiene media cero. A diferencia de los procesos auto-regresivos, los procesos de promedio movil son estacionarios sin importar el valor de $\theta_1,  \theta_2,...  ,\theta_q$ \cite{Shumway}. 
+
+Un proceso se considera ARMA(p,q) si $y_t$ es estacionaria y  \cite{Shumway} : 
 
 \begin{equation}\label{arma}
-Y_t = \gamma Y_{t-1} + \gamma_2 Y_{t-2} ...+ + \gamma_i Y_{t-i} + \epsilon + \theta_1\epsilon_{t-1} + \theta_2\epsilon_{t-2} ... \theta_j\epsilon_{t-j}
+y_t = \phi_1 y_{t-1} + \phi_2 y_{t-2} + ... + \phi_p y_{t-p} + \theta_1 w_{t-1} + \theta_2 w_{t-2} ... \theta_q w_{t-q} + w_t
 \end{equation}
 
-A este modelo se le conoce como ARMA(i,0,j).
+Con $E(y_t) = \mu = 0$. Cuando $(\mu \neq 0)$ se puede representar como: 
 
-Los procesos ARIMA resultan al considerar una serie de la forma \cite{Shumway}: 
+\begin{equation}\label{arma}
+y_t  = \mu(1 - \phi_1 ... - \phi_p) + \phi_1 y_{t-1} + \phi_2 y_{t-2} + ... + \phi_p y_{t-p} + \theta_1 w_{t-1} + \theta_2 w_{t-2} ... \theta_q w_{t-q} + w_t
+\end{equation}
+
+ A este modelo se le conoce como ARMA(p,q). Una técnica común para tratar con series no estacionarias consiste en diferenciarlas hasta que la serie obtenida sea ARMA(p,q) \cite{Brockwell2011}. Si la serie se diferencia $d$ veces el proceso se nota como ARIMA(p,d,q)
+
+Un proceso ARIMA (i,1,j) resulta al considerar una serie de la forma \cite{Shumway}: 
 
 \begin{equation}\label{ARIMA}
-Y_t = \alpha +  Y_{t-1}
+y_t = \alpha +  y_{t-1}
 \end{equation}
 
-Tal que el proceso $Y_t - Y_{t-1}$ es un proceso ARMA.
+Tal que el proceso $y_t - y_{t-1}$ es un proceso ARMA(p,q).
 
 Los criterios para identificar el orden de un ARMA son \cite{Boland2011}: 
 
