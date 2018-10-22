@@ -80,6 +80,29 @@ Para poder realizar predicciones sobre el estado futuro de una serie de tiempo, 
 
 La estacionaridad débil se presenta cuando $E[X_j]$ y $E[X_jX_{j+h}]$ son independientes de $j$, es decir: i) Presenta media $\mu$ constante e independiente de $t$ ii) La función de autocovarianza $\gamma(h, h+k)$ depende solamente de la cantidad de pasos que separa las observaciones ($k$). En adelante, al referirse a estacionaridad, se tratará de estacionaridad debil, a menos que se indique lo contrario.\cite{Shumway}
 
+Si tenemos las variables aleatorias $X,Y,Z$ y queremos medir la correlación entre las variables $Z$ y $X$, descontando el efecto de la variable Y, recurrimos a la función de correlación parcial $\rho_{XY|Z}$, que se calcula como \cite{Shumway}: 
+
+\begin{equation}\label{correlacionparcial}
+\rho_{XY|Z} = corr\{ X-\hat{X},Y-\hat{Y}\}
+\end{equation}
+
+Al adaptar este concepto a series de tiempo tenemos que la función de autocorrelación parcial de un proceso estacionario $y_t$, $\alpha_{hh}$, con $h = 1, 2, ... , t$ se define como \cite{Shumway}: 
+
+
+\begin{equation}\label{correlacionparcialestacionario}
+\alpha_{11} = corr(y_1,y_0)  = \rho(1)
+\end{equation}
+
+y 
+
+\begin{equation}\label{correlacionparcialestacionario}
+\alpha_{hh} = corr(y_h - \hat{y_h},y_0 - \hat{y_0}), h \geq 2 
+\end{equation}
+
+donde $\hat{y_h}$ es la regresión de $y_h$ en $\{y_1,y_2, ..., y_{h-1}\}$  y $\hat{y_0}$ es la regresión de $y_0$ en $\{y_1,y_2, ..., y_{h-1}\}$.
+
+Debido a la estacionaridad, la PACF es la correlación entre $ x_t,x_{t+h} $ una vez controlado por los elementos entre ellos $ \{x_{t-h+1}, x_{t-h+2},..., x_{t-1} \} $ \cite{Shumway}.
+
 \subsection{Modelos SARIMA}
 
 Box \& Jenkins proponen una aproximación iterativa de  cuatro etapas para la selección de un modelo \cite{Box2013}: 
