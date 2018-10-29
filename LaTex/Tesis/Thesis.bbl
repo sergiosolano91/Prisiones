@@ -113,6 +113,10 @@ David~A Swanson and Jeff Tayman, \emph{{Subnational Population Estimates}}, The
   Springer Series on Demographic Methods and Population Analysis, vol.~31,
   Springer Netherlands, Dordrecht, 2012.
 
+\bibitem{Tsay2002}
+Ruey~S. Tsay, \emph{{Analysis of Financial Time Series}}, John Wiley {\&} Sons,
+  Inc., Hoboken, NJ, USA, jan 2002.
+
 \bibitem{Tusell2011}
 Fernando Tusell, \emph{{Kalman Filtering in R}}, Journal of Statistical
   Software \textbf{39} (2011), no.~2, 1--27.

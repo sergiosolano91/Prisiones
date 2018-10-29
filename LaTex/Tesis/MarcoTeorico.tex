@@ -43,8 +43,7 @@ Con los datos libres disponibles en Colombia no se podría utilizar el enfoque AR
 
 \section{Series de tiempo}
 
-% SECCIÓN EN PROCESO. 
-% Una vez tenga una versión preliminar me encargaré de corregir y referenciar.
+
 Una serie de tiempo es un conjunto de observaciones ${y_t}$ asociadas a un instante de tiempo t. Es usual referirse como series de tiempo, tanto a las realizaciones ${y_t}$ como a las variables aleatorias ${Y_t}$ que las generan.\cite{Brockwell2011} 
 
 En una regresión lineal clásica, una variable $Y$ es explicada o predicha en función de un conjunto de n variables $X$. La diferencia entre el valor observado en el instante t $y_t$ y el valor predicho se suponen provenientes de un proceso aleatorio con media cero. \cite{Commandeur2007}
@@ -55,7 +54,6 @@ y_t = \beta_{0} + \beta_{1} x_{t1} + \beta_{2} x_{t2} ... \beta_{n} x_{tn}  + w_
 
 También es posible representar la observación $y_t$ en función de las observaciones anteriores como:
 
-%  this commented blank line prevents start of a new paragraph
 \begin{equation}\label{eq:serierecursiva}
 y_T = \beta_{0} + \beta_{1} y_1 + \beta_{2} y_2 + ... + \beta_{t-1} y_{t-1} +  w_t
 \end{equation}
@@ -76,9 +74,45 @@ La función de autocorrelación (ACF) se define como \cite{Brockwell2011}:
 \rho (s,t) = \dfrac{\gamma(s,t)}{\sqrt{\gamma(s,s) \gamma(t,t)}} 
 \end{equation}
 
+
 Para poder realizar predicciones sobre el estado futuro de una serie de tiempo, es necesario suponer que el comportamiento de la serie es estable a través del tiempo, incluso con un componente aleatorio. La estacionaridad es el concepto que permite articular esta necesidad. Estamos ante un \textbf{proceso estacionario} cuando las variables $\{X_1,..., X_k\}$ tienen la misma distribución conjunta que $\{X_{h+1},...,X_{h+k}\}$, para todos los enteros $h$ y $k$ \cite{Brockwell2011}.
 
-La estacionaridad débil se presenta cuando $E[X_j]$ y $E[X_jX_{j+h}]$ son independientes de $j$, es decir: i) Presenta media $\mu$ constante e independiente de $t$ ii) La función de autocovarianza $\gamma(h, h+k)$ depende solamente de la cantidad de pasos que separa las observaciones ($k$). En adelante, al referirse a estacionaridad, se tratará de estacionaridad debil, a menos que se indique lo contrario.\cite{Shumway}
+La estacionaridad débil se presenta cuando $E[Y_t]$ y $E[Y_t,Y_{t+h}]$ son independientes de $t$, es decir: i) Presenta media $\mu$ constante e independiente de $t$ ii) La función de autocovarianza $\gamma(h, h+k)$ depende solamente de la cantidad de pasos que separa las observaciones ($k$). En adelante, al referirse a estacionaridad, se tratará de estacionaridad debil, a menos que se indique lo contrario.\cite{Shumway}
+
+Cuando la serie no tiene un comportamiento estacionario se puede recurrir a diferenciar la serie, este proceso al ser de uso frecuente tiene su propia notación. La diferencia $\bigtriangledown y_t = y_t - y_{t-1}$ se conoce como diferencia de primer orden. La diferencia de segundo orden se define como $\bigtriangledown^2 y_t = (y_t - y_{t-1}) - (y_{t-1} - y_{t-2} )$.
+
+El operador de rezago B se define como \cite{Shumway}:
+
+\begin{equation}\label{backshift}
+By_t = y_{t_1} 
+\end{equation}
+
+tal que: 
+\begin{equation}\label{backshift2}
+\bigtriangledown y_t = (1-B) y_t 
+\end{equation}
+
+La notación se puede extender de forma que: 
+
+\begin{equation}\label{backshift3}
+\bigtriangledown^d y_t = (1-B)^d y_t 
+\end{equation}
+
+La función de auto-correlación (ACF) de una serie de tiempo estacionaria  se define como \cite{Shumway}: 
+
+\begin{equation}\label{autocorrelacion}
+\rho (h) = \frac{\gamma (h)}{\gamma(0)}
+\end{equation}
+
+donde $\gamma (h) = cov(y_{t+h},y_t) = E[(y_{t-h} - \mu)(y_t- \mu)]$ y $\bar{y}$ denota la media del proceso.
+
+
+Para estimar la ACF utilizamos la función de autocorrelación muestral definida como \cite{Shumway}: 
+
+\begin{equation}\label{autocorrelacionmuestral}
+\hat{\rho (h)} = \frac{\hat{\gamma} (h)}{\hat{\gamma} (0)} = \frac{\sum_{t = 1}^{n - h}(y_{t+h}-\bar{y})(y_t - \bar{y})}{\sum_{t = 1}^{n}(y_t-\bar{y})^2}
+\end{equation}
+con $ h = 0,1, ..., n-1$.
 
 Si tenemos las variables aleatorias $X,Y,Z$ y queremos medir la correlación entre las variables $Z$ y $X$, descontando el efecto de la variable Y, recurrimos a la función de correlación parcial $\rho_{XY|Z}$, que se calcula como \cite{Shumway}: 
 
@@ -88,14 +122,13 @@ Si tenemos las variables aleatorias $X,Y,Z$ y queremos medir la correlación entr
 
 Al adaptar este concepto a series de tiempo tenemos que la función de autocorrelación parcial de un proceso estacionario $y_t$, $\alpha_{hh}$, con $h = 1, 2, ... , t$ se define como \cite{Shumway}: 
 
-
-\begin{equation}\label{correlacionparcialestacionario}
+\begin{equation}\label{correlacionparcialestacionario1}
 \alpha_{11} = corr(y_1,y_0)  = \rho(1)
 \end{equation}
 
 y 
 
-\begin{equation}\label{correlacionparcialestacionario}
+\begin{equation}\label{correlacionparcialestacionario2}
 \alpha_{hh} = corr(y_h - \hat{y_h},y_0 - \hat{y_0}), h \geq 2 
 \end{equation}
 
@@ -122,15 +155,31 @@ y_t = \phi_1 y_{t-1} + \phi_2 y_{t-2} ... + \phi_p y_{t-p} + w_t
 
 Donde $y_t$ es estacionaria con $\mu = 0$ ;  $ \phi_1,  \phi_2,...  ,\phi_p$ son constantes  ($\phi_p \neq 0$) y los $w_t$ son independientes e idénticamente distribuidos. Cuando la $\mu \neq 0$
 
-\begin{equation}\label{ar}
+\begin{equation}\label{ar1}
 y_t - \mu  = \phi_1 (y_{t-1} - \mu) + \phi_2 (y_{t-2}-\mu) ... + \phi_p (y_{t-p}-\mu) + w_t
 \end{equation}
 
 Que se puede representar como:
 
-\begin{equation}\label{ar}
+\begin{equation}\label{ar2}
 y_t  = \mu(1 - \phi_1 ... - \phi_p) + \phi_1 (y_{t-1}) + \phi_2 (y_{t-2}) ... + \phi_p (y_{t-p}) + w_t
 \end{equation}
+
+También es posible utilizar el operador B para representar la serie \ref{ar} como:
+
+\begin{equation}\label{ar3}
+y_t  - \phi_1 (y_{t-1}) - \phi_2 (y_{t-2}) ... - \phi_p (y_{t-p}) =  w_t
+\end{equation} 
+
+\begin{equation}\label{ar4}
+(1 - \phi_1 B - \phi_2 B^2 ... - \phi_p B^p)y_t =  w_t
+\end{equation} 
+
+o en una notación simplificada: 
+
+\begin{equation}\label{ar5}
+\phi(B)y_t =  w_t
+\end{equation} 
 
 Se considera un proceso de promedio móvil de orden q o MA(p) si:
 
@@ -138,21 +187,37 @@ Se considera un proceso de promedio móvil de orden q o MA(p) si:
 y_t = \theta_1 w_{t-1} + \theta_2 w_{t-2} ... \theta_q w_{t-q} + w_t
 \end{equation}
 
-Donde $ \theta_1,  \theta_2,...  ,\theta_q$ son parámetros  ($\phi_p \neq 0$) y los $w_t$ son independientes e idénticamente distribuidos y $y_t$ tiene media cero. A diferencia de los procesos auto-regresivos, los procesos de promedio movil son estacionarios sin importar el valor de $\theta_1,  \theta_2,...  ,\theta_q$ \cite{Shumway}. 
+Donde $ \theta_1,  \theta_2,...  ,\theta_q$ son parámetros  ($\phi_p \neq 0$) y los $w_t$ son independientes e idénticamente distribuidos y $y_t$ tiene media cero. A diferencia de los procesos auto-regresivos, los procesos de promedio movil son estacionarios sin importar el valor de $\theta_1,  \theta_2,...  ,\theta_q$ \cite{Shumway}. Este proceso también se puede representar usando el operador de rezago al ponerlo en la forma: 
+
+\begin{equation}\label{ma1}
+y_t = (\theta_1 B + \theta_2 B^2 ... \theta_q B^q + 1) w_t
+\end{equation}
+
+o en forma simplificada: 
+
+\begin{equation}\label{ma2}
+y_t = \theta (B) w_t
+\end{equation}
 
 Un proceso se considera ARMA(p,q) si $y_t$ es estacionaria y  \cite{Shumway} : 
 
-\begin{equation}\label{arma}
+\begin{equation}\label{arma1}
 y_t = \phi_1 y_{t-1} + \phi_2 y_{t-2} + ... + \phi_p y_{t-p} + \theta_1 w_{t-1} + \theta_2 w_{t-2} ... \theta_q w_{t-q} + w_t
 \end{equation}
 
 Con $E(y_t) = \mu = 0$. Cuando $(\mu \neq 0)$ se puede representar como: 
 
-\begin{equation}\label{arma}
+\begin{equation}\label{arma2}
 y_t  = \mu(1 - \phi_1 ... - \phi_p) + \phi_1 y_{t-1} + \phi_2 y_{t-2} + ... + \phi_p y_{t-p} + \theta_1 w_{t-1} + \theta_2 w_{t-2} ... \theta_q w_{t-q} + w_t
 \end{equation}
 
- A este modelo se le conoce como ARMA(p,q). Una técnica común para tratar con series no estacionarias consiste en diferenciarlas hasta que la serie obtenida sea ARMA(p,q) \cite{Brockwell2011}. Si la serie se diferencia $d$ veces el proceso se nota como ARIMA(p,d,q)
+A este modelo se le conoce como ARMA(p,q). Usando las ecuaciones \ref{ar5} y  \ref{ma2} se puede representar como: 
+
+\begin{equation}\label{arma3}
+\phi(B)y_t  =  \theta (B) w_t
+\end{equation}
+
+Una técnica común para tratar con series no estacionarias consiste en diferenciarlas hasta que la serie obtenida sea ARMA(p,q) \cite{Brockwell2011}. Si la serie se diferencia $d$ veces el proceso se nota como ARIMA(p,d,q).
 
 Un proceso ARIMA (i,1,j) resulta al considerar una serie de la forma \cite{Shumway}: 
 
@@ -169,6 +234,31 @@ Los criterios para identificar el orden de un ARMA son \cite{Boland2011}:
 	\item Cuando la función de autocorrelación tiene un pico en el lag q, y la función de autocorrelación parcial se reduce progresivamente, es un proceso de media mmovil de orden q MA(q)
 	\item Si ambas funciones se reducen gradualmente, se trata de un ARMA (p,q)
 \end{itemize}
+
+Las ecuaciones 
+
+
+Cuando las series presentan un comportamiento estacional se recurre al proceso de diferenciación estacional de la forma: \cite{Tsay2002}
+
+\begin{equation}\label{ARIMA}
+\bigtriangledown_s y_t = y_t - y_{t-s} = (1 - B^s) y_t
+\end{equation}
+
+Un proceso autoregresivo de orden $P$, promedio móvil de orden $Q$ estacional $ARMA(P,Q)_s$, donde s corresponde a la periodicidad de la serie se define como \cite{Shumway}: 
+
+\begin{equation}\label{sarma1}
+\Phi_P  (B^s) y_t  =  \Theta_Q (B^s) w_t
+\end{equation}
+
+donde $\Phi_P (B^s) = 1- \Phi_1 B^s - \Phi_2 B^{2s}- ... - \Phi_P B^{Ps}$ se denomina operador estacional autoregresivo de orden P y $\Theta_Q (B^s) = 1 + \Theta_1 B^s + \Theta_2 B^{2s} + ... + \Theta_Q B^{Qs}$ se denomina operador estacional promedio movil de orden Q \cite{Shumway}.
+
+Un proceso SARIMA(p,d,q)(P,D,Q) se define como: 
+
+\begin{equation}\label{sarma1}
+\Phi_P  (B^s) \phi_p (B^s) \bigtriangledown^D \bigtriangledown^d y_t  =  \Theta_Q (B^s) \theta_q (B) w_t
+\end{equation}
+
+donde $w_t$ es un proceso gausiano de ruido blanco.
 
 \subsection{Modelos Estado-Espacio}
 
