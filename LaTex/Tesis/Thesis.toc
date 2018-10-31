@@ -9,28 +9,28 @@
 \contentsline {subsection}{\numberline {1.1.2}Aplicaciones nacionales e internacionales}{2}{subsection.1.1.2}
 \contentsline {section}{\numberline {1.2}Series de tiempo}{3}{section.1.2}
 \contentsline {subsection}{\numberline {1.2.1}Modelos SARIMA}{5}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Modelos Estado-Espacio}{7}{subsection.1.2.2}
-\contentsline {chapter}{\numberline {2}La poblaci\'on carcelaria en Colombia 1991 - 2017}{8}{chapter.2}
-\contentsline {section}{\numberline {2.1}An\'alisis exploratorio}{8}{section.2.1}
-\contentsline {section}{\numberline {2.2}El sistema penitenciario en Colombia}{9}{section.2.2}
-\contentsline {section}{\numberline {2.3}Identificaci\'on del modelo}{9}{section.2.3}
-\contentsline {chapter}{\numberline {3}Modelos SARIMA}{11}{chapter.3}
-\contentsline {section}{\numberline {3.1}Identificaci\'on del modelo}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}Estimaci\'on de par\'ametros}{15}{section.3.2}
-\contentsline {section}{\numberline {3.3}Proyecci\'on}{30}{section.3.3}
-\contentsline {section}{\numberline {3.4}Discusi\'on}{32}{section.3.4}
-\contentsline {chapter}{\numberline {4}M\'etodos demogr\'aficos para poblaciones peque\~nas}{34}{chapter.4}
-\contentsline {section}{\numberline {4.1}Censal ratio}{36}{section.4.1}
-\contentsline {section}{\numberline {4.2}Poblaci\'on privada de la libertad por rango de edad Febrero 2016 a Febrero 2018}{38}{section.4.2}
-\contentsline {section}{\numberline {4.3}Proyecciones Censal Ratio}{44}{section.4.3}
-\contentsline {section}{\numberline {4.4}Discusi\'on}{48}{section.4.4}
-\contentsline {chapter}{\numberline {5}Modelos Estado-Espacio}{49}{chapter.5}
-\contentsline {section}{\numberline {5.1}Poblaci\'on privada de la libertad 2013-2016 por delito}{49}{section.5.1}
-\contentsline {section}{\numberline {5.2}Selecci\'on de Software}{53}{section.5.2}
-\contentsline {section}{\numberline {5.3}Identificaci\'on del modelo}{53}{section.5.3}
-\contentsline {section}{\numberline {5.4}Estimaci\'on de par\'ametros}{54}{section.5.4}
-\contentsline {section}{\numberline {5.5}Proyecciones 2017 - 2020}{56}{section.5.5}
-\contentsline {section}{\numberline {5.6}Discusi\'on}{61}{section.5.6}
-\contentsline {chapter}{Conclusiones}{63}{section.5.6}
-\contentsline {chapter}{Trabajo futuro}{64}{section.5.6}
-\contentsline {chapter}{Bibliograf\'{\i }a}{65}{section.5.6}
+\contentsline {subsection}{\numberline {1.2.2}Modelos Estado-Espacio}{8}{subsection.1.2.2}
+\contentsline {chapter}{\numberline {2}La poblaci\'on carcelaria en Colombia 1991 - 2017}{9}{chapter.2}
+\contentsline {section}{\numberline {2.1}An\'alisis exploratorio}{9}{section.2.1}
+\contentsline {section}{\numberline {2.2}El sistema penitenciario en Colombia}{10}{section.2.2}
+\contentsline {section}{\numberline {2.3}Identificaci\'on del modelo}{10}{section.2.3}
+\contentsline {chapter}{\numberline {3}Modelos SARIMA}{12}{chapter.3}
+\contentsline {section}{\numberline {3.1}Identificaci\'on del modelo}{12}{section.3.1}
+\contentsline {section}{\numberline {3.2}Estimaci\'on de par\'ametros}{16}{section.3.2}
+\contentsline {section}{\numberline {3.3}Proyecci\'on}{31}{section.3.3}
+\contentsline {section}{\numberline {3.4}Discusi\'on}{33}{section.3.4}
+\contentsline {chapter}{\numberline {4}M\'etodos demogr\'aficos para poblaciones peque\~nas}{35}{chapter.4}
+\contentsline {section}{\numberline {4.1}Censal ratio}{37}{section.4.1}
+\contentsline {section}{\numberline {4.2}Poblaci\'on privada de la libertad por rango de edad Febrero 2016 a Febrero 2018}{39}{section.4.2}
+\contentsline {section}{\numberline {4.3}Proyecciones Censal Ratio}{45}{section.4.3}
+\contentsline {section}{\numberline {4.4}Discusi\'on}{49}{section.4.4}
+\contentsline {chapter}{\numberline {5}Modelos Estado-Espacio}{50}{chapter.5}
+\contentsline {section}{\numberline {5.1}Poblaci\'on privada de la libertad 2013-2016 por delito}{50}{section.5.1}
+\contentsline {section}{\numberline {5.2}Selecci\'on de Software}{54}{section.5.2}
+\contentsline {section}{\numberline {5.3}Identificaci\'on del modelo}{54}{section.5.3}
+\contentsline {section}{\numberline {5.4}Estimaci\'on de par\'ametros}{55}{section.5.4}
+\contentsline {section}{\numberline {5.5}Proyecciones 2017 - 2020}{57}{section.5.5}
+\contentsline {section}{\numberline {5.6}Discusi\'on}{62}{section.5.6}
+\contentsline {chapter}{Conclusiones}{64}{section.5.6}
+\contentsline {chapter}{Trabajo futuro}{65}{section.5.6}
+\contentsline {chapter}{Bibliograf\'{\i }a}{66}{section.5.6}
