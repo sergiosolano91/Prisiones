@@ -43,7 +43,6 @@ Con los datos libres disponibles en Colombia no se podría utilizar el enfoque AR
 
 \section{Series de tiempo}
 
-
 Una serie de tiempo es un conjunto de observaciones ${y_t}$ asociadas a un instante de tiempo t. Es usual referirse como series de tiempo, tanto a las realizaciones ${y_t}$ como a las variables aleatorias ${Y_t}$ que las generan.\cite{Brockwell2011} 
 
 En una regresión lineal clásica, una variable $Y$ es explicada o predicha en función de un conjunto de n variables $X$. La diferencia entre el valor observado en el instante t $y_t$ y el valor predicho se suponen provenientes de un proceso aleatorio con media cero. \cite{Commandeur2007}
@@ -55,10 +54,30 @@ y_t = \beta_{0} + \beta_{1} x_{t1} + \beta_{2} x_{t2} ... \beta_{n} x_{tn}  + w_
 También es posible representar la observación $y_t$ en función de las observaciones anteriores como:
 
 \begin{equation}\label{eq:serierecursiva}
-y_T = \beta_{0} + \beta_{1} y_1 + \beta_{2} y_2 + ... + \beta_{t-1} y_{t-1} +  w_t
+y_t = \beta_{0} + \beta_{1} y_1 + \beta_{2} y_2 + ... + \beta_{t-1} y_{t-1} +  w_t
 \end{equation}
 
 La variable aleatoria $Y$ en el instante i, es una combinación lineal de los valores observados de la variable aleatoria, más un error aleatorio, donde $\{\epsilon_1, \epsilon_2, ...\}$ son independientes e idénticamente distribuidas (i.i.d.). \cite{Shumway} Este supuesto no suele cumplirse, razón por la cual el análisis de series de tiempo se ha desarrollado como un área particular de la estadística \cite{Brockwell2011}.
+
+Se define un proceso como ruido blanco a la colección de variables aleatorias $z_t$, no correlacionadas, con media $0$ y varianza $\sigma^2_w$. \cite{Shumway}
+
+Bajo un modelo de $k$ parámetros, el estimador máximo verosímil de la varianza es: 
+
+\begin{equation}\label{varianza}
+\hat {\sigma}^2_k = \frac{SSE(k)}{n} = \frac{1}{n} \sum_{t = 1}^{n}  (y_t - \hat{y_t})
+\end{equation}
+
+Para seleccionar el modelo que mejor explique los datos observados se recurre a los criterios AIC (Criterio de Información de Aikake) y BIC (Criterio de Información Bayesiano), que penalizan los modelos con mayor cantidad de parámetros y están definidos como: 
+
+\begin{equation}\label{AIC}
+AIC = ln (\hat{\sigma_k}^2) + \frac{n+2k}{n}
+\end{equation}
+
+\begin{equation}\label{AIC}
+BIC = ln (\hat{\sigma_k}^2) + \frac{k (ln(n))}{n}
+\end{equation}
+
+donde $k$ es la cantidad de parámetros en el modelo y $n$ es la cantidad de observaciones \cite{Tsay2002}.  Tanto en el AIC como en el BIC se selecciona el modelo de $k$ parámetros con menor valor.  
 
 Para medir la dependencia entre las observaciones recurrimos a la función de autocovarianca y a la función de autocorrelación. La función de autocovarianza se define como \cite{Shumway}: 
 
@@ -134,7 +153,7 @@ y
 
 donde $\hat{y_h}$ es la regresión de $y_h$ en $\{y_1,y_2, ..., y_{h-1}\}$  y $\hat{y_0}$ es la regresión de $y_0$ en $\{y_1,y_2, ..., y_{h-1}\}$.
 
-Debido a la estacionaridad, la PACF es la correlación entre $ x_t,x_{t+h} $ una vez controlado por los elementos entre ellos $ \{x_{t-h+1}, x_{t-h+2},..., x_{t-1} \} $ \cite{Shumway}.
+En un proceso estacionario $x_t $ la PACF es la correlación entre $ x_t,x_{t+h} $ una vez controlado por los elementos entre ellos $ \{x_{t-h+1}, x_{t-h+2},..., x_{t-1} \} $ \cite{Shumway}.
 
 \subsection{Modelos SARIMA}
 
@@ -235,9 +254,6 @@ Los criterios para identificar el orden de un ARMA son \cite{Boland2011}:
 	\item Si ambas funciones se reducen gradualmente, se trata de un ARMA (p,q)
 \end{itemize}
 
-Las ecuaciones 
-
-
 Cuando las series presentan un comportamiento estacional se recurre al proceso de diferenciación estacional de la forma: \cite{Tsay2002}
 
 \begin{equation}\label{ARIMA}
@@ -259,6 +275,18 @@ Un proceso SARIMA(p,d,q)(P,D,Q) se define como:
 \end{equation}
 
 donde $w_t$ es un proceso gausiano de ruido blanco.
+
+El paquete $astsa$ se ha utilizado para estimar los modelos ARIMA en el capitulo 3. La función $sarima$ del paquete $astsa$ es un manejador de la función $arima$ del paquete base. \cite{Stoffer2014}. La función $arima$ utiliza la función $optim$ para encontrar estimadores de máxima verosimilitud.\cite{RCoreTeam2017}.
+
+El paquete $astsa$ se ha utilizado para realizar los pronósticos en el capitulo 3. La función $sarima.for$ del paquete $astsa$ es un manejador de la función $predict.Arima$ del paquete base. \cite{Stoffer2014}. La función $predict.Arima$ utiliza la función $KalmanForecast$. En la siguiente sección se hablará en detalle del filtro de Kalman. \cite{RCoreTeam2017}
+
+Una vez se ha realizado la estimación del modelo, se analiza el comportamiento del error. Para descartar autocorrelación en el error se utiliza la estadística Q de Ljung, definida como:
+
+\begin{equation}\label{ljung}
+Q = n(n+2) \sum_{n=1}^{H} \frac{ \hat {\rho_{e}}^2(h)}{n-1}
+\end{equation}
+
+donde $H$ es el rezago analizado, $\hat{\rho_{e}}(h)$  es la autocorrelación estimada del error en el rezago h. La hipótesis nula es que los errores son no correlacionados. Bajo la hipótesis nula $Q \sim \chi_{H}^2$. \cite{Ljung1978} \cite{Shumway}
 
 \subsection{Modelos Estado-Espacio}
 

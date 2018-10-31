@@ -24,45 +24,45 @@ Warning--missing pages in Minton2015
 Warning--missing institution in OficinaAsesoradePlaneacion2014
 Warning--missing institution in Wan1
 Warning--missing year in Wan1
-You've used 28 entries,
+You've used 29 entries,
             2213 wiz_defined-function locations,
-            675 strings with 7907 characters,
-and the built_in function-call counts, 7456 in all, are:
-= -- 630
-> -- 334
+            683 strings with 8025 characters,
+and the built_in function-call counts, 7734 in all, are:
+= -- 654
+> -- 347
 < -- 2
-+ -- 134
-- -- 106
-* -- 557
-:= -- 1231
-add.period$ -- 28
-call.type$ -- 28
-change.case$ -- 139
++ -- 139
+- -- 110
+* -- 583
+:= -- 1278
+add.period$ -- 29
+call.type$ -- 29
+change.case$ -- 144
 chr.to.int$ -- 0
-cite$ -- 39
-duplicate$ -- 341
-empty$ -- 668
-format.name$ -- 106
-if$ -- 1538
+cite$ -- 40
+duplicate$ -- 352
+empty$ -- 692
+format.name$ -- 110
+if$ -- 1595
 int.to.chr$ -- 0
-int.to.str$ -- 28
-missing$ -- 50
-newline$ -- 94
-num.names$ -- 56
-pop$ -- 210
+int.to.str$ -- 29
+missing$ -- 52
+newline$ -- 97
+num.names$ -- 58
+pop$ -- 215
 preamble$ -- 1
-purify$ -- 109
+purify$ -- 113
 quote$ -- 0
-skip$ -- 197
+skip$ -- 203
 stack$ -- 0
-substring$ -- 312
-swap$ -- 61
+substring$ -- 326
+swap$ -- 62
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 102
+type$ -- 106
 warning$ -- 11
-while$ -- 73
-width$ -- 30
-write$ -- 239
+while$ -- 76
+width$ -- 31
+write$ -- 248
 (There were 11 warnings)

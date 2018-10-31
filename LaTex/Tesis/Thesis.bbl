@@ -74,6 +74,10 @@ Ronald~Demos Lee and Shripad Tuljapurkar, \emph{{Stochastic Population
   Forecasts for the United States: Beyond High, Medium, and Low}}, Journal of
   the American Statistical Association \textbf{89} (1994), no.~428, 1175.
 
+\bibitem{Ljung1978}
+G.~M. Ljung and G.~E.~P. Box, \emph{{On a Measure of Lack of Fit in Time Series
+  Models}}, Biometrika \textbf{65} (1978), no.~2, 297.
+
 \bibitem{Lutkepohl2005a}
 Helmut L{\"{u}}tkepohl, \emph{{New Introduction to Multiple Time Series
   Analysis}}, Springer Berlin Heidelberg, Berlin, Heidelberg, 2005.
@@ -106,7 +110,7 @@ Robert~H Shumway and David~S Stoffer, \emph{{Time Series Analysis and Its
 
 \bibitem{Stoffer2014}
 David Stoffer, \emph{{astsa: Applied Statistical Time Series Analysis. R
-  package version 1.3}}, 2014.
+  package version 1.8}}, 2017.
 
 \bibitem{Swanson2012}
 David~A Swanson and Jeff Tayman, \emph{{Subnational Population Estimates}}, The
