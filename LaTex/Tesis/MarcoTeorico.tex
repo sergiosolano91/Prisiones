@@ -153,7 +153,7 @@ y
 
 donde $\hat{y_h}$ es la regresión de $y_h$ en $\{y_1,y_2, ..., y_{h-1}\}$  y $\hat{y_0}$ es la regresión de $y_0$ en $\{y_1,y_2, ..., y_{h-1}\}$.
 
-Debido a la estacionaridad, la PACF es la correlación entre $ x_t,x_{t+h} $ una vez controlado por los elementos entre ellos $ \{x_{t-h+1}, x_{t-h+2},..., x_{t-1} \} $ \cite{Shumway}.
+En un proceso estacionario $x_t $ la PACF es la correlación entre $ x_t,x_{t+h} $ una vez controlado por los elementos entre ellos $ \{x_{t-h+1}, x_{t-h+2},..., x_{t-1} \} $ \cite{Shumway}.
 
 \subsection{Modelos SARIMA}
 
@@ -254,9 +254,6 @@ Los criterios para identificar el orden de un ARMA son \cite{Boland2011}:
 	\item Si ambas funciones se reducen gradualmente, se trata de un ARMA (p,q)
 \end{itemize}
 
-Las ecuaciones 
-
-
 Cuando las series presentan un comportamiento estacional se recurre al proceso de diferenciación estacional de la forma: \cite{Tsay2002}
 
 \begin{equation}\label{ARIMA}
@@ -278,6 +275,18 @@ Un proceso SARIMA(p,d,q)(P,D,Q) se define como:
 \end{equation}
 
 donde $w_t$ es un proceso gausiano de ruido blanco.
+
+El paquete $astsa$ se ha utilizado para estimar los modelos ARIMA en el capitulo 3. La función $sarima$ del paquete $astsa$ es un manejador de la función $arima$ del paquete base. \cite{Stoffer2014}. La función $arima$ utiliza la función $optim$ para encontrar estimadores de máxima verosimilitud.\cite{RCoreTeam2017}.
+
+El paquete $astsa$ se ha utilizado para realizar los pronósticos en el capitulo 3. La función $sarima.for$ del paquete $astsa$ es un manejador de la función $predict.Arima$ del paquete base. \cite{Stoffer2014}. La función $predict.Arima$ utiliza la función $KalmanForecast$. En la siguiente sección se hablará en detalle del filtro de Kalman. \cite{RCoreTeam2017}
+
+Una vez se ha realizado la estimación del modelo, se analiza el comportamiento del error. Para descartar autocorrelación en el error se utiliza la estadística Q de Ljung, definida como:
+
+\begin{equation}\label{ljung}
+Q = n(n+2) \sum_{n=1}^{H} \frac{ \hat {\rho_{e}}^2(h)}{n-1}
+\end{equation}
+
+donde $H$ es el rezago analizado, $\hat{\rho_{e}}(h)$  es la autocorrelación estimada del error en el rezago h. La hipótesis nula es que los errores son no correlacionados. Bajo la hipótesis nula $Q \sim \chi_{H}^2$. \cite{Ljung1978} \cite{Shumway}
 
 \subsection{Modelos Estado-Espacio}
 
