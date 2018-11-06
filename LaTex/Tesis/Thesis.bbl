@@ -78,10 +78,6 @@ Ronald~Demos Lee and Shripad Tuljapurkar, \emph{{Stochastic Population
 G.~M. Ljung and G.~E.~P. Box, \emph{{On a Measure of Lack of Fit in Time Series
   Models}}, Biometrika \textbf{65} (1978), no.~2, 297.
 
-\bibitem{Lutkepohl2005a}
-Helmut L{\"{u}}tkepohl, \emph{{New Introduction to Multiple Time Series
-  Analysis}}, Springer Berlin Heidelberg, Berlin, Heidelberg, 2005.
-
 \bibitem{Minton2015}
 Todd~D Minton, Bjs Statistician, Scott Ginder, Susan~M Brumbaugh, Hope
   Smiley-Mcdonald, and Harley Rohloff, \emph{{Census of Jails: Population
@@ -104,9 +100,13 @@ Karthik Ram and Hadley Wickham, \emph{{wesanderson: A Wes Anderson Palette
   Generator}}, 2018.
 
 \bibitem{Shumway}
-Robert~H Shumway and David~S Stoffer, \emph{{Time Series Analysis and Its
+Robert~H Shumway and David Stoffer, \emph{{Time Series Analysis and Its
   Applications}}, Springer Texts in Statistics, vol.~45, Springer New York, New
   York, NY, 2011.
+
+\bibitem{Shumway2006}
+Robert~H Shumway and David~S Stoffer, \emph{{Time Series Analysis and Its
+  Applications With R Examples}}, second edi ed., Springer, 2006.
 
 \bibitem{Stoffer2014}
 David Stoffer, \emph{{astsa: Applied Statistical Time Series Analysis. R

@@ -26,34 +26,34 @@ Warning--missing institution in Wan1
 Warning--missing year in Wan1
 You've used 29 entries,
             2213 wiz_defined-function locations,
-            683 strings with 8025 characters,
-and the built_in function-call counts, 7734 in all, are:
-= -- 654
-> -- 347
+            683 strings with 8048 characters,
+and the built_in function-call counts, 7774 in all, are:
+= -- 658
+> -- 353
 < -- 2
-+ -- 139
-- -- 110
-* -- 583
-:= -- 1278
++ -- 141
+- -- 112
+* -- 588
+:= -- 1284
 add.period$ -- 29
 call.type$ -- 29
-change.case$ -- 144
+change.case$ -- 146
 chr.to.int$ -- 0
 cite$ -- 40
 duplicate$ -- 352
 empty$ -- 692
-format.name$ -- 110
-if$ -- 1595
+format.name$ -- 112
+if$ -- 1603
 int.to.chr$ -- 0
 int.to.str$ -- 29
 missing$ -- 52
 newline$ -- 97
 num.names$ -- 58
-pop$ -- 215
+pop$ -- 216
 preamble$ -- 1
-purify$ -- 113
+purify$ -- 114
 quote$ -- 0
-skip$ -- 203
+skip$ -- 204
 stack$ -- 0
 substring$ -- 326
 swap$ -- 62

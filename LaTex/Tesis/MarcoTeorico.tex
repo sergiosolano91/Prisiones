@@ -303,7 +303,7 @@ donde $\boldsymbol{y_t}$ es un vector de $p$ componentes. $ \boldsymbol w_t$ es 
 \boldsymbol{z_t} = A_t \boldsymbol{y_{t}} + \boldsymbol{v_t}
 \end{equation}
 
-donde $A_t$ es de tamaño $q \times p$. Se suponen $\boldsymbol {w_t}$ y $\boldsymbol {v_t}$ no correlacionados.
+donde $A_t$ es de tamaño $q \times p$. $\boldsymbol {v_t}$ se asume ruido blanco, con  matriz de covarianzas  $R$. Se suponen $\boldsymbol {w_t}$ y $\boldsymbol {v_t}$ no correlacionados. 
 
 Variables exógenas o inputs fijos pueden ingresar en los estados o las observaciones. En este caso tendremos un vector $u_t$ de tamaño $r \times 1$: 
 
@@ -316,7 +316,7 @@ Variables exógenas o inputs fijos pueden ingresar en los estados o las observaci
 \boldsymbol{z_t} = A_t \boldsymbol{y_{t}} + + \boldsymbol{\Gamma} \boldsymbol{u_t} + \boldsymbol{v_t}
 \end{equation}
 
-con $\boldsymbol{\Upsilon}$ y $\boldsymbol{\Gamma}$ de dimensión $p x r$ y $q x r$, respectivamente. 
+con $\boldsymbol{\Upsilon}$ y $\boldsymbol{\Gamma}$ de dimensión $p \times r$ y $q \times r$, respectivamente. 
 
 El objetivo es tener estimaciones de $x_t$ a partir de las observaciones $y_1, y_2, ..., y_s$. Cuando $s < t$ se trata de predicción. Cuando $s = t$ se habla de filtrado y para $s > t$ de suavizado \cite{Shumway2006}.
 
@@ -328,3 +328,30 @@ El objetivo es tener estimaciones de $x_t$ a partir de las observaciones $y_1, y
 \boldsymbol{P_{t}^s} = E\{\boldsymbol{(y_{t1}-y_{t1}^s)} |\boldsymbol{{(y_{t2}-y_{t2}^s)}}'\}
 \end{equation}
 
+Con valores iniciales $\boldsymbol{x_0^0} =\boldsymbol{\mu_0}$ y ${P_0^0 = \Sigma_0}$ para $t = 1, 2, ... , n$
+
+\begin{equation}\label{StateSpace9}
+\boldsymbol{y_t^{t-1}} = \Phi \boldsymbol {y_{t-1}^{t-1}} + \Gamma \boldsymbol{u_t}
+\end{equation}
+
+\begin{equation}\label{StateSpace8}
+\boldsymbol{P_t^{t-1}} = \Phi \boldsymbol {P_{t-1}^{t-1}} \Phi' + \boldsymbol{Q} 
+\end{equation}
+
+con 
+
+\begin{equation}\label{StateSpace10}
+\boldsymbol{y_t^{t}} = \boldsymbol {y_{t}^{t-1}} + K_t(\boldsymbol {z_t} +  {A_t} \boldsymbol{y_t^{t-1}} - \Gamma \boldsymbol{u_t}) 
+\end{equation}
+
+\begin{equation}\label{StateSpace11}
+\boldsymbol{P_t^{t}} = [I - K_t A_t] {P_{t}^{t-1}}
+\end{equation}
+
+donde
+ 
+ \begin{equation}\label{StateSpace12}
+ \boldsymbol{K_t} = P_{t}^{t-1} A_t'[A_t P_{t}^{t-1} A_t' + R]^{-1}
+ \end{equation}
+
+$K_t$ se conoce como ganancia de Kalman. Predicciones para t > n se realizan con \ref{StateSpace9}, con condiciones iniciales $x_n^n$ y $P_n^n$.
