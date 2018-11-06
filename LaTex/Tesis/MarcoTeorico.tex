@@ -290,4 +290,41 @@ donde $H$ es el rezago analizado, $\hat{\rho_{e}}(h)$  es la autocorrelación est
 
 \subsection{Modelos Estado-Espacio}
 
+Los modelos Estado-Espacio en su forma más simple, emplea un vector autoregresivo de la forma \cite{Shumway2006}: 
+
+\begin{equation}\label{StateSpace1}
+\boldsymbol{y_t} = \Phi \boldsymbol{y_{t-1}} + \boldsymbol{w_t}
+\end{equation}
+
+donde $\boldsymbol{y_t}$ es un vector de $p$ componentes. $ \boldsymbol w_t$ es un vector de $p \times 1$ variables aleatorias independientes e idénticamente distribuidas normalmente con media cero y matriz de covarianzas $ \boldsymbol Q$. Asumimos que el proceso es normal con un vector $ \boldsymbol {y_0}$ con media $ \boldsymbol {\mu_0}$ y matriz de covarianzas $ \boldsymbol \sum$. \cite{Shumway2006}
+
+
+\begin{equation}\label{StateSpace2}
+\boldsymbol{z_t} = A_t \boldsymbol{y_{t}} + \boldsymbol{v_t}
+\end{equation}
+
+donde $A_t$ es de tamaño $q \times p$. Se suponen $\boldsymbol {w_t}$ y $\boldsymbol {v_t}$ no correlacionados.
+
+Variables exógenas o inputs fijos pueden ingresar en los estados o las observaciones. En este caso tendremos un vector $u_t$ de tamaño $r \times 1$: 
+
+\begin{equation}\label{StateSpace6}
+\boldsymbol{y_t} = \Phi \boldsymbol{y_{t-1}} + \boldsymbol{\Upsilon} \boldsymbol{u_t} + \boldsymbol{w_t}
+\end{equation}
+
+
+\begin{equation}\label{StateSpace7}
+\boldsymbol{z_t} = A_t \boldsymbol{y_{t}} + + \boldsymbol{\Gamma} \boldsymbol{u_t} + \boldsymbol{v_t}
+\end{equation}
+
+con $\boldsymbol{\Upsilon}$ y $\boldsymbol{\Gamma}$ de dimensión $p x r$ y $q x r$, respectivamente. 
+
+El objetivo es tener estimaciones de $x_t$ a partir de las observaciones $y_1, y_2, ..., y_s$. Cuando $s < t$ se trata de predicción. Cuando $s = t$ se habla de filtrado y para $s > t$ de suavizado \cite{Shumway2006}.
+
+\begin{equation}\label{StateSpace3}
+\boldsymbol{y_t^s} = E\{\boldsymbol{y_t} |\boldsymbol{ z_s}\}
+\end{equation}
+
+\begin{equation}\label{StateSpace4}
+\boldsymbol{P_{t}^s} = E\{\boldsymbol{(y_{t1}-y_{t1}^s)} |\boldsymbol{{(y_{t2}-y_{t2}^s)}}'\}
+\end{equation}
 
