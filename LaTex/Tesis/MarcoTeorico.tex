@@ -1,6 +1,8 @@
 \chapter{Antecedentes teóricos}
 
-En 2016 Colombia ocupó el puesto catorce entre doscientos cincuenta y un paises por el tamaño de su población carcelaria (120 914 hbts.) y el cincuenta y uno según la tasa de encarcelamiento (240 por cada 100.000 hbts). Tasa que pasó de 51,5 en  el año 2000 a 240 por cada 100.000 hbts en 2016. Con una ocupación del 154\% de las plazas disponibles, resulta relevante contar con proyecciones de la población carcelaria en el corto, mediano y largo plazo.\cite{InstitueforCriminalPolicyResearch2016}
+En este capítulo se contextualiza de forma teórica el problema de proyección de poblaciones carcelarias, desde una perspectiva demográfica. Posteriormente se presentan, siguiendo a Shumway y Stoffer en \cite{Shumway} y \cite{Shumway2006}, los conceptos asociados al manejo de series de tiempo: modelos SARIMA, Series de tiempo estructurales y modelos estado espacio. El modelo-censal ratio se presenta en el capítulo 4, pues se le realizan ajustes para usarlo con los datos disponibles.
+
+En las secciones dedicadas a los modelos SARIMA y a los modelos estado-espacio se mencionan los métodos de estimación y proyección usados en los paquetes seleccionados. 
 
 \section{Proyecciones de población}
 
@@ -29,7 +31,7 @@ Este tipo de población puede tener una estructura etaria y de sexo, y unos vital
 
 Las proyecciones de poblaciones carcelarias oficiales analizadas corresponden, en buena parte, a los métodos expuestos en los capítulos anteriores:  Proyecciones por escenarios, proyección de la tasa de crecimiento, modelos ARIMA para las tasas de ingreso y salida.
 
-En Colombia (CONPES 3828) se proyectó la población carcelaria usando la tasa media de crecimiento anual (1993-2014) \cite {DepartamentoNacionaldePlaneacion2015}. Esta proyección no tiene en cuenta la incertidumbre asociada con las variaciones aleatorias en las tasas, ni las asociadas a cambios estructurales, ni que son una población especial, con patrones muy distintos a los del resto de la población \cite{Swanson2012} .
+En Colombia, el CONPES 3828 proyectó la población carcelaria usando la tasa media de crecimiento anual (1993-2014) sin incluir una medida de incertidumbre \cite {DepartamentoNacionaldePlaneacion2015}. Este tipo de proyecciones que de forma subyacente incluyen el supuesto de un sistema estable ( que seguirá comportándose de la misma manera a través del tiempo) omiten el efecto de los cambios en las tasas de ingreso y salida del sistema carcelario, asociados a cambios en la política criminal o a cambios en la población.
 
 El Reino Unido hasta 2015 realizaba una proyección por escenarios (alto, medio y bajo), año en el cual cambió a un modelo de proyección de la media y su incertidumbre. La incertidumbre se incluyó a través de un análisis ex-post, de la  desviación de la proyección en años anteriores \cite {Justice2014}.
 
@@ -39,7 +41,7 @@ El bureau de estadísticas e investigación del crimen en Australia proyecta las t
 
 Blummstein desarrolla un método de proyección basado en los componentes demográficos, tasas específicas de arresto por delito y reincidencias, a partir de estos datos proyecta el tamaño y la composición de las poblaciones \cite{Blumstein1980a}.
 
-Con los datos libres disponibles en Colombia no se podría utilizar el enfoque ARIMA ni el método de Blummstein, pues las tasas de encarcelamiento y sentencia no se publican. La tesis busca proponer un método de proyección, para situaciones donde no se cuenta con el registro de los vitales o su equivalente en la población analizada, en este escenario resulta conveniente usar las series ARIMA sobre la series de población sindicada y población sindicada, y los modelos estado-espacio para la serie bivariada. Se proponen los métodos demográficos de estimación para áreas pequeñas Censal-ratio y Ratio-Correlation, y su contraste con las metodologías ARIMA y Estado-Espacio que a diferencia de los métodos demográficos mencionados incorporan una medida de incertidumbre.
+Con los datos libres disponibles en Colombia no se podría utilizar el enfoque presentado por Wan et al. en\cite{Wan1} ni el método de Blummstein presentado en \cite{Blumstein1980a}, pues las tasas de ingreso al sistema y sentencia no se publican. La tesis propone tres métodos de proyección para situaciones donde no se cuenta con el registro de los vitales o su equivalente en la población analizada. En el escenario de las poblaciones carcelarias en Colombia, con los datos abiertos disponibles, resulta conveniente usar las series SARIMA en los conteos individuales de población sindicada y condenada, y los modelos estado-espacio para la serie bivariada. El método Censal-ratio, para proyectar poblaciones pequeñas, permite proyectar la población carcelaria como proporción de la población total.
 
 \section{Series de tiempo}
 
@@ -57,7 +59,7 @@ También es posible representar la observación $y_t$ en función de las observacio
 y_t = \beta_{0} + \beta_{1} y_1 + \beta_{2} y_2 + ... + \beta_{t-1} y_{t-1} +  w_t
 \end{equation}
 
-La variable aleatoria $Y$ en el instante i, es una combinación lineal de los valores observados de la variable aleatoria, más un error aleatorio, donde $\{\epsilon_1, \epsilon_2, ...\}$ son independientes e idénticamente distribuidas (i.i.d.). \cite{Shumway} Este supuesto no suele cumplirse, razón por la cual el análisis de series de tiempo se ha desarrollado como un área particular de la estadística \cite{Brockwell2011}.
+La variable aleatoria $Y$ en el instante i, es una combinación lineal de los valores observados de la variable aleatoria, más un error aleatorio, donde $\{w_1, w_2, ...w_t\}$ son independientes e idénticamente distribuidas (i.i.d.). \cite{Shumway} Este supuesto no suele cumplirse, razón por la cual el análisis de series de tiempo se ha desarrollado como un área particular de la estadística \cite{Brockwell2011}.
 
 Se define un proceso como ruido blanco a la colección de variables aleatorias $z_t$, no correlacionadas, con media $0$ y varianza $\sigma^2_w$. \cite{Shumway}
 
@@ -79,13 +81,13 @@ BIC = ln (\hat{\sigma_k}^2) + \frac{k (ln(n))}{n}
 
 donde $k$ es la cantidad de parámetros en el modelo y $n$ es la cantidad de observaciones \cite{Tsay2002}.  Tanto en el AIC como en el BIC se selecciona el modelo de $k$ parámetros con menor valor.  
 
-Para medir la dependencia entre las observaciones recurrimos a la función de autocovarianca y a la función de autocorrelación. La función de autocovarianza se define como \cite{Shumway}: 
+Para medir la dependencia entre las observaciones recurrimos a la función de autocovarianza  y a la función de autocorrelación (ACF). La función de autocovarianza se define como \cite{Shumway}: 
 
 \begin{equation}\label{covarianza}
 \gamma(s,t) = cov(y_{s}, y_{t}) = E[(y_{s} - \mu_{s})(y_{t} - \mu_{t})]
 \end{equation}
 
-para todo s y t, donde $\mu = EY_t$ y k representa la cantidad de pasos entre dos observaciones. La autocovarianza mide la dependencia lineal entre dos puntos en la misma serie en diferentes instantes. \cite{Shumway}. 
+para todo s y t, donde $\mu = EY_t$ y k representa la cantidad de pasos entre dos observaciones. La autocovarianza mide fla dependencia lineal entre dos puntos en la misma serie en diferentes instantes. \cite{Shumway}. 
 
 La función de autocorrelación (ACF) se define como \cite{Brockwell2011}: 
 
@@ -153,7 +155,7 @@ y
 
 donde $\hat{y_h}$ es la regresión de $y_h$ en $\{y_1,y_2, ..., y_{h-1}\}$  y $\hat{y_0}$ es la regresión de $y_0$ en $\{y_1,y_2, ..., y_{h-1}\}$.
 
-En un proceso estacionario $x_t $ la PACF es la correlación entre $ x_t,x_{t+h} $ una vez controlado por los elementos entre ellos $ \{x_{t-h+1}, x_{t-h+2},..., x_{t-1} \} $ \cite{Shumway}.
+En un proceso estacionario $y_t $ la PACF es la correlación entre $ y_t,y_{t+h} $ una vez controlado por los elementos entre ellos $ \{y_{t-h+1}, y_{t-h+2},..., y_{t-1} \} $ \cite{Shumway}.
 
 \subsection{Modelos SARIMA}
 
@@ -288,9 +290,43 @@ Q = n(n+2) \sum_{n=1}^{H} \frac{ \hat {\rho_{e}}^2(h)}{n-1}
 
 donde $H$ es el rezago analizado, $\hat{\rho_{e}}(h)$  es la autocorrelación estimada del error en el rezago h. La hipótesis nula es que los errores son no correlacionados. Bajo la hipótesis nula $Q \sim \chi_{H}^2$. \cite{Ljung1978} \cite{Shumway}
 
+\subsection{Modelos de Series de Tiempo Estructurales}
+
+En economía y ciencias sociales hay fenomenos que se pueden descomponer en dos componentes básicos, un comportamiento estable de largo plazo (tendencia) y un comportamiento que se repite cada cierto tiempo, usualmente anual (estacionalidad). Estos fenomenos se pueden representar de la forma: \cite{harvey1990forecasting}
+
+\begin{equation}\label{StructuralTimeSeries1}
+observado = tendencia + estacionalidad + irregularidad.  
+\end{equation}
+
+o en forma multiplicativa 
+
+\begin{equation}\label{StructuralTimeSerie2}
+observado = tendencia \times estacionalidad \times irregularidad.  
+\end{equation}
+
+La ecuación \ref{StructuralTimeSerie2} puede ser llevada a la forma \ref{StructuralTimeSeries1} al tomar logaritmo en cada lado de la ecuación. 
+
+En los modelos de series de tiempo estructurales, al representar en componentes de tendencia, estacionalidad y ciclo, estos tienen una interpretación directa. Más que representar el proceso que genera los datos, separa la serie en componentes con una interpretación directa de cada uno. En los modelos de series de tiempo estructurales, los componentes no son fijos, sino que se consideran generados por impactos aleatorios. \cite{harvey1990forecasting}
+
 \subsection{Modelos Estado-Espacio}
 
-Los modelos Estado-Espacio en su forma más simple, emplea un vector autoregresivo de la forma \cite{Shumway2006}: 
+En un modelo estado espacio una serie de tiempo (multiple) observada  $\ z_1, ... , z_t $\ depende de un estado $\ y_t $\ , posiblemente no observado, que se comporta siguiendo un proceso estocástico. La relación entre $\ y_t $\ y $\ z_t $\ está dada por la \textit{ecuación de medida}: \cite{Lutkepohl2005a}
+
+\begin{equation}\label{EstadoEspacio}
+\ z_t = H_t y_t + v_t
+\end{equation}
+
+donde $\ H_t $\ es una matriz que puede o no depender del tiempo $\ t $\ y $\ v_t $\ es el error de observación, que se asume usualmente como un proceso de ruido. El vector de estado es generado como: 
+
+\begin{equation}\label{EstadoEspacio2}
+y_t = B_{t-1} y_{t-1} + w_{t-1}
+\end{equation}
+
+La matriz $\ B_t $\ es una matriz de coeficientes que puede depender de $\ t $\, y $\ w_t $\ es un proceso de ruido. \cite{Lutkepohl2005a}
+
+Una forma de representar los modelos de series de tiempo estrucuturales es a través de los modelos Estado-Espacio, que además permiten representar otros modelos como Regresión Lineal o Modelos ARIMA. \cite{Durbin2012}
+
+Los modelos Estado-Espacio o Modelos Lineales Dinamicos (DLM), en su forma más simple emplean un vector autoregresivo de la forma \cite{Shumway2006}: 
 
 \begin{equation}\label{StateSpace1}
 \boldsymbol{y_t} = \Phi \boldsymbol{y_{t-1}} + \boldsymbol{w_t}
@@ -305,12 +341,13 @@ donde $\boldsymbol{y_t}$ es un vector de $p$ componentes. $ \boldsymbol w_t$ es 
 
 donde $A_t$ es de tamaño $q \times p$. $\boldsymbol {v_t}$ se asume ruido blanco, con  matriz de covarianzas  $R$. Se suponen $\boldsymbol {w_t}$ y $\boldsymbol {v_t}$ no correlacionados. 
 
+Holmes en \cite{Holmes2018a} demonima a los modelos de esta forma modelos Estado Espacio Multivariados Auto Regresivos (MARSS). Sobre esta estrucuctura de modelos se realizan las aplicaciones en el capítulo 5.  
+
 Variables exógenas o inputs fijos pueden ingresar en los estados o las observaciones. En este caso tendremos un vector $u_t$ de tamaño $r \times 1$: 
 
 \begin{equation}\label{StateSpace6}
 \boldsymbol{y_t} = \Phi \boldsymbol{y_{t-1}} + \boldsymbol{\Upsilon} \boldsymbol{u_t} + \boldsymbol{w_t}
 \end{equation}
-
 
 \begin{equation}\label{StateSpace7}
 \boldsymbol{z_t} = A_t \boldsymbol{y_{t}} + + \boldsymbol{\Gamma} \boldsymbol{u_t} + \boldsymbol{v_t}
@@ -318,7 +355,7 @@ Variables exógenas o inputs fijos pueden ingresar en los estados o las observaci
 
 con $\boldsymbol{\Upsilon}$ y $\boldsymbol{\Gamma}$ de dimensión $p \times r$ y $q \times r$, respectivamente. 
 
-El objetivo es tener estimaciones de $x_t$ a partir de las observaciones $y_1, y_2, ..., y_s$. Cuando $s < t$ se trata de predicción. Cuando $s = t$ se habla de filtrado y para $s > t$ de suavizado \cite{Shumway2006}.
+El objetivo es tener estimaciones de $y_t$ a partir de las observaciones $z_1, z_2, ...,z_s$. Cuando $s < t$ se trata de predicción. Cuando $s = t$ se habla de filtrado y para $s > t$ de suavizado \cite{Shumway2006}.
 
 \begin{equation}\label{StateSpace3}
 \boldsymbol{y_t^s} = E\{\boldsymbol{y_t} |\boldsymbol{ z_s}\}
@@ -354,4 +391,6 @@ donde
  \boldsymbol{K_t} = P_{t}^{t-1} A_t'[A_t P_{t}^{t-1} A_t' + R]^{-1}
  \end{equation}
 
-$K_t$ se conoce como ganancia de Kalman. Predicciones para t > n se realizan con \ref{StateSpace9}, con condiciones iniciales $x_n^n$ y $P_n^n$.
+$K_t$ se conoce como ganancia de Kalman. Predicciones para t > n se realizan con \ref{StateSpace9}, con condiciones iniciales $y_n^n$ y $P_n^n$.
+
+
