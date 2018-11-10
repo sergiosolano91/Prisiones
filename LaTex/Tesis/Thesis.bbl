@@ -41,9 +41,21 @@ DANE, \emph{{Estimaciones poblaci{\'{o}}n DANE}}, 2009.
 {Departamento Nacional de Planeaci{\'{o}}n}, \emph{{Conpes 3828 POL{\'{I}}TICA
   PENITENCIARIA Y CARCELARIA EN COLOMBIA}},  (2015).
 
+\bibitem{Durbin2012}
+James Durbin and Siem~Jan Koopman, \emph{{Time Series Analysis by State Space
+  Methods: Second Edition}}, vol.~7, 2012.
+
+\bibitem{harvey1990forecasting}
+Andrew~C Harvey, \emph{Forecasting, structural time series models and the
+  kalman filter}, Cambridge university press, 1990.
+
 \bibitem{Helske2017}
 Jouni Helske, \emph{{Exponential Family State Space Models in R}}, Journal of
   Statistical Software \textbf{78} (2017), no.~10, 1--39.
+
+\bibitem{Holmes2018a}
+E~E Holmes, E~J Ward, and M~D Scheuerell, \emph{{Analysis of multivariate time-
+  series using the MARSS package}},  (2018).
 
 \bibitem{Holmes2018}
 Elizabeth Holmes, Eric Ward, and Kellie Wills, \emph{{MARSS: Multivariate
@@ -77,6 +89,10 @@ Ronald~Demos Lee and Shripad Tuljapurkar, \emph{{Stochastic Population
 \bibitem{Ljung1978}
 G.~M. Ljung and G.~E.~P. Box, \emph{{On a Measure of Lack of Fit in Time Series
   Models}}, Biometrika \textbf{65} (1978), no.~2, 297.
+
+\bibitem{Lutkepohl2005a}
+Helmut L{\"{u}}tkepohl, \emph{{New Introduction to Multiple Time Series
+  Analysis}}, Springer Berlin Heidelberg, Berlin, Heidelberg, 2005.
 
 \bibitem{Minton2015}
 Todd~D Minton, Bjs Statistician, Scott Ginder, Susan~M Brumbaugh, Hope
