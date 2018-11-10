@@ -19,50 +19,55 @@ Warning--missing publisher in Box2013
 Warning--missing journal name in Commandeur2007
 Warning--missing journal name in DepartamentoNacionaldePlaneacion2015
 Warning--missing pages in DepartamentoNacionaldePlaneacion2015
+Warning--can't use both volume and number if series info is missing
+in BibTeX entry type `book'
+Warning--missing publisher in Durbin2012
+Warning--missing journal name in Holmes2018a
+Warning--missing pages in Holmes2018a
 Warning--missing journal name in Minton2015
 Warning--missing pages in Minton2015
 Warning--missing institution in OficinaAsesoradePlaneacion2014
 Warning--missing institution in Wan1
 Warning--missing year in Wan1
-You've used 29 entries,
+You've used 33 entries,
             2213 wiz_defined-function locations,
-            683 strings with 8048 characters,
-and the built_in function-call counts, 7774 in all, are:
-= -- 658
-> -- 353
-< -- 2
-+ -- 141
-- -- 112
-* -- 588
-:= -- 1284
-add.period$ -- 29
-call.type$ -- 29
-change.case$ -- 146
+            707 strings with 8552 characters,
+and the built_in function-call counts, 8739 in all, are:
+= -- 728
+> -- 398
+< -- 3
++ -- 159
+- -- 126
+* -- 661
+:= -- 1446
+add.period$ -- 33
+call.type$ -- 33
+change.case$ -- 165
 chr.to.int$ -- 0
-cite$ -- 40
-duplicate$ -- 352
-empty$ -- 692
-format.name$ -- 112
-if$ -- 1603
+cite$ -- 47
+duplicate$ -- 400
+empty$ -- 784
+format.name$ -- 126
+if$ -- 1800
 int.to.chr$ -- 0
-int.to.str$ -- 29
-missing$ -- 52
-newline$ -- 97
-num.names$ -- 58
-pop$ -- 216
+int.to.str$ -- 33
+missing$ -- 63
+newline$ -- 109
+num.names$ -- 66
+pop$ -- 248
 preamble$ -- 1
-purify$ -- 114
+purify$ -- 129
 quote$ -- 0
-skip$ -- 204
+skip$ -- 230
 stack$ -- 0
-substring$ -- 326
-swap$ -- 62
-text.length$ -- 2
+substring$ -- 346
+swap$ -- 70
+text.length$ -- 3
 text.prefix$ -- 0
-top$ -- 0
-type$ -- 106
-warning$ -- 11
-while$ -- 76
-width$ -- 31
-write$ -- 248
-(There were 11 warnings)
+top$ -- 1
+type$ -- 117
+warning$ -- 15
+while$ -- 84
+width$ -- 35
+write$ -- 280
+(There were 15 warnings)
