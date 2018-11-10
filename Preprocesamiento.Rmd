@@ -635,9 +635,20 @@ outliersdiagdummy <- A[,A[row(A)==col(A)]==1]
 # Generar nuevo modelo
 arima_total_4_dummy <- sarima(ts_total,1,2,1,0,0,2, S = 12, xreg = outliersdiagdummy , details = FALSE)
 
-auto.arima(ts_total,ic = "bic")
+# seleccionar el mejor modelo con los nuevos datos
+auto.arima(ts_total,ic = "aic", xreg = outliersdiagdummy)
 
-arima_total_4_dummy <- sarima(ts_total,0,2,2,0,0,2, S = 12, xreg = outliersdiagdummy , details = FALSE)
+arima_total_4_dummy <- sarima(ts_total,2,1,1,2,0,0, S = 12, xreg = outliersdiagdummy , details = FALSE)
+
+arima_total_4_dummystats <- stats::arima(x = ts_total, order = c(1, 1, 1), seasonal = list(order = c(2, 0, 0), period = 12), xreg = outliersdiagdummy , include.mean = TRUE, optim.control = list(trace = 1))
+
+#arima_total_4_dummystats <- stats::arima(x = ts_total, order = c(1, 1, 1), seasonal = list(order = c(2, 0, 0), period = 12) , include.mean = TRUE, optim.control = list(trace = 1))
+
+pry_dummy = matrix(1,36,dim(outliersdiagdummy)[2])
+
+forecast_dummy_total <- predict(arima_total_4_dummystats,n.ahead = 36, newxreg = pry_dummy)
+
+#forecast_dummy_total <- predict(arima_total_4_dummystats, n.ahead = 36)
 ```
 
 ```{r gráfica forecast total} 
@@ -653,6 +664,19 @@ graf_pry_total_4
 ggsave("graf_pry_total_4.png")
 ```
 
+```{r gráfica forecast total dummy} 
+# Proyección
+forecast <- forecast_dummy_total
+# data frame
+forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
+#data histórica
+hist_frame <- data.frame(Historico=as.matrix(ts_total), date=as.Date(as.yearmon(time(ts_total))))
+# ggplot
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Población carcelaria total") + theme_minimal() + theme(legend.title=element_blank()) -> graf_pry_total_4
+graf_pry_total_4
+ggsave("graf_pry_total_4_dummy.png")
+```
+
 ```{r gráfica forecast sindicados} 
 # Proyección debe usar versión 1.8
 forecast <- sarima.for(ts_sindi,n.ahead = 36, 0,1,1,0,0,1, S = 12 )
@@ -666,7 +690,6 @@ graf_pry_total_3
 ggsave("graf_pry_sindi_3.png")
 ```
 
-
 ```{r gráfica forecast condenadoss} 
 # Proyección
 forecast <- sarima.for(ts_conde,n.ahead = 36, 1,1,1,0,0,1, S = 12)
@@ -679,7 +702,6 @@ ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -
 graf_pry_conde_1
 ggsave("graf_pry_conde_1.png")
 ```
-
 
 # Método de ratio Correlation.
 
