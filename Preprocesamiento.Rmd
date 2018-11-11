@@ -485,7 +485,6 @@ Se presenta proyección de la población condenada:
 forectast <- sarima.for(ts_con,n.ahead = 36, 1,1,1,0,0,1, S = 12)
 ```
 
-
  Limitaciones de los modelos ARIMA en proyección de poblaciones carcelarias
 
 Aunque es posible seguir analizando modelos ARIMA hasta encontrar el que presente mejores criterios de información, detendremos el analisis en este punto, para centrarnos en las limitaciones del enfoque. 
@@ -494,7 +493,6 @@ Aunque es posible seguir analizando modelos ARIMA hasta encontrar el que present
 2. Los shocks en el sistema no son necesariamente estables en el tiempo. Las variaciones en los parámetros del modelo dependen de variables exógenas, como la cantidad de personas que ingresan al sistema y la dureza de las penas.
 3. Los intervalos de confianza crecen rápidamente pues el modelo se ve afectado fuertemente por cambios en el nivel.
 4. Puesto que el modelo supone unos parámetros fijos no da cuenta de la influencia de variables exógenas en el crecimiento de la población carcelaria.
-
 
 ```{r var, echo = TRUE, include = TRUE}
 #####Modelos VAR
@@ -509,8 +507,11 @@ Aunque es posible seguir analizando modelos ARIMA hasta encontrar el que present
 # if(nchar(system.file(package="astsa"))) citation("astsa")
 ```
 
-
 # Documento tesis
+
+## Estimaciones 
+
+### Población total
 
 ```{r Estimación pob total}
 ### Total 111002
@@ -548,6 +549,8 @@ colnames(Indicadores_df) <- c("ORDEN","AIC","BIC")
 #xtable(arima_total_4$ttable, label = "parámetros_121002", caption = "Parámetros del modelo (1,2,1,0,0,2)")
 ```
 
+### Población sindicada
+
 ```{r Estimación pob sindicada}
 ### sindicado 111001
 png(file = 'Arima_sindi_11101.png', height = 750, width = 500, res = 85)
@@ -581,8 +584,7 @@ xtable(Indicadores_df_sindi)
 xtable(arima_sindi_3$ttable, label = "parámetros_sindi_011001", caption = "Parámetros del modelo (0,1,1,0,0,1)")
 ```
 
-
-## Población condenada 
+### Población condenada 
 
 ```{r Estimación pob condenada}
 ### condenada 111001
@@ -615,41 +617,125 @@ colnames(Indicadores_df_conde) <- c("ORDEN","AIC","BIC")
 xtable(Indicadores_df_conde)
 #xtable(arima_total_4$ttable)
 xtable(arima_conde_1$ttable, label = "parámetros_conde_111001", caption = "Parámetros del modelo (1,1,1,0,0,1)")
-
 ```
 
+## Ajuste de errores
+
+### Población total 
 ```{r errores pob total}
 # Ejecutar mejor modelo
 arima_total_4 <- sarima(ts_total,1,2,1,0,0,2, S = 12, details = FALSE)
 # Estraer residuales
 residuales_arima_total_4 <- arima_total_4$fit$residuals
 # Filtrar contra un umbral
-residuales_out_arima_total_4 <- (abs(residuales_arima_total_4)>2000)*1
+residuales_out_arima_total_4 <- (abs(residuales_arima_total_4)>3000)*1
 
 #Transformar a matriz Dummy
 outliers <- t(as.data.frame(residuales_out_arima_total_4))
 outliersdiag <-t(outliers)%*%as.matrix(outliers)*diag(dim(outliers)[2])
 A <- outliersdiag
-outliersdiagdummy <- A[,A[row(A)==col(A)]==1]
+outliersdiagdummy <- as.matrix(A[,A[row(A)==col(A)]==1])
 
 # Generar nuevo modelo
 arima_total_4_dummy <- sarima(ts_total,1,2,1,0,0,2, S = 12, xreg = outliersdiagdummy , details = FALSE)
 
 # seleccionar el mejor modelo con los nuevos datos
-auto.arima(ts_total,ic = "aic", xreg = outliersdiagdummy)
+arima_select <- auto.arima(ts_total,ic = "aic", xreg = outliersdiagdummy)
 
 arima_total_4_dummy <- sarima(ts_total,2,1,1,2,0,0, S = 12, xreg = outliersdiagdummy , details = FALSE)
 
-arima_total_4_dummystats <- stats::arima(x = ts_total, order = c(1, 1, 1), seasonal = list(order = c(2, 0, 0), period = 12), xreg = outliersdiagdummy , include.mean = TRUE, optim.control = list(trace = 1))
+arima_total_4_dummystats <- stats::arima(x = ts_total, order = c(2, 1, 1), seasonal = list(order = c(2, 0, 0), period = 12), xreg = outliersdiagdummy , include.mean = TRUE, optim.control = list(trace = 1))
 
-#arima_total_4_dummystats <- stats::arima(x = ts_total, order = c(1, 1, 1), seasonal = list(order = c(2, 0, 0), period = 12) , include.mean = TRUE, optim.control = list(trace = 1))
+pry_dummy = matrix(0,36,dim(outliersdiagdummy)[2])
 
-pry_dummy = matrix(1,36,dim(outliersdiagdummy)[2])
-
-forecast_dummy_total <- predict(arima_total_4_dummystats,n.ahead = 36, newxreg = pry_dummy)
-
-#forecast_dummy_total <- predict(arima_total_4_dummystats, n.ahead = 36)
+forecast_dummy_total <- predict(arima_total_4_dummystats, n.ahead = 36, newxreg = pry_dummy)
 ```
+
+### Población sindicada
+```{r errores pob sindicada}
+# Ejecutar mejor modelo
+arima_sindi_3 <- sarima(ts_sindi,0,1,2,0,0,1, S = 12, details = FALSE)
+# Estraer residuales
+residuales_arima_sindi_3 <- arima_sindi_3$fit$residuals
+# Filtrar contra un umbral
+residuales_out_arima_sindi_3 <- (abs(residuales_arima_sindi_3)>3000)*1
+
+#Transformar a matriz Dummy
+outliers <- t(as.data.frame(residuales_out_arima_sindi_3))
+outliersdiag <-t(outliers)%*%as.matrix(outliers)*diag(dim(outliers)[2])
+A <- outliersdiag
+outliersdiagdummy <- as.matrix(A[,A[row(A)==col(A)]==1])
+
+# Generar nuevo modelo
+arima_sindi_3_dummy <- sarima(ts_sindi,0,1,2,0,0,1, S = 12, xreg = outliersdiagdummy , details = FALSE)
+
+# seleccionar el mejor modelo con los nuevos datos
+arima_select <- auto.arima(ts_sindi,ic = "aic", xreg = outliersdiagdummy)
+
+arima_sindi_3_dummy <- sarima(ts_sindi,0,1,2,0,0,1, S = 12, xreg = outliersdiagdummy , details = FALSE)
+
+arima_sindi_3_dummystats <- stats::arima(x = ts_sindi, order = c(0, 1, 2), seasonal = list(order = c(0, 0, 1), period = 12), xreg = outliersdiagdummy , include.mean = TRUE, optim.control = list(trace = 1))
+
+pry_dummy = matrix(0,36,dim(outliersdiagdummy)[2])
+
+forecast_dummy_sindi <- predict(arima_sindi_3_dummystats, n.ahead = 36, newxreg = pry_dummy)
+```
+
+### Población condenada
+```{r errores pob condenada}
+# Ejecutar mejor modelo
+arima_conde_1 <- sarima(ts_sindi,1,1,1,0,0,1, S = 12, details = FALSE)
+# Estraer residuales
+residuales_arima_conde_1 <- arima_conde_1$fit$residuals
+# Filtrar contra un umbral
+residuales_out_arima_conde_1 <- (abs(residuales_arima_conde_1)>3000)*1
+
+#Transformar a matriz Dummy
+outliers <- t(as.data.frame(residuales_out_arima_conde_1))
+outliersdiag <-t(outliers)%*%as.matrix(outliers)*diag(dim(outliers)[2])
+A <- outliersdiag
+outliersdiagdummy <- as.matrix(A[,A[row(A)==col(A)]==1])
+
+# Generar nuevo modelo
+arima_conde_1_dummy <- sarima(ts_conde,1,1,1,0,0,1, S = 12, xreg = outliersdiagdummy , details = FALSE)
+
+# seleccionar el mejor modelo con los nuevos datos
+arima_select <- auto.arima(ts_conde,ic = "aic", xreg = outliersdiagdummy)
+
+arima_conde_1_dummy <- sarima(ts_conde,1,1,1,0,0,1, S = 12, xreg = outliersdiagdummy , details = FALSE)
+
+arima_conde_1_dummystats <- stats::arima(x = ts_conde, order = c(1, 1, 1), seasonal = list(order = c(0, 0, 1), period = 12), xreg = outliersdiagdummy , include.mean = TRUE, optim.control = list(trace = 1))
+
+residuales_arima_conde_11 <- arima_conde_1_dummy$fit$residuals
+# Filtrar contra un umbral
+residuales_out_arima_conde_1 <- (abs(residuales_arima_conde_11)>2000)*1
+
+#Transformar a matriz Dummy
+outliers <- t(as.data.frame(residuales_out_arima_conde_1))
+outliersdiag <-t(outliers)%*%as.matrix(outliers)*diag(dim(outliers)[2])
+A <- outliersdiag
+outliersdiagdummy1 <- as.matrix(A[,A[row(A)==col(A)]==1])
+outliersdiagdummys <- cbind(outliersdiagdummy1,outliersdiagdummy)
+
+# Generar nuevo modelo
+arima_conde_1_dummy1 <- sarima(ts_conde,1,1,1,0,0,1, S = 12, xreg = outliersdiagdummys , details = FALSE)
+
+# seleccionar el mejor modelo con los nuevos datos
+arima_select <- auto.arima(ts_conde,ic = "aic", xreg = outliersdiagdummys)
+
+arima_conde_1_dummy <- sarima(ts_conde,1,1,1,0,0,1, S = 12, xreg = outliersdiagdummys , details = FALSE)
+
+arima_conde_1_dummystats <- stats::arima(x = ts_conde, order = c(1, 1, 1), seasonal = list(order = c(0, 0, 1), period = 12), xreg = outliersdiagdummys , include.mean = TRUE, optim.control = list(trace = 1))
+
+# Pryectar 
+pry_dummy = matrix(0,36,dim(outliersdiagdummys)[2])
+
+forecast_dummy_conde <- predict(arima_conde_1_dummystats, n.ahead = 36, newxreg = pry_dummy)
+```
+
+## Proyecciones
+
+### Población total
 
 ```{r gráfica forecast total} 
 # Proyección
@@ -677,9 +763,10 @@ graf_pry_total_4
 ggsave("graf_pry_total_4_dummy.png")
 ```
 
+### Población sindicada
 ```{r gráfica forecast sindicados} 
 # Proyección debe usar versión 1.8
-forecast <- sarima.for(ts_sindi,n.ahead = 36, 0,1,1,0,0,1, S = 12 )
+forecast <- sarima.for(ts_sindi,n.ahead = 36, 0,1,2,0,0,1, S = 12 )
 # data frame
 forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
 #data histórica
@@ -690,9 +777,36 @@ graf_pry_total_3
 ggsave("graf_pry_sindi_3.png")
 ```
 
+```{r gráfica forecast sindicados dummy} 
+# Proyección debe usar versión 1.8
+forecast <- forecast_dummy_sindi
+# data frame
+forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
+#data histórica
+hist_frame <- data.frame(Historico=as.matrix(ts_sindi), date=as.Date(as.yearmon(time(ts_sindi))))
+# ggplot
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Población carcelaria sindicada") + theme_minimal() + theme(legend.title=element_blank()) -> graf_pry_total_3
+graf_pry_total_3
+ggsave("graf_pry_sindi_3_dummy.png")
+```
+
+### Población condenada
 ```{r gráfica forecast condenadoss} 
 # Proyección
 forecast <- sarima.for(ts_conde,n.ahead = 36, 1,1,1,0,0,1, S = 12)
+# data frame
+forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
+#data histórica
+hist_frame <- data.frame(Historico=as.matrix(ts_conde), date=as.Date(as.yearmon(time(ts_conde))))
+# ggplot
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Población carcelaria condenada") + theme_minimal()+ theme(legend.title=element_blank()) -> graf_pry_conde_1
+graf_pry_conde_1
+ggsave("graf_pry_conde_1.png")
+```
+
+```{r gráfica forecast condenados} 
+# Proyección
+forecast <- forecast_dummy_conde
 # data frame
 forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
 #data histórica
@@ -712,7 +826,6 @@ ggsave("graf_pry_conde_1.png")
 ```
 
 ```{r POB_NAL_EDAD, fig.height=11, fig.width=7}
-
 # pob_nal_dane_edad = read.csv("POB_NAL_DAN_EDAD.csv",header = TRUE,sep = ",",stringsAsFactors=FALSE)
 # 
 # pob_nal_dane_edad %<>% gather(Rango_edad, Poblacion, -Año, -Grupos.de.edad) %>% spread(Grupos.de.edad, Poblacion)
