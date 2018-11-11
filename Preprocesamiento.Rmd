@@ -621,14 +621,23 @@ xtable(arima_conde_1$ttable, label = "parámetros_conde_111001", caption = "Par�
 
 ## Ajuste de errores
 
-### Población total 
+### Población total
+
+```{r ajustar series a dic 2016}
+#se retira enero de 2017
+ts_total <- ts(ts_total[1:312], start = c(1991,1), frequency = 12)
+ts_sindi <- ts(ts_sindi[1:312], start = c(1991,1), frequency = 12)
+ts_conde <- ts(ts_conde[1:312], start = c(1991,1), frequency = 12)
+```
+
+
 ```{r errores pob total}
 # Ejecutar mejor modelo
 arima_total_4 <- sarima(ts_total,1,2,1,0,0,2, S = 12, details = FALSE)
 # Estraer residuales
 residuales_arima_total_4 <- arima_total_4$fit$residuals
 # Filtrar contra un umbral
-residuales_out_arima_total_4 <- (abs(residuales_arima_total_4)>3000)*1
+residuales_out_arima_total_4 <- 1*(abs(residuales_arima_total_4)>(sqrt(arima_sindi_3$fit$sigma2)*3))
 
 #Transformar a matriz Dummy
 outliers <- t(as.data.frame(residuales_out_arima_total_4))
@@ -658,7 +667,7 @@ arima_sindi_3 <- sarima(ts_sindi,0,1,2,0,0,1, S = 12, details = FALSE)
 # Estraer residuales
 residuales_arima_sindi_3 <- arima_sindi_3$fit$residuals
 # Filtrar contra un umbral
-residuales_out_arima_sindi_3 <- (abs(residuales_arima_sindi_3)>3000)*1
+residuales_out_arima_sindi_3 <- 1*(abs(residuales_arima_sindi_3)>(sqrt(arima_sindi_3$fit$sigma2)*3))
 
 #Transformar a matriz Dummy
 outliers <- t(as.data.frame(residuales_out_arima_sindi_3))
@@ -688,7 +697,7 @@ arima_conde_1 <- sarima(ts_sindi,1,1,1,0,0,1, S = 12, details = FALSE)
 # Estraer residuales
 residuales_arima_conde_1 <- arima_conde_1$fit$residuals
 # Filtrar contra un umbral
-residuales_out_arima_conde_1 <- (abs(residuales_arima_conde_1)>3000)*1
+residuales_out_arima_conde_1 <- 1*(abs(residuales_arima_sindi_3)>(sqrt(arima_conde_1$fit$sigma2)*3))
 
 #Transformar a matriz Dummy
 outliers <- t(as.data.frame(residuales_out_arima_conde_1))
@@ -791,7 +800,7 @@ ggsave("graf_pry_sindi_3_dummy.png")
 ```
 
 ### Población condenada
-```{r gráfica forecast condenadoss} 
+```{r gráfica forecast condenados} 
 # Proyección
 forecast <- sarima.for(ts_conde,n.ahead = 36, 1,1,1,0,0,1, S = 12)
 # data frame
@@ -804,7 +813,7 @@ graf_pry_conde_1
 ggsave("graf_pry_conde_1.png")
 ```
 
-```{r gráfica forecast condenados} 
+```{r gráfica forecast condenados dummy} 
 # Proyección
 forecast <- forecast_dummy_conde
 # data frame
