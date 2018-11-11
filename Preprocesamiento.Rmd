@@ -651,7 +651,9 @@ arima_total_4_dummy <- sarima(ts_total,1,2,1,0,0,2, S = 12, xreg = outliersdiagd
 # seleccionar el mejor modelo con los nuevos datos
 arima_select <- auto.arima(ts_total,ic = "aic", xreg = outliersdiagdummy)
 
+png(file = 'Arima_total_211200Dummy.png', height = 750, width = 500, res = 85) 
 arima_total_4_dummy <- sarima(ts_total,2,1,1,2,0,0, S = 12, xreg = outliersdiagdummy , details = FALSE)
+dev.off()
 
 arima_total_4_dummystats <- stats::arima(x = ts_total, order = c(2, 1, 1), seasonal = list(order = c(2, 0, 0), period = 12), xreg = outliersdiagdummy , include.mean = TRUE, optim.control = list(trace = 1))
 
@@ -681,7 +683,9 @@ arima_sindi_3_dummy <- sarima(ts_sindi,0,1,2,0,0,1, S = 12, xreg = outliersdiagd
 # seleccionar el mejor modelo con los nuevos datos
 arima_select <- auto.arima(ts_sindi,ic = "aic", xreg = outliersdiagdummy)
 
+png(file = 'Arima_sindi_012001Dummy.png', height = 750, width = 500, res = 85)
 arima_sindi_3_dummy <- sarima(ts_sindi,0,1,2,0,0,1, S = 12, xreg = outliersdiagdummy , details = FALSE)
+dev.off()
 
 arima_sindi_3_dummystats <- stats::arima(x = ts_sindi, order = c(0, 1, 2), seasonal = list(order = c(0, 0, 1), period = 12), xreg = outliersdiagdummy , include.mean = TRUE, optim.control = list(trace = 1))
 
@@ -732,7 +736,9 @@ arima_conde_1_dummy1 <- sarima(ts_conde,1,1,1,0,0,1, S = 12, xreg = outliersdiag
 # seleccionar el mejor modelo con los nuevos datos
 arima_select <- auto.arima(ts_conde,ic = "aic", xreg = outliersdiagdummys)
 
+png(file = 'Arima_conde_111001Dummy.png', height = 750, width = 500, res = 85)
 arima_conde_1_dummy <- sarima(ts_conde,1,1,1,0,0,1, S = 12, xreg = outliersdiagdummys , details = FALSE)
+dev.off()
 
 arima_conde_1_dummystats <- stats::arima(x = ts_conde, order = c(1, 1, 1), seasonal = list(order = c(0, 0, 1), period = 12), xreg = outliersdiagdummys , include.mean = TRUE, optim.control = list(trace = 1))
 
@@ -754,7 +760,7 @@ forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matri
 #data histórica
 hist_frame <- data.frame(Historico=as.matrix(ts_total), date=as.Date(as.yearmon(time(ts_total))))
 # ggplot
-ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Población carcelaria total") + theme_minimal() + theme(legend.title=element_blank()) -> graf_pry_total_4
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Periodo") + ylab("Población carcelaria total") + theme_minimal() + theme(legend.title=element_blank()) -> graf_pry_total_4
 graf_pry_total_4
 ggsave("graf_pry_total_4.png")
 ```
@@ -767,7 +773,7 @@ forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matri
 #data histórica
 hist_frame <- data.frame(Historico=as.matrix(ts_total), date=as.Date(as.yearmon(time(ts_total))))
 # ggplot
-ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Población carcelaria total") + theme_minimal() + theme(legend.title=element_blank()) -> graf_pry_total_4
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Periodo") + ylab("Población carcelaria total") + theme_minimal() + theme(legend.title=element_blank()) -> graf_pry_total_4
 graf_pry_total_4
 ggsave("graf_pry_total_4_dummy.png")
 ```
@@ -781,7 +787,7 @@ forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matri
 #data histórica
 hist_frame <- data.frame(Historico=as.matrix(ts_sindi), date=as.Date(as.yearmon(time(ts_sindi))))
 # ggplot
-ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Población carcelaria sindicada") + theme_minimal() + theme(legend.title=element_blank()) -> graf_pry_total_3
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Periodo")+ ylab("Población carcelaria sindicada") + theme_minimal() + theme(legend.title=element_blank()) -> graf_pry_total_3
 graf_pry_total_3
 ggsave("graf_pry_sindi_3.png")
 ```
@@ -794,7 +800,7 @@ forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matri
 #data histórica
 hist_frame <- data.frame(Historico=as.matrix(ts_sindi), date=as.Date(as.yearmon(time(ts_sindi))))
 # ggplot
-ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Población carcelaria sindicada") + theme_minimal() + theme(legend.title=element_blank()) -> graf_pry_total_3
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Periodo")+ ylab("Población carcelaria sindicada") + theme_minimal() + theme(legend.title=element_blank()) -> graf_pry_total_3
 graf_pry_total_3
 ggsave("graf_pry_sindi_3_dummy.png")
 ```
@@ -808,7 +814,7 @@ forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matri
 #data histórica
 hist_frame <- data.frame(Historico=as.matrix(ts_conde), date=as.Date(as.yearmon(time(ts_conde))))
 # ggplot
-ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Población carcelaria condenada") + theme_minimal()+ theme(legend.title=element_blank()) -> graf_pry_conde_1
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Periodo")+ ylab("Población carcelaria condenada") + theme_minimal()+ theme(legend.title=element_blank()) -> graf_pry_conde_1
 graf_pry_conde_1
 ggsave("graf_pry_conde_1.png")
 ```
@@ -821,9 +827,9 @@ forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matri
 #data histórica
 hist_frame <- data.frame(Historico=as.matrix(ts_conde), date=as.Date(as.yearmon(time(ts_conde))))
 # ggplot
-ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Población carcelaria condenada") + theme_minimal()+ theme(legend.title=element_blank()) -> graf_pry_conde_1
+ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Periodo")+ ylab("Población carcelaria condenada") + theme_minimal()+ theme(legend.title=element_blank()) -> graf_pry_conde_1
 graf_pry_conde_1
-ggsave("graf_pry_conde_1.png")
+ggsave("graf_pry_conde_1_dummy.png")
 ```
 
 # Método de ratio Correlation.
