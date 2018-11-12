@@ -3,7 +3,11 @@ title: "EstCrimen"
 author: "Sergio Solano"
 date: "26 de marzo de 2018"
 output: pdf_document
+editor_options: 
+  chunk_output_type: console
 ---
+
+# Carga paquetes
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
@@ -23,8 +27,11 @@ library("RColorBrewer") # Gráficas
 library("colorRamps") # Gráficas
 library("wesanderson") # Gráficas
 library("xtable") # tabla
+library("xts")
 
 ```
+
+#Carga de archivos
 
 ```{r Carga xlsx}
 #Estrucutra / Pendiente hacer independiente de la estrucutura
@@ -52,6 +59,7 @@ for (i in 1:n) {
 rm(temporal)
 ```
 
+#Preprocesamiento
 ```{r a data.frame}
 ######## Agregar columna de fecha y poner en formato BD por fecha, edad y sexo
 
@@ -100,12 +108,13 @@ InpecEdad_tidyTotal %>%  group_by(Fecha,SexoEdad,Sexo,Edad) %>% summarise(Poblac
 InpecEdad_tidyTotal %>%  group_by(Fecha) %>% summarise(Poblacion=sum(Poblacion)) -> InpecEdad_tidy2
 ```
 
+
+# Estadística descriptiva
+
 ```{r inpec_edad_genero1, fig.width=7}
 ## Gráfica 
 InpecEdad_tidy %>% ggplot() + geom_line(aes(x=Fecha, y = Poblacion, colour = Edad )) + facet_wrap(~Sexo, ncol = 2, scales = "free") + ylab("Población privada de la libertad") + theme_minimal()-> gginpec_edad_genero1
 gginpec_edad_genero1
-
-
 #ggplotly(gato)
 ```
 
@@ -127,19 +136,20 @@ gginpec_edad_genero2
 InpecEdad_tidy %>% ggplot() + geom_line(aes(x=Edad, y = Poblacion, group = paste(Sexo,Fecha,sep=""), colour = as.character(Fecha))) + theme_minimal() + xlab("Edad")+ ylab("Población privada de la libertad") + facet_wrap(~ Sexo,ncol=1, scales = "free") +theme(legend.title=element_blank(), legend.position="right")  -> gginpec_edad_genero3
 gginpec_edad_genero3 
 ```
+
 ```{r inpec_edad_generoregion2, fig.height=12, fig.width=9}
 InpecEdadRegion_tidy %>% ggplot() + geom_line(aes(x=Edad, y = Poblacion, group = paste(Sexo,Fecha,sep=""), colour = Fecha)) + theme_minimal() + xlab("Edad")+ ylab("Población privada de la libertad") + facet_wrap(Region ~ Sexo,ncol=2, scales = "free") +theme(legend.title=element_blank(), legend.position="right",axis.text.x = element_text(angle = 90, hjust = 1))  -> gginpec_edad_generoregion2
 gginpec_edad_generoregion2 
 ```
 
-
+# Carga datos Dane
 ```{r carga dane pry edad}
 #### PROYECCIONES DE POBLACIÓN DANE
 
-# Descargar archivo de la página del dane
-url <- "https://www.dane.gov.co/files/investigaciones/poblacion/proyepobla06_20/proyecciones-nivel-nacional-departamental-por-sexo-y-edades-simples-hasta-80-anos-y-mas.xls"
+# Descargar archivo de la página del dane ## link desactualizado
+#url <- "https://www.dane.gov.co/files/investigaciones/poblacion/proyepobla06_20/proyecciones-nivel-nacional-departamental-por-sexo-y-edades-simples-hasta-80-anos-y-mas.xls"
 destfile <- "POB_PRY_DANE_EDAD.xls"
-curl_download(url, destfile)
+#curl_download(url, destfile)
 
 # Carga de archivo de proyección por edad
 base_pry_dane_edad <- as.data.frame(read_excel(destfile, range = "E12:IQ28"))
@@ -169,6 +179,8 @@ base_pry_dane_edades %<>%  mutate(Fecha = as.Date(paste(Year,"06","15",sep="/"),
 dane_edades <-base_pry_dane_edades %>% group_by(Fecha,Edad,Sexo) %>% summarise(Poblacion_pry=sum(Poblacion_pry))
 ```
 
+# Preprocesamiento DANE e INPEC
+
 ```{r unir DANE e INPEC}
 InpecEdad_tidy %>% left_join(dane_edades, by = c("Fecha"="Fecha","Edad"="Edad","Sexo"="Sexo")) %>% mutate(tasa_encarcelamiento=Poblacion*100000/Poblacion_pry) -> InpecDane
 ```
@@ -185,7 +197,7 @@ InpecDane %>%  ggplot() + geom_line(aes(x=Edad, y = tasa_encarcelamiento, group 
 gginpec_edad_genero4
 ```
 
-
+# Proyecciones DANE
 ```{r Proyecciones_DANE}
 #dane_edades %>%filter(!(Edad %in% c("0-17"))) %>% ggplot() + geom_line(aes(x=Fecha,y=Poblacion_pry,colour = Edad)) + facet_wrap(~Sexo) + theme_minimal()
 
@@ -201,6 +213,7 @@ ggInpecDanepry
 
 ```{r población real}
 # carga población
+# Datos de población encarcelada en Junio 2017 # Comparar con datos oficiales
 ppl_gen <- read.csv("ppl_gen.csv")
 ppl_gen %<>% filter(mes == 6, anio >= 2005, anio < 2017) 
 ppl_gen %<>% mutate(Date = as.Date(paste(anio,mes,"15", sep = "/"),"%Y/%m/%d")) %>% select(hombres,mujeres,Date)
@@ -208,6 +221,7 @@ colnames(ppl_gen) <- c("Hombres","Mujeres","Fecha")
 ppl_gen %<>% gather(Sexo,Poblacion,-Fecha) 
 ```
 
+#Proyección ajustada
 ```{r factor ajuste}
 DaneInpecPry %>% group_by(Fecha, Sexo) %>% summarise(Pry_ppl_base = sum(PobCar_pry)) %>% left_join(ppl_gen, by = NULL) %>% mutate(Ajuste = Poblacion/Pry_ppl_base) %>% select(Fecha, Sexo, Ajuste) -> Pry
 
@@ -235,6 +249,31 @@ DaneInpecPry %>% group_by(Fecha, Sexo) %>% summarise(Pry_ppl_base = sum(PobCar_p
 
 Pry2$Fecha <- as.character(Pry2$Fecha)
 xtable(Pry2, digits=c(0,0,0,0,0,2), caption = "PplAjuste", label = c("Proyección de la población carcelaria vs real"))
+```
+
+# Interpolación mensual
+
+```{r}
+# Totalizar proyección de hombres y mujeres por edad
+pry_ppl_total <- DaneInpecPryAju %>% select(Sexo,ppl_pry_aju,Fecha, Edad) %>% group_by(Fecha) %>% summarise(Pry_total_ajus = sum(ppl_pry_aju))
+
+# serie base
+ts_base <- data.frame (Fecha = seq(as.Date("2005/6/15"),as.Date("2020/6/15"), by = "month"))
+
+# unir series
+ts_base %>% left_join(pry_ppl_total) -> pry_ppl_total_NA 
+
+# Convertir a ts
+ts_pry_ppl_total <- ts(pry_ppl_total_NA$Pry_total_ajus, start = c(2005, 6), frequency = 12)
+
+# Ajustar serie de tiempo estructural
+# Ajustar un modelo estado espacio en este método permitiróa incluir el efecto estacional.
+sts_pry_ppl_total <- StructTS(ts_pry_ppl_total, type = c("trend"))
+ts_smooth <- tsSmooth(sts_pry_ppl_total)
+
+gato <- cbind(as.data.frame(ts_smooth[,1]),pry_ppl_total_NA)
+
+gato %>% ggplot(aes(x = Fecha)) + geom_point(aes(y =Pry_total_ajus, colour = "Proyección")) + geom_line(aes(y = x, colour = "Suavizado")) + labs(x="Periodo", y = "Población carcelaria total") + theme_minimal() + theme(legend.title=element_blank(), legend.position="right")  
 ```
 
 
