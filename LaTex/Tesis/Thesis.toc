@@ -17,22 +17,22 @@
 \contentsline {section}{\numberline {2.3}Identificaci\'on del modelo}{12}{section.2.3}
 \contentsline {chapter}{\numberline {3}Modelos SARIMA}{14}{chapter.3}
 \contentsline {section}{\numberline {3.1}Identificaci\'on del modelo}{14}{section.3.1}
-\contentsline {section}{\numberline {3.2}Estimaci\'on de par\'ametros}{18}{section.3.2}
-\contentsline {section}{\numberline {3.3}Tratamiento de outliers}{34}{section.3.3}
-\contentsline {section}{\numberline {3.4}Proyecci\'on}{36}{section.3.4}
-\contentsline {section}{\numberline {3.5}Discusi\'on}{38}{section.3.5}
-\contentsline {chapter}{\numberline {4}M\'etodos demogr\'aficos para poblaciones peque\~nas}{40}{chapter.4}
-\contentsline {section}{\numberline {4.1}Censal ratio}{42}{section.4.1}
-\contentsline {section}{\numberline {4.2}Poblaci\'on privada de la libertad por rango de edad Febrero 2016 a Febrero 2018}{44}{section.4.2}
-\contentsline {section}{\numberline {4.3}Proyecciones Censal Ratio}{50}{section.4.3}
-\contentsline {section}{\numberline {4.4}Discusi\'on}{54}{section.4.4}
-\contentsline {chapter}{\numberline {5}Modelos Estado-Espacio}{55}{chapter.5}
-\contentsline {section}{\numberline {5.1}Poblaci\'on privada de la libertad 2013-2016 por delito}{55}{section.5.1}
-\contentsline {section}{\numberline {5.2}Selecci\'on de Software}{59}{section.5.2}
-\contentsline {section}{\numberline {5.3}Identificaci\'on del modelo}{59}{section.5.3}
-\contentsline {section}{\numberline {5.4}Estimaci\'on de par\'ametros}{60}{section.5.4}
-\contentsline {section}{\numberline {5.5}Proyecciones 2017 - 2020}{62}{section.5.5}
-\contentsline {section}{\numberline {5.6}Discusi\'on}{67}{section.5.6}
-\contentsline {chapter}{Conclusiones}{69}{section.5.6}
-\contentsline {chapter}{Trabajo futuro}{70}{section.5.6}
-\contentsline {chapter}{Bibliograf\'{\i }a}{71}{section.5.6}
+\contentsline {section}{\numberline {3.2}Estimaci\'on de par\'ametros}{19}{section.3.2}
+\contentsline {section}{\numberline {3.3}Tratamiento de outliers}{35}{section.3.3}
+\contentsline {section}{\numberline {3.4}Proyecci\'on}{37}{section.3.4}
+\contentsline {section}{\numberline {3.5}Discusi\'on}{39}{section.3.5}
+\contentsline {chapter}{\numberline {4}M\'etodos demogr\'aficos para poblaciones peque\~nas}{41}{chapter.4}
+\contentsline {section}{\numberline {4.1}Censal ratio}{43}{section.4.1}
+\contentsline {section}{\numberline {4.2}Poblaci\'on privada de la libertad por rango de edad Febrero 2016 a Febrero 2018}{45}{section.4.2}
+\contentsline {section}{\numberline {4.3}Proyecciones Censal Ratio}{51}{section.4.3}
+\contentsline {section}{\numberline {4.4}Discusi\'on}{55}{section.4.4}
+\contentsline {chapter}{\numberline {5}Modelos Estado-Espacio}{56}{chapter.5}
+\contentsline {section}{\numberline {5.1}Poblaci\'on privada de la libertad 2013-2016 por delito}{56}{section.5.1}
+\contentsline {section}{\numberline {5.2}Selecci\'on de Software}{60}{section.5.2}
+\contentsline {section}{\numberline {5.3}Identificaci\'on del modelo}{60}{section.5.3}
+\contentsline {section}{\numberline {5.4}Estimaci\'on de par\'ametros}{61}{section.5.4}
+\contentsline {section}{\numberline {5.5}Proyecciones 2017 - 2020}{63}{section.5.5}
+\contentsline {section}{\numberline {5.6}Discusi\'on}{68}{section.5.6}
+\contentsline {chapter}{Conclusiones}{70}{section.5.6}
+\contentsline {chapter}{Trabajo futuro}{71}{section.5.6}
+\contentsline {chapter}{Bibliograf\'{\i }a}{72}{section.5.6}

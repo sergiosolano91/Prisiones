@@ -12,49 +12,49 @@
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Poblaci\'on carcelaria por situaci\'on jur\IeC {\'\i }dica \relax }}{13}{figure.caption.3}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Variaci\'on inter-mensual de poblaci\'on carcelaria}}{15}{figure.caption.4}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Descomposici\'on de la variaci\'on inter-mensual de poblaci\'on carcelaria total}}{15}{figure.caption.5}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Descomposici\'on de la variaci\'on inter-mensual de poblaci\'on carcelaria total}}{16}{figure.caption.5}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Descomposici\'on de la variaci\'on inter-mensual de poblaci\'on carcelaria total}}{16}{figure.caption.6}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Descomposici\'on de la variaci\'on inter-mensual de poblaci\'on carcelaria total}}{16}{figure.caption.7}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Autocorrelaci\'on parcial de la variaci\'on inter-mensual}}{17}{figure.caption.9}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Diagn\'ostico del SARIMA (1,1,1)(0,0,2), poblaci\'on total}}{20}{figure.caption.13}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Diagn\'ostico del SARIMA (1,1,1)(0,0,1), poblaci\'on total}}{21}{figure.caption.14}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Diagn\'ostico del SARIMA (3,2,1)(0,0,2), poblaci\'on total}}{22}{figure.caption.15}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Diagn\'ostico del SARIMA (1,2,1)(0,0,2), poblaci\'on total}}{23}{figure.caption.16}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Diagn\'ostico del SARIMA (1,1,1)(0,0,1), poblaci\'on sindicada}}{25}{figure.caption.19}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Diagn\'ostico del SARIMA (2,1,1)(0,0,1), poblaci\'on sindicada}}{26}{figure.caption.20}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Diagn\'ostico del SARIMA (0,1,2)(0,0,1), poblaci\'on sindicada}}{27}{figure.caption.21}
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Diagn\'ostico del SARIMA (0,1,2)(0,0,0), poblaci\'on sindicada}}{28}{figure.caption.22}
-\contentsline {figure}{\numberline {3.14}{\ignorespaces Diagn\'ostico del SARIMA (1,1,1)(0,0,1), poblaci\'on condenada}}{30}{figure.caption.25}
-\contentsline {figure}{\numberline {3.15}{\ignorespaces Diagn\'ostico del SARIMA (2,1,1)(0,0,1), poblaci\'on condenada}}{31}{figure.caption.26}
-\contentsline {figure}{\numberline {3.16}{\ignorespaces Diagn\'ostico del SARIMA (0,1,2)(0,0,1), poblaci\'on condenada}}{32}{figure.caption.27}
-\contentsline {figure}{\numberline {3.17}{\ignorespaces Diagn\'ostico del SARIMA (0,1,2)(0,0,0), poblaci\'on condenada}}{33}{figure.caption.28}
-\contentsline {figure}{\numberline {3.18}{\ignorespaces Diagn\'ostico del SARIMA (2,1,1)(2,0,0), poblaci\'on total con variables Dummy}}{34}{figure.caption.29}
-\contentsline {figure}{\numberline {3.19}{\ignorespaces Diagn\'ostico del SARIMA (0,1,2)(0,0,1), poblaci\'on sindicada con variables Dummy}}{35}{figure.caption.30}
-\contentsline {figure}{\numberline {3.20}{\ignorespaces Diagn\'ostico del SARIMA (1,1,1)(0,0,1), poblaci\'on condenada con variables Dummy}}{36}{figure.caption.31}
-\contentsline {figure}{\numberline {3.21}{\ignorespaces Proyecci\'on de la poblaci\'on carcelaria total}}{37}{figure.caption.32}
-\contentsline {figure}{\numberline {3.22}{\ignorespaces Proyecci\'on de la poblaci\'on carcelaria sindicada}}{37}{figure.caption.33}
-\contentsline {figure}{\numberline {3.23}{\ignorespaces Proyecci\'on de la poblaci\'on carcelaria condenada}}{38}{figure.caption.34}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Descomposici\'on de la variaci\'on inter-mensual de poblaci\'on carcelaria total}}{17}{figure.caption.7}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Autocorrelaci\'on parcial de la variaci\'on inter-mensual}}{18}{figure.caption.9}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Diagn\'ostico del SARIMA (1,1,1)(0,0,2), poblaci\'on total}}{21}{figure.caption.13}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Diagn\'ostico del SARIMA (1,1,1)(0,0,1), poblaci\'on total}}{22}{figure.caption.14}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Diagn\'ostico del SARIMA (3,2,1)(0,0,2), poblaci\'on total}}{23}{figure.caption.15}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Diagn\'ostico del SARIMA (1,2,1)(0,0,2), poblaci\'on total}}{24}{figure.caption.16}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Diagn\'ostico del SARIMA (1,1,1)(0,0,1), poblaci\'on sindicada}}{26}{figure.caption.19}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Diagn\'ostico del SARIMA (2,1,1)(0,0,1), poblaci\'on sindicada}}{27}{figure.caption.20}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Diagn\'ostico del SARIMA (0,1,2)(0,0,1), poblaci\'on sindicada}}{28}{figure.caption.21}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Diagn\'ostico del SARIMA (0,1,2)(0,0,0), poblaci\'on sindicada}}{29}{figure.caption.22}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Diagn\'ostico del SARIMA (1,1,1)(0,0,1), poblaci\'on condenada}}{31}{figure.caption.25}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Diagn\'ostico del SARIMA (2,1,1)(0,0,1), poblaci\'on condenada}}{32}{figure.caption.26}
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Diagn\'ostico del SARIMA (0,1,2)(0,0,1), poblaci\'on condenada}}{33}{figure.caption.27}
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Diagn\'ostico del SARIMA (0,1,2)(0,0,0), poblaci\'on condenada}}{34}{figure.caption.28}
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Diagn\'ostico del SARIMA (2,1,1)(2,0,0), poblaci\'on total con variables Dummy}}{35}{figure.caption.29}
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Diagn\'ostico del SARIMA (0,1,2)(0,0,1), poblaci\'on sindicada con variables Dummy}}{36}{figure.caption.30}
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Diagn\'ostico del SARIMA (1,1,1)(0,0,1), poblaci\'on condenada con variables Dummy}}{37}{figure.caption.31}
+\contentsline {figure}{\numberline {3.21}{\ignorespaces Proyecci\'on de la poblaci\'on carcelaria total}}{38}{figure.caption.32}
+\contentsline {figure}{\numberline {3.22}{\ignorespaces Proyecci\'on de la poblaci\'on carcelaria sindicada}}{38}{figure.caption.33}
+\contentsline {figure}{\numberline {3.23}{\ignorespaces Proyecci\'on de la poblaci\'on carcelaria condenada}}{39}{figure.caption.34}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Proyecci\'on de la poblaci\'on nacional por rango de edad}}{41}{figure.caption.35}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Pir\'amide poblacional, poblaci\'on privada de la libertad, Junio - 2017}}{44}{figure.caption.36}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Febrero-2018}}{45}{figure.caption.37}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Febrero-2018}}{46}{figure.caption.38}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Febrero-2018}}{47}{figure.caption.39}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Febrero-2018}}{48}{figure.caption.40}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Tasa de espec\IeC {\'\i }fica de encarcelamiento. Junio-2017}}{49}{figure.caption.41}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Tasa espec\IeC {\'\i }fica de encarcelamiento. Junio-2016, Junio -2017}}{50}{figure.caption.42}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Poblaci\'on privada de la libertad. 2005-2020}}{51}{figure.caption.43}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Poblaci\'on privada de la libertad. 2005-2020}}{53}{figure.caption.45}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Poblaci\'on privada de la libertad. 2005-2020}}{53}{figure.caption.46}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Proyecci\'on de la poblaci\'on nacional por rango de edad}}{42}{figure.caption.35}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Pir\'amide poblacional, poblaci\'on privada de la libertad, Junio - 2017}}{45}{figure.caption.36}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Febrero-2018}}{46}{figure.caption.37}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Febrero-2018}}{47}{figure.caption.38}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Febrero-2018}}{48}{figure.caption.39}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Poblaci\'on privada de la libertad. Febrero-2016 a Febrero-2018}}{49}{figure.caption.40}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Tasa de espec\IeC {\'\i }fica de encarcelamiento. Junio-2017}}{50}{figure.caption.41}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Tasa espec\IeC {\'\i }fica de encarcelamiento. Junio-2016, Junio -2017}}{51}{figure.caption.42}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Poblaci\'on privada de la libertad. 2005-2020}}{52}{figure.caption.43}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Poblaci\'on privada de la libertad. 2005-2020}}{54}{figure.caption.45}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Poblaci\'on privada de la libertad. 2005-2020}}{54}{figure.caption.46}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Poblaci\'on carcelaria promedio por delito y g\'enero. Julio 2013-Diciembre 2016\relax }}{56}{figure.caption.47}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Evoluci\'on de la poblaci\'on carcelaria masculina, Julio 2013-Diciembre 2016\relax }}{57}{figure.caption.48}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Evoluci\'on de la poblaci\'on carcelaria femenina, Julio 2013-Diciembre 2016\relax }}{58}{figure.caption.49}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Poblaci\'on sindicada y condenada por hurto, hombres\relax }}{61}{figure.caption.51}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Poblaci\'on carcelaria promedio por delito y g\'enero. Octubre 2013-Diciembre 2016\relax }}{61}{figure.caption.52}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Poblaci\'on carcelaria promedio por delito y g\'enero. Octubre 2013-Diciembre 2016\relax }}{62}{figure.caption.53}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Proyecci\'on de poblaci\'on carcelaria o por delito, hombres 2017 - 2020\relax }}{66}{figure.caption.57}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Proyecci\'on de poblaci\'on carcelaria o por delito, mujeres 2017 - 2020\relax }}{67}{figure.caption.58}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Poblaci\'on carcelaria promedio por delito y g\'enero. Julio 2013-Diciembre 2016\relax }}{57}{figure.caption.47}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Evoluci\'on de la poblaci\'on carcelaria masculina, Julio 2013-Diciembre 2016\relax }}{58}{figure.caption.48}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Evoluci\'on de la poblaci\'on carcelaria femenina, Julio 2013-Diciembre 2016\relax }}{59}{figure.caption.49}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Poblaci\'on sindicada y condenada por hurto, hombres\relax }}{62}{figure.caption.51}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Poblaci\'on carcelaria promedio por delito y g\'enero. Octubre 2013-Diciembre 2016\relax }}{62}{figure.caption.52}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Poblaci\'on carcelaria promedio por delito y g\'enero. Octubre 2013-Diciembre 2016\relax }}{63}{figure.caption.53}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Proyecci\'on de poblaci\'on carcelaria o por delito, hombres 2017 - 2020\relax }}{67}{figure.caption.57}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Proyecci\'on de poblaci\'on carcelaria o por delito, mujeres 2017 - 2020\relax }}{68}{figure.caption.58}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
