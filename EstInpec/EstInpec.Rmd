@@ -253,7 +253,7 @@ xtable(Pry2, digits=c(0,0,0,0,0,2), caption = "PplAjuste", label = c("Proyecció
 
 # Interpolación mensual
 
-```{r}
+```{r proyección suavizado}
 # Totalizar proyección de hombres y mujeres por edad
 pry_ppl_total <- DaneInpecPryAju %>% select(Sexo,ppl_pry_aju,Fecha, Edad) %>% group_by(Fecha) %>% summarise(Pry_total_ajus = sum(ppl_pry_aju))
 
@@ -271,9 +271,21 @@ ts_pry_ppl_total <- ts(pry_ppl_total_NA$Pry_total_ajus, start = c(2005, 6), freq
 sts_pry_ppl_total <- StructTS(ts_pry_ppl_total, type = c("trend"))
 ts_smooth <- tsSmooth(sts_pry_ppl_total)
 
-gato <- cbind(as.data.frame(ts_smooth[,1]),pry_ppl_total_NA)
+pry_ppl_total_suavizado <- cbind(as.data.frame(ts_smooth[,1]),pry_ppl_total_NA)
 
-gato %>% ggplot(aes(x = Fecha)) + geom_point(aes(y =Pry_total_ajus, colour = "Proyección")) + geom_line(aes(y = x, colour = "Suavizado")) + labs(x="Periodo", y = "Población carcelaria total") + theme_minimal() + theme(legend.title=element_blank(), legend.position="right")  
+pry_ppl_total_suavizado %>% ggplot(aes(x = Fecha)) + geom_point(aes(y =Pry_total_ajus, colour = "Proyección")) + geom_line(aes(y = x, colour = "Suavizado")) + labs(x="Periodo", y = "Población carcelaria total") + theme_minimal() + theme(legend.title=element_blank(), legend.position="right") ->  ggInpecprySuavizado
+```
+
+```{r ggInpecprySuavizado}
+ggInpecprySuavizado
+```
+
+```{r exportar}
+pry_ppl_total_suavizado %>% filter(Fecha > as.Date("01/01/2017","%m/%d/%Y")) %>% select(Fecha,x) -> pry_ppl_total_suavizado_resumen
+
+colnames(pry_ppl_total_suavizado_resumen) <- c("Fecha","pry_ppl_smooth_censal")
+
+write.csv(pry_ppl_total_suavizado_resumen, "pry_ppl_smooth_censal.csv", row.names = FALSE)
 ```
 
 
