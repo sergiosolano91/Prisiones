@@ -1,0 +1,32 @@
+---
+title: "EstCrimen"
+author: "Sergio Solano"
+date: "noviembre 13 de 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
+rm(list = ls())
+library("lubridate") # Fechas
+library("readxl") # Importar excel
+library("magrittr") # pipes
+library("purrr") # Listas
+library("dplyr") # Data handling
+library("tidyr") # Data handling
+library("knitr") # Imprimir pdf
+library("ggplot2") # Graficas
+```
+
+```{r Carga csv}
+pry_ppl_smooth_censal <- read.csv("pry_ppl_smooth_censal.csv")
+pry_ppl_total_ss <- read.csv("pry_ppl_total_ss.csv")
+ppl_real_2018 <- read.csv("ppl_real.csv")
+ppl_real <- read.csv("ppl_gen.csv")
+```
+
+
+
+
+
+

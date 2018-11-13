@@ -44,11 +44,11 @@ Para mantener un único ambiente de desarrollo, nos enfocamos en los paquetes des
 
 Holmes \& Ward \& Willis (2018) definen los modelos MARSS, Modelos auto-regresivos multivariados, de forma general como: 
 
-\begin{equation}
+\begin{equation}\label{estado}
 \bm{x_{t}  = B_{t}x_{t-1} +u_t +C_tc_t +G_tw_t} \quad donde \quad \bm{w_t} \sim MVN(0,\bm{Q_t})
 \end{equation}
 
-\begin{equation}
+\begin{equation}\label{observado}
 \bm{y_{t} = Z_{t}x_{t} +a_{t} +D_{t}d_{t} +H_{t}v_{t}} \quad donde \quad \bm{v_t} \sim MVN(0,\bm{R_t})
 \end{equation}
 
@@ -56,26 +56,27 @@ Holmes \& Ward \& Willis (2018) definen los modelos MARSS, Modelos auto-regresiv
 x_1 \sim MVN(\pi,\Lambda)\, o \, x_0 \sim MVN(\pi,\Lambda)
 \end{equation}
 
-$\bm{x}$ es una matriz de $m \times T$, donde cada $x_t$ es una realización de la variable aleatoria $X_t$ en el instante $t$.
+$\bm{x}$ es una matriz de $m \times T$, donde cada $x_t$ es una realización de la variable aleatoria $X_t$ en el instante $t$. $m$ se considera la cantidad de variables latentes. 
 
-$\bm{w}$ es el error de proceso y tiene distribución normal multivariada (MVN) con media cero y matriz de varianzas covarianzas $\bm{Q}$
+$\bm{w}$ es el error de proceso y es un vector aleatorio de dimensión $m \times T$ con distribución normal multivariada (MVN) de media cero y matriz de varianzas y covarianzas $\bm{Q}$.
 
-$\bm{y}$ es una matriz de $n \times T$, con T observaciones. Algunas observaciones pueden ser faltantes. 
+$\bm{y}$ es una matriz de $n \times T$, con T observaciones. Algunas observaciones pueden ser faltantes. $n$ se considera la cantidad de variables observadas.
 
 $\bm{v}$ es el error de observación de tamaño $n \times T$, con media cero y varianza $\bm{R}$
 
 $\bm{B_t}$ y $\bm{Z_t}$ son parámetros y son de dimensión $m \times m$ y $n \times m$. 
 
-$\bm{u_t}$ y $\bm{a_t}$ son parámetros de vectores de dimensión $m \times 1$ y $n \times 1$
+$\bm{u_t}$ y $\bm{a_t}$ son parámetros de vectores de dimensión $m \times T$ y $n \times T$.
 
 $\bm{Q_t}$ y $\bm{R_t}$ son matrices de varianzas y covarianzas de tamaño  $m \times m$ y $n \times n$.
 
 $\pi$ y $\Lambda$ son parámetros o son fijados con antelación.
 
-$\bm{C_t}$ y $\bm{D_t}$ son matrices de varianzas y covarianzas de tamaño  $m \times p$ y $n \times q$.
+$\bm{C_t}$ y $\bm{D_t}$ son matrices de parámetros de tamaño  $m \times p$ y $n \times q$.
 
-$\bm{c}$ y $\bm{d}$ son inputs, variables exógenas, sin datos faltantes.
-
+$\bm{c}$ y $\bm{d}$ son inputs, $p$ y $q$ variables exógenas, sin datos faltantes, de dimensión $p \times T$
+ y $ q \times T$.
+ 
 $\bm{G_t}$ y $\bm{H_t}$ son inputs, matrices de tamaño   $m \times g$ y $n \times h$.
 
 En este capítulo se analizará un modelo bivariado, donde $\bm{x_t}$ corresponde a la población sindicada y condenada. Se restringe el modelo con las siguientes consideraciones: 
@@ -87,35 +88,47 @@ En este capítulo se analizará un modelo bivariado, donde $\bm{x_t}$ corresponde 
 \end{itemize}
 
 \begin{equation}
-\begin{bmatrix} X1_t  \\ X2_t \end{bmatrix} =
+\begin{bmatrix} X_{1,t}  \\ X_{2,t} \end{bmatrix} =
 \begin{bmatrix}
 b1 & 0 \\
 b2 & b4 &
 \end{bmatrix} 
-\begin{bmatrix} X1_{t-1}  \\ X2_{t-1} \end{bmatrix} +
-\begin{bmatrix} U1_t  \\ 0 \end{bmatrix} +
-\begin{bmatrix} W1_t  \\ W2_t \end{bmatrix}, \begin{bmatrix} W1_t  \\ W2_t \end{bmatrix} \sim MVN(\begin{bmatrix} 0  \\ 0 \end{bmatrix},  \begin{bmatrix} q_{11}  &  q_{12} \\ q_{12} & 1_{22}\end{bmatrix})
+\begin{bmatrix} X_{1,t-1}  \\ X_{2,t-1} \end{bmatrix} +
+\begin{bmatrix} U_{1}  \\ 0 \end{bmatrix} +
+\begin{bmatrix} w_{1,t}  \\ w_{2,t} \end{bmatrix}, \begin{bmatrix} w_{1,t}  \\ w_{2,t} \end{bmatrix} \sim MVN(\begin{bmatrix} 0  \\ 0 \end{bmatrix},  \begin{bmatrix} Q_{11}  &  Q_{12} \\ Q_{12} & Q_{22}\end{bmatrix})
 \end{equation}
 
 \begin{equation}
-\begin{bmatrix} Y1_t  \\ Y2_t \end{bmatrix} =
+\begin{bmatrix} Y_{1,t} \\ Y_{2,t} \end{bmatrix} =
 \begin{bmatrix}
 1 & 0 \\ 0 & 1
 \end{bmatrix} 
-\begin{bmatrix} X1_{t-1}  \\ X2_{t-1} \end{bmatrix} +
-\begin{bmatrix} v1_t  \\ v2_t \end{bmatrix} , \begin{bmatrix} v1_t  \\ v2_t \end{bmatrix} \sim MVN(\begin{bmatrix} 0  \\ 0 \end{bmatrix},  \begin{bmatrix} R11 &  R12 \\ R12 & R22 \end{bmatrix})
+\begin{bmatrix} X_{1,t-1}  \\ X_{2,t-1} \end{bmatrix} +
+\begin{bmatrix} v_{1,t}  \\ v_{2,t} \end{bmatrix} , \begin{bmatrix} v_{1,t}  \\ v_{2,t} \end{bmatrix} \sim MVN(\begin{bmatrix} 0  \\ 0 \end{bmatrix},  \begin{bmatrix} R_{11} &  R_{12} \\ R_{12} & R_{22} \end{bmatrix})
 \label{equ:observado}
 \end{equation}
 
 Donde 
 
-$X1_t$ = Población sindicada en el periodo t
+$X_{1,t}$ = Población sindicada en el periodo t
 
-$X2_t$ = Población condenada en el periodo t
+$X_{2,t}$ = Población condenada en el periodo t
 
-$U_1t$ = Variación mensual en la población sindicada no asociada a la población sindicada en el periodo anterior. 
+$b_{1}$ = Efecto en la población sindicada en el periodo $t-1$ en la población sindicada en el periodo $t$
 
-$U_1t$ = Variación mensual en la población condenada no asociada a la población sindicada, ni condenada en el periodo anterior.
+$b_{2}$ = Efecto en la población sindicada en el periodo $t-1$ en la población condenada en el periodo $t$
+
+$b_{4}$ = Efecto en la población condenada en el periodo $t-1$ en la población condenada en el periodo $t$.
+
+$b_{4}$ = Población condenada en el periodo t
+
+$U_{1}$ = Variación constante mensual en la población sindicada no asociada a la población sindicada en el periodo anterior.
+
+$Y_{1,t}$ = Población sindicada observada en el periodo t
+
+$Y_{2_t}$ = Población condenada observada en el periodo t
+
+$w_1$, $w_2$, $v_1$, $v_2$,$\bm{Q}$, $\bm{R}$  mantienen el mismo sentido que en las ecuaciones \ref{estado} y \ref{observado}
 
 Modelar el sistema a partir de este modelo teórico, nos permite estimar sus parámetros usando el paquete MARSS. Tratar la serie como un modelo estado-espacio también permite tratar los faltantes con facilidad.
 
@@ -125,7 +138,7 @@ En el ejercicio con datos reales se ajustó un segundo modelo con una variable Du
 
 La estimación se realiza en series bivariadas por delito, género. Se presenta en detalle procedimiento para la serie de hurto en hombres, en series adicionales se presentan resultados de la proyección.
 
-Una variable Dummy correspondiente a 2014 se agregó al modelo. En este periodo se detuve el crecimiento de la población carcelaria gracias a la entrada en vigor de la ley 1709 de 2014. Dos mediciones del impacto de la ley 1709 son realizadas por el INPEC en 2014, señalando el cambio observado en la tendencia de la población carcelaria \cite{OficinaAsesoradePlaneacion2014} \cite{Asesora2014}. Las gráficas \ref{fig:delitoshombres} y \ref{fig:delitosmujeres} muestran que en 2015 y 2016 la población carcelaria regresa a su comportamiento usual.
+Una variable Dummy correspondiente a 2014 se agregó al modelo. En este periodo se detuvo el crecimiento de la población carcelaria gracias a la entrada en vigor de la ley 1709 de 2014. Dos mediciones del impacto de la ley 1709 son realizadas por el INPEC en 2014, señalando el cambio observado en la tendencia de la población carcelaria \cite{OficinaAsesoradePlaneacion2014} \cite{Asesora2014}. Las gráficas \ref{fig:delitoshombres} y \ref{fig:delitosmujeres} muestran que en 2015 y 2016 la población carcelaria regresa a su comportamiento usual.
 
 % latex table generated in R 3.4.4 by xtable 1.8-2 package
 % Mon Jun 11 23:12:33 2018

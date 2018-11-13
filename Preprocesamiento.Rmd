@@ -772,6 +772,7 @@ forecast <- forecast_dummy_total
 forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
 #data histórica
 hist_frame <- data.frame(Historico=as.matrix(ts_total), date=as.Date(as.yearmon(time(ts_total))))
+pry_frame_total <- forecast_frame
 # ggplot
 ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Periodo") + ylab("Población carcelaria total") + theme_minimal() + theme(legend.title=element_blank()) -> graf_pry_total_4
 graf_pry_total_4
@@ -786,6 +787,7 @@ forecast <- sarima.for(ts_sindi,n.ahead = 36, 0,1,2,0,0,1, S = 12 )
 forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
 #data histórica
 hist_frame <- data.frame(Historico=as.matrix(ts_sindi), date=as.Date(as.yearmon(time(ts_sindi))))
+pry_frame_total <- hist_frame
 # ggplot
 ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Periodo")+ ylab("Población carcelaria sindicada") + theme_minimal() + theme(legend.title=element_blank()) -> graf_pry_total_3
 graf_pry_total_3
@@ -799,6 +801,7 @@ forecast <- forecast_dummy_sindi
 forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
 #data histórica
 hist_frame <- data.frame(Historico=as.matrix(ts_sindi), date=as.Date(as.yearmon(time(ts_sindi))))
+pry_frame_sindi <-  forecast_frame
 # ggplot
 ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Periodo")+ ylab("Población carcelaria sindicada") + theme_minimal() + theme(legend.title=element_blank()) -> graf_pry_total_3
 graf_pry_total_3
@@ -826,6 +829,7 @@ forecast <- forecast_dummy_conde
 forecast_frame <- data.frame(Proyección=as.matrix(forecast$pred),Error=as.matrix(forecast$se), date=as.Date(as.yearmon(time(forecast$pred)))) %>% mutate(lim_sup = Proyección+Error, lim_inf = Proyección - Error)
 #data histórica
 hist_frame <- data.frame(Historico=as.matrix(ts_conde), date=as.Date(as.yearmon(time(ts_conde))))
+pry_frame_conde <-forecast_frame
 # ggplot
 ggplot() + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección - 2*Error, ymax = Proyección+2*Error, fill = "2 sd"  ), fill = "grey90")  + geom_ribbon(data = forecast_frame, aes(x = date, ymin = Proyección -Error, ymax = Proyección+Error,fill = "1 sd"  ), fill = "grey80") + geom_line(data = forecast_frame, aes(x = date, y = Proyección, colour = "Proyección")) + geom_line(data = hist_frame, aes(x = date, y = Historico, colour = "Histórico")) + xlab("Periodo")+ ylab("Población carcelaria condenada") + theme_minimal()+ theme(legend.title=element_blank()) -> graf_pry_conde_1
 graf_pry_conde_1
@@ -927,6 +931,13 @@ ggsave("graf_pry_conde_1_dummy.png")
 # summary(reg)
 # 
 # step(reg,direction="backward")
+```
+
+# Salvar proyecciones
+```{r}
+pry_frame_conde %>% left_join(pry_frame_sindi, by = c("date"="date")) %>% mutate(pry_suma = Proyección.x + Proyección.y) %>% dplyr::select(date,pry_suma) -> pry_ppl_arima
+
+write.csv(pry_ppl_arima,"pry_ppl_arima.csv",row.names = FALSE)
 ```
 
 

@@ -1,0 +1,446 @@
+---
+title: "EstCrimen"
+author: "Sergio Solano"
+date: "26 de marzo de 2018"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
+rm(list = ls())
+library("lubridate") # Fechas
+library("readxl") # Importar excel
+library("magrittr") # pipes
+library("purrr") # Listas
+library("dplyr") # Data handling
+library("tidyr") # Data handling
+library("knitr") # Imprimir pdf
+library("ggplot2") # Graficas
+library("stringr") # Texto
+library("curl") #Descargar desde internet
+library("arules") # Crear intervalos
+library("RColorBrewer") # Gráficas
+library("colorRamps") # Gráficas
+library("wesanderson") # Gráficas
+library("zoo")
+library("xtable")
+library("MARSS")
+```
+
+```{r Carga xlsx}
+#Estrucutra / Pendiente hacer independiente de la estrucutura
+estructura <- c('Delito','Hombres sindicados','Hombres condenados','Mujeres sindicadas','Mujeres condenadas','Total')
+
+tipo <- c("text","numeric","numeric","numeric","numeric","numeric")
+
+# Listar archivos 
+archivos <- list.files(pattern="xls")
+archivos <- archivos[!grepl("DANE",archivos)]
+n = length(archivos)
+
+#Crear lista que se va a llenar con los archivos
+Inpecxlsxperfil = list()
+
+#Leer archivos
+for (i in 1:n) {
+  hojas <- excel_sheets(archivos[i])
+  hoja <- hojas[grepl("DELICTIVO",hojas)]
+  print(archivos[i])
+  temporal <- as.data.frame(read_excel(archivos[i], sheet = hoja, range = "A9:F23", col_types = tipo, col_names = estructura))
+  largo <- dim(temporal)[1]
+  temporal$documento <- rep(archivos[i],largo)
+  #print(paste(class(temporal[,2]),archivos[i],sep=" "))
+  Inpecxlsxperfil[[i]] <- list(temporal)
+}
+
+rm(temporal)
+Inpecxlsxperfil %>%  map_df(bind_rows) -> base_inpecxlsxperfiles
+
+# Crear mes y año
+months <- data.frame(month_text = c ("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"),month_number = seq(1:12))
+year <- c('2013','2014','2015','2016','2017','2018')
+
+#### Separar nombre del archivo en texto
+lista <- str_split(unique(base_inpecxlsxperfiles$documento)," ")
+#### Indexar por documento
+names(lista) <- as.vector(unique(base_inpecxlsxperfiles$documento))
+
+#### convertir a data.frame
+doc_date <- data.frame(documento = rep(names(lista), sapply(lista, length)),
+                 palabra = unlist(lista))
+
+#### Eliminar extensión del archivo
+doc_date$palabra <-  gsub(".xlsx","",doc_date$palabra)
+doc_date$palabra <-  gsub(".xls","",doc_date$palabra)
+
+#### Crear vectores de mes y año
+doc_date %>% dplyr::filter(palabra %in% months[,1]) -> doc_month
+doc_date %>% dplyr::filter (palabra %in% year) -> doc_year
+colnames(doc_month) <- c("documento","month_text")
+colnames(doc_year) <- c("documento","year")
+
+#### Concatenar base de Inpec con mes y año para crear fecha
+base_inpecxlsxperfiles %>% left_join(doc_month,by = NULL) %>% left_join(months,by=NULL) %>% left_join(doc_year)%>% mutate(fecha = as.Date(paste(year,month_number,15, sep ="/"),"%Y/%m/%d")) -> Inpecxlsxperfiles_date
+
+Inpecxlsxperfiles_date$Delito <- tolower(Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('ó','o',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('á','a',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('í','i',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('ú','u',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub(',','',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('otrosa','otros',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- trimws(Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('fabricacion  trafico','fabricacion trafico',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('lesiones personales','otros delitos',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('rebelion','otros delitos',Inpecxlsxperfiles_date$Delito)
+Inpecxlsxperfiles_date$Delito <- gsub('violencia intrafamiliar','otros delitos',Inpecxlsxperfiles_date$Delito)
+```
+
+```{r simulacion}
+# sim.hurtos <- MARSSsimulate(model.hurtos, tSteps = 60, nsim = 1, silent = TRUE,miss.loc = NULL)
+# f.table.hurtos <- ftable(sim.hurtos$sim.states)
+# sim.hurtos.df <- as.data.frame(sim.hurtos$sim.states)
+# plot(t(sim.hurtos.df)[,1])
+# plot(t(sim.hurtos.df)[,2])
+```
+
+```{r delitosgenero, fig.width=8, fig.height=10}
+Inpecxlsxperfiles_date %>% filter(year < 2017) %>%  dplyr::select( -month_text, -month_number, -year,-documento) %>% gather(Poblacion, Valor, -Delito,-fecha) %>% group_by(Poblacion, Delito, fecha)%>%  summarise(Valor = sum(Valor)) %>% filter(!(Poblacion=="Total"))-> estructura
+
+estructura <- as.data.frame(estructura)
+
+pob <- data.frame(str_split_fixed(estructura$Poblacion,' ',2))
+colnames(pob) <- c("Género","Estado")
+estructuras <- cbind(estructura,pob)
+estructuras$Estado <- gsub("sindicadas","sindicados",estructuras$Estado)
+estructuras$Estado <- gsub("condenadas","condenados",estructuras$Estado)
+```
+
+
+```{r delito, fig.width=7, fig.height=6}
+estructuras %>% group_by(Delito, Género) %>% summarise(Media = mean(Valor)) %>% arrange(- Media)-> estructuras_resumen
+
+estructuras_resumen   %>%  ggplot()+geom_bar(aes(x=reorder(str_wrap(Delito,40),Media),y=if_else(Género=="Hombres",-Media,Media), fill = Género),stat = "identity") + geom_text(aes(x=reorder(str_wrap(Delito,40),Media), y=if_else(Género=="Hombres",-Media-2000,Media+2000), label = round(Media,0)))+ theme_minimal() + coord_flip() + labs(x = "Delito", y = "Población promedio") + scale_y_continuous(labels = abs) + scale_fill_manual(values = wes_palette("Moonrise3")) + ylim(-20000,10000) ->delitoperfil
+delitoperfil
+```
+
+
+```{r delitosmujeres, fig.width=8, fig.height=11}
+estructuras %>% filter(Género == "Mujeres") %>%  filter(!(Delito == "NA")) %>%  ggplot() + geom_line(aes(x=fecha,y=Valor,colour = Estado)) + facet_wrap(~str_wrap(Delito,25), ncol = 4, scales = "free_y") + theme(legend.position = "top") + labs(colour = " ", y = "Población privada de la libertad - Mujeres") + ylim(c(0,NA)) + theme_minimal()  + theme(legend.position = "top") -> delitosmujeres
+delitosmujeres
+```
+
+```{r delitoshombres, fig.width=8, fig.height=11}
+estructuras %>% filter(Género == "Hombres") %>%  filter(!(Delito == "NA")) %>%  ggplot() + geom_line(aes(x=fecha,y=Valor,colour = Estado)) + facet_wrap(~str_wrap(Delito,25), ncol = 4, scales = "free_y") + labs(colour = " ", y = "Población privada de la libertad - Hombres") + ylim(c(0,NA)) + theme_minimal()+ theme(legend.position = "top")  -> delitoshombres
+delitoshombres
+```
+
+```{r estrucutura spread}
+estructuras %>% spread(fecha,Valor) -> estructuras_spread
+
+octubre2015 <- data.frame("2015-10-15" = rep(NA, dim(estructuras_spread)[1]))
+
+estructuras_spread2 <- cbind(estructuras_spread[,1:31], octubre2015, estructuras_spread[,32:dim(estructuras_spread)[2]])
+```
+
+
+```{r hurto}
+Inpecxlsxperfiles_date %>% filter(year < 2017) %>% dplyr::filter(Delito=="hurto") %>% dplyr::select(`Hombres sindicados`,fecha)  -> df_test
+
+Inpecxlsxperfiles_date %>% filter(year < 2017) %>% dplyr::filter(Delito=="hurto") %>% dplyr::select(`Hombres condenados`,fecha)  -> df_test2
+
+Inpecxlsxperfiles_date %>% filter(year < 2017) %>% dplyr::filter(Delito=="hurto")  %>%  ggplot() + geom_line(aes(x=fecha, y = `Hombres sindicados`, colour = 'sindicados')) + geom_line(aes(x=fecha, y = `Hombres condenados`, colour = 'condenados'))
+
+seqdate <- data.frame(fecha = seq(min(df_test$fecha), by = "month", max(df_test$fecha)))
+
+seqdate %>% left_join(df_test) %>% spread(fecha, `Hombres sindicados`)-> sindicados_hurto
+seqdate %>% left_join(df_test2) %>% spread(fecha, `Hombres condenados`)-> condenados_hurto
+
+hurto <- as.matrix(rbind(sindicados_hurto,condenados_hurto))
+rownames(hurto) <- c("sindicados","condenados")
+```
+
+```{r estado espacio hurto dummy}
+B1 = matrix(list("b1","b2", 0, "b4"), 2, 2) 
+U1 = matrix(list("u1","u2"),2, 1) 
+Q1 = matrix(c("q11", "q12", "q12" , "q22"), 2, 2) 
+Z1 = matrix(list(1, 0, 0, 1), 2, 2) 
+A1 = matrix(list(0, 0), 2, 1) 
+R1 = matrix(list("r11", "r12","r12" , "r22"), 2, 2) 
+pi1 = matrix(list(hurto[1,1],hurto[2,1]), 2, 1) 
+V1 = diag(0, 2)
+
+model.list = list(B = B1, U = U1, Q = Q1, Z = Z1, A = A1, R = R1, x0 = pi1, V0 = V1)
+#, method = "BFGS"
+model.hurtos1 <- MARSS(hurto, model = model.list, control = list( maxit=10000))
+model.hurtos1$par
+plot.states <- plot(model.hurtos1, plot.type = "states")
+plot.model.qqplot <-  plot(model.hurtos1, plot.type = "model.residuals.qqplot")
+plot.model.residuals <-  plot(model.hurtos1, plot.type = "model.residuals")
+
+plot.states + theme_minimal() + labs(x="Periodo", y = "Estado")
+plot.model.qqplot + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Quantiles teóricos")
+plot.model.residuals + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Observación")
+```
+
+```{r MARSS pry}
+B_est <- model.hurtos1$par$B
+B_est_mat <- matrix(c(B_est[1,1],B_est[2,1],0,B_est[3,1]),2,2)
+
+U_est <- model.hurtos1$par$U
+Q_est <- model.hurtos1$par$Q
+x_ult <- hurto[,ncol(hurto)]
+
+est <- rbind(B_est,U_est,Q_est)
+xtable(est)
+
+pry <- data.frame(V1 = c(0,0))
+
+for (i in 1:36) {
+pry[,i] <- B_est_mat %*% x_ult+U_est
+x_ult <- pry[,i]
+}
+gato <- data.frame(t(pry))
+plot(gato[,1])
+plot(gato[,2])
+gato <- round(gato,0)
+fecha_pry = seq(as.Date("15/01/2017", "%d/%m/%Y"), by = "month", length.out = 36)
+Pry_hurto <- cbind(fecha_pry,gato)
+
+colnames(Pry_hurto) <- c("Periodo","Sindicados","Condenados")
+Pry_hurto$Periodo <- as.character(Pry_hurto$Periodo)
+xtable(Pry_hurto)
+```
+
+
+### DUMMY 2014
+
+
+
+```{r estado espacio hurto}
+
+dummy <- c(rep(0,7),rep(1,12),rep(0,23))
+
+#B1 = matrix(list("b1","b2", 0, "b4"), 2, 2) 
+B1 = matrix(list("b1","b2", 0, "b4"), 2, 2) 
+U1 = matrix(list("u1",0),2, 1) 
+Q1 = matrix(c("q11", "q12", "q12" , "q22"), 2, 2) 
+Z1 = matrix(list(1, 0, 0, 1), 2, 2) 
+A1 = matrix(list(0, 0), 2, 1) 
+R1 = matrix(list("R11", "R12", "R12" ,"R22"), 2, 2) 
+c1 = matrix(dummy, 1, 42) 
+C1 = "unconstrained"
+pi1 = matrix(list(hurto[1,1],hurto[2,1]), 2, 1) 
+V1 = diag(0, 2)
+
+model.list = list(B = B1, U = U1, Q = Q1, Z = Z1, A = A1, R = R1, x0 = pi1, V0 = V1, C = C1, c = c1)
+
+model.hurtos <- MARSS(hurto, model = model.list, control = list( maxit=5000))
+model.hurtos$par
+plot.states <- plot(model.hurtos, plot.type = "states")
+plot.model.qqplot <-  plot(model.hurtos, plot.type = "model.residuals.qqplot")
+plot.model.residuals <-  plot(model.hurtos, plot.type = "model.residuals")
+
+plot.states + theme_minimal() + labs(x="Periodo", y = "Estado")
+plot.model.qqplot + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Quantiles teóricos")
+plot.model.residuals + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Observación")
+```
+
+```{r apply}
+# 
+# modelo <- function(data.frame.modelo)  {
+# # Gráfica
+# #p <- data.frame.modelo %>% gather(Fecha, Valor, -Género, -Poblacion, -Delito, -Estado,- delitogen) %>% ggplot()+ geom_point(aes(x = Fecha, y = Valor, colour = Estado))
+# 
+# serie <- unique(data.frame.modelo$delitogen)
+# 
+# rownames(data.frame.modelo) <- data.frame.modelo$Estado
+# 
+# condenados <- data.frame.modelo[data.frame.modelo["condenados","Estado"],]
+# sindicados <- data.frame.modelo[data.frame.modelo["sindicados","Estado"],]
+# 
+# df.modelo <- rbind(sindicados,condenados) %>% select(-Estado,-Género,-Delito,-Poblacion,-delitogen) %>% as.matrix()
+# 
+# dummy <- c(rep(0,7),rep(1,12),rep(0,23))
+# 
+# B1 = matrix(list("b1","b2", 0, "b4"), 2, 2) 
+# U1 = matrix(list("u1",0),2, 1) 
+# Q1 = matrix(c("q11", "q12", "q12" , "q22"), 2, 2) 
+# Z1 = matrix(list(1, 0, 0, 1), 2, 2) 
+# A1 = matrix(list(0, 0), 2, 1) 
+# R1 = matrix(list("R11", "R12", "R12" ,"R22"), 2, 2) 
+# c1 = matrix(dummy, 1, 42) 
+# C1 = "unconstrained"
+# 
+# if (is.na(df.modelo[1,1])){ 
+# pi1 = matrix(list(df.modelo[1,5],df.modelo[2,5]), 2, 1) 
+# print("Ajaaaaaaaaa")
+# } else 
+# {
+# pi1 = matrix(list(df.modelo[1,1],df.modelo[2,1]), 2, 1) 
+# print("Todo bien")
+# }
+# 
+# V1 = diag(0, 2)
+# model.list = list(B = B1, U = U1, Q = Q1, Z = Z1, A = A1, R = R1, x0 = pi1, V0 = V1, C = C1, c = c1)
+# #model.list = list(B = B1, U = U1, Q = Q1, Z = Z1, A = A1, R = R1, x0 = pi1, V0 = V1)
+# 
+# print(serie)
+# 
+# modelo <- MARSS(df.modelo, model = model.list, control = list(maxit=5000))
+# 
+# 
+# #modelo <- MARSS(df.modelo, model = model.list, control = list(safe=TRUE, maxit=5000))
+# modelo.parametros <- modelo$par
+# plot.states <- plot(modelo, plot.type = "states") + theme_minimal() + labs(x="Periodo", y = "Estado")
+# plot.model.qqplot <-  plot(modelo, plot.type = "model.residuals.qqplot") + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Quantiles teóricos")
+# plot.model.residuals <-  plot(modelo, plot.type = "model.residuals") + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Observación")
+# 
+# plot.states 
+# plot.model.qqplot 
+# plot.model.residuals 
+# 
+# list(numero = 1, serie = serie, estados = plot.states, qqplots = plot.model.qqplot,residuals = plot.model.residuals, df.modelo = df.modelo, parametros = modelo.parametros)
+# }
+# 
+# modelo.list <-estructuras_spread2 %>% mutate(delitogen = paste(Delito, Género, sep = " ")) %>% split(.$delitogen)
+# 
+# #resultados <- modelo(modelo.list[[19]])
+# lista_resultado <- lapply(modelo.list, modelo)
+# lista_resultado %>% lapply("[[", "residuals")
+# 
+# #lista_resultado_modelocompleto <- lista_resultado
+```
+
+
+```{r apply forecast, fig.height=10, fig.width=8}
+
+modelo <- function(data.frame.modelo)  {
+
+serie <- unique(data.frame.modelo$delitogen)
+Delito <- unique(data.frame.modelo$Delito)
+Género <- as.character(data.frame.modelo[1,"Género"])
+
+rownames(data.frame.modelo) <- data.frame.modelo$Estado
+
+condenados <- data.frame.modelo[data.frame.modelo["condenados","Estado"],]
+sindicados <- data.frame.modelo[data.frame.modelo["sindicados","Estado"],]
+
+df.modelo <- rbind(sindicados,condenados) %>% dplyr::select(-Estado,-Género,-Delito,-Poblacion,-delitogen) %>% as.matrix()
+
+dummy <- c(rep(0,7),rep(1,12),rep(0,23))
+
+B1 = matrix(list("b1","b2", 0, "b4"), 2, 2) 
+U1 = matrix(list("u1",0),2, 1) 
+Q1 = matrix(c("q11", "q12", "q12" , "q22"), 2, 2) 
+Z1 = matrix(list(1, 0, 0, 1), 2, 2) 
+A1 = matrix(list(0, 0), 2, 1) 
+R1 = matrix(list("R11", "R12", "R12" ,"R22"), 2, 2) 
+c1 = matrix(dummy, 1, 42) 
+C1 = "unconstrained"
+
+if (is.na(df.modelo[1,1])){ 
+pi1 = matrix(list(df.modelo[1,5],df.modelo[2,5]), 2, 1) 
+print("Ajaaaaaaaaa")
+} else 
+{
+pi1 = matrix(list(df.modelo[1,1],df.modelo[2,1]), 2, 1) 
+print("Todo bien")
+}
+
+V1 = diag(0, 2)
+model.list = list(B = B1, U = U1, Q = Q1, Z = Z1, A = A1, R = R1, x0 = pi1, V0 = V1, C = C1, c = c1)
+#model.list = list(B = B1, U = U1, Q = Q1, Z = Z1, A = A1, R = R1, x0 = pi1, V0 = V1)
+
+print(serie)
+
+modelo <- MARSS(df.modelo, model = model.list, control = list(maxit=5000))
+
+modelo.parametros <- modelo$par
+plot.states <- plot(modelo, plot.type = "states") + theme_minimal() + labs(x="Periodo", y = "Estado")
+plot.model.qqplot <-  plot(modelo, plot.type = "model.residuals.qqplot") + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Quantiles teóricos")
+plot.model.residuals <-  plot(modelo, plot.type = "model.residuals") + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Observación")
+
+B_est <- modelo.parametros$B
+B_est_mat <- matrix(c(B_est[1,1],B_est[2,1],0,B_est[3,1]),2,2)
+
+U_est <- c(modelo.parametros$U["u1",1],0)
+Q_est <- modelo.parametros$Q
+x_ult <- df.modelo[,ncol(df.modelo)]
+
+est <- rbind(B_est,U_est,Q_est)
+#xtable(est)
+
+pry <- data.frame(V1 = c(0,0))
+
+for (i in 1:36) {
+pry[,i] <- B_est_mat %*% x_ult+U_est
+x_ult <- pry[,i]
+}
+gato <- data.frame(t(pry))
+
+fecha_pry = seq(as.Date("15/01/2017", "%d/%m/%Y"), by = "month", length.out = 36)
+Proyeccion <- cbind(fecha_pry,gato)
+
+colnames(Proyeccion) <- c("Periodo","Sindicados","Condenados")
+
+Proyeccion <- data.frame(Proyeccion, Género = c(rep(Género,36)), Delito = c(rep(Delito,36)))
+  
+list(serie = serie, estados = plot.states, qqplots = plot.model.qqplot,residuals = plot.model.residuals, df.modelo = df.modelo, proyeccion = Proyeccion, parametros = modelo.parametros)
+
+}
+
+modelo.list <-estructuras_spread2 %>% mutate(delitogen = paste(Delito, Género, sep = " ")) %>% split(.$delitogen)
+
+```
+
+```{r ajuste_hurtos}
+hurto_resultados <- modelo(modelo.list[[19]])
+hurto_resultados
+```
+
+```{r pry_total}
+  resultados <- lapply(modelo.list, modelo)
+  resultados %>% lapply("[[", 6) %>% bind_rows() -> pry_df
+
+  pry_df %<>% rowwise() %>% mutate(Sindicados = max(Sindicados, 0), Condenados = max(Condenados,0))
+  
+  pry_df %>% group_by(Periodo,Género) %>% summarise(Sindicados = sum(Sindicados), Condenados = sum(Condenados)) %>% filter(Género == "Hombres") %>% mutate (Total = Sindicados + Condenados)-> pry_df_resumen_hombres
+  
+  pry_df %>% group_by(Periodo,Género) %>% summarise(Sindicados = sum(Sindicados), Condenados = sum(Condenados)) %>% filter(Género == "Mujeres") %>% mutate (Total = Sindicados + Condenados)  -> pry_df_resumen_mujeres
+  
+  pry_df_resumen_hombres$Periodo <- as.character(pry_df_resumen_hombres$Periodo)
+  pry_df_resumen_mujeres$Periodo <- as.character(pry_df_resumen_mujeres$Periodo)
+  xtable(pry_df_resumen_hombres, digits = c(0,0,0,0,0,0))
+  xtable(pry_df_resumen_mujeres, digits = c(0,0,0,0,0,0))
+  
+  pry_df %>% gather(Estado, Valor, -Periodo, -Género, -Delito) %>% mutate(fecha = Periodo, Valor)-> estructuras_pry
+```
+
+```{r pry_delitos_hombres, fig.height=10, fig.width=8}
+estructuras_pry %>% filter(Género == "Hombres") %>%  filter(!(Delito == "NA")) %>%  ggplot() + geom_line(aes(x=fecha,y=Valor,colour = Estado)) + facet_wrap(~str_wrap(Delito,25), ncol = 4, scales = "free_y") + labs(colour = " ", y = "Proyección Población privada de la libertad - Hombres") + theme_minimal()+ theme(legend.position = "top")  -> delitoshombres_pry
+delitoshombres_pry
+```
+```{r pry_delitos_mujeres, fig.height=10, fig.width=8}
+estructuras_pry %>% filter(Género == "Mujeres") %>%  filter(!(Delito == "NA")) %>%  ggplot() + geom_line(aes(x=fecha,y=Valor,colour = Estado)) + facet_wrap(~str_wrap(Delito,25), ncol = 4, scales = "free_y") + labs(colour = " ", y = "Proyección Población privada de la libertad - Mujeres") + theme_minimal()+ theme(legend.position = "top")  -> delitoshombres_pry
+delitoshombres_pry
+```
+
+```{r resultados}
+#resultados
+```
+
+```{r salvar}
+pry_df %>% group_by(Periodo) %>% mutate(total = Sindicados + Condenados)%>%  summarise(pry_ppl_ss = sum(total)) -> pry_ppl_total_ss
+
+write.csv(pry_ppl_total_ss,"pry_ppl_total_ss.csv",row.names=FALSE)
+```
+
+
+
+
+
