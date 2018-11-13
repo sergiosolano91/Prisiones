@@ -55,7 +55,6 @@ La mayor parte de la variación de la población total se puede asociar con variac
 	\label{fig:variacion_mensual_condenados_desc}
 \end{figure}
 
-
 El crecimiento sostenido entre 1991 y 20017, sugiere un proceso estocástico integrado. Se trabajo entonces en cada serie diferenciando en los rezagos 1 y 12.
 
 Sobre cada serie diferenciada en rezago 1 (población total, población sindicada y población condenada)  se realiza la función de autocorrelación y autocorrelación parcial , que se presenan en la figura \ref{fig:ACF_variacion_mensual}. Estas funciones son usadas como herramienta de diagnóstico, para identificar modelos adecuados en cada serie.
@@ -105,6 +104,8 @@ De acuerdo con el diagnóstico se evaluaron los siguientes modelos para proyectar
 	\item SARIMA de orden (3,2,1) y estacionalidad (0,0,2). Es el modelo sugerido por la función auto.arima, sin embargo incluye parámetros autoregresivos no significativos (pvalue > 0.05). El detalle de los resultados se presenta en la tabla tabla \ref{parámetros_321002}
 	\item SARIMA de orden (1,2,1) y estacionalidad (0,0,2). Este modelo tiene un BIC menor al modelo 3, y eliminando dos parámetros no significativos conserva un AIC cercano.
 \end{enumerate}
+
+La estadística de Ljung-box tiene como hipótesis nula $H_0$ la independencia del error hasta el lag $l$. Un p value alto indica que no podemos rechazar la hipótesis nula. Al realizar la prueba sobre los residuales, se espera que en un modelo con buen ajuste, no se rechace la hipótesis nula a ningún lag (se requieren p values altos).
 
 Para el modelo 1 y el modelo 2, Ljung-box sugiere que aún hay correlación significativa en los residuos, el modelo 3 y el modelo 4 no tienen correlación significativa en los residuos.
 
@@ -356,60 +357,64 @@ Los modelos 3 y 4 se utilizan para comparar con el comportamiento de la població
 	\label{fig:Arima_conde_012000}
 \end{figure}
 
-\section{Tratamiento de outliers}
+\section{Tratamiento de outliers}\label{sec:outliers}
+
+Para eliminar outliers se realizó el siguiente procedimiento: 1) Se identificaron los outliers, como aquellos instantes donde el error se encuetra a más de tres desviaciones estándar 2) se incluyeron una variable dummy en cada instante identificado como outlier 3) se seleccionó un nuevo modelo, con el menor AIC. 
+
+Los diagnósticos de los modelos seleccionados se encuentran en las figuras \ref{fig:Arima_total_211000D}, \ref{fig:Arima_sindi_012001D} y \ref{fig:Arima_conde_111001Dummy}.
+
+Una vez retirados los outliers, los modelos seleccionados presentan un comportamiento similar al normal, sin muestras de autocorrelación.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_total_211200Dummy}
 	\caption[Diagnóstico del SARIMA (2,1,1)(2,0,0), población total con variables Dummy]{Diagnóstico del Modelo SARIMA (0,1,1)(0,0,0)[12], población carcelaria total con variables Dummy.} {Fuente: INPEC} {Elaboración propia}
-	\label{fig:Arima_conde_012000}
+	\label{fig:Arima_total_211000D}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_sindi_012001Dummy}
 	\caption[Diagnóstico del SARIMA (0,1,2)(0,0,1), población sindicada con variables Dummy]{Diagnóstico del Modelo SARIMA (0,1,2)(0,0,1)[12], población carcelaria sindicada con variables Dummy.} {Fuente: INPEC} {Elaboración propia}
-	\label{fig:Arima_conde_012000}
+	\label{fig:Arima_sindi_012001D}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Arima_conde_111001Dummy}
 	\caption[Diagnóstico del SARIMA (1,1,1)(0,0,1), población condenada con variables Dummy]{Diagnóstico del Modelo SARIMA (1,1,1)(0,0,1)[12], población carcelaria condenada con variables Dummy.} {Fuente: INPEC} {Elaboración propia}
-	\label{fig:Arima_conde_012000}
+	\label{fig:Arima_conde_111001Dummy}
 \end{figure}
-
 
 \section{Proyección}
 %\subsection{Población total}
-
-Proyección de la población total se presenta en la gráfica \ref{fig:pry_total_121002}
+Proyección de la población total, luego de retirar outliers, se presenta en la gráfica \ref{fig:pry_total_121002}. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{graf_pry_total_4}
-	\caption[Proyección de la población carcelaria total]{Proyección de la población carcelaria total, SARIMA (1,2,1,0,0,2)}
+	\includegraphics[width=0.7\linewidth]{graf_pry_total_4_dummy}
+	\caption[Proyección de la población carcelaria total]{Proyección de la población carcelaria total, SARIMA (2,1,1,2,0,0)}
 	\label{fig:pry_total_121002} {Fuente: INPEC} {Elaboración propia}
 \end{figure}
 
 %\subsection{Población sindicada}
 
-Proyección de la población sindicada se presenta en la gráfica \ref{fig:pry_sindi_011001}
+Proyección de la población sindicada, luego de retirar outliers, se presenta en la gráfica \ref{fig:pry_sindi_011001}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{graf_pry_sindi_3}
-	\caption[Proyección de la población carcelaria sindicada]{Proyección de la población carcelaria sindicada, SARIMA (0,1,1,0,0,1)} {Fuente: INPEC} {Elaboración propia}
+	\includegraphics[width=0.7\linewidth]{graf_pry_sindi_3_dummy}
+	\caption[Proyección de la población carcelaria sindicada]{Proyección de la población carcelaria sindicada, SARIMA (0,1,2,0,0,1)} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:pry_sindi_011001}
 \end{figure}
 
 %\subsection{Población condenada}
 
-Proyección de la población condenada se presenta en la gráfica \ref{fig:pry_conde_111001}
+Proyección de la población condenada, luego de retirar outliers, se presenta en la gráfica \ref{fig:pry_conde_111001}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{graf_pry_conde_1}
+	\includegraphics[width=0.7\linewidth]{graf_pry_conde_1_dummy}
 	\caption[Proyección de la población carcelaria condenada]{Proyección de la población carcelaria condenada, SARIMA (1,1,1,0,0,1)} {Fuente: INPEC} {Elaboración propia}
 	\label{fig:pry_conde_111001}
 \end{figure}
@@ -431,6 +436,9 @@ Usar modelos ARIMA permite tener en cuenta la correlación del error y el comport
 La elaboración de los intervalos de confianza descansa en el supuesto de normalidad del error, sin embargo, los Q-Q plot residuales muestran varias observaciones fuera de los intervalos de confianza para población sindicada y condenada, sugiriendo varios cambios de nivel o una distribución no normal del error. Contrastar los periodos donde el error está fuera de los intervalos de confianza contra los cambios en el sistema penitenciario, permitiría identificar cambios de nivel y controlarlos a través de variables dummy.  
 
 % Mejoras posibles: ARMAX, TAR, VAR.
+
+Realizar un analisis de impacto en series de tiempo, como el sugerido por Mataris en \cite{Matarise2011} permitiría medir el impacto que los diferentes cambios en la política criminal han tenido en la población sindicad y condenada. El análisis realizado en la sección \ref{sec:outliers} trata todos los errores como errores aditivos, cuyo efecto se limita al periodo en cuestión, por ejemplo, indultos a un grupo significativo de individuos. 
+
 Situaciones como las encontradas en esta serie de tiempo (alta variabilidad, poblaciones compuestas por series de menor escala, procesos de migración inter-grupos, cambios de nivel asociados a cambios de régimen) pueden ser comunes en la proyección de poblaciones pequeñas. Estas situaciones, si se desean abordar usando las herramientas del análisis de series de tiempo pueden incluir: Modelos ARMAX, para los modelos cuya varianza no es estable a través del tiempo, modelos autoregresivos de umbral (TAR) cuando se presenten cambios de régimen y  vectores autoregresivos(VAR), para aquellas poblaciones cuyo comportamiento se relaciona con poblaciones pequeñas cercanas o con otros grupos de poblaciones especiales. 
  
 

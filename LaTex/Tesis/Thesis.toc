@@ -18,7 +18,7 @@
 \contentsline {chapter}{\numberline {3}Modelos SARIMA}{14}{chapter.3}
 \contentsline {section}{\numberline {3.1}Identificaci\'on del modelo}{14}{section.3.1}
 \contentsline {section}{\numberline {3.2}Estimaci\'on de par\'ametros}{19}{section.3.2}
-\contentsline {section}{\numberline {3.3}Tratamiento de outliers}{35}{section.3.3}
+\contentsline {section}{\numberline {3.3}Tratamiento de outliers}{34}{section.3.3}
 \contentsline {section}{\numberline {3.4}Proyecci\'on}{37}{section.3.4}
 \contentsline {section}{\numberline {3.5}Discusi\'on}{39}{section.3.5}
 \contentsline {chapter}{\numberline {4}M\'etodos demogr\'aficos para poblaciones peque\~nas}{41}{chapter.4}
@@ -33,6 +33,7 @@
 \contentsline {section}{\numberline {5.4}Estimaci\'on de par\'ametros}{61}{section.5.4}
 \contentsline {section}{\numberline {5.5}Proyecciones 2017 - 2020}{63}{section.5.5}
 \contentsline {section}{\numberline {5.6}Discusi\'on}{68}{section.5.6}
-\contentsline {chapter}{Conclusiones}{70}{section.5.6}
-\contentsline {chapter}{Trabajo futuro}{71}{section.5.6}
-\contentsline {chapter}{Bibliograf\'{\i }a}{72}{section.5.6}
+\contentsline {chapter}{\numberline {6}Comparaci\'on}{70}{chapter.6}
+\contentsline {chapter}{Conclusiones}{73}{table.caption.62}
+\contentsline {chapter}{Trabajo futuro}{74}{table.caption.62}
+\contentsline {chapter}{Bibliograf\'{\i }a}{75}{table.caption.62}

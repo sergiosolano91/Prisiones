@@ -8,6 +8,10 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
 rm(list = ls())
+```
+
+```{r librerías}
+
 library("lubridate") # Fechas
 library("readxl") # Importar excel
 library("magrittr") # pipes
@@ -16,14 +20,66 @@ library("dplyr") # Data handling
 library("tidyr") # Data handling
 library("knitr") # Imprimir pdf
 library("ggplot2") # Graficas
+library("xtable") # Resultados
 ```
 
 ```{r Carga csv}
 pry_ppl_smooth_censal <- read.csv("pry_ppl_smooth_censal.csv")
 pry_ppl_total_ss <- read.csv("pry_ppl_total_ss.csv")
-ppl_real_2018 <- read.csv("ppl_real.csv")
+pry_ppl_arima <- read.csv("pry_ppl_arima.csv")
+ppl_real_2017 <- read.csv("ppl_real.csv")
 ppl_real <- read.csv("ppl_gen.csv")
 ```
+
+```{r preprocesamiento csv}
+colnames(pry_ppl_smooth_censal) <- c("Periodo","Pry","Modelo")
+colnames(pry_ppl_total_ss) <- c("Periodo","Pry","Modelo")
+colnames(pry_ppl_arima) <- c("Periodo","Pry","Modelo")
+ppl_real_2017 %>% select(Fecha,Poblacion_real,Modelo) -> ppl_real_2017pry
+colnames(ppl_real_2017pry) <- c("Periodo","Pry","Modelo")
+ppl_real %>% select(Fecha,total,Modelo) -> ppl_realpry
+colnames(ppl_realpry) <- c("Periodo","Pry","Modelo")
+
+consolidado <- rbind(ppl_realpry,ppl_real_2017pry,pry_ppl_arima,pry_ppl_smooth_censal,pry_ppl_total_ss)
+
+consolidado$Periodo <- as.Date(consolidado$Periodo,"%Y-%m-%d")
+consolidado$Periodo <- format(consolidado$Periodo,format="%Y-%m")
+consolidado$Periodo <- as.Date(paste(consolidado$Periodo,1,sep="-"),"%Y-%m-%d")
+```
+
+```{r grafica}
+consolidado %>% filter(year(Periodo)>2010, Periodo < as.Date("2018-06-01","%Y-%m-%d"))%>% ggplot() + geom_line(aes(x = Periodo, y = Pry, colour = Modelo)) + labs(x="Periodo",y="Población total privada de la libertad") + theme_minimal() + theme(legend.title = element_blank()) -> pry_compara 
+```
+
+```{r pry_compara}
+pry_compara
+```
+
+```{r pronóstico}
+consolidado %>% filter(year(Periodo)>2016, Periodo < as.Date("2018-06-01","%Y-%m-%d"), !(Modelo %in% c("Real historico"))) %>% spread(Modelo, Pry) %>% mutate(Periodo = as.character(Periodo))-> Pronosticos_tabla
+
+tabla_pronóstico <- xtable(Pronosticos_tabla, digits = rep(0,6), caption = "Proyecciones y observado enero 2017 a mayo 2018", label = "tab:Pronosticos")
+
+```
+
+
+```{r error}
+consolidado %>% filter(year(Periodo)>2016, Periodo < as.Date("2018-06-01","%Y-%m-%d"), !(Modelo %in% c("Real Validación","Real historico"))) -> modelos
+
+ppl_real_2017$Fecha <- as.Date(ppl_real_2017$Fecha,"%Y-%m-%d")
+
+modelos %>% left_join(ppl_real_2017, by = c("Periodo"="Fecha")) %>% mutate(error = Pry - Poblacion_real) %>% select(Periodo, Modelo.x, error) %>% spread(Modelo.x, error) %>% mutate(Periodo = as.character(Periodo))-> error
+
+tabla_error <- xtable(error, digits = rep(0,5), caption = "Error de pronóstico enero 2017 a mayo 2018", label = "tab:Errorpronostico")
+
+sesgo <- colMeans(error[,c(2:4)]) %>% as.data.frame()
+
+tabla_sesgo <- xtable(sesgo, digits = 0, caption = "Sesgo de pronóstico enero 2017 a mayo 2018", label = "tab:Sesgo")
+```
+
+
+
+
 
 
 

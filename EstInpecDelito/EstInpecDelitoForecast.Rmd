@@ -7,11 +7,16 @@ output:
   html_document:
     df_print: paged
   word_document: default
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
 rm(list = ls())
+```
+
+```{r librerías, include=FALSE}
 library("lubridate") # Fechas
 library("readxl") # Importar excel
 library("magrittr") # pipes
@@ -178,13 +183,13 @@ model.list = list(B = B1, U = U1, Q = Q1, Z = Z1, A = A1, R = R1, x0 = pi1, V0 =
 #, method = "BFGS"
 model.hurtos1 <- MARSS(hurto, model = model.list, control = list( maxit=10000))
 model.hurtos1$par
-plot.states <- plot(model.hurtos1, plot.type = "states")
+plot.states <- plot(model.hurtos1, plot.type = "states") + theme_minimal()
 plot.model.qqplot <-  plot(model.hurtos1, plot.type = "model.residuals.qqplot")
 plot.model.residuals <-  plot(model.hurtos1, plot.type = "model.residuals")
 
-plot.states + theme_minimal() + labs(x="Periodo", y = "Estado")
-plot.model.qqplot + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Quantiles teóricos")
-plot.model.residuals + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Observación")
+plot.states #
+plot.model.qqplot #+ theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Quantiles teóricos")
+plot.model.residuals #+ theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Observación")
 ```
 
 ```{r MARSS pry}
@@ -218,8 +223,6 @@ xtable(Pry_hurto)
 
 
 ### DUMMY 2014
-
-
 
 ```{r estado espacio hurto}
 
@@ -361,9 +364,9 @@ print(serie)
 modelo <- MARSS(df.modelo, model = model.list, control = list(maxit=5000))
 
 modelo.parametros <- modelo$par
-plot.states <- plot(modelo, plot.type = "states") + theme_minimal() + labs(x="Periodo", y = "Estado")
-plot.model.qqplot <-  plot(modelo, plot.type = "model.residuals.qqplot") + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Quantiles teóricos")
-plot.model.residuals <-  plot(modelo, plot.type = "model.residuals") + theme_minimal()  + labs(x="Residuales estandarizados del modelo", y = "Observación")
+plot.states <- plot(modelo, plot.type = "states") + theme_minimal() #+ labs(x="Periodo", y = "Estado")
+plot.model.qqplot <-  plot(modelo, plot.type = "model.residuals.qqplot") + theme_minimal()  #+ labs(x="Residuales estandarizados del modelo", y = "Quantiles teóricos")
+plot.model.residuals <-  plot(modelo, plot.type = "model.residuals") + theme_minimal()  #+ labs(x="Residuales estandarizados del modelo", y = "Observación")
 
 B_est <- modelo.parametros$B
 B_est_mat <- matrix(c(B_est[1,1],B_est[2,1],0,B_est[3,1]),2,2)
@@ -434,10 +437,19 @@ delitoshombres_pry
 #resultados
 ```
 
-```{r salvar}
-pry_df %>% group_by(Periodo) %>% mutate(total = Sindicados + Condenados)%>%  summarise(pry_ppl_ss = sum(total)) -> pry_ppl_total_ss
+```{r exportar}
+estructura %>% group_by(fecha) %>% summarise(total = sum(Valor)) %>% filter (fecha == as.Date("2016-12-15", "%Y-%m-%d"))-> totales_mes
 
-write.csv(pry_ppl_total_ss,"pry_ppl_total_ss.csv",row.names=FALSE)
+total_ppl_2016 <- 118532
+
+ajuste <- as.numeric(total_ppl_2016/totales_mes[1,2])
+
+estructuras_pry %>% group_by(Periodo) %>% summarise(pry = sum(Valor)) -> pry_ppl_total_ss
+
+pry_ppl_total_ss$pry <- pry_ppl_total_ss$pry*ajuste
+
+Modelo <- rep("Estado Espacio",36)
+write.csv(cbind(pry_ppl_total_ss,Modelo),"pry_ppl_total_ss.csv",row.names = FALSE)
 ```
 
 

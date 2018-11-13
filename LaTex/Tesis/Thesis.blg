@@ -10,6 +10,7 @@ A level-1 auxiliary file: cap1.aux
 A level-1 auxiliary file: cap2.aux
 A level-1 auxiliary file: cap3-new.aux
 A level-1 auxiliary file: cap4.aux
+A level-1 auxiliary file: cap5.aux
 A level-1 auxiliary file: conclusiones.aux
 A level-1 auxiliary file: trabajofuturo.aux
 Database file #1: references.bib
@@ -24,50 +25,51 @@ in BibTeX entry type `book'
 Warning--missing publisher in Durbin2012
 Warning--missing journal name in Holmes2018a
 Warning--missing pages in Holmes2018a
+Warning--can't use both author and editor fields in Matarise2011
 Warning--missing journal name in Minton2015
 Warning--missing pages in Minton2015
 Warning--missing institution in OficinaAsesoradePlaneacion2014
 Warning--missing institution in Wan1
 Warning--missing year in Wan1
-You've used 33 entries,
+You've used 34 entries,
             2213 wiz_defined-function locations,
-            707 strings with 8552 characters,
-and the built_in function-call counts, 8739 in all, are:
-= -- 728
-> -- 398
+            714 strings with 8661 characters,
+and the built_in function-call counts, 9140 in all, are:
+= -- 768
+> -- 405
 < -- 3
-+ -- 159
-- -- 126
-* -- 661
-:= -- 1446
-add.period$ -- 33
-call.type$ -- 33
-change.case$ -- 165
++ -- 162
+- -- 128
+* -- 686
+:= -- 1500
+add.period$ -- 34
+call.type$ -- 34
+change.case$ -- 169
 chr.to.int$ -- 0
-cite$ -- 47
-duplicate$ -- 400
-empty$ -- 784
-format.name$ -- 126
-if$ -- 1800
+cite$ -- 49
+duplicate$ -- 421
+empty$ -- 824
+format.name$ -- 128
+if$ -- 1895
 int.to.chr$ -- 0
-int.to.str$ -- 33
-missing$ -- 63
-newline$ -- 109
-num.names$ -- 66
-pop$ -- 248
+int.to.str$ -- 34
+missing$ -- 66
+newline$ -- 112
+num.names$ -- 68
+pop$ -- 255
 preamble$ -- 1
-purify$ -- 129
+purify$ -- 132
 quote$ -- 0
-skip$ -- 230
+skip$ -- 249
 stack$ -- 0
-substring$ -- 346
-swap$ -- 70
+substring$ -- 383
+swap$ -- 80
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 117
-warning$ -- 15
-while$ -- 84
-width$ -- 35
-write$ -- 280
-(There were 15 warnings)
+type$ -- 119
+warning$ -- 16
+while$ -- 89
+width$ -- 36
+write$ -- 290
+(There were 16 warnings)

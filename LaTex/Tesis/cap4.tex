@@ -1,14 +1,16 @@
 \chapter{Modelos Estado-Espacio}
 
-El comportamiento de la población carcelaria es diferente según el delito y tiene relación con un componente demográfico y un componente normativo. El componente demográfico se ha tratado en el capítulo anterior y en este capítulo se abordara el componente de delitos. La interacción entre ambos no ha sido analizada pues no se cuenta con la información necesaria.
+El comportamiento de la población carcelaria es diferente según el delito y tiene relación con un componente demográfico y un componente normativo. El componente demográfico se ha tratado en el capítulo anterior, en este capítulo se aborda el comportamiento de delitos. La interacción entre ambos no ha sido analizada pues no se cuenta con la información necesaria.
 
 Las personas que se encuentran a la espera de juicio se llaman sindicados, y condenados quienes ya han recibido una sentencia. Cada mes una proporción de las personas sindicadas es sentenciada, puede entonces salir en libertad o cambiar a condenado, y una proporción de los condenados sale en libertad. También se pueden presentar salidas por mortalidad. Un modelo auto-regresivo bivariado para la población total puede modelar estas interacciones; particularmente la población privada de la libertad está compuesta por series separadas de diferentes delitos, cada una con un comportamiento diferente, como lo sugieren la figuras \ref{fig:delitoshombres} y \ref{fig:delitosmujeres}. 
 
-Se presentan el comportamiento de la población carcelaria por delito y género. Con esta información se estima un modelo estado-espacio en cada una de las series bivariadas. Los modelos estado-espacio se formulan de forma tal que permitan modelar la interacción entre la población sindicada y condenada. 
+Se presentan el comportamiento de la población carcelaria por delito y género. Con esta información se estima un modelo estado-espacio en cada una de las series bivariadas. Los modelos estado-espacio se formulan de forma tal que permitan modelar la interacción entre la población sindicada y condenada.
 
 \section{Población privada de la libertad 2013-2016 por delito}
 
 El INPEC incluye en sus estadísticas mensuales la población privada de la libertad separada por delito, estado (sindicado, condenado) y género. Se ha consolidado la información disponible en reportes individuales entre Julio 2013 y Diciembre 2016, en una sola base de datos. Octubre 2015 se considera un dato faltante, pues a la fecha de descarga el reporte no se encuentra disponible en la página del INPEC, \cite{INPEC2018}
+
+En diciembre de 2016 la base de población privada de la libertad por delito contaba con 184.116, frente a  una población carcelaria de 118.532 individuos, en el mismo periodo. Esta diferencia se presenta pues un mismo individuo puede estar privado de la libertad por varios delitos. Las proyecciones se realizan separadamente, se suman como si fueran individuales y se multiplica por un factor de ajuste para agregar las proyecciones al total.
 
 \begin{figure}[H]
 	\centering
@@ -136,7 +138,7 @@ En el ejercicio con datos reales se ajustó un segundo modelo con una variable Du
 
 \section{Estimación de parámetros}
 
-La estimación se realiza en series bivariadas por delito, género. Se presenta en detalle procedimiento para la serie de hurto en hombres, en series adicionales se presentan resultados de la proyección.
+La estimación se realiza en series bivariadas por delito, género. Se presenta en detalle procedimiento para la serie de hurto en hombres, en series adicionales se presentan resultados de la proyección. La estimación de los parámetros se realiza con el paquete MARSS, que utiliza el algoritmo EM para realizar la estimación. La estimación de los estados se realiza por suavizamiento. 
 
 Una variable Dummy correspondiente a 2014 se agregó al modelo. En este periodo se detuvo el crecimiento de la población carcelaria gracias a la entrada en vigor de la ley 1709 de 2014. Dos mediciones del impacto de la ley 1709 son realizadas por el INPEC en 2014, señalando el cambio observado en la tendencia de la población carcelaria \cite{OficinaAsesoradePlaneacion2014} \cite{Asesora2014}. Las gráficas \ref{fig:delitoshombres} y \ref{fig:delitosmujeres} muestran que en 2015 y 2016 la población carcelaria regresa a su comportamiento usual.
 
